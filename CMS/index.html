@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="U Rec CMS">
+
+    <title>U Rec &ndash; CMS</title>
+
+    
+
+
+<link rel="stylesheet" href="css/pure-release-0.6.0/pure-min.css">
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+
+
+
+
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/pure-release-0.6.0/side-menu.css">
+    <!--<![endif]-->
+  
+
+
+    
+
+    
+
+</head>
+<body>
+
+
+
+
+
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu"></div>
+
+    <div id="main"></div>
+</div>
+
+
+
+
+<script type="text/template" id="cms-menu">
+<div class="pure-menu custom-restricted-width">
+    <ul id="menu" class="pure-menu-list">
+        <a class="pure-menu-heading" href="#">U Rec CMS</a>
+        <li class="pure-menu-item menu-item-divided"><a href="#" class="pure-menu-link">Home</a></li>
+        <li class="pure-menu-item menu-item-divided"><a href="#about" class="pure-menu-link">About</a></li>
+        <li class="pure-menu-item menu-item-divided"><a href="#services" class="pure-menu-link">Services</a></li>
+        <li class="pure-menu-item menu-item-divided"><a href="#contacts" class="pure-menu-link">Contact</a></li>
+    </ul>
+</div>
+</script>
+
+<script type="text/template" id="about">
+<div class="header">
+    <h1>About</h1>
+    <h2>Us</h2>
+</div>
+<div class="content">
+    <h2 class="content-subhead">How to use this layout</h2>
+    <p>
+        To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
+    </p>
+</div>
+</script>
+
+<script src="js/vendor/ui.js"></script>
+<script src="js/vendor/jquery-2.1.3.min.js"></script>
+<script src="js/vendor/underscore.js"></script>
+<script src="js/vendor/backbone.js"></script>
+<script src="js/App.js"></script>
+<script src="js/views/menu.js"></script>
+<script src="js/views/about.js"></script>
+
+
+
+<script type="text/javascript">
+    window.onload = function() {
+        app.init();
+    }
+</script>
+
+
+
+</body>
+</html>

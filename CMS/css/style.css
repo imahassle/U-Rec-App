@@ -1,7 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+/* line 3, C:/xampp/htdocs/CMS/css/style.scss */
+html, button, input, select, textarea, .pure-g [class*="pure-u"] {
+  /* Set your content font stack here: */
+  font-family: 'Open Sans', sans-serif; }
 
-html, button, input, select, textarea,
-.pure-g [class *= "pure-u"] {
-    /* Set your content font stack here: */
-    font-family: 'Open Sans', sans-serif;
-}
+/* line 8, C:/xampp/htdocs/CMS/css/style.scss */
+.custom-restricted-width {
+  width: 100px; }
+  /* line 10, C:/xampp/htdocs/CMS/css/style.scss */
+  .custom-restricted-width li {
+    height: auto; }
