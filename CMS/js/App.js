@@ -11,7 +11,7 @@ var app = (function() {
 		init: function() {
 			this.content = $("#main");
 			ViewsFactory.menu();
-			//
+			ViewsFactory.cms();
 			Backbone.history.start();
 			return this;
 		},
@@ -29,6 +29,14 @@ var app = (function() {
 			}
 			return this.menuView;
 		},
+		cms: function() {
+			if(!this.cmsView) {
+				this.cmsView = new api.views.cms({ 
+					el: this.content
+				});
+			}
+			return this.cmsView;
+		},
 		about: function() {
 			if(!this.aboutView) {
 				this.aboutView = new api.views.about({ 
@@ -36,6 +44,14 @@ var app = (function() {
 				});
 			}
 			return this.aboutView;
+		},
+		login: function() {
+			if(!this.loginView) {
+				this.loginView = new api.views.login({ 
+					el: this.content
+				});
+			}
+			return this.loginView;
 		}
 	};
 	var Router = Backbone.Router.extend({
@@ -43,11 +59,11 @@ var app = (function() {
 			"about": "about",
 			"services": "services",
 			"contacts": "contacts",
-			"": "home"
+			"": "home",
+			"login": "login"
 		},
 		home: function() {
-			// var view = ViewsFactory.list();
-			// api.changeContent($el);
+			api.changeContent(ViewsFactory.cms().$el);
 		},
 		about: function() {
 			// alert("Hit about");
@@ -55,7 +71,10 @@ var app = (function() {
 			// ViewsFactory.about.render();
 		},
 		services: function() {},
-		contacts: function() {}
+		contacts: function() {},
+		login: function(valid) {
+			api.changeContent(ViewsFactory.login().verify(valid).$el);
+		}
 	});
 	api.router = new Router();
 

@@ -1,5 +1,5 @@
-app.views.about = Backbone.View.extend({
-	template: _.template($("#about").html()),
+app.views.load = Backbone.View.extend({
+	template: _.template($("#loading").html()),
 	initialize: function() {
 		this.render();
 	},

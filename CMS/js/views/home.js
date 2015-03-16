@@ -1,5 +1,5 @@
-app.views.about = Backbone.View.extend({
-	template: _.template($("#about").html()),
+app.views.cms = Backbone.View.extend({
+	template: _.template($("#home").html()),
 	initialize: function() {
 		this.render();
 	},

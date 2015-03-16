@@ -1,4 +1,3 @@
-// views/menu.js
 app.views.menu = Backbone.View.extend({
 	template: _.template($("#cms-menu").html()),
 	initialize: function() {
