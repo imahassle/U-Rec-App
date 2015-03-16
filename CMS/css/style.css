@@ -1,88 +1,91 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+/* line 3, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   /* Set your content font stack here: */
-  font-family: 'Open Sans', sans-serif;
-}
+  font-family: 'Open Sans', sans-serif; }
 
+/* line 8, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .custom-restricted-width {
-  width: 100px;
-}
-.custom-restricted-width li {
-  height: auto;
-}
+  width: 100px; }
+  /* line 10, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
+  .custom-restricted-width li {
+    height: auto; }
 
+/* line 15, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .login-prompt {
   margin: 250px 30% 0 30%;
-  display: block;
-}
+  display: block; }
 
+/* line 20, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .middle {
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
+/* line 24, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .right {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
+/* line 28, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .left {
-  margin-left: 0;
-}
+  margin-left: 0; }
 
+/* line 32, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
+.stats-graph {
+  width: 300px;
+  height: 300px; }
+
+/* line 39, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner {
   margin: 50px auto;
   width: 60px;
   height: 50px;
   text-align: center;
-  font-size: 10px;
-}
+  font-size: 10px; }
 
+/* line 47, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner > div {
   background-color: #333;
   height: 100%;
   width: 6px;
   display: inline-block;
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
-  animation: stretchdelay 1.2s infinite ease-in-out;
-}
+  animation: stretchdelay 1.2s infinite ease-in-out; }
 
+/* line 57, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner .rect2 {
   -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
+  animation-delay: -1.1s; }
 
+/* line 62, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s; }
 
+/* line 67, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner .rect4 {
   -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
+  animation-delay: -0.9s; }
 
+/* line 72, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
 .spinner .rect5 {
   -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
+  animation-delay: -0.8s; }
 
 @-webkit-keyframes stretchdelay {
+  /* line 78, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
   0%, 40%, 100% {
-    -webkit-transform: scaleY(0.4);
-  }
+    -webkit-transform: scaleY(0.4); }
 
+  /* line 79, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
   20% {
-    -webkit-transform: scaleY(1);
-  }
-}
+    -webkit-transform: scaleY(1); } }
 
 @keyframes stretchdelay {
+  /* line 83, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
   0%, 40%, 100% {
     transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }
+    -webkit-transform: scaleY(0.4); }
 
+  /* line 86, C:/Users/bhassell15/Documents/GitHub/U-Rec-App/CMS/css/style.scss */
   20% {
     transform: scaleY(1);
-    -webkit-transform: scaleY(1);
-  }
-}
+    -webkit-transform: scaleY(1); } }

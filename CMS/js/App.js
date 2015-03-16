@@ -9,7 +9,7 @@ var app = (function() {
 		router: null,
 		cms: null,
 		init: function() {
-			this.content = $("#main");
+			this.content = $("#main"); //Sets initial view for app
 			ViewsFactory.menu();
 			ViewsFactory.cms();
 			Backbone.history.start();
@@ -52,6 +52,14 @@ var app = (function() {
 				});
 			}
 			return this.loginView;
+		},
+		stats: function() {
+			if(!this.statsView) {
+				this.statsView = new api.views.stats({ 
+					el: this.content
+				});
+			}
+			return this.statsView;
 		}
 	};
 	var Router = Backbone.Router.extend({
