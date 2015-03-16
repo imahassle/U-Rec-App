@@ -1,5 +1,5 @@
-app.views.facility = Backbone.View.extend({
-	template: _.template($("#facility").html()),
+app.views.rentals = Backbone.View.extend({
+	template: _.template($("#rentals").html()),
 	initialize: function() {
 		this.render();
 	},

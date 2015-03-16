@@ -8,9 +8,16 @@
     <title>U Rec &ndash; CMS</title>
 
     
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
 
 <link rel="stylesheet" href="css/pure-release-0.6.0/pure-min.css">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/pure-release-0.6.0/side-menu.css">
+    <!--<![endif]-->
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -20,12 +27,7 @@
 
 
   
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="css/pure-release-0.6.0/side-menu.css">
-    <!--<![endif]-->
+
   
 
 
@@ -48,6 +50,11 @@
         <span></span>
     </a>
 
+    <div class="header aug-top-bar">
+        <label for="logout-button">Hello, User!</label>
+        <a href="#">Log out</a>
+    </div>
+
     <div id="menu"></div>
 
     <div id="main">
@@ -62,10 +69,9 @@
 
 <!-- === Views === -->
 
-<script type="text/template" id="about">
-<div class="header">
-    <h1>About</h1>
-    <h2>Us</h2>
+<script type="text/template" id="facility">
+<div class="header aug-header">
+    <h1>Facility</h1>
 </div>
 <div class="content">
     <div class="pure-g">
@@ -82,25 +88,113 @@
 <div class="pure-menu custom-restricted-width">
     <ul id="menu" class="pure-menu-list">
         <a class="pure-menu-heading" href="#">U Rec CMS</a>
-        <li class="pure-menu-item menu-item-divided"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item menu-item-divided"><a href="#about" class="pure-menu-link">About</a></li>
-        <li class="pure-menu-item menu-item-divided"><a href="#services" class="pure-menu-link">Services</a></li>
-        <li class="pure-menu-item menu-item-divided"><a href="#stats" class="pure-menu-link">Stats</a></li>
-        <li class="pure-menu-item menu-item-divided"><a href="#login" class="pure-menu-link">Login</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+        <li class="pure-menu-item">
+            <a href="#facility" class="pure-menu-link">Facility</a>
+            <ul class="pure-menu-list">
+                <li><a href="#" class="pure-menu-link">Hours</a></li>
+                <li><a href="#" class="pure-menu-link">Incentive Programs</a></li>
+                <li><a href="#" class="pure-menu-link">Events</a></li>
+                <li><a href="#" class="pure-menu-link">Photos</a></li>
+                <li><a href="#" class="pure-menu-link">View feedback</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item">
+            <a href="#outdoorrec" class="pure-menu-link">Outdoor Rec</a>
+            <ul class="pure-menu-list">
+                <li><a href="#" class="pure-menu-link">Upcoming Trips</a></li>
+                <li><a href="#" class="pure-menu-link">Photos</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item"><a href="#intramurals" class="pure-menu-link">Intramurals</a></li>
+        <li class="pure-menu-item">
+            <a href="#climbingwall" class="pure-menu-link">Climbing Wall</a>
+            <ul class="pure-menu-list">
+                <li><a href="#" class="pure-menu-link">Hours</a></li>
+                <li><a href="#" class="pure-menu-link">Photos</a></li>
+                <li><a href="#" class="pure-menu-link">Events</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
+        <li class="pure-menu-item"><a href="#stats" class="pure-menu-link">Stats</a></li>
+        <li class="pure-menu-item"><a href="#login" class="pure-menu-link">Login</a></li>
     </ul>
 </div>
 </script>
 
-<div class="header">
-    <h1>Statistics and Usage</h1>
+
+
+<script type="text/template" id="rentals">
+    <div class="header aug-header">
+    <h1>Equipment Rentals</h1>
 </div>
 <div class="content">
-    <h2 class="pure-sub-header">Downloads per month</h2>
-    <img src="img/graph.png" alt="Downloads/month" class="pure-img stats-graph">
-</div>
+    <table class="pure-table aug-table">
+        <thead>
+            <tr>
+                <th class="clear-head"></th>
+                <th class="aug-th">Student Rates</th>
+                <th class="aug-th">Faculty Rates</th>
+            </tr>
+        </thead>
+    </table>
+    <table class="pure-table pure-table-horizontal aug-table">
+        <thead>
+            <tr>
+                <th class="aug-tr-lead">Days</th>
+                <th>1</th>
+                <th>2-3</th>
+                <th>4-6</th>
+                <th>7-10</th>
+                <th>1</th>
+                <th>2-3</th>
+                <th>4-6</th>
+                <th>7-10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="aug-tr-lead">Backpack</td>
+                <td>$9</td>
+                <td>$11</td>
+                <td>$13</td>
+                <td>$15</td>
+                <td>$11</td>
+                <td>$13</td>
+                <td>$15</td>
+                <td>$17</td>
+            </tr>
+            <tr>
+                <td class="aug-tr-lead">Bike Helmet</td>
+                <td>$3</td>
+                <td>$4</td>
+                <td>$5</td>
+                <td>$6</td>
+                <td>$3</td>
+                <td>$5</td>
+                <td>$9</td>
+                <td>$11</td>
+            </tr>
+            <tr>
+                <td class="aug-tr-lead">Bocce Ball Set</td>
+                <td>$3</td>
+                <td>$5</td>
+                <td>$7</td>
+                <td>$9</td>
+                <td>$5</td>
+                <td>$7</td>
+                <td>$9</td>
+                <td>$11</td>
+            </tr>
+        </tbody>
+    </table>
 
-<script type="text/template" id="stats">
-    
+    <div class="right">
+        <button class="button-warning pure-button"><i class="fa fa-pencil-square-o" />Edit Info</button>
+        <button class="button-error pure-button"><i class="fa fa-minus" />Remove Gear</button>
+        <button class="pure-button pure-button-primary"><i class="fa fa-plus" />Add new Gear</button>
+    </div>
+</div>
 </script>
 
 
@@ -130,9 +224,8 @@
 </script>
 
 <script type="text/template" id="home">
-<div class="header">
+<div class="header aug-header">
     <h1>Home</h1>
-    <h2>Main Screen</h2>
 </div>
 <div class="content">
 </div>
@@ -154,6 +247,7 @@
 <script src="js/views/about.js"></script>
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
+<script src="js/views/rentals.js"></script>
 
 
 <script type="text/javascript">

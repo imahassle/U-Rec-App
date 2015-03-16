@@ -37,9 +37,9 @@ var app = (function() {
 			}
 			return this.cmsView;
 		},
-		about: function() {
+		facility: function() {
 			if(!this.aboutView) {
-				this.aboutView = new api.views.about({ 
+				this.aboutView = new api.views.facility({ 
 					el: this.content
 				});
 			}
@@ -60,26 +60,42 @@ var app = (function() {
 				});
 			}
 			return this.statsView;
+		},
+		rentals: function() {
+			if(!this.rentalsView) {
+				this.rentalsView = new api.views.rentals({ 
+					el: this.content
+				});
+			}
+			return this.rentalsView;
 		}
 	};
 	var Router = Backbone.Router.extend({
 		routes: {
-			"about": "about",
-			"services": "services",
-			"contacts": "contacts",
+			"facility": "facility",
+			"outdoorrec": "outdoorrec",
+			"intramurals": "intramurals",
+			"climbingwall": "climbingwall",
+			"rentals": "rentals",
+			"stats": "stats",
 			"": "home",
 			"login": "login"
 		},
 		home: function() {
 			api.changeContent(ViewsFactory.cms().$el);
 		},
-		about: function() {
+		facility: function() {
 			// alert("Hit about");
-			api.changeContent(ViewsFactory.about().$el);
+			api.changeContent(ViewsFactory.facility().$el);
 			// ViewsFactory.about.render();
 		},
-		services: function() {},
-		contacts: function() {},
+		outdoorrec: function() {},
+		intramurals: function() {},
+		climbingwall: function() {},
+		rentals: function() {
+			api.changeContent(ViewsFactory.rentals().$el);
+		},
+		stats: function() {},
 		login: function(valid) {
 			api.changeContent(ViewsFactory.login().verify(valid).$el);
 		}
