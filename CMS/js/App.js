@@ -11,7 +11,9 @@ var app = (function() {
 		init: function() {
 			this.content = $("#main"); //Sets initial view for app
 			ViewsFactory.menu();
-			ViewsFactory.cms();
+			this.rentalInfo = new TempRentals();
+			// this.rentalInfo.fetch();
+			// this.rentalInfo.bind('reset', function() {console.log(this.rentalInfo);});
 			Backbone.history.start();
 			return this;
 		},
@@ -64,7 +66,7 @@ var app = (function() {
 		rentals: function() {
 			if(!this.rentalsView) {
 				this.rentalsView = new api.views.rentals({ 
-					el: this.content
+					model: api.rentalInfo
 				});
 			}
 			return this.rentalsView;

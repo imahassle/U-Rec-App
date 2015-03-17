@@ -1,3 +1,4 @@
+//View
 app.views.facility = Backbone.View.extend({
 	template: _.template($("#facility").html()),
 	initialize: function() {

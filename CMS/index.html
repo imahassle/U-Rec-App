@@ -122,79 +122,18 @@
 </div>
 </script>
 
-
-
-<script type="text/template" id="rentals">
-    <div class="header aug-header">
-    <h1>Equipment Rentals</h1>
-</div>
-<div class="content">
-    <table class="pure-table aug-table">
-        <thead>
-            <tr>
-                <th class="clear-head"></th>
-                <th class="aug-th">Student Rates</th>
-                <th class="aug-th">Faculty Rates</th>
-            </tr>
-        </thead>
-    </table>
-    <table class="pure-table pure-table-horizontal aug-table">
-        <thead>
-            <tr>
-                <th class="aug-tr-lead">Days</th>
-                <th>1</th>
-                <th>2-3</th>
-                <th>4-6</th>
-                <th>7-10</th>
-                <th>1</th>
-                <th>2-3</th>
-                <th>4-6</th>
-                <th>7-10</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="aug-tr-lead">Backpack</td>
-                <td>$9</td>
-                <td>$11</td>
-                <td>$13</td>
-                <td>$15</td>
-                <td>$11</td>
-                <td>$13</td>
-                <td>$15</td>
-                <td>$17</td>
-            </tr>
-            <tr>
-                <td class="aug-tr-lead">Bike Helmet</td>
-                <td>$3</td>
-                <td>$4</td>
-                <td>$5</td>
-                <td>$6</td>
-                <td>$3</td>
-                <td>$5</td>
-                <td>$9</td>
-                <td>$11</td>
-            </tr>
-            <tr>
-                <td class="aug-tr-lead">Bocce Ball Set</td>
-                <td>$3</td>
-                <td>$5</td>
-                <td>$7</td>
-                <td>$9</td>
-                <td>$5</td>
-                <td>$7</td>
-                <td>$9</td>
-                <td>$11</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="right">
-        <button class="button-warning pure-button"><i class="fa fa-pencil-square-o" />Edit Info</button>
-        <button class="button-error pure-button"><i class="fa fa-minus" />Remove Gear</button>
-        <button class="pure-button pure-button-primary"><i class="fa fa-plus" />Add new Gear</button>
-    </div>
-</div>
+<script type="text/template" id="rentalItem">
+<tr>
+    <td class="aug-tr-lead"><%= name %></td>
+    <td><%= s1 %></td>
+    <td><%= s2 %></td>
+    <td><%= s3 %></td>
+    <td><%= s4 %></td>
+    <td><%= f1 %></td>
+    <td><%= f2 %></td>
+    <td><%= f3 %></td>
+    <td><%= f4 %></td>
+</tr>
 </script>
 
 
@@ -243,11 +182,14 @@
 <!-- === Backbone App === -->
 
 <script src="js/App.js"></script>
+<script src="js/models/rentals.js"></script>
+<script src="js/collections/rentals.js"></script>
 <script src="js/views/menu.js"></script>
 <script src="js/views/about.js"></script>
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/rentals.js"></script>
+
 
 
 <script type="text/javascript">
