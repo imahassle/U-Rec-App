@@ -1,5 +1,8 @@
 //Model
 app.models.rental = Backbone.Model.extend({
+	initialize: function() {
+		console.log("Initialized model");
+	},
 	defaults: {
 		name: "Item",
 		s_price1: 10,

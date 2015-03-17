@@ -2,13 +2,15 @@
 app.views.rentals = Backbone.View.extend({
 	// template: _.template($("#rentals").html()),
 	initialize: function() {
+		_.bindAll(this, "render");
+		this.collection.bind("reset", this.render);
 		this.render();
 	},
 	render: function() {
 		var html = '<div class="header aug-header"><h1>Equipment Rentals</h1></div><div class="content">    <table class="pure-table aug-table">        <thead>            <tr>                <th class="clear-head"></th>                <th class="aug-th">Student Rates</th>                <th class="aug-th">Faculty Rates</th>            </tr>        </thead>    </table>    <table class="pure-table pure-table-horizontal aug-table">        <thead>            <tr>                <th class="aug-tr-lead">Days</th>                <th>1</th>                <th>2-3</th>                <th>4-6</th>                <th>7-10</th>                <th>1</th>                <th>2-3</th>                <th>4-6</th>                <th>7-10</th>            </tr>        </thead><tbody>';
 		var self = this;
-		console.log(this.model);
-		this.model.each(function(item) {
+		console.log("Now rendering...");
+		this.collection.each(function(item) {
 			var template = _.template($("rentalItem").html());
 			html += template({
 				name: item.get("name"),

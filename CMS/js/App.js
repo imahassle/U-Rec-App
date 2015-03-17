@@ -66,9 +66,10 @@ var app = (function() {
 		rentals: function() {
 			if(!this.rentalsView) {
 				this.rentalsView = new api.views.rentals({ 
-					model: api.rentalInfo
+					collection: api.rentalInfo
 				});
 			}
+			
 			return this.rentalsView;
 		}
 	};
@@ -96,6 +97,7 @@ var app = (function() {
 		climbingwall: function() {},
 		rentals: function() {
 			api.changeContent(ViewsFactory.rentals().$el);
+			api.rentalInfo.fetch({reset: "true"});
 		},
 		stats: function() {},
 		login: function(valid) {
