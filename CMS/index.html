@@ -58,16 +58,100 @@
     <div id="menu"></div>
 
     <div id="main">
-        <div class="content">
-            
-        </div>
     </div>
+    <!-- Ignore below -->
+    
 </div>
 
 
 
 
 <!-- === Views === -->
+
+<script type="text/template" id="facilityHome">
+<div class="header aug-header">
+    <h1>Facilities Home</h1>
+</div>
+    <div class="content home-view pure-g">
+        <!-- Welcome Banner and Post form -->
+        <div class="home-channel pure-u-3-5">
+            <div class="home-main-banner">
+                <h3 class="banner">Announcements</h3>
+                <form class="pure-form pure-form-stacked">
+                    <h4>New Announcement</h4>
+                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
+                    <input type="text" placeholder="Program Title">
+                    <textarea name="details" id="programDetails" cols="98" rows="2" placeholder="Details"></textarea>
+                </form>
+            </div>
+            <!-- Announcement Template Below -->
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>U-Rec Closed March 17th for St. Patrick's Day</h4>
+                <p class="announcement-blurb">But join us for our St. Patrick's Day parade in the Hub, March 18th! Lorem Ipsum blah blah blah. Bacon.</p>
+            </div>
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>U-Rec Closed March 17th for St. Patrick's Day</h4>
+                <p class="announcement-blurb">But join us for our St. Patrick's Day parade in the Hub, March 18th! Lorem Ipsum blah blah blah. Bacon.</p>
+            </div>
+        </div>
+        <!-- Quick links menu here -->
+        <div class="pure-u-2-5 quick-menu">
+            <a href="#"><div class="quick-item"><i class="fa fa-clock-o fa-4x"></i><h3>Facility Hours</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-git fa-4x"></i><h3>Incentive Programs</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-calendar fa-4x"></i><h3>Events</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-picture-o fa-4x"></i><h3>Photos</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-comment fa-4x"></i><h3>View Feedback</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-4x"></i><h3>Facebook</h3></div></a>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="outdoorrecHome">
+<div class="header aug-header">
+    <h1>Outdoor Rec Home</h1>
+</div>
+    <div class="content home-view pure-g">
+        <!-- Welcome Banner and Post form -->
+        <div class="home-channel pure-u-3-5">
+            <div class="home-main-banner">
+                <h3 class="banner">Announcements</h3>
+                <form class="pure-form pure-form-stacked">
+                    <h4>New Announcement</h4>
+                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
+                    <input type="text" placeholder="Title">
+                    <textarea name="details" id="programDetails" cols="98" rows="2" placeholder="Details"></textarea>
+                </form>
+            </div>
+            <!-- Announcement Template Below -->
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>3 More Spots in our Spring Break trip!</h4>
+                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
+            </div>
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>3 More Spots in our Spring Break trip!</h4>
+                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
+            </div>
+        </div>
+        <!-- Quick links menu here -->
+        <div class="pure-u-2-5 quick-menu">
+            <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-calendar fa-4x"></i><h3>Trips</h3></div></a>
+            <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-4x"></i><h3>Photos</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-4x"></i><h3>Facebook</h3></div></a>
+        </div>
+    </div>
+</script>
 
 <script type="text/template" id="facility">
 <div class="header aug-header">
@@ -84,37 +168,36 @@
 </div>
 </script>
 
+
+
 <script type="text/template" id="cms-menu">
 <div class="pure-menu custom-restricted-width">
     <ul id="menu" class="pure-menu-list">
         <a class="pure-menu-heading" href="#">U Rec CMS</a>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item">
-            <a href="#facility" class="pure-menu-link">Facility</a>
+        <div class="menu-space"></div>
+        <li class="pure-menu-item"><a href="#facility" class="pure-menu-link">Facility</a></li>
             <ul class="pure-menu-list">
-                <li><a href="#" class="pure-menu-link">Hours</a></li>
-                <li><a href="#" class="pure-menu-link">Incentive Programs</a></li>
-                <li><a href="#" class="pure-menu-link">Events</a></li>
-                <li><a href="#" class="pure-menu-link">Photos</a></li>
-                <li><a href="#" class="pure-menu-link">View feedback</a></li>
+                <li><a href="#facility/hours" class="pure-menu-link">Hours</a></li>
+                <li><a href="#facility/programs" class="pure-menu-link">Incentive Programs</a></li>
+                <li><a href="#facility/events" class="pure-menu-link">Events</a></li>
+                <li><a href="#facility/photos" class="pure-menu-link">Photos</a></li>
+                <li><a href="#facility/feedback" class="pure-menu-link">View feedback</a></li>
             </ul>
-        </li>
-        <li class="pure-menu-item">
-            <a href="#outdoorrec" class="pure-menu-link">Outdoor Rec</a>
+        <li class="pure-menu-item">Outdoor Rec</li>
             <ul class="pure-menu-list">
-                <li><a href="#" class="pure-menu-link">Upcoming Trips</a></li>
+                <li><a href="#" class="pure-menu-link">Trips</a></li>
                 <li><a href="#" class="pure-menu-link">Photos</a></li>
             </ul>
-        </li>
-        <li class="pure-menu-item"><a href="#intramurals" class="pure-menu-link">Intramurals</a></li>
-        <li class="pure-menu-item">
-            <a href="#climbingwall" class="pure-menu-link">Climbing Wall</a>
+        <li class="pure-menu-item">Intramurals</li>
+            <ul class="pure-menu-list">
+                <li><a href="#" class="pure-menu-link">Photos</a></li>
+            </ul>
+        <li class="pure-menu-item">Climbing Wall</li>
             <ul class="pure-menu-list">
                 <li><a href="#" class="pure-menu-link">Hours</a></li>
                 <li><a href="#" class="pure-menu-link">Photos</a></li>
                 <li><a href="#" class="pure-menu-link">Events</a></li>
             </ul>
-        </li>
         <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
         <li class="pure-menu-item"><a href="#stats" class="pure-menu-link">Stats</a></li>
         <li class="pure-menu-item"><a href="#login" class="pure-menu-link">Login</a></li>
@@ -122,19 +205,93 @@
 </div>
 </script>
 
-<script type="text/template" id="rentalItem">
-<tr>
-    <td class="aug-tr-lead"><%= name %></td>
-    <td><%= s1 %></td>
-    <td><%= s2 %></td>
-    <td><%= s3 %></td>
-    <td><%= s4 %></td>
-    <td><%= f1 %></td>
-    <td><%= f2 %></td>
-    <td><%= f3 %></td>
-    <td><%= f4 %></td>
-</tr>
+
+
+
+<script type="text/template" id="rentals">
+<div class="header aug-header">
+    <h1>Rentals</h1>
+</div>
+<div class="content">
+<div class="table-wrapper">
+    <table class="pure-table aug-table">
+    <thead>
+        <th class="clear-head"></th>
+        <th class="aug-th">Student Rates</th>
+        <th class="aug-th">Faculty Rates</th>
+    </thead>
+</table>
+    <table class="pure-table aug-table pure-table-horizontal">
+        <thead>
+            
+            <tr>
+                <th class="aug-tr-lead">Days</th>
+                <th>1</th>
+                <th>2-3</th>
+                <th>4-6</th>
+                <th>7-10</th>
+                <th>1</th>
+                <th>2-3</th>
+                <th>4-6</th>
+                <th>7-10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="aug-tr-lead">Backpack</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+            </tr>
+            <tr>
+                <td class="aug-tr-lead">Bike Helmet</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+            </tr>
+            <tr>
+                <td class="aug-tr-lead">Bocce Ball Set</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+            </tr>
+            <tr>
+                <td class="aug-tr-lead">Tent all season - 3 person</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+                <td>$1</td>
+                <td>$2</td>
+                <td>$30</td>
+                <td>$40</td>
+            </tr>
+        </tbody>
+    </table>
+    <form class="pure-form right">
+        <button class="pure-button button-error"><i class="fa fa-minus" />Remove Gear</button>
+        <button class="pure-button button-success"><i class="fa fa-plus" />Add Gear</button>
+    </form>
+</div>
+</div>
+
 </script>
+
 
 
 <script type="text/template" id="login-prompt">
@@ -170,6 +327,15 @@
 </div>
 </script>
 
+<script type='text/template' id="dummy">
+<div class="header aug-header">
+    <h1>Dummy Page</h1>
+</div>
+<div class="content">
+    <p>Lorem Ipsum</p>
+</div>
+</script>
+
 
 <!-- === Backbone and dependencies === -->
 
@@ -189,8 +355,11 @@
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/rentals.js"></script>
-
-
+<script src="js/views/insertDummy.js"></script>
+<script src="js/views/facilityViews.js"></script>
+<script src="js/views/outdoorrecViews.js"></script>
+<script src="js/views/climbingwallViews.js"></script>
+<script src="js/views/intramuralsViews.js"></script>
 
 <script type="text/javascript">
     window.onload = function() {
