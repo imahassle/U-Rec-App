@@ -48,12 +48,12 @@ var app = (function() {
 			return this.aboutView;
 		},
 		facilityProg: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.facilityProgView) {
+				this.facilityProgView = new api.views.facilityProg({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.facilityProgView;
 		},
 		facilityEvents: function() {
 			if(!this.insertView) {
@@ -104,12 +104,12 @@ var app = (function() {
 			return this.insertView;
 		},
 		intramuralsHome: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.intramuralsHomeHome) {
+				this.intramuralsHomeHome = new api.views.intramuralsHome({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.intramuralsHomeHome;
 		},
 		intramuralsPhotos: function() {
 			if(!this.insertView) {
@@ -180,7 +180,7 @@ var app = (function() {
 		routes: {
 			"facility": "facilityHome",
 			"facility/hours": "facilityHours",
-			"facility/incentivePrograms": "facilityProg",
+			"facility/programs": "facilityProg",
 			"facility/events": "facilityEvents",
 			"facility/photos": "facilityPhotos",
 			"facility/feedback": "facilityFeedback",

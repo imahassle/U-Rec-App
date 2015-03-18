@@ -11,8 +11,17 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   height: auto;
 }
 
+.icon-hover:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 .red {
   background-color: #b70724;
+}
+
+.medGray {
+  background-color: #949494;
 }
 
 i.red {
@@ -95,11 +104,10 @@ html {
 }
 
 .content {
-  padding: 50px;
-  min-width: 87%;
+  min-width: 1000px;
   margin: 0 auto;
   margin-top: 45px;
-  background-color: #FFFFFF;
+  padding: 0;
 }
 .content > div {
   background-color: white;
@@ -150,8 +158,6 @@ html {
 .home-view {
   background: none;
   padding: 0;
-  background-color: green;
-  min-width: 93%;
 }
 .home-view .home-channel {
   background: none;
@@ -207,10 +213,10 @@ html {
 }
 .home-view .quick-menu .quick-item {
   background-color: #b70724;
-  margin: 0 0 20px 0px;
+  margin: 0 0 20px 20px;
   display: inline-block;
-  width: 45%;
-  height: 7em;
+  width: 44%;
+  height: 6em;
 }
 .home-view .quick-menu .quick-item:hover {
   opacity: .7;
@@ -218,7 +224,7 @@ html {
 .home-view .quick-menu .quick-item i {
   display: inline-block;
   color: white;
-  margin: 25px 30px 0 40px;
+  margin: 25px 10px 0 10px;
   vertical-align: middle;
 }
 .home-view .quick-menu .quick-item h3 {
@@ -226,9 +232,46 @@ html {
   color: white;
   display: inline-block;
   vertical-align: middle;
-  margin: 20px 0 0 0;
+  margin: 20px auto 0 auto;
   font-weight: bold;
   width: 100px;
+}
+
+.creation {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.creation h3 {
+  text-transform: uppercase;
+  color: #b70724;
+  margin: 0;
+}
+.creation h4 {
+  color: #b70724;
+  margin: 0;
+}
+.creation .buttons-group {
+  margin: 10px 20px 0 0;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 0;
+}
+.creation .buttons-group button {
+  color: #fff;
+  text-transform: uppercase;
+}
+.creation .buttons-group i {
+  margin-right: 10px;
+  color: #b70724;
+  vertical-align: middle;
+}
+.creation form input[type="text"] {
+  width: 50%;
+}
+.creation form textarea {
+  width: 99%;
 }
 
 .button-success,
