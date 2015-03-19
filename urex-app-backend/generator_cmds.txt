@@ -1,0 +1,22 @@
+These commands will generate migrations for the tables:
+
+php artisan make:migration:schema create_categories_table --schema="name:string"
+php artisan make:migration:schema create_users_table --schema="username:string:unique, password:string, active:boolean, category_id:integer:unsigned:foreign"
+php artisan make:migration:schema create_user_personal_details_table --schema="first_name:string, last_name:string, email:string, user_id:integer:unsigned:foreign"
+
+Need to specify decimal precision in the generated migration, not currently implemented in generator:
+
+php artisan make:migration:schema create_events_table --schema="title:string, description:text, start:datetime, end:datetime, cost:decimal:nullable, spots:integer:unsigned:nullable, gear_needed:text:nullable, user_id:integer:unsigned:foreign, category_id:integer:unsigned:foreign"
+
+php artisan make:migration:schema create_images_table --schema="file_location:string, caption:string, category_id:integer:unsigned:foreign"
+php artisan make:migration:schema create_incentive_programs_table --schema="title:string, description:text, user_id:integer:unsigned:foreign, image_id:integer:unsigned:foreign"
+php artisan make:migration:schema create_announcements_table --schema="message:text, date:datetime, user_id:integer:unsigned:foreign, category_id:integer:unsigned:foreign"
+php artisan make:migration:schema create_feedback_table --schema="message:text, email:string:nullable, date:datetime"
+php artisan make:migration:schema create_hours_exceptions_table --schema="date:date, open:time, close:time"
+php artisan make:migration:schema create_hours_table --schema="mon_open:time, mon_close:time, tue_open:time, tue_close:time, wed_open:time, wed_close:time, thu_open:time, thu_close:time, fri_open:time, fri_close:time, sat_open:time, sat_close:time, sun_open:time, sun_close:time"
+php artisan make:migration:schema create_pages_table --schema="file_name:string, page_function:string, short_desc:string"
+php artisan make:migration:schema create_page_permissions_table --schema="can_view:boolean, page_id:integer:unsigned:foreign, category_id:integer:unsigned:foreign"
+
+Need to specify decimal precision in the generated migration, not currently implemented in generator:
+
+php artisan make:migration:schema create_item_rentals_table --schema="name:string, faculty_pricing_1:decimal, faculty_pricing_2:decimal, faculty_pricing_3:decimal, faculty_pricing_4:decimal, student_pricing_1:decimal, student_pricing_2:decimal, student_pricing_3:decimal, student_pricing_4:decimal"
