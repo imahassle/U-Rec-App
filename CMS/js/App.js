@@ -56,28 +56,28 @@ var app = (function() {
 			return this.facilityProgView;
 		},
 		facilityEvents: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.facilityEventsView) {
+				this.facilityEventsView = new api.views.facilityEvents({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.facilityEventsView;
 		},
 		facilityPhotos: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.facilityPhotosView) {
+				this.facilityPhotosView = new api.views.facilityPhotos({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.facilityPhotosView;
 		},
 		facilityFeedback: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.facilityFeedbackView) {
+				this.facilityFeedbackView = new api.views.facilityFeedback({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.facilityFeedbackView;
 		},
 		outdoorrecHome: function() {
 			if(!this.outdoorrecHomeView) {
@@ -88,20 +88,20 @@ var app = (function() {
 			return this.outdoorrecHomeView;
 		},
 		outdoorrecTrips: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.outdoorrecTripsView) {
+				this.outdoorrecTripsView = new api.views.outdoorrecTrips({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.outdoorrecTripsView;
 		},
 		outdoorrecPhotos: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.outdoorrecPhotosView) {
+				this.outdoorrecPhotosView = new api.views.outdoorrecPhotos({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.outdoorrecPhotosView;
 		},
 		intramuralsHome: function() {
 			if(!this.intramuralsHomeHome) {
@@ -112,44 +112,44 @@ var app = (function() {
 			return this.intramuralsHomeHome;
 		},
 		intramuralsPhotos: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.intramuralsPhotosView) {
+				this.intramuralsPhotosView = new api.views.intramuralsPhotos({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.intramuralsPhotosView;
 		},
 		climbingwallHome: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.climbingwallHomeView) {
+				this.climbingwallHomeView = new api.views.climbingwallHome({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.climbingwallHomeView;
 		},
 		climbingwallHours: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.climbingwallHoursView) {
+				this.climbingwallHoursView = new api.views.climbingwallHours({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.climbingwallHoursView;
 		},
 		climbingwallPhotos: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+			if(!this.climbingwallPhotosView) {
+				this.climbingwallPhotosView = new api.views.climbingwallPhotos({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.climbingwallPhotosView;
 		},
-		climingwallEvents: function() {
-			if(!this.insertView) {
-				this.insertView = new api.views.insertName({ 
+		climbingwallEvents: function() {
+			if(!this.climingwallEventsView) {
+				this.climingwallEventsView = new api.views.climbingwallEvents({ 
 					el: this.content
 				});
 			}
-			return this.insertView;
+			return this.climingwallEventsView;
 		},
 		login: function() {
 			if(!this.loginView) {
@@ -185,8 +185,8 @@ var app = (function() {
 			"facility/photos": "facilityPhotos",
 			"facility/feedback": "facilityFeedback",
 			"outdoorrec": "outdoorrecHome",
-			"outdoorrec/Trips": "outdoorrecTrips",
-			"outdoorrec/Photos": "outdoorrecPhotos",
+			"outdoorrec/trips": "outdoorrecTrips",
+			"outdoorrec/photos": "outdoorrecPhotos",
 			"intramurals": "intramuralsHome",
 			"intramurals/photos": "intramuralsPhotos",
 			"climbingwall": "climbingwallHome",
@@ -199,7 +199,7 @@ var app = (function() {
 			"login": "login"
 		},
 		home: function() {
-			api.changeContent(ViewsFactory.cms().$el);
+			// api.changeContent(ViewsFactory.cms().$el);
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);

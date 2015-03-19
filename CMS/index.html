@@ -60,7 +60,6 @@
     <div id="main">
     </div>
     <!-- Ignore below -->
-    
 </div>
 
 <!-- === Views === -->
@@ -99,11 +98,11 @@
         </div>
         <!-- Quick links menu here -->
         <div class="pure-u-2-5 quick-menu">
-            <a href="#"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-git fa-3x"></i><h3>Incentive Programs</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-comment fa-3x"></i><h3>View Feedback</h3></div></a>
+            <a href="#facilites/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
+            <a href="#facility/programs"><div class="quick-item"><i class="fa fa-git fa-3x"></i><h3>Incentive Programs</h3></div></a>
+            <a href="#facility/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
+            <a href="#facility/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+            <a href="#facility/feedback"><div class="quick-item"><i class="fa fa-comment fa-3x"></i><h3>View Feedback</h3></div></a>
             <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
         </div>
     </div>
@@ -193,6 +192,85 @@
 
 <script type="text/template" id="facilityHours"></script>
 
+<script type='text/template' id="facilityPhotos">
+    <div class="header aug-header">
+        <h1>Facility Photos</h1>
+    </div>
+    <div class="content pure-g photos-view">
+        <div class=" pure-u-4-5 ">
+            <div class="pure-g">
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+            </div>
+        </div>
+        <button class="pure-button perm-button red">Upload Photos</button>
+    </div>
+</script>
+
+<script type="text/template" id="climbingwallHome">
+    <div class="header aug-header">
+    <h1>Climbing Wall Home</h1>
+</div>
+    <div class="content home-view pure-g">
+        <!-- Welcome Banner and Post form -->
+        <div class="home-channel pure-u-3-5">
+            <div class="home-main-banner">
+                <h3 class="banner">Announcements</h3>
+                <form class="pure-form pure-form-stacked">
+                    <h4>New Announcement</h4>
+                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
+                    <input type="text" placeholder="Title">
+                    <textarea name="details" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
+                </form>
+            </div>
+            <!-- Announcement Template Below -->
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>3 More Spots in our Spring Break trip!</h4>
+                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
+            </div>
+            <div class="home-announcement">
+                <i class="fa fa-trash fa-2x right red"></i>
+                <i class="fa fa-edit fa-2x right red"></i>
+                <p class="announcement-date">March 13th at 9:04am</p>
+                <h4>3 More Spots in our Spring Break trip!</h4>
+                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
+            </div>
+        </div>
+        <!-- Quick links menu here -->
+        <div class="pure-u-2-5 quick-menu">
+            <a href="#climbingwall/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+            <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-barcode fa-3x"></i><h3>Climb Stuff</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
+            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+        </div>
+    </div>
+</script>
+
 <script type="text/template" id="facilityProg">
     <div class="header aug-header">
         <h1>Incentive Programs</h1>
@@ -205,8 +283,8 @@
                 <button class="pure-button red">Done</button>
             </div>
             <form class="pure-form pure-form-stacked">
-                <input type="text" placeholder="Program Title">
-                <textarea name="" id="" rows="4" placeholder="Details"></textarea>
+                <input type="text" class="pure-u-1-3" placeholder="Program Title">
+                <textarea name="" class="pure-u-1" id="" rows="4" placeholder="Details"></textarea>
             </form>
         </div>
         <div class="creation">
@@ -224,24 +302,321 @@
                 <i class="fa fa-trash fa-2x icon-hover"></i>
             </div>
             <form class="pure-form pure-form-stacked">
-                <input type="text" placeholder="Program Title" value="100 Miles in March (March 1-31)">
-                <textarea name="" id="" rows="4" placeholder="Details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices viverra libero, sed bibendum tellus malesuada nec. Nunc volutpat egestas urna. Pellentesque luctus mauris a pretium euismod. Donec ac dictum leo. Donec id dolor turpis. Nulla facilisis lobortis ligula, nec fringilla sapien. Sed a condimentum magna. Pellentesque feugiat risus vitae magna iaculis, dignissim laoreet urna luctus. Phasellus tempor aliquam justo, a rutrum neque sollicitudin eget. Maecenas venenatis dictum dolor eu sollicitudin. Curabitur sed blandit ante, vel ullamcorper augue.</textarea>
+                <input type="text" class="pure-u-1-3" placeholder="Program Title" value="100 Miles in March (March 1-31)">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices viverra libero, sed bibendum tellus malesuada nec. Nunc volutpat egestas urna. Pellentesque luctus mauris a pretium euismod. Donec ac dictum leo. Donec id dolor turpis. Nulla facilisis lobortis ligula, nec fringilla sapien. Sed a condimentum magna. Pellentesque feugiat risus vitae magna iaculis, dignissim laoreet urna luctus. Phasellus tempor aliquam justo, a rutrum neque sollicitudin eget. Maecenas venenatis dictum dolor eu sollicitudin. Curabitur sed blandit ante, vel ullamcorper augue.</textarea>
             </form>
         </div>
     </div>
 </script>
 
-<script type="text/template" id="outdoorrecTrips"></script>
+<script type="text/template" id="facilityEvents">
+    <div class="header aug-header">
+        <h1>Facility Events</h1>
+    </div>
+    <div class="content">
+        <div class="creation">
+            <h3>Create a New Event</h3>
+            <div class="buttons-group">
+                <button class="pure-button medGray">Clear</button>
+                <button class="pure-button red">Done</button>
+            </div>
+            <form class="pure-form pure-form-aligned">
+                <div class="pure-control-group">
+                <input type="text" class="pure-u-1-3" placeholder="Event Title">
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="startTime">Starts at</label>
+                    <input id="startTime" class="pure-u-1-5" type="text">
+                    <label class="secondLabel">on</label>
+                    <input class="pure-u-1-5" type="text">
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="endTime">Ends at</label>
+                    <input type="text">
+                    <label class="secondLabel">on</label>
+                    <input type="text">
+                </div>
+                <div class="pure-control-group">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel">Photo</label>
+                    <button class="pure-button medGray">Upload a photo</button>
+                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
+                </div>
+            </form>
+        </div>
+        <div class="creation">
+            <img src="http://dummyimage.com/600x400/000/fff">
+            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
+            <h5>2:00PM, February 7 - 6:00pm, February 8</h5>
+            <div class="buttons-group">
+                <i class="fa fa-edit fa-2x icon-hover"></i>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
+        </div>
+        <div class="creation">
+            <div class="buttons-group">
+                <button class="pure-button medGray">Cancel</button>
+                <button class="pure-button red">Save</button>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <form class="pure-form pure-form-stacked">
+                <input type="text" class="pure-u-1-3" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
+            </form>
+        </div>
+    </div>
+</script>
 
-<script type="text/template" id="outdoorrecPhotos"></script>
+<script type="text/template" id="outdoorrecTrips">
+    <div class="header aug-header">
+        <h1>Outdoor Rec Trips</h1>
+    </div>
+    <div class="content">
+        <div class="creation">
+            <h3>Create a New Trip</h3>
+            <div class="buttons-group">
+                <button class="pure-button medGray">Clear</button>
+                <button class="pure-button red">Done</button>
+            </div>
+            <form class="pure-form pure-form-aligned">
+                <div class="pure-control-group">
+                    <input type="text" class="pure-u-1-3" placeholder="Trip Title">
+                    
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="startTime">Starts at</label>
+                    <input id="startTime" class="pure-u-1-5" type="text">
+                    <label class="secondLabel">on</label>
+                    <input class="pure-u-1-5" type="text">
+                    <label class="">Price</label>
+                    <input class="pure-u-1-12" type="text">
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="endTime">Ends at</label>
+                    <input type="text">
+                    <label class="secondLabel">on</label>
+                    <input type="text">
+                    <label class="">Spots</label>
+                    <input class="pure-u-1-12" type="text">
+                </div>
+                <div class="pure-control-group">
+                <input type="text" class="pure-u-1-2" placeholder="Experience needed">
+                </div>
+                <div class="pure-control-group">
+                <input type="text" class="pure-u-1-2" placeholder="Gear students need to bring">
+                </div>
+                <div class="pure-control-group">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel">Photo</label>
+                    <button class="pure-button medGray">Upload a photo</button>
+                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
+                </div>
+            </form>
+        </div>
+        <div class="creation">
+            <img src="http://dummyimage.com/600x400/000/fff">
+            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
+            <h5>2:00PM, February 7 - 6:00pm, February 8 - 21 spots - $3.50</h5>
+            <div class="buttons-group">
+                <i class="fa fa-edit fa-2x icon-hover"></i>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
+        </div>
+        <div class="creation">
+            <div class="buttons-group">
+                <button class="pure-button medGray">Cancel</button>
+                <button class="pure-button red">Save</button>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <form class="pure-form pure-form-stacked">
+                <input type="text" class="pure-u-1-2" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
+            </form>
+        </div>
+    </div>
+</script>
 
-<script type="text/template" id="intramuralsPhotos"></script>
+<script type="text/template" id="outdoorrecPhotos">
+    <div class="header aug-header">
+        <h1>Outdoor Rec Photos</h1>
+    </div>
+    <div class="content pure-g photos-view">
+        <div class=" pure-u-4-5 ">
+            <div class="pure-g">
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+            </div>
+        </div>
+        <button class="pure-button perm-button red">Upload Photos</button>
+    </div>
+</script>
+
+<script type="text/template" id="intramuralsPhotos">
+    <div class="header aug-header">
+        <h1>Intramurals Photos</h1>
+    </div>
+    <div class="content pure-g photos-view">
+        <div class=" pure-u-4-5 ">
+            <div class="pure-g">
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+            </div>
+        </div>
+        <button class="pure-button perm-button red">Upload Photos</button>
+    </div>
+</script>
 
 <script type="text/template" id="climbingwallHours"></script>
 
-<script type="text/template" id="climbingwallPhotos"></script>
+<script type="text/template" id="climbingwallPhotos">
+    <div class="header aug-header">
+        <h1>Climbing Wall Photos</h1>
+    </div>
+    <div class="content pure-g photos-view">
+        <div class=" pure-u-4-5 ">
+            <div class="pure-g">
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+            </div>
+        </div>
+        <button class="pure-button perm-button red">Upload Photos</button>
+    </div>
+</script>
 
-<script type="text/template" id="climbingwallEvents"></script>
+<script type="text/template" id="climbingwallEvents">
+    <div class="header aug-header">
+        <h1>Climbing Wall Events</h1>
+    </div>
+    <div class="content">
+        <div class="creation">
+            <h3>Create a New Event</h3>
+            <div class="buttons-group">
+                <button class="pure-button medGray">Clear</button>
+                <button class="pure-button red">Done</button>
+            </div>
+            <form class="pure-form pure-form-aligned">
+                <div class="pure-control-group">
+                    <input type="text" class="pure-u-1-3" placeholder="Event Title">
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="startTime">Starts at</label>
+                    <input id="startTime" class="pure-u-1-5" type="text">
+                    <label class="secondLabel">on</label>
+                    <input class="pure-u-1-5" type="text">
+                    <label class="">Price</label>
+                    <input class="pure-u-1-12" type="text">
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel" for="endTime">Ends at</label>
+                    <input type="text">
+                    <label class="secondLabel">on</label>
+                    <input type="text">
+                </div>
+                <div class="pure-control-group">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
+                </div>
+                <div class="pure-control-group">
+                    <label class="firstLabel">Photo</label>
+                    <button class="pure-button medGray">Upload a photo</button>
+                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
+                </div>
+            </form>
+        </div>
+        <div class="creation">
+            <img src="http://dummyimage.com/600x400/000/fff">
+            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
+            <h5>2:00PM, February 7 - 6:00pm, February 8</h5>
+            <div class="buttons-group">
+                <i class="fa fa-edit fa-2x icon-hover"></i>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
+        </div>
+        <div class="creation">
+            <div class="buttons-group">
+                <button class="pure-button medGray">Cancel</button>
+                <button class="pure-button red">Save</button>
+                <i class="fa fa-trash fa-2x icon-hover"></i>
+            </div>
+            <form class="pure-form pure-form-stacked">
+                <input type="text" class="pure-u-1-2" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
+                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
+            </form>
+        </div>
+    </div>
+</script>
 
 <script type="text/template" id="cms-menu">
 <div class="pure-menu custom-restricted-width">
@@ -258,8 +633,8 @@
             </ul>
         <li class="pure-menu-item"><a href="#outdoorrec"class="pure-menu-link">Outdoor Rec</a></li>
             <ul class="pure-menu-list">
-                <li><a href="#" class="pure-menu-link">Trips</a></li>
-                <li><a href="#" class="pure-menu-link">Photos</a></li>
+                <li><a href="#outdoorrec/trips" class="pure-menu-link">Trips</a></li>
+                <li><a href="#outdoorrec/photos" class="pure-menu-link">Photos</a></li>
             </ul>
         <li class="pure-menu-item"><a href="#intramurals"class="pure-menu-link">Intramurals</a></li>
             <ul class="pure-menu-list">
@@ -267,13 +642,13 @@
             </ul>
         <li class="pure-menu-item"><a href="#climbingwall"class="pure-menu-link">Climbing Wall</a></li>
             <ul class="pure-menu-list">
-                <li><a href="#" class="pure-menu-link">Hours</a></li>
-                <li><a href="#" class="pure-menu-link">Photos</a></li>
-                <li><a href="#" class="pure-menu-link">Events</a></li>
+                <li><a href="#climbingwall/hours" class="pure-menu-link">Hours</a></li>
+                <li><a href="#climbingwall/photos" class="pure-menu-link">Photos</a></li>
+                <li><a href="#climbingwall/events" class="pure-menu-link">Events</a></li>
             </ul>
         <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
-        <li class="pure-menu-item"><a href="#stats" class="pure-menu-link">Stats</a></li>
-        <li class="pure-menu-item"><a href="#login" class="pure-menu-link">Login</a></li>
+        <!--<li class="pure-menu-item"><a href="#stats" class="pure-menu-link">Stats</a></li> -->
+        <!--<li class="pure-menu-item"><a href="#login" class="pure-menu-link">Login</a></li> -->
     </ul>
 </div>
 </script>

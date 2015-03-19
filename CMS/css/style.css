@@ -18,10 +18,17 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
 
 .red {
   background-color: #b70724;
+  color: white;
 }
 
 .medGray {
   background-color: #949494;
+  color: white;
+}
+
+button {
+  color: white;
+  text-transform: uppercase;
 }
 
 i.red {
@@ -135,9 +142,20 @@ html {
 #menu {
   width: 250px;
 }
+#menu .pure-menu-heading {
+  padding: 43px 0 42px 30px;
+  background-color: #fff;
+  color: #000;
+}
 #menu .menu-space {
   height: 30px;
   width: 100%;
+}
+#menu .pure-menu-list > li a {
+  color: #FFF;
+}
+#menu .pure-menu-list .pure-menu-item {
+  padding-left: 0;
 }
 #menu .pure-menu-list .pure-menu-list li a {
   padding-left: 25px;
@@ -242,6 +260,12 @@ html {
   padding: 20px;
   margin-bottom: 20px;
 }
+.creation img {
+  width: 200px;
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+}
 .creation h3 {
   text-transform: uppercase;
   color: #b70724;
@@ -250,6 +274,14 @@ html {
 .creation h4 {
   color: #b70724;
   margin: 0;
+}
+.creation h5 {
+  text-transform: uppercase;
+  color: #949494;
+  margin: 0;
+}
+.creation .creation-content {
+  display: inline-block;
 }
 .creation .buttons-group {
   margin: 10px 20px 0 0;
@@ -267,11 +299,44 @@ html {
   color: #b70724;
   vertical-align: middle;
 }
-.creation form input[type="text"] {
-  width: 50%;
+.creation form {
+  margin-top: 10px;
 }
-.creation form textarea {
-  width: 99%;
+.creation form .firstLabel {
+  width: 4em;
+  text-align: left;
+}
+.creation form .break {
+  height: 10px;
+}
+.creation form .secondLabel {
+  width: 2em;
+}
+.creation form p {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.photos-view .pure-u-4-5 {
+  padding: 20px;
+}
+.photos-view .pure-u-1-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.photos-view img {
+  max-width: 90%;
+  max-height: 120px;
+  margin: 0 auto;
+}
+.photos-view img:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.photos-view .perm-button {
+  position: fixed;
+  top: 170px;
+  right: 1%;
 }
 
 .button-success,
