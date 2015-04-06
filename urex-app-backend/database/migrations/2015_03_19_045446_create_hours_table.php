@@ -28,6 +28,8 @@ class CreateHoursTable extends Migration {
             $table->time('sat_close');
             $table->time('sun_open');
             $table->time('sun_close');
+            $table->integer('category_id')->unsigned();
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
 	}

@@ -16,9 +16,11 @@ class CreateUsersTable extends Migration {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
-            $table->boolean('active');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
 	}

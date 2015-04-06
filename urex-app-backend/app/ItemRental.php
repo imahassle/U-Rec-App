@@ -3,7 +3,5 @@
 use Illuminate\Database\Eloquent\Model;
 
 class ItemRental extends Model {
-
-	//
-
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }

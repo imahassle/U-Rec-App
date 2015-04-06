@@ -145,6 +145,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'Laracasts\Generators\GeneratorsServiceProvider',
+		'Chrisbjr\ApiGuard\Providers\ApiGuardServiceProvider',
 
 	],
 

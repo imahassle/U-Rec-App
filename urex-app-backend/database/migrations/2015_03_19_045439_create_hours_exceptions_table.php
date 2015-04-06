@@ -17,6 +17,8 @@ class CreateHoursExceptionsTable extends Migration {
             $table->date('date');
             $table->time('open');
             $table->time('close');
+            $table->integer('category_id')->unsigned();
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
 	}

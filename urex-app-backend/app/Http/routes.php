@@ -11,11 +11,59 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@index');
 
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::group(['prefix' => 'api'], function() {
+    $restExceptions = ['except' => ['create', 'edit']];
+    Route::post('login', 'AuthController@login');
+    Route::resource(
+        'announcement',
+        'AnnouncementController',
+        $restExceptions
+    );
+    Route::resource(
+        'category',
+        'CategoryController',
+        $restExceptions
+    );
+    Route::resource(
+        'event',
+        'EventController',
+        $restExceptions
+    );
+    Route::resource(
+        'feedback',
+        'FeedbackController',
+        $restExceptions
+    );
+    Route::resource(
+        'hour',
+        'HourController',
+        $restExceptions
+    );
+    Route::resource(
+        'hours_exception', 
+        'HoursExceptionController', 
+        $restExceptions
+    );
+    Route::resource(
+        'image', 
+        'ImageController', 
+        $restExceptions
+    );
+    Route::resource(
+        'incentive_program', 
+        'IncentiveProgramController', 
+        $restExceptions
+    );
+    Route::resource(
+        'item_rental', 
+        'ItemRentalController', 
+        $restExceptions
+    );
+    Route::resource(
+        'user', 
+        'UserController', 
+        $restExceptions
+    );
+});

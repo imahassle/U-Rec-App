@@ -22,9 +22,9 @@ class CreateEventsTable extends Migration {
             $table->integer('spots')->unsigned()->nullable();
             $table->text('gear_needed')->nullable();
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
 	}

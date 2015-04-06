@@ -1,0 +1,35 @@
+<?php namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+class AuthController extends Controller {
+
+	// Cookie will need to be deleted on client-side at logout.
+	public function login()
+	{
+		$username = Request::input('username');
+		$password = Request::input('password');
+
+		$user = User::whereUsername($username);
+		if(isNull($user) && Hash::check($password, $user->password)) {
+			return Response::json(['code' => 401, 'message' => 'Invalid credentials.'], 401);
+		}
+
+		return Response::json(['message' => 'Login successful'])
+			->withCookie(cookie('U-Rex-API-Key', User::api_key->key, 10080));
+	}
+
+	/*
+		Download and use this script to get $.cookie(): https://github.com/carhartl/jquery-cookie.
+		All AJAX Calls will need to define a headers object with 'X-Authorization' set to the API key:
+			Example:
+				$.ajax({
+					url: 'foo/bar',
+					headers: { 'X-Authorization', $.cookie('U-Rex-API-Key') }
+					...
+				});
+	*/
+}

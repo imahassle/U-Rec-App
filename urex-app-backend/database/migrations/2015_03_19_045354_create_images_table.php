@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration {
             $table->string('file_location');
             $table->string('caption');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
 	}
