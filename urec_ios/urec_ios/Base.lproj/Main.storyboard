@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--U-Rec-->
@@ -23,7 +23,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by FacilityViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L" userLabel="Loaded by U-RecViewController">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FacilityViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L" userLabel="Loaded by U-RecViewController">
                                 <rect key="frame" x="195" y="329" width="212" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -38,7 +38,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="U-Rec" image="first" id="acW-dT-cKf" userLabel="U-Rec"/>
+                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec.png" selectedImage="U-Rec.png" id="acW-dT-cKf" userLabel="U-Rec"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,7 +78,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="second" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
+                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec.png" selectedImage="OutdoorRec.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,7 +140,7 @@
                             <constraint firstItem="h68-R9-XIM" firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="vWl-HT-cKd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Rentals" id="4yz-V4-gFV" userLabel="Rentals"/>
+                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals.png" selectedImage="Rentals.png" id="4yz-V4-gFV" userLabel="Rentals"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JR7-Nd-3g3" sceneMemberID="firstResponder"/>
@@ -181,7 +181,7 @@
                             <constraint firstAttribute="centerX" secondItem="jVl-e4-kgT" secondAttribute="centerX" id="gnK-N5-RwD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Intramurals" id="8I5-Y4-znM" userLabel="Intramurals"/>
+                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals.png" selectedImage="Intramurals.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OS2-zJ-x8X" sceneMemberID="firstResponder"/>
@@ -222,7 +222,7 @@
                             <constraint firstItem="VSz-7x-PKy" firstAttribute="top" secondItem="o5G-xJ-Lg4" secondAttribute="bottom" constant="8" symbolic="YES" id="fjl-7C-ZZB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Climbing Wall" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
+                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall.png" selectedImage="ClimbingWall.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJy-js-qN4" sceneMemberID="firstResponder"/>
@@ -231,7 +231,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="ClimbingWall.png" width="144" height="96"/>
+        <image name="Intramurals.png" width="144" height="96"/>
+        <image name="OutdoorRec.png" width="144" height="96"/>
+        <image name="Rentals.png" width="144" height="96"/>
+        <image name="U-Rec.png" width="144" height="96"/>
     </resources>
 </document>
