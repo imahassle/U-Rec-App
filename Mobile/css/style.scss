@@ -1,0 +1,29 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic);
+
+$darkGray: #292A2D;
+$primaryRed: #B70724;
+$lightGray: #EFEFEF;
+$medGray: #949494;
+
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+	padding: 5px;
+	background: $lightGray;
+}
+
+.panel {
+	padding: 5px;
+	background: #FFFFFF;
+
+	/*font-size: 32px;*/
+	/*font-color: $lightGray;*/
+
+	img.left-img {
+		width: 50px;
+		height: 50px;
+	}
+}
