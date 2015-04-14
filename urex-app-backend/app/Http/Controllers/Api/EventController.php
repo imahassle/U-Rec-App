@@ -3,8 +3,15 @@
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
+use App\Event;
 
 class EventController extends ApiGuardController {
+
+    protected $apiMethods = [
+        'index' => [ 'keyAuthentication' => false ],
+        'index_category' => [ 'keyAuthentication' => false ],
+        'show' => [ 'keyAuthentication' => false ]
+    ]
 
     /**
      * Display a listing of the resource.
@@ -17,20 +24,23 @@ class EventController extends ApiGuardController {
     }
 
     /**
+     * Display a list of the resource with given category id.
+     *
+     * @param int  $category_id
+     * @return Response
+     */
+    public function index_category($category_id) 
+    {
+        return Response::json(Event::whereCategoryId($category_id)->toArray())
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
-            'title' => 'max:255',
-            'start' => 'date',
-            'end' => 'date',
-            'cost' => 'digits_between:0,10',
-            'spots' => 'digits_between:0,10'
-        ]);
-
         $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
 
         $event = new Event;
@@ -94,14 +104,6 @@ class EventController extends ApiGuardController {
                 'message' => 'Event not found.'
             ], 400);
         }
-
-        $this->validate($request, [
-            'title' => 'max:255',
-            'start' => 'date',
-            'end' => 'date',
-            'cost' => 'digits_between:0,10',
-            'spots' => 'digits_between:0,10'
-        ]);
 
         $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
 

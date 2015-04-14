@@ -14,11 +14,11 @@ class AuthController extends Controller {
 		$password = Request::input('password');
 
 		$user = User::whereUsername($username);
-		if(isNull($user) && Hash::check($password, $user->password)) {
+		if($user == null || Hash::check($password, $user->password)) {
 			return Response::json(['code' => 401, 'message' => 'Invalid credentials.'], 401);
 		}
 
-		return Response::json(['message' => 'Login successful'])
+		return Response::json(array_merge($user->toArray(), [ Category::find($user->category_id)->name ])
 			->withCookie(cookie('U-Rex-API-Key', User::api_key->key, 10080));
 	}
 

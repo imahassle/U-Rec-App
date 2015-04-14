@@ -6,8 +6,14 @@ use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 
 class UserController extends ApiGuardController {
 
+	protected $apiMethods = [
+        'index' => [ 'keyAuthentication' => false ],
+        'show' => [ 'keyAuthentication' => false ]
+    ]
+
 	public function __construct()
 	{
+		parent::__construct();
 		$this->middleware('admin');
 	}
 
@@ -26,14 +32,8 @@ class UserController extends ApiGuardController {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store()
 	{
-		$this->validate($request, [
-			'username' => 'max:255|unique:users,username|min:6',
-			'password' => 'between:6,255',
-			'email' => 'max:255|email',
-		]);
-
 		$user = new User;
 		$user->username = Request::input('username');
 		$user->password = Hash::make(Request::input('password'));
@@ -78,7 +78,7 @@ class UserController extends ApiGuardController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
+	public function update($id)
 	{
 		$user = User::find($id);
 
@@ -88,13 +88,6 @@ class UserController extends ApiGuardController {
 				'message' => 'User not found.'
 			], 400);
 		}
-
-		$this->validate($request, [
-			'username' => 'unique|min:6',
-			'password' => 'min:6',
-			'email' => 'email',
-			'category' => 'exists:categories,name'
-		]);
 
 		$user->username = Request::input('username');
 		$user->password = Hash::make(Request::input('password'));
@@ -139,5 +132,4 @@ class UserController extends ApiGuardController {
 
 		return Response::json(['message' => 'User deleted succesfully.']);
 	}
-
 }
