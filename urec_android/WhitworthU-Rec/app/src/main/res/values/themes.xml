@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RedAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/RedActionBar</item>
+        <item name="android:titleTextStyle">@style/WhiteActionBarText</item>
+        <item name="android:listViewStyle">@style/RedNavigationDrawer</item>
+    </style>
+
+
+
+</resources>
