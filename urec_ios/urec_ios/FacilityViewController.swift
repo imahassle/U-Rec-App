@@ -15,7 +15,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var navigationBar: UINavigationItem!
     //var newVC: FacilityViewController!
     var firstTime = true
-    var url : NSString = ""
+    var url : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         if(firstTime) {
             println("FIRST TIME!")
             if(url == "") {
-                url = "http://hannahgamiel.com"
+                url = "../../Mobile/index.html"
             }
             else {
                 println(url);
@@ -37,7 +37,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     }
     
     func setInitialWebView() {
-        let request = NSURLRequest(URL: (NSURL(string: url))!)
+        let request = NSURLRequest(URL: (NSURL(fileURLWithPath: url))!)
         webView.delegate = self
         webView.loadRequest(request)
         webView.scalesPageToFit = true
@@ -50,14 +50,14 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     func webViewDidStartLoad(webView: UIWebView){
         startAnimating()
-        if(!firstTime) {
+        if(!firstTime && webView.loading) {
             
-            let newURL : NSString = (webView.request?.URL.absoluteString)!
-            webView.stopLoading();
+            let newURL : String = (webView.request?.URL.absoluteString)!
+            println(newURL)
+            webView.stopLoading()
+            firstTime = true
             
             let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
 
