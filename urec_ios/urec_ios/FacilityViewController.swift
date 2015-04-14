@@ -23,7 +23,8 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         if(firstTime) {
             println("FIRST TIME!")
             if(url == "") {
-                url = "../../Mobile/index.html"
+                self.title = "U-Rec"
+                url = "http://localhost:8888/urec/Mobile/splash.html"
             }
             else {
                 println(url);
@@ -37,7 +38,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     }
     
     func setInitialWebView() {
-        let request = NSURLRequest(URL: (NSURL(fileURLWithPath: url))!)
+        let request = NSURLRequest(URL: (NSURL(string: url))!)
         webView.delegate = self
         webView.loadRequest(request)
         webView.scalesPageToFit = true
@@ -48,6 +49,34 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        var ret : Bool = false
+        
+        if(request.URL.absoluteString?.rangeOfString("#") != nil || firstTime == true) {
+            ret = true
+        }
+        else if (!firstTime) {
+            let newURL : String = (request.URL.absoluteString)!
+            println(newURL)
+            
+            webView.stopLoading()
+            
+            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+            
+            newVC.title = "Testing"
+            newVC.url = newURL
+            
+            self.navigationController?.pushViewController(newVC, animated: true)
+            
+            stopAnimating()
+            
+            firstTime = true
+        }
+        
+        return ret
     }
     
     func webViewDidStartLoad(webView: UIWebView){
@@ -69,13 +98,11 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
             self.navigationController?.pushViewController(newVC, animated: true)
             
             stopAnimating()
-
         }
     }
     
     func goBack() {
         navigationController?.popViewControllerAnimated(true);
-        
     }
     
     func webViewDidFinishLoad(webView: UIWebView){
