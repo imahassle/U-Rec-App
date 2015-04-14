@@ -56,17 +56,17 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         var ret : Bool = false
-        var newpage : String = request.URL.absoluteString!
+        var currURL = url
+        var newpage = request.URL.absoluteString!
         
-        if let dotRange = newpage.rangeOfString(".html") {
+        if let dotRange = newpage.rangeOfString("#") {
             newpage.removeRange(newpage.startIndex..<newpage.endIndex)
         }
         
-        if let dotRange = newpage.rangeOfString(".php") {
-            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
+        if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
+            ret = true
         }
-
-        if (newpage != url && !firstTime) {
+        else if (newpage != url && !firstTime) {
             let newURL : String = (request.URL.absoluteString)!
             println(newURL)
             
@@ -78,10 +78,6 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
             
             stopAnimating()
         }
-        else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
-            ret = true
-        }
-        
         return ret
     }
     

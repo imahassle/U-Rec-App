@@ -88,12 +88,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU4-vr-UtA">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Outdoor Rec" id="PvL-FM-Wgu"/>
-                                </items>
-                            </navigationBar>
                             <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-re-H4o">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,7 +101,6 @@
                         <constraints>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerY" secondItem="9gP-re-H4o" secondAttribute="centerY" id="1gB-JB-48o"/>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="49D-AQ-a5v"/>
-                            <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="wU4-vr-UtA" secondAttribute="centerX" id="Fyb-tH-Aet"/>
                             <constraint firstItem="9gP-re-H4o" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="HgV-lM-gI8"/>
                             <constraint firstItem="9gP-re-H4o" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="IEK-Bh-Ba9"/>
                             <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="B0I-gD-4de" secondAttribute="bottom" constant="3" id="Ual-U9-iyS"/>
@@ -176,12 +169,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7M-04-NkG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Rentals" id="u3O-DR-ZQ4"/>
-                                </items>
-                            </navigationBar>
                             <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-4y-W9Y">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,13 +180,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LHu-3v-Pib" firstAttribute="centerY" secondItem="adQ-4y-W9Y" secondAttribute="centerY" id="0a8-7u-hgk"/>
+                            <constraint firstItem="LHu-3v-Pib" firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="9Iy-DD-Ya1"/>
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="leading" secondItem="hXb-UA-cM2" secondAttribute="leadingMargin" constant="-16" id="Aya-Up-kB4"/>
                             <constraint firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="Cvu-4L-WhE"/>
                             <constraint firstAttribute="centerY" secondItem="sCf-Yg-mZf" secondAttribute="centerY" id="GxG-FL-ngw"/>
-                            <constraint firstItem="LHu-3v-Pib" firstAttribute="centerX" secondItem="D7M-04-NkG" secondAttribute="centerX" id="PO0-yd-Iue"/>
                             <constraint firstItem="h68-R9-XIM" firstAttribute="top" secondItem="sCf-Yg-mZf" secondAttribute="bottom" constant="8" symbolic="YES" id="QFu-gc-TkI"/>
-                            <constraint firstItem="LHu-3v-Pib" firstAttribute="centerY" secondItem="adQ-4y-W9Y" secondAttribute="centerY" id="TBE-pB-9up"/>
-                            <constraint firstItem="LHu-3v-Pib" firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="ZI0-6t-JeE"/>
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="top" secondItem="cXB-Cn-gkS" secondAttribute="bottom" id="abg-UF-FDf"/>
                             <constraint firstItem="tcb-b6-eCx" firstAttribute="top" secondItem="adQ-4y-W9Y" secondAttribute="bottom" id="jFc-Fa-SN3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="adQ-4y-W9Y" secondAttribute="trailing" constant="-16" id="mjc-gZ-fFs"/>
@@ -242,34 +228,26 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Whl-At-Kxb">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Intramurals" id="Zey-Gw-ZjP"/>
-                                </items>
-                            </navigationBar>
                             <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5O-eY-6nL">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
-                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xgT-vr-4DN" firstAttribute="centerY" secondItem="Q5O-eY-6nL" secondAttribute="centerY" id="61u-Vh-tBH"/>
                             <constraint firstItem="VCI-Ho-u8W" firstAttribute="top" secondItem="Q5O-eY-6nL" secondAttribute="bottom" id="FjB-sD-8Ak"/>
-                            <constraint firstItem="VCI-Ho-u8W" firstAttribute="top" secondItem="xgT-vr-4DN" secondAttribute="bottom" constant="233" id="FxP-IG-Sb2"/>
+                            <constraint firstItem="xgT-vr-4DN" firstAttribute="centerX" secondItem="jVl-e4-kgT" secondAttribute="centerX" id="Hdy-OA-31i"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Q5O-eY-6nL" secondAttribute="trailing" constant="-16" id="TZa-xE-jY6"/>
                             <constraint firstItem="CDD-uo-ebT" firstAttribute="centerX" secondItem="jVl-e4-kgT" secondAttribute="centerX" id="UfS-G6-qpu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xgT-vr-4DN" secondAttribute="trailing" constant="265" id="ZV5-hz-ZwH"/>
                             <constraint firstItem="CDD-uo-ebT" firstAttribute="top" secondItem="jVl-e4-kgT" secondAttribute="bottom" constant="8" symbolic="YES" id="bEy-va-e8X"/>
                             <constraint firstAttribute="centerY" secondItem="jVl-e4-kgT" secondAttribute="centerY" id="ed9-Zz-VT9"/>
                             <constraint firstAttribute="centerX" secondItem="jVl-e4-kgT" secondAttribute="centerX" id="gnK-N5-RwD"/>
                             <constraint firstItem="Q5O-eY-6nL" firstAttribute="leading" secondItem="d1j-6a-4j1" secondAttribute="leadingMargin" constant="-16" id="kRU-gZ-VP8"/>
-                            <constraint firstItem="xgT-vr-4DN" firstAttribute="top" secondItem="Whl-At-Kxb" secondAttribute="bottom" constant="237" id="la9-qF-7ZG"/>
-                            <constraint firstItem="xgT-vr-4DN" firstAttribute="leading" secondItem="d1j-6a-4j1" secondAttribute="leadingMargin" constant="266" id="twh-pP-Lsa"/>
                             <constraint firstItem="Q5O-eY-6nL" firstAttribute="top" secondItem="PHF-ic-TQf" secondAttribute="bottom" id="vBs-Wl-XJM"/>
                         </constraints>
                     </view>
@@ -309,12 +287,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayu-Io-sPi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Climbing Wall" id="PVK-4F-4Vr"/>
-                                </items>
-                            </navigationBar>
                             <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGK-eg-BRZ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -332,7 +304,6 @@
                             <constraint firstAttribute="centerX" secondItem="o5G-xJ-Lg4" secondAttribute="centerX" id="IxZ-qw-A3a"/>
                             <constraint firstItem="byM-Jb-jke" firstAttribute="centerY" secondItem="tGK-eg-BRZ" secondAttribute="centerY" id="VGp-2r-m2i"/>
                             <constraint firstItem="VSz-7x-PKy" firstAttribute="centerX" secondItem="o5G-xJ-Lg4" secondAttribute="centerX" id="WAL-8h-v6T"/>
-                            <constraint firstItem="byM-Jb-jke" firstAttribute="centerX" secondItem="ayu-Io-sPi" secondAttribute="centerX" id="X6v-kl-3Ga"/>
                             <constraint firstItem="VSz-7x-PKy" firstAttribute="top" secondItem="o5G-xJ-Lg4" secondAttribute="bottom" constant="8" symbolic="YES" id="fjl-7C-ZZB"/>
                             <constraint firstItem="0Ry-SY-lpy" firstAttribute="top" secondItem="tGK-eg-BRZ" secondAttribute="bottom" id="g9O-cv-RCV"/>
                             <constraint firstItem="byM-Jb-jke" firstAttribute="centerX" secondItem="o5G-xJ-Lg4" secondAttribute="centerX" id="hzk-t3-5tE"/>
