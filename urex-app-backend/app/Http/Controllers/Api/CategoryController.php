@@ -6,8 +6,14 @@ use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 
 class CategoryController extends ApiGuardController {
 
+    protected $apiMethods = [
+        'index' => [ 'keyAuthentication' => false ],
+        'show' => [ 'keyAuthentication' => false ]
+    ]
+
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('admin');
     }
 
@@ -26,12 +32,8 @@ class CategoryController extends ApiGuardController {
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
-            'name' => 'max:255,unique:categories,name'
-        ]);
-
         $category = new Category;
         $category->name = Request::input('name');
 
@@ -71,7 +73,7 @@ class CategoryController extends ApiGuardController {
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $category = Category::find($id);
 
@@ -81,10 +83,6 @@ class CategoryController extends ApiGuardController {
                 'message' => 'Category not found.'
             ], 400);
         }
-        
-        $this->validate($request, [
-            'name' => 'unique:categories,name'
-        ]);
 
         $category->name = Request::input('name');
 
