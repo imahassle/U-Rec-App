@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--U-Rec-->
@@ -29,22 +30,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEa-3m-73U">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEa-3m-73U">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="6BV-lF-sBN"/>
+                            <constraint firstItem="fEa-3m-73U" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="topMargin" id="QdW-Qg-ToJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fEa-3m-73U" secondAttribute="trailing" constant="-16" id="Zam-qt-Mts"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
                             <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
+                            <constraint firstItem="fEa-3m-73U" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="k0T-My-dIZ"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="fEa-3m-73U" secondAttribute="bottom" id="ucF-8d-kwe"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec.png" selectedImage="U-Rec.png" id="acW-dT-cKf" userLabel="U-Rec"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="webView" destination="fEa-3m-73U" id="AZy-4R-8Fu"/>
                     </connections>

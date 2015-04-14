@@ -17,6 +17,8 @@ class FacilityViewController: UIViewController {
         let url = NSURL(string: "http://hannahgamiel.com")
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
+        webView.scalesPageToFit = true
+        webView.frame=self.view.bounds
     }
 
     override func didReceiveMemoryWarning() {
