@@ -1,22 +1,22 @@
 //
-//  FacilityViewController.swift
+//  ClimbingWallViewController.swift
 //  urec_ios
 //
-//  Created by Hannah Gamiel on 4/9/15.
+//  Created by Hannah Gamiel on 4/14/15.
 //  Copyright (c) 2015 Hannah Gamiel. All rights reserved.
 //
 
 import UIKit
 
-class FacilityViewController: UIViewController, UIWebViewDelegate {
+class ClimbingWallViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var webView: UIWebView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
-    //var newVC: FacilityViewController!
+    //var newVC: ClimbingWallViewController!
     var firstTime = true
     var url : String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +32,9 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         }
         
         setInitialWebView()
-
+        
         //navigationController?.pushViewController(newVC, animated: true)
- 
+        
     }
     
     func setInitialWebView() {
@@ -45,7 +45,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         webView.frame=self.view.bounds
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +64,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
             
             webView.stopLoading()
             
-            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClimbingWall") as ClimbingWallViewController
             
             newVC.title = "Testing"
             newVC.url = newURL
@@ -78,7 +78,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         
         return ret
     }
-
+    
     
     func goBack() {
         navigationController?.popViewControllerAnimated(true);
@@ -104,4 +104,3 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         
     }
 }
-

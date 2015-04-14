@@ -1,5 +1,5 @@
 //
-//  FacilityViewController.swift
+//  OutdoorRecViewController.swift
 //  urec_ios
 //
 //  Created by Hannah Gamiel on 4/9/15.
@@ -8,15 +8,14 @@
 
 import UIKit
 
-class FacilityViewController: UIViewController, UIWebViewDelegate {
-    
+class OutdoorRecViewController: UIViewController, UIWebViewDelegate {
+
     @IBOutlet var webView: UIWebView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
-    //var newVC: FacilityViewController!
     var firstTime = true
     var url : String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +31,9 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         }
         
         setInitialWebView()
-
+        
         //navigationController?.pushViewController(newVC, animated: true)
- 
+        
     }
     
     func setInitialWebView() {
@@ -45,7 +44,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         webView.frame=self.view.bounds
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +63,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
             
             webView.stopLoading()
             
-            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("OutdoorRec") as OutdoorRecViewController
             
             newVC.title = "Testing"
             newVC.url = newURL
@@ -78,6 +77,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         
         return ret
     }
+    
 
     
     func goBack() {

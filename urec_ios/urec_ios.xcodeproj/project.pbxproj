@@ -14,11 +14,14 @@
 		8FC0C97D1AD734BF00DBB494 /* U-Rec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC0C9781AD734BF00DBB494 /* U-Rec@3x.png */; };
 		BB6CC8211AD72C8300837886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8201AD72C8300837886 /* AppDelegate.swift */; };
 		BB6CC8231AD72C8300837886 /* FacilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8221AD72C8300837886 /* FacilityViewController.swift */; };
-		BB6CC8251AD72C8300837886 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8241AD72C8300837886 /* SecondViewController.swift */; };
+		BB6CC8251AD72C8300837886 /* OutdoorRecViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8241AD72C8300837886 /* OutdoorRecViewController.swift */; };
 		BB6CC8281AD72C8300837886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6CC8261AD72C8300837886 /* Main.storyboard */; };
 		BB6CC82A1AD72C8400837886 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB6CC8291AD72C8400837886 /* Images.xcassets */; };
 		BB6CC82D1AD72C8400837886 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6CC82B1AD72C8400837886 /* LaunchScreen.xib */; };
 		BB6CC8391AD72C8400837886 /* urec_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8381AD72C8400837886 /* urec_iosTests.swift */; };
+		BBA0CC601ADD8A68008AE71A /* RentalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */; };
+		BBA0CC621ADD8B58008AE71A /* ClimbingWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */; };
+		BBA0CC641ADD8C65008AE71A /* IntramuralsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +44,16 @@
 		BB6CC81F1AD72C8300837886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6CC8201AD72C8300837886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB6CC8221AD72C8300837886 /* FacilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityViewController.swift; sourceTree = "<group>"; };
-		BB6CC8241AD72C8300837886 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BB6CC8241AD72C8300837886 /* OutdoorRecViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdoorRecViewController.swift; sourceTree = "<group>"; };
 		BB6CC8271AD72C8300837886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB6CC8291AD72C8400837886 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BB6CC82C1AD72C8400837886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BB6CC8321AD72C8400837886 /* urec_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = urec_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6CC8371AD72C8400837886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6CC8381AD72C8400837886 /* urec_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urec_iosTests.swift; sourceTree = "<group>"; };
+		BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalsViewController.swift; sourceTree = "<group>"; };
+		BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClimbingWallViewController.swift; sourceTree = "<group>"; };
+		BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntramuralsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +110,11 @@
 				8FC0C9731AD7348F00DBB494 /* Images */,
 				BB6CC8201AD72C8300837886 /* AppDelegate.swift */,
 				BB6CC8221AD72C8300837886 /* FacilityViewController.swift */,
-				BB6CC8241AD72C8300837886 /* SecondViewController.swift */,
+				BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */,
+				BB6CC8241AD72C8300837886 /* OutdoorRecViewController.swift */,
 				BB6CC8261AD72C8300837886 /* Main.storyboard */,
+				BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */,
+				BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */,
 				BB6CC8291AD72C8400837886 /* Images.xcassets */,
 				BB6CC82B1AD72C8400837886 /* LaunchScreen.xib */,
 				BB6CC81E1AD72C8300837886 /* Supporting Files */,
@@ -243,9 +252,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB6CC8251AD72C8300837886 /* SecondViewController.swift in Sources */,
+				BBA0CC621ADD8B58008AE71A /* ClimbingWallViewController.swift in Sources */,
+				BB6CC8251AD72C8300837886 /* OutdoorRecViewController.swift in Sources */,
 				BB6CC8211AD72C8300837886 /* AppDelegate.swift in Sources */,
+				BBA0CC601ADD8A68008AE71A /* RentalsViewController.swift in Sources */,
 				BB6CC8231AD72C8300837886 /* FacilityViewController.swift in Sources */,
+				BBA0CC641ADD8C65008AE71A /* IntramuralsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
