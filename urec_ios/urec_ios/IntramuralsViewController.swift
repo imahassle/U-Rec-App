@@ -13,6 +13,8 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var webView: UIWebView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
+    var isRoot = false
+
     var firstTime = true
     var url : String = ""
     
@@ -22,8 +24,9 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
         if(firstTime) {
             println("FIRST TIME!")
             if(url == "") {
-                self.title = "U-Rec"
+                self.title = "Intramurals"
                 url = "http://hannahgamiel.com"
+                isRoot = true
             }
             else {
                 println(url);
@@ -53,31 +56,38 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         var ret : Bool = false
+        var newpage : String = request.URL.absoluteString!
         
-        if(request.URL.absoluteString?.rangeOfString("#") != nil || firstTime == true) {
-            ret = true
+        if let dotRange = newpage.rangeOfString(".html") {
+            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
         }
-        else if (!firstTime) {
+        
+        if let dotRange = newpage.rangeOfString(".php") {
+            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
+        }
+        
+        if (newpage != url && !firstTime) {
             let newURL : String = (request.URL.absoluteString)!
             println(newURL)
             
             webView.stopLoading()
             
             let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Intramurals") as IntramuralsViewController
-            
-            newVC.title = "Testing"
             newVC.url = newURL
-            
             self.navigationController?.pushViewController(newVC, animated: true)
             
             stopAnimating()
-            
-            firstTime = true
+        }
+        else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
+            ret = true
         }
         
         return ret
     }
     
+    func webViewDidStartLoad(webView: UIWebView) {
+        startAnimating()
+    }
     
     
     func goBack() {
@@ -86,11 +96,12 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView){
         if(firstTime) {
+            if(!isRoot) {
+                self.title = webView.stringByEvaluatingJavaScriptFromString("document.title")
+            }
             firstTime = false
-            //navigationController?.pushViewController(newVC, animated: true)
         }
         stopAnimating()
-        
     }
     
     func startAnimating(){
