@@ -1,12 +1,14 @@
 package edu.whitworth.urex.whitworthu_rec;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 public class SecondaryLevelActivity extends ActionBarActivity {
@@ -21,8 +23,21 @@ public class SecondaryLevelActivity extends ActionBarActivity {
         SecondaryWebView.loadUrl(url);
         WebSettings webSettings = SecondaryWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-    }
+        SecondaryWebView.setWebViewClient(new WebViewClient());
 
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
+
+
+        SecondaryWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                SecondaryLevelActivity.this.setTitle(view.getTitle());
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

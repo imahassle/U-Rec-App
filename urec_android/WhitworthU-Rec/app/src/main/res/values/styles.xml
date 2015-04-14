@@ -11,4 +11,8 @@
     <style name="RedNavigationDrawer" parent="@android:style/Widget.ListView">
         <item name="android:background">@color/CoreRed</item>
     </style>
+
+    <style name="NavDrawerItemSelected" parent="@style/RedAppTheme">
+
+    </style>
 </resources>
