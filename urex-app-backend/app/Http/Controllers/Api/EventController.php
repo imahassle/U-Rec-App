@@ -10,8 +10,9 @@ class EventController extends ApiGuardController {
     protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
         'index_category' => [ 'keyAuthentication' => false ],
-        'show' => [ 'keyAuthentication' => false ]
-    ]
+        'show' => [ 'keyAuthentication' => false ],
+        'show_images' => [ 'keyAuthentication' => false ]
+    ];
 
     /**
      * Display a listing of the resource.
@@ -26,12 +27,15 @@ class EventController extends ApiGuardController {
     /**
      * Display a list of the resource with given category id.
      *
-     * @param int  $category_id
      * @return Response
      */
     public function index_category($category_id) 
     {
-        return Response::json(Event::whereCategoryId($category_id)->toArray())
+        if(!Event::whereCategoryId($category_id)->exists()) {
+            return Response::json([]);
+        }
+
+        return Response::json(Event::whereCategoryId($category_id)->toArray());
     }
 
     /**
@@ -46,8 +50,8 @@ class EventController extends ApiGuardController {
         $event = new Event;
         $event->title = Request::input('title');
         $event->description = Request::input('description');
-        $event->start = date("Y-m-d H:i:s", strtotime(Request::input('start')));
-        $event->end = date("Y-m-d H:i:s", strtotime(Request::input('end')));
+        $event->start = date("Y-m-d h:i A", strtotime(Request::input('start')));
+        $event->end = date("Y-m-d h:i A", strtotime(Request::input('end')));
         $event->cost = Request::input('cost');
         $event->spots = Request::input('spots');
         $event->user_id = $user->id;
@@ -78,7 +82,7 @@ class EventController extends ApiGuardController {
     {
         $event = Event::find($id);
 
-        if(isNull($event)) {
+        if($event == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Event not found.'
@@ -86,6 +90,26 @@ class EventController extends ApiGuardController {
         }
 
         return Response::json($event->toArray());
+    }
+
+    /**
+     * Display the specified resource's images.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show_images($id)
+    {
+        $event = Event::find($id);
+
+        if($event == null) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Event not found.'
+            ], 400);
+        }
+
+        return Response::json($event->images()->toArray());
     }
 
     /**
@@ -98,7 +122,7 @@ class EventController extends ApiGuardController {
     {
         $event = Event::find($id);
 
-        if(isNull($event)) {
+        if($event == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Event not found.'
@@ -109,8 +133,8 @@ class EventController extends ApiGuardController {
 
         $event->title = Request::input('title');
         $event->description = Request::input('description');
-        $event->start = date("Y-m-d H:i:s", strtotime(Request::input('start')));
-        $event->end = date("Y-m-d H:i:s", strtotime(Request::input('end')));
+        $event->start = date("Y-m-d h:i A", strtotime(Request::input('start')));
+        $event->end = date("Y-m-d h:i A", strtotime(Request::input('end')));
         $event->cost = Request::input('cost');
         $event->spots = Request::input('spots');
         $event->user_id = $user->id;
@@ -132,6 +156,76 @@ class EventController extends ApiGuardController {
     }
 
     /**
+     * Associate an image with the specified resource.
+     *
+     * @param  int  $id, int  $image_id
+     * @return Response
+     */
+    public function add_image($id, $image_id)
+    {
+        if(EventImage::whereEventId($id)->whereImageId($image_id)->exists()) {
+            return Response::json([
+                'code' => 400
+                'message' => 'Image already associated with event.'
+            ], 400);
+        }
+
+        if(!Event::find($id)->exists()) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Event not found.'
+            ], 400);
+        }
+
+        if(!Image::find($image_id)->exists()) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Image not found.'
+            ], 400);
+        }
+
+        $event_image = new EventImage;
+        $event_image->event_id = $id;
+        $event_image->image_id = $image_id;
+
+        if(!$event_image->save()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Image was not associated with event due to an internal server error.'
+            ], 500);
+        }
+
+        return Response::json(['message' => 'Image associated successfully.']);
+    }
+
+    /**
+     * Dissociate an image with the specified resource.
+     *
+     * @param  int  $id, int  $image_id
+     * @return Response
+     */
+    public function delete_image($id, $image_id)
+    {
+        $event_image = EventImage::whereEventId($id)->whereImageId($image_id);
+
+        if($event_image == null) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Image association not found.'
+            ], 400);
+        }
+
+        if(!$event_image->delete()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Image association was not deleted due to an internal server error.'
+            ]);
+        }
+
+        return Response::json(['message' => 'Image association deleted succesfully.']);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -141,7 +235,7 @@ class EventController extends ApiGuardController {
     {
         $event = Event::find($id);
 
-        if(isNull($event)) {
+        if($event == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Event not found.'
@@ -152,6 +246,15 @@ class EventController extends ApiGuardController {
             return Response::json([
                 'code' => 500,
                 'message' => 'Event was not deleted due to an internal server error.'
+            ], 500);
+        }
+
+        $image_associations = EventImage::whereEventId($id);
+
+        if($image_associations != null && !$image_associations->delete()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Event deleted, but image associations not deleted due to an internal server error.'
             ], 500);
         }
 

@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Feedback;
 
 class FeedbackController extends Controller {
 
@@ -14,17 +14,14 @@ class FeedbackController extends Controller {
 	 */
 	public function index()
 	{
-		//
-	}
+		if(Request::header('X-Authorization') == null) {
+			return Response::json([
+				'code' => 403,
+				'message' => 'Non-authorized users are not allowed to see feedback.'
+			], 403);
+		}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+		return Response::json(Feedback::all()->toArray());
 	}
 
 	/**
@@ -34,7 +31,26 @@ class FeedbackController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		if(Request::header('X-Authorization') != null) {
+			return Response::json([
+				'code' => 403,
+				'message' => 'Authorized users are not allowed to submit feedback.'
+			], 403);
+		}
+
+		$feedback = new Feedback;
+		$feedback->message = Request::input('feedback');
+		$feedback->email = Request::input('email');
+		$feedback->date = date('Y-m-d h:i A', strtotime(Request::input('date')));
+
+		if(!$feedback->save()) {
+			return Response::json([
+				'code' => 500,
+				'message' => 'Feedback was not created due to an internal server error.'
+			], 500);
+		}
+
+		return Response::json(['message' => 'Feedback created successfully.']);
 	}
 
 	/**
@@ -45,29 +61,23 @@ class FeedbackController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
-	}
+		if(Request::header('X-Authorization') == null) {
+			return Response::json([
+				'code' => 403,
+				'message' => 'Non-authorized users are not allowed to see feedback.'
+			], 403);
+		}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+		$feedback = Feedback::find($id);
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+		if($feedback == null) {
+			return Response::json([
+				'code' => 400,
+				'message' => 'Feedback not found.'
+			], 400);
+		}
+
+		return Response::json($feedback->toArray());
 	}
 
 	/**
@@ -78,7 +88,30 @@ class FeedbackController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if(Request::header('X-Authorization') == null) {
+			return Response::json([
+				'code' => 403,
+				'message' => 'Non-authorized users are not allowed to delete feedback.'
+			], 403);
+		}
+
+		$feedback = Feedback::find($id);
+
+		if($feedback == null) {
+			return Response::json([
+				'code' => 400,
+				'message' => 'Feedback not found.'
+			], 400);
+		}
+
+		if(!$feedback->delete()) {
+			return Response::json([
+				'code' => 500,
+				'message' => 'Feedback was not deleted due to an internal server error.'
+			], 500);
+		}
+
+		return Response::json(['message' => 'Feedback deleted successfully.']);
 	}
 
 }

@@ -6,12 +6,76 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
 
 body {
   padding: 5px;
-  background: #efefef;
+  background: #EFEFEF;
+}
+
+.ui-btn {
+  background-color: #B70724;
+  color: white;
+}
+
+.ui-header {
+  background-color: #B70724 !important;
+}
+
+.ui-title {
+  color: white;
+  text-transform: uppercase;
+  text-shadow: none;
+  font-weight: lighter;
+}
+
+.hours p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.hours p {
+  color: #949494;
+}
+.hours p.info {
+  color: #B70724;
+  padding-left: 10px;
+}
+.hours button {
+  text-transform: uppercase;
+  background-color: #B70724 !important;
+  color: white !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  display: inline-block;
+  margin: 0 0 0 30%;
+}
+
+.hours-popup {
+  padding: 20px;
+}
+.hours-popup h4 {
+  text-align: center;
+  color: #B70724;
+  text-transform: uppercase;
+}
+.hours-popup p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: #949494 !important;
+}
+.hours-popup p.info {
+  color: #B70724 !important;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.photos-grid .ui-grid-b img {
+  width: 100%;
 }
 
 .panel {
-  padding: 5px;
+  padding: 10px;
   background: #FFFFFF;
+  margin-bottom: 10px;
   /*font-size: 32px;*/
   /*font-color: $lightGray;*/
 }
@@ -19,3 +83,72 @@ body {
   width: 50px;
   height: 50px;
 }
+.panel label {
+  vertical-align: center;
+  margin-top: 15px;
+  color: #949494;
+}
+.panel input[type="submit"] {
+  background-color: #B70724;
+}
+.panel .splash-menu button {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  background-color: #B70724 !important;
+  color: white;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  padding: 20px 0;
+  text-shadow: none;
+}
+.panel table {
+  width: 100%;
+}
+.panel table tr {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.panel table tr td:first-child {
+  width: 50%;
+  text-align: left;
+}
+.panel table tr td {
+  width: 12%;
+  text-align: center;
+}
+.panel table thead td {
+  color: #B70724;
+  font-weight: bold;
+}
+.panel table tbody td {
+  color: #949494;
+}
+
+.panel.shout {
+  display: inline-block;
+}
+.panel.shout img {
+  width: 90px;
+  height: 90px;
+  float: left;
+  vertical-align: top;
+}
+.panel.shout .shout-content {
+  vertical-align: top;
+}
+.panel.shout .shout-content fieldset {
+  word-wrap: normal;
+  padding-left: 10px;
+}
+.panel.shout .shout-content .shout-title {
+  color: #B70724;
+  font-weight: bold;
+}
+.panel.shout .shout-content p {
+  margin: 0;
+  color: #949494;
+  vertical-align: top;
+}
+
+/*# sourceMappingURL=style.css.map */

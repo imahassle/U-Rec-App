@@ -5,6 +5,12 @@ $primaryRed: #B70724;
 $lightGray: #EFEFEF;
 $medGray: #949494;
 
+@mixin no-border {
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
     /* Set your content font stack here: */
     font-family: 'Lato', sans-serif;
@@ -15,9 +21,77 @@ body {
 	background: $lightGray;
 }
 
+.ui-btn {
+	background-color: $primaryRed;
+	color: white;
+}
+
+.ui-header {
+	background-color: $primaryRed !important;
+}
+.ui-title {
+		color: white;
+		text-transform: uppercase;
+		text-shadow: none;
+		font-weight: lighter;
+}
+
+.hours {
+	p {
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+	}
+	p {
+		color: $medGray;
+	}
+	p.info {
+		color: $primaryRed;
+		padding-left: 10px;
+	}
+	button {
+		text-transform: uppercase;
+		background-color: $primaryRed !important;
+		color: white !important;
+		@include no-border;
+		display: inline-block;
+		margin: 0 0 0 30%;
+	}
+}
+
+.hours-popup {
+	// width: 360px;
+	padding: 20px;
+	h4 {
+		text-align: center;
+		color: $primaryRed;
+		text-transform: uppercase;
+	}
+	p {
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+		color: $medGray !important;
+	}
+	p.info {
+		color: $primaryRed !important;
+		padding-left: 10px;
+		font-weight: bold;
+	}
+}
+
+.photos-grid {
+	.ui-grid-b {
+		img {
+			width: 100%;
+		}
+	}
+}
+
 .panel {
-	padding: 5px;
+	padding: 10px;
 	background: #FFFFFF;
+	margin-bottom: 10px;
 
 	/*font-size: 32px;*/
 	/*font-color: $lightGray;*/
@@ -25,5 +99,81 @@ body {
 	img.left-img {
 		width: 50px;
 		height: 50px;
+	}
+
+	label {
+		vertical-align: center;
+		margin-top: 15px;
+		color: $medGray;
+	}
+
+	input[type="submit"] {
+		background-color: $primaryRed;
+	}
+
+	.splash-menu {
+		button {
+			@include no-border;
+			background-color: $primaryRed !important;
+			color: white;
+			font-size: 1.2em;
+			text-transform: uppercase;
+			padding: 20px 0;
+			text-shadow: none;
+			// font-weight: lighter;
+		}
+	}
+
+	table {
+		width: 100%;
+		tr {
+			width: 100%;
+			margin-bottom: 10px;
+			td:first-child {
+				width: 50%;
+				text-align: left;
+			}
+			td {
+				width: 12%;
+				text-align: center;
+			}
+		}
+		thead {
+			td {
+				color: $primaryRed;
+				font-weight: bold;
+			}
+		}
+		tbody {
+			td {
+				color: $medGray;
+			}
+		}
+	}
+}
+
+.panel.shout {
+	display: inline-block;
+	img {
+		width: 90px;
+		height: 90px;
+		float: left;
+		vertical-align: top;
+	}
+	.shout-content {
+		vertical-align: top;
+		fieldset {
+			word-wrap: normal;
+			padding-left: 10px;
+		}
+		.shout-title {
+			color: $primaryRed;
+			font-weight: bold;
+		}
+		p {
+			margin: 0;
+			color: $medGray;
+			vertical-align: top;
+		}
 	}
 }

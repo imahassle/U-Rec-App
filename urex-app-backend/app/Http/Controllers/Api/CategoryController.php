@@ -57,7 +57,7 @@ class CategoryController extends ApiGuardController {
     {
         $category = Category::find($id);
 
-        if(isNull($category)) {
+        if($category == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Category not found.'
@@ -77,7 +77,7 @@ class CategoryController extends ApiGuardController {
     {
         $category = Category::find($id);
 
-        if(isNull($category)) {
+        if($category == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Category not found.'
@@ -106,7 +106,7 @@ class CategoryController extends ApiGuardController {
     {
         $category = Category::find($id);
 
-        if(isNull($category)) {
+        if($category == null) {
             return Response::json([
                 'code' => 400,
                 'message' => 'Category not found.'

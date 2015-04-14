@@ -197,4 +197,15 @@ return [
 
 	],
 
+	/*
+	|---------------------------------------------------------------------------
+	| Image Storage Location
+	|---------------------------------------------------------------------------
+	|
+	| This is the directory where images used by the application will be stored.
+	|
+	*/
+
+	'image_directory' => base_path()."/images"
+
 ];

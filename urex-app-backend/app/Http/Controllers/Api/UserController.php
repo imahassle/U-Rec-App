@@ -3,13 +3,9 @@
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
+use App\User;
 
 class UserController extends ApiGuardController {
-
-	protected $apiMethods = [
-        'index' => [ 'keyAuthentication' => false ],
-        'show' => [ 'keyAuthentication' => false ]
-    ]
 
 	public function __construct()
 	{
@@ -25,6 +21,20 @@ class UserController extends ApiGuardController {
 	public function index()
 	{
 		return Response::json(User::all()->toArray());
+	}
+
+	/**
+     * Display a list of the resource with given category id.
+     *
+     * @return Response
+     */
+	public function index_category($category_id)
+	{
+		if(!User::whereCategoryId($category_id)->exists()) {
+            return Response::json([]);
+        }
+
+        return Response::json(User::whereCategoryId($category_id)->toArray());
 	}
 
 	/**
@@ -62,7 +72,7 @@ class UserController extends ApiGuardController {
 	{
 		$user = User::find($id);
 
-		if(isNull($user)) {
+		if($user == null) {
 			return Response::json([
 				'code' => 400,
 				'message' => 'User not found.'
@@ -82,7 +92,7 @@ class UserController extends ApiGuardController {
 	{
 		$user = User::find($id);
 
-		if(isNull($user)) {
+		if($user == null) {
 			return Response::json([
 				'code' => 400,
 				'message' => 'User not found.'
@@ -116,7 +126,7 @@ class UserController extends ApiGuardController {
 	{
 		$user = User::find($id);
 
-		if(isNull($user)) {
+		if($user == null) {
 			return Response::json([
 				'code' => 400,
 				'message' => 'User not found.'

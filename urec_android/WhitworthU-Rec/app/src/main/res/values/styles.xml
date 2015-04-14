@@ -1,0 +1,14 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:colorBackground">@color/CoreRed</item>
+    </style>
+
+    <style name="WhiteActionBarText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="RedNavigationDrawer" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/CoreRed</item>
+    </style>
+</resources>
