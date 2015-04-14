@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FacilityViewController.swift
 //  urec_ios
 //
 //  Created by Hannah Gamiel on 4/9/15.
@@ -8,11 +8,15 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FacilityViewController: UIViewController {
+    
+    @IBOutlet var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let url = NSURL(string: "http://hannahgamiel.com")
+        let request = NSURLRequest(URL: url!)
+        webView.loadRequest(request)
     }
 
     override func didReceiveMemoryWarning() {
