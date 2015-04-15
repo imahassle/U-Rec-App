@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateHoursTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('hours', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('hours', function(Blueprint $table) {
             $table->increments('id');
             $table->time('mon_open');
             $table->time('mon_close');
@@ -32,16 +32,16 @@ class CreateHoursTable extends Migration {
             //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('hours');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('hours');
+    }
 
 }

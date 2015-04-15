@@ -5,29 +5,29 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateImageIncentiveProgramTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('image_incentive_program', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('image_incentive_program', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('image_id')->unsigned();
             $table->integer('incentive_program_id')->unsigned();
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('image_incentive_program');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('image_incentive_program');
+    }
 
 }

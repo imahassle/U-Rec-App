@@ -7,64 +7,64 @@ use App\IncentiveProgram;
 
 class IncentiveProgramController extends ApiGuardController {
 
-	protected $apiMethods = [
+    protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
         'show' => [ 'keyAuthentication' => false ]
     ];
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return Response::json(IncentiveProgram::all()->toArray());
-	}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return Response::json(IncentiveProgram::all()->toArray());
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
 
-		$incentive_program = new IncentiveProgram;
-		$incentive_program->title = Request::input('title');
-		$incentive_program->description = Request::input('description');
-		$incentive_program->user_id = $user->id;
+        $incentive_program = new IncentiveProgram;
+        $incentive_program->title = Request::input('title');
+        $incentive_program->description = Request::input('description');
+        $incentive_program->user_id = $user->id;
 
-		if(!$incentive_program->save()) {
-			return Response::json([
-				'code' => 500,
-				'message' => 'Incentive program was not created due to an internal error'
-			], 500);
-		}
+        if(!$incentive_program->save()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Incentive program was not created due to an internal error'
+            ], 500);
+        }
 
-		return Response::json(['message' => 'Incentive program created successfully.']);
-	}
+        return Response::json(['message' => 'Incentive program created successfully.']);
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$incentive_program = IncentiveProgram::find($id);
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $incentive_program = IncentiveProgram::find($id);
 
-		if($incentive_program == null) {
-			return Response::json([
-				'code' => 400,
-				'message' => 'Incentive program not found.'
-			], 400);
-		}
+        if($incentive_program == null) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Incentive program not found.'
+            ], 400);
+        }
 
-		return Response::json($incentive_program->toArray());
-	}
+        return Response::json($incentive_program->toArray());
+    }
 
     /**
      * Display the specified resource's images.
@@ -86,40 +86,40 @@ class IncentiveProgramController extends ApiGuardController {
         return Response::json($incentive_program->images()->toArray());
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$incentive_program = IncentiveProgram::find($id);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        $incentive_program = IncentiveProgram::find($id);
 
-		if($incentive_program == null) {
-			return Response::json([
-				'code' => 400,
-				'message' => 'Incentive program not found.'
-			], 400);
-		}
+        if($incentive_program == null) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Incentive program not found.'
+            ], 400);
+        }
 
-		$user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
+        $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
 
-		$incentive_program->title = Request::input('title');
-		$incentive_program->description = Request::input('description');
-		$incentive_program->user_id = $user->id;
+        $incentive_program->title = Request::input('title');
+        $incentive_program->description = Request::input('description');
+        $incentive_program->user_id = $user->id;
 
-		if(!$incentive_program->save()) {
-			return Response::json([
-				'code' => 500,
-				'message' => 'Incentive program was not updated due to an internal error'
-			], 500);
-		}
+        if(!$incentive_program->save()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Incentive program was not updated due to an internal error'
+            ], 500);
+        }
 
-		return Response::json(['message' => 'Incentive program updated successfully.']);
-	}
+        return Response::json(['message' => 'Incentive program updated successfully.']);
+    }
 
-	/**
+    /**
      * Associate an image with the specified resource.
      *
      * @param  int  $id
@@ -189,33 +189,33 @@ class IncentiveProgramController extends ApiGuardController {
         return Response::json(['message' => 'Image association deleted succesfully.']);
     }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		$incentive_program = IncentiveProgram::find($id);
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $incentive_program = IncentiveProgram::find($id);
 
-		if($incentive_program == null) {
-			return Response::json([
-				'code' => 400,
-				'message' => 'Incentive program not found.'
-			], 400);
-		}
+        if($incentive_program == null) {
+            return Response::json([
+                'code' => 400,
+                'message' => 'Incentive program not found.'
+            ], 400);
+        }
 
-		if(!$incentive_program->delete()) {
-			return Response::json([
-				'code' => 500,
-				'message' => 'Incentive program was not deleted due to an internal server error.'
-			], 500);
-		}
+        if(!$incentive_program->delete()) {
+            return Response::json([
+                'code' => 500,
+                'message' => 'Incentive program was not deleted due to an internal server error.'
+            ], 500);
+        }
 
-		$image_associations = ImageIncentiveProgram::whereIncentiveProgramId($id);
+        $image_associations = ImageIncentiveProgram::whereIncentiveProgramId($id);
 
-		 if($image_associations != null && !$image_associations->delete()) {
+         if($image_associations != null && !$image_associations->delete()) {
             return Response::json([
                 'code' => 500,
                 'message' => 'Incentive program deleted, but image associations not deleted due to an internal server error.'
@@ -223,6 +223,6 @@ class IncentiveProgramController extends ApiGuardController {
         }
 
         return Response::json(['message' => 'Incentive program deleted succesfully.']);
-	}
+    }
 
 }

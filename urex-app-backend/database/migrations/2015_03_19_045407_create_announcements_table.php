@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAnnouncementsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('announcements', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('announcements', function(Blueprint $table) {
             $table->increments('id');
             $table->text('message');
             $table->datetime('date');
@@ -22,16 +22,16 @@ class CreateAnnouncementsTable extends Migration {
             //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('announcements');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('announcements');
+    }
 
 }
