@@ -72,6 +72,17 @@ button i {
   height: 300px;
 }
 
+.round-button {
+  border-radius: 2em;
+  -moz-border-radius: 2em;
+  -webkit-border-radius: 2em;
+  display: inline;
+  i {
+    margin: 0 !important;
+    padding: 0;
+  }
+}
+
 .aug-table {
   border: none;
   width: 100%;
@@ -179,7 +190,7 @@ html {
   }
   .pure-menu-list .pure-menu-list li a {
     padding-left: 25px;
-    
+
     // text-transform: lowercase;
     text-transform: capitalize;
     color: #999;
@@ -424,7 +435,7 @@ html {
   height: 100%;
   width: 6px;
   display: inline-block;
-  
+
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
   animation: stretchdelay 1.2s infinite ease-in-out;
 }
@@ -450,15 +461,15 @@ html {
 }
 
 @-webkit-keyframes stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
   20% { -webkit-transform: scaleY(1.0) }
 }
 
 @keyframes stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
+  }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
