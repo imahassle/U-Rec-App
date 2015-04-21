@@ -24,7 +24,7 @@ class ClimbingWallViewController: UIViewController, UIWebViewDelegate {
             println("FIRST TIME!")
             if(url == "") {
                 self.title = "Climbing Wall"
-                url = "http://hannahgamiel.com"
+                url = "http://localhost:8888/urec/Mobile/splash.html"
                 isRoot = true
             }
             else {

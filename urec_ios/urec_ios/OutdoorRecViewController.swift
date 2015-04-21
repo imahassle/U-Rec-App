@@ -24,7 +24,8 @@ class OutdoorRecViewController: UIViewController, UIWebViewDelegate {
             println("FIRST TIME!")
             if(url == "") {
                 self.title = "Outdoor Rec"
-                url = "http://localhost:8888/urec/Mobile/splash.html"
+                url = "http://www.whitworth.edu/Administration/RecreationCenter/OutdoorRec.htm"
+                
                 isRoot = true
             }
             else {

@@ -25,7 +25,7 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
             println("FIRST TIME!")
             if(url == "") {
                 self.title = "Intramurals"
-                url = "http://hannahgamiel.com"
+                url = "http://www.whitworth.edu/Administration/RecreationCenter/IMStats/Index.htm"
                 isRoot = true
             }
             else {
@@ -61,8 +61,7 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
         if let dotRange = newpage.rangeOfString(".html") {
             newpage.removeRange(newpage.startIndex..<newpage.endIndex)
         }
-        
-        if let dotRange = newpage.rangeOfString(".php") {
+        else if let dotRange = newpage.rangeOfString(".php") {
             newpage.removeRange(newpage.startIndex..<newpage.endIndex)
         }
         

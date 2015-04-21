@@ -25,7 +25,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
             println("FIRST TIME!")
             if(url == "") {
                 self.title = "U-Rec"
-                url = "http://hannahgamiel.com"
+                url = "http://www.whitworth.edu/urec/"
                 isRoot = true
             }
             else {
