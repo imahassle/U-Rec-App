@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -81,7 +81,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
                                 <rect key="frame" x="154" y="279" width="292" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
@@ -98,7 +98,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -113,6 +113,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9gP-re-H4o" secondAttribute="trailing" constant="-16" id="WXX-6c-gtv"/>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="9gP-re-H4o" secondAttribute="centerX" id="fHL-eI-KJb"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="9gP-re-H4o" secondAttribute="bottom" id="g39-12-1DR"/>
+                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="oUQ-xc-UJP"/>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="NDk-cv-Gan" secondAttribute="centerX" id="uFb-sC-Tx0"/>
                         </constraints>
                     </view>
@@ -175,8 +176,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by RentalsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h68-R9-XIM" userLabel="Loaded by RentalsViewController">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by RentalsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h68-R9-XIM" userLabel="Loaded by RentalsViewController">
                                 <rect key="frame" x="192" y="329" width="216" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="216" id="rrN-2J-6u8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -185,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -197,11 +201,11 @@
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="leading" secondItem="hXb-UA-cM2" secondAttribute="leadingMargin" constant="-16" id="Aya-Up-kB4"/>
                             <constraint firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="Cvu-4L-WhE"/>
                             <constraint firstAttribute="centerY" secondItem="sCf-Yg-mZf" secondAttribute="centerY" id="GxG-FL-ngw"/>
-                            <constraint firstItem="h68-R9-XIM" firstAttribute="top" secondItem="sCf-Yg-mZf" secondAttribute="bottom" constant="8" symbolic="YES" id="QFu-gc-TkI"/>
+                            <constraint firstItem="h68-R9-XIM" firstAttribute="top" secondItem="sCf-Yg-mZf" secondAttribute="bottom" constant="8" symbolic="YES" id="Hsi-kw-cFO"/>
+                            <constraint firstItem="h68-R9-XIM" firstAttribute="centerX" secondItem="LHu-3v-Pib" secondAttribute="centerX" id="WHB-sW-GhC"/>
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="top" secondItem="cXB-Cn-gkS" secondAttribute="bottom" id="abg-UF-FDf"/>
                             <constraint firstItem="tcb-b6-eCx" firstAttribute="top" secondItem="adQ-4y-W9Y" secondAttribute="bottom" id="jFc-Fa-SN3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="adQ-4y-W9Y" secondAttribute="trailing" constant="-16" id="mjc-gZ-fFs"/>
-                            <constraint firstItem="h68-R9-XIM" firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="vWl-HT-cKd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Erq-SC-vmX">
@@ -250,7 +254,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -315,7 +319,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -470,7 +474,7 @@
         <scene sceneID="p4s-L1-OQP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zLP-8w-deP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec.png" selectedImage="U-Rec.png" id="acW-dT-cKf" userLabel="U-Rec"/>
+                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec@3x.png" selectedImage="U-Rec@3x.png" id="acW-dT-cKf" userLabel="U-Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SAm-Pp-zTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -489,7 +493,7 @@
         <scene sceneID="hP1-Yd-4aJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO7-N0-pjw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec.png" selectedImage="OutdoorRec.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
+                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec@3x.png" selectedImage="OutdoorRec@3x.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sk0-Sv-bsw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -508,7 +512,7 @@
         <scene sceneID="xzw-6C-uhL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WAr-Jh-ewo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals.png" selectedImage="Rentals.png" id="4yz-V4-gFV" userLabel="Rentals"/>
+                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals@3x.png" selectedImage="Rentals@3x.png" id="4yz-V4-gFV" userLabel="Rentals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dny-so-ebo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -527,7 +531,7 @@
         <scene sceneID="LCj-be-V4b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pIV-Fw-Sn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall.png" selectedImage="ClimbingWall.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
+                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall@3x.png" selectedImage="ClimbingWall@3x.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fuo-N5-COv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -546,7 +550,7 @@
         <scene sceneID="Oez-3Y-ma4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s2G-8K-ypI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals.png" selectedImage="Intramurals.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
+                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals@3x.png" selectedImage="Intramurals@3x.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yCD-UJ-ZNl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -563,13 +567,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ClimbingWall.png" width="144" height="96"/>
-        <image name="Intramurals.png" width="144" height="96"/>
-        <image name="OutdoorRec.png" width="144" height="96"/>
-        <image name="Rentals.png" width="144" height="96"/>
-        <image name="U-Rec.png" width="144" height="96"/>
+        <image name="ClimbingWall@3x.png" width="144" height="96"/>
+        <image name="Intramurals@3x.png" width="144" height="96"/>
+        <image name="OutdoorRec@3x.png" width="144" height="96"/>
+        <image name="Rentals@3x.png" width="144" height="96"/>
+        <image name="U-Rec@3x.png" width="144" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9dU-0H-0Ji"/>
+        <segue reference="epB-Tu-iRB"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -25,6 +25,7 @@
 		BBDD793D1AE6101F003DC9A3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDD793C1AE6101F003DC9A3 /* SettingsViewController.swift */; };
 		BBDD79431AE61410003DC9A3 /* SettingsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBDD79411AE61410003DC9A3 /* SettingsModel.xcdatamodeld */; };
 		BBDD79451AE6153F003DC9A3 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDD79441AE6153F003DC9A3 /* Notifications.swift */; };
+		BBFACE961AE6EDE900295A94 /* ParentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFACE951AE6EDE900295A94 /* ParentPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		BBDD793C1AE6101F003DC9A3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BBDD79421AE61410003DC9A3 /* SettingsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SettingsModel.xcdatamodel; sourceTree = "<group>"; };
 		BBDD79441AE6153F003DC9A3 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		BBFACE951AE6EDE900295A94 /* ParentPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				BBDD79441AE6153F003DC9A3 /* Notifications.swift */,
 				BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */,
 				BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */,
+				BBFACE951AE6EDE900295A94 /* ParentPageViewController.swift */,
 				BB6CC8291AD72C8400837886 /* Images.xcassets */,
 				BB6CC82B1AD72C8400837886 /* LaunchScreen.xib */,
 				BB6CC81E1AD72C8300837886 /* Supporting Files */,
@@ -266,6 +269,7 @@
 				BBDD793D1AE6101F003DC9A3 /* SettingsViewController.swift in Sources */,
 				BBDD79451AE6153F003DC9A3 /* Notifications.swift in Sources */,
 				BB6CC8211AD72C8300837886 /* AppDelegate.swift in Sources */,
+				BBFACE961AE6EDE900295A94 /* ParentPageViewController.swift in Sources */,
 				BBDD79431AE61410003DC9A3 /* SettingsModel.xcdatamodeld in Sources */,
 				BBA0CC601ADD8A68008AE71A /* RentalsViewController.swift in Sources */,
 				BB6CC8231AD72C8300837886 /* FacilityViewController.swift in Sources */,

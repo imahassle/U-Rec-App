@@ -1,31 +1,31 @@
 //
-//  FacilityViewController.swift
+//  ParentPageViewController.swift
 //  urec_ios
 //
-//  Created by Hannah Gamiel on 4/9/15.
+//  Created by Hannah Gamiel on 4/14/15.
 //  Copyright (c) 2015 Hannah Gamiel. All rights reserved.
 //
 
 import UIKit
 
-class FacilityViewController: UIViewController, UIWebViewDelegate {
+class ParentPageViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var webView: UIWebView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
     var isRoot = false
-    //var newVC: FacilityViewController!
+    
     var firstTime = true
     var url : String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(firstTime) {
             println("FIRST TIME!")
             if(url == "") {
-                self.title = "U-Rec"
-                url = "http://www.whitworth.edu/urec/"
+                self.title = "Intramurals"
+                url = "http://www.whitworth.edu/Administration/RecreationCenter/IMStats/Index.htm"
                 isRoot = true
             }
             else {
@@ -34,9 +34,9 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         }
         
         setInitialWebView()
-
+        
         //navigationController?.pushViewController(newVC, animated: true)
- 
+        
     }
     
     func setInitialWebView() {
@@ -47,7 +47,7 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         webView.frame=self.view.bounds
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,35 +56,38 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         var ret : Bool = false
-        var currURL = url
-        var newpage = request.URL.absoluteString!
+        var newpage : String = request.URL.absoluteString!
         
-        if let dotRange = newpage.rangeOfString("#") {
+        if let dotRange = newpage.rangeOfString(".html") {
+            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
+        }
+        else if let dotRange = newpage.rangeOfString(".php") {
             newpage.removeRange(newpage.startIndex..<newpage.endIndex)
         }
         
-        if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
-            ret = true
-        }
-        else if (newpage != url && !firstTime) {
+        if (newpage != url && !firstTime) {
             let newURL : String = (request.URL.absoluteString)!
             println(newURL)
             
             webView.stopLoading()
             
-            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Intramurals") as IntramuralsViewController
             newVC.url = newURL
             self.navigationController?.pushViewController(newVC, animated: true)
             
             stopAnimating()
         }
+        else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
+            ret = true
+        }
+        
         return ret
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
         startAnimating()
     }
-
+    
     
     func goBack() {
         navigationController?.popViewControllerAnimated(true);
@@ -109,4 +112,3 @@ class FacilityViewController: UIViewController, UIWebViewDelegate {
         activity.stopAnimating()
     }
 }
-

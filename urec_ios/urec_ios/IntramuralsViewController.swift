@@ -104,13 +104,11 @@ class IntramuralsViewController: UIViewController, UIWebViewDelegate {
     }
     
     func startAnimating(){
+        activity.hidden = false
         activity.startAnimating()
-        activity.hidesWhenStopped = true
     }
     
     func stopAnimating(){
         activity.stopAnimating()
-        activity.hidesWhenStopped = true
-        
     }
 }
