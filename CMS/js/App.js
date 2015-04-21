@@ -25,15 +25,15 @@ var app = (function() {
 	var ViewsFactory = {
 		menu: function() {
 			if(!this.menuView) {
-				this.menuView = new api.views.menu({ 
-					el: $("#menu") 
+				this.menuView = new api.views.menu({
+					el: $("#menu")
 				});
 			}
 			return this.menuView;
 		},
 		facilityHome: function() {
 			if(!this.facilityHomeView) {
-				this.facilityHomeView = new api.views.facilityHome({ 
+				this.facilityHomeView = new api.views.facilityHome({
 					el: this.content
 				});
 			}
@@ -41,15 +41,15 @@ var app = (function() {
 		},
 		facilityHours: function() {
 			if(!this.facilityHoursView) {
-				this.facilityHoursView = new api.views.facilityHours({ 
+				this.facilityHoursView = new api.views.facilityHours({
 					el: this.content
 				});
 			}
-			return this.aboutView;
+			return this.facilityHoursView;
 		},
 		facilityProg: function() {
 			if(!this.facilityProgView) {
-				this.facilityProgView = new api.views.facilityProg({ 
+				this.facilityProgView = new api.views.facilityProg({
 					el: this.content
 				});
 			}
@@ -57,7 +57,7 @@ var app = (function() {
 		},
 		facilityEvents: function() {
 			if(!this.facilityEventsView) {
-				this.facilityEventsView = new api.views.facilityEvents({ 
+				this.facilityEventsView = new api.views.facilityEvents({
 					el: this.content
 				});
 			}
@@ -65,7 +65,7 @@ var app = (function() {
 		},
 		facilityPhotos: function() {
 			if(!this.facilityPhotosView) {
-				this.facilityPhotosView = new api.views.facilityPhotos({ 
+				this.facilityPhotosView = new api.views.facilityPhotos({
 					el: this.content
 				});
 			}
@@ -73,7 +73,7 @@ var app = (function() {
 		},
 		facilityFeedback: function() {
 			if(!this.facilityFeedbackView) {
-				this.facilityFeedbackView = new api.views.facilityFeedback({ 
+				this.facilityFeedbackView = new api.views.facilityFeedback({
 					el: this.content
 				});
 			}
@@ -81,7 +81,7 @@ var app = (function() {
 		},
 		outdoorrecHome: function() {
 			if(!this.outdoorrecHomeView) {
-				this.outdoorrecHomeView = new api.views.outdoorrecHome({ 
+				this.outdoorrecHomeView = new api.views.outdoorrecHome({
 					el: this.content
 				});
 			}
@@ -89,7 +89,7 @@ var app = (function() {
 		},
 		outdoorrecTrips: function() {
 			if(!this.outdoorrecTripsView) {
-				this.outdoorrecTripsView = new api.views.outdoorrecTrips({ 
+				this.outdoorrecTripsView = new api.views.outdoorrecTrips({
 					el: this.content
 				});
 			}
@@ -97,7 +97,7 @@ var app = (function() {
 		},
 		outdoorrecPhotos: function() {
 			if(!this.outdoorrecPhotosView) {
-				this.outdoorrecPhotosView = new api.views.outdoorrecPhotos({ 
+				this.outdoorrecPhotosView = new api.views.outdoorrecPhotos({
 					el: this.content
 				});
 			}
@@ -105,7 +105,7 @@ var app = (function() {
 		},
 		intramuralsHome: function() {
 			if(!this.intramuralsHomeHome) {
-				this.intramuralsHomeHome = new api.views.intramuralsHome({ 
+				this.intramuralsHomeHome = new api.views.intramuralsHome({
 					el: this.content
 				});
 			}
@@ -113,7 +113,7 @@ var app = (function() {
 		},
 		intramuralsPhotos: function() {
 			if(!this.intramuralsPhotosView) {
-				this.intramuralsPhotosView = new api.views.intramuralsPhotos({ 
+				this.intramuralsPhotosView = new api.views.intramuralsPhotos({
 					el: this.content
 				});
 			}
@@ -121,7 +121,7 @@ var app = (function() {
 		},
 		climbingwallHome: function() {
 			if(!this.climbingwallHomeView) {
-				this.climbingwallHomeView = new api.views.climbingwallHome({ 
+				this.climbingwallHomeView = new api.views.climbingwallHome({
 					el: this.content
 				});
 			}
@@ -129,7 +129,7 @@ var app = (function() {
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
-				this.climbingwallHoursView = new api.views.climbingwallHours({ 
+				this.climbingwallHoursView = new api.views.climbingwallHours({
 					el: this.content
 				});
 			}
@@ -137,7 +137,7 @@ var app = (function() {
 		},
 		climbingwallPhotos: function() {
 			if(!this.climbingwallPhotosView) {
-				this.climbingwallPhotosView = new api.views.climbingwallPhotos({ 
+				this.climbingwallPhotosView = new api.views.climbingwallPhotos({
 					el: this.content
 				});
 			}
@@ -145,7 +145,7 @@ var app = (function() {
 		},
 		climbingwallEvents: function() {
 			if(!this.climingwallEventsView) {
-				this.climingwallEventsView = new api.views.climbingwallEvents({ 
+				this.climingwallEventsView = new api.views.climbingwallEvents({
 					el: this.content
 				});
 			}
@@ -153,7 +153,7 @@ var app = (function() {
 		},
 		login: function() {
 			if(!this.loginView) {
-				this.loginView = new api.views.login({ 
+				this.loginView = new api.views.login({
 					el: this.content
 				});
 			}
@@ -161,7 +161,7 @@ var app = (function() {
 		},
 		stats: function() {
 			if(!this.statsView) {
-				this.statsView = new api.views.stats({ 
+				this.statsView = new api.views.stats({
 					el: this.content
 				});
 			}
@@ -169,7 +169,7 @@ var app = (function() {
 		},
 		rentals: function() {
 			if(!this.rentalsView) {
-				this.rentalsView = new api.views.rentals({ 
+				this.rentalsView = new api.views.rentals({
 					collection: api.rentalInfo
 				});
 			}

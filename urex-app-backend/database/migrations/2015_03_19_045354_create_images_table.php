@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateImagesTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('images', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('images', function(Blueprint $table) {
             $table->increments('id');
             $table->string('file_location');
             $table->string('caption');
@@ -20,16 +20,16 @@ class CreateImagesTable extends Migration {
             //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('images');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('images');
+    }
 
 }

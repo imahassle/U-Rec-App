@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEventsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('events', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('events', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
@@ -27,16 +27,16 @@ class CreateEventsTable extends Migration {
             //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('events');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('events');
+    }
 
 }

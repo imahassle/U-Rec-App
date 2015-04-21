@@ -64,6 +64,17 @@ button i {
   height: 300px;
 }
 
+.round-button {
+  border-radius: 2em;
+  -moz-border-radius: 2em;
+  -webkit-border-radius: 2em;
+  display: inline;
+}
+.round-button i {
+  margin: 0 !important;
+  padding: 0;
+}
+
 .aug-table {
   border: none;
   width: 100%;
@@ -414,7 +425,6 @@ html {
     -webkit-transform: scaleY(1);
   }
 }
-
 @keyframes stretchdelay {
   0%, 40%, 100% {
     transform: scaleY(0.4);

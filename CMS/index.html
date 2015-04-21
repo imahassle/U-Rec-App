@@ -7,7 +7,7 @@
 
     <title>U Rec &ndash; CMS</title>
 
-    
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
 
 <link rel="stylesheet" href="css/pure-release-0.6.0/pure-min.css">
@@ -21,25 +21,8 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-
-
-
-
-
-  
-
-  
-
-
-    
-
-    
-
 </head>
 <body>
-
-
-
 
 <!-- === Main Content === -->
 
@@ -107,6 +90,8 @@
         </div>
     </div>
 </script>
+
+<script type="text/template" id="facilityFeedback"></script>
 
 <script type="text/template" id="outdoorrecHome">
 <div class="header aug-header">
@@ -190,7 +175,109 @@
     </div>
 </script>
 
-<script type="text/template" id="facilityHours"></script>
+<script type="text/template" id="facilityHours">
+  <div class="header aug-header">
+          <h1>Facility Hours</h1>
+      </div>
+      <div class="content">
+          <div class="creation">
+              <div class="buttons-group">
+                  <button type="submit" class="pure-button pure-button-primary right red">Save Hours</button>
+              </div>
+              <h3>Set the standard open hours for the facility:</h3>
+              <form class="pure-form pure-form-aligned">
+                  <div class="pure-control-group">
+                      <label for="startTime">Monday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Tuesday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Wednesday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Thursday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Friday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Saturday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Sunday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <br>
+                  <div class="pure-control-group">
+                    <label>Exception:</label>
+                    <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
+                    <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
+                    <i class="fa fa-times-circle fa-lg"></i>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">from this date</label>
+                      <input id="startTime" class="pure-u-1-5" type="date">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="date">
+                  </div>
+                  <div class="pure-control-group">
+                    <label for="startTime">at this time</label>
+                    <input id="startTime" class="pure-u-1-5" type="time">
+                    <label class="secondLabel">to</label>
+                    <input class="pure-u-1-5" type="time">
+                  </div>
+                  <br>
+                  <div class="pure-control-group">
+                    <button class="pure-button">Add Exception</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+</script>
+
+
 
 <script type='text/template' id="facilityPhotos">
     <div class="header aug-header">
@@ -384,7 +471,7 @@
             <form class="pure-form pure-form-aligned">
                 <div class="pure-control-group">
                     <input type="text" class="pure-u-1-3" placeholder="Trip Title">
-                    
+
                 </div>
                 <div class="pure-control-group">
                     <label class="firstLabel" for="startTime">Starts at</label>
@@ -516,7 +603,107 @@
     </div>
 </script>
 
-<script type="text/template" id="climbingwallHours"></script>
+<script type="text/template" id="climbingwallHours">
+  <div class="header aug-header">
+          <h1>Climbing Wall Hours</h1>
+      </div>
+      <div class="content">
+          <div class="creation">
+              <div class="buttons-group">
+                  <button type="submit" class="pure-button pure-button-primary right red">Save Hours</button>
+              </div>
+              <h3>Set the standard open hours for the climbing wall:</h3>
+              <form class="pure-form pure-form-aligned">
+                  <div class="pure-control-group">
+                      <label for="startTime">Monday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Tuesday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Wednesday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Thursday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Friday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Saturday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">Sunday</label>
+                      <input id="startTime" class="pure-u-1-5" type="time">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="time">
+                      <button class="pure-button round-button">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                  </div>
+                  <br>
+                  <div class="pure-control-group">
+                    <label>Exception:</label>
+                    <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
+                    <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
+                    <i class="fa fa-times-circle fa-lg"></i>
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="startTime">from this date</label>
+                      <input id="startTime" class="pure-u-1-5" type="date">
+                      <label class="secondLabel">to</label>
+                      <input class="pure-u-1-5" type="date">
+                  </div>
+                  <div class="pure-control-group">
+                    <label for="startTime">at this time</label>
+                    <input id="startTime" class="pure-u-1-5" type="time">
+                    <label class="secondLabel">to</label>
+                    <input class="pure-u-1-5" type="time">
+                  </div>
+                  <br>
+                  <div class="pure-control-group">
+                    <button class="pure-button">Add Exception</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+</script>
 
 <script type="text/template" id="climbingwallPhotos">
     <div class="header aug-header">
@@ -671,7 +858,7 @@
 </table>
     <table class="pure-table aug-table pure-table-horizontal">
         <thead>
-            
+
             <tr>
                 <th class="aug-tr-lead">Days</th>
                 <th>1</th>
@@ -763,7 +950,7 @@
             <button type="submit" class="pure-button pure-input-1 pure-button-primary">Login</button>
         </fieldset>
     </form>
-    
+
 </div>
 </script>
 
@@ -799,7 +986,7 @@
 <script src="js/models/rentals.js"></script>
 <script src="js/collections/rentals.js"></script>
 <script src="js/views/menu.js"></script>
-<script src="js/views/about.js"></script>
+<!-- <script src="js/views/about.js"></script> -->
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/rentals.js"></script>

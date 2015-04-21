@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateIncentiveProgramsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('incentive_programs', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('incentive_programs', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
@@ -20,16 +20,16 @@ class CreateIncentiveProgramsTable extends Migration {
             //$table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('incentive_programs');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('incentive_programs');
+    }
 
 }

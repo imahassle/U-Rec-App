@@ -106,7 +106,7 @@ Route::group(['prefix' => 'api'], function() {
     );
 
     // User routes
-    Route::group(['prefix' => 'user'], function() use ($hours_exception) {
+    Route::group(['prefix' => 'user'], function() use ($restExceptions) {
         Route::resource(
             '/', 
             'UserController', 
