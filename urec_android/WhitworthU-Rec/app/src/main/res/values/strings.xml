@@ -14,18 +14,13 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_secondary">SecondaryActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_secondary">Loading</string>
     <string name="title_activity_secondary_level">SecondaryLevelActivity</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_urec">URecActivity</string>
     <string name="title_activity_climbing_wall">ClimbingWallActivity</string>
     <string name="title_activity_rentals">RentalsActivity</string>
     <string name="title_activity_intramurals">IntramuralsActivity</string>
     <string name="title_activity_outdoor_rec">OutdoorRecActivity</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

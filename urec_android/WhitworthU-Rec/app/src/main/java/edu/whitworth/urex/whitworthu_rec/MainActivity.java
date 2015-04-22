@@ -231,7 +231,20 @@ public class MainActivity extends ActionBarActivity
             myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/ClimbingWall.htm");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            myWebView.setWebViewClient(new WebViewClient());
+            myWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                        // This is my web site, so do not override; let my WebView load the page
+                        return false;
+                    }*/
+                    // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+                    Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
+                    myIntent.putExtra("url", url); //Optional parameters
+                    getActivity().startActivity(myIntent);
+                    return true;
+                }
+            });
             return rootView;
         }
 
@@ -269,7 +282,20 @@ public class MainActivity extends ActionBarActivity
             myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Intramurals.htm");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            myWebView.setWebViewClient(new WebViewClient());
+            myWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                        // This is my web site, so do not override; let my WebView load the page
+                        return false;
+                    }*/
+                    // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+                    Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
+                    myIntent.putExtra("url", url); //Optional parameters
+                    getActivity().startActivity(myIntent);
+                    return true;
+                }
+            });
             return rootView;
         }
 
@@ -307,7 +333,20 @@ public class MainActivity extends ActionBarActivity
             myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Fitness.htm");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            //myWebView.setWebViewClient(new CustomWebViewClient());
+            myWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                        // This is my web site, so do not override; let my WebView load the page
+                        return false;
+                    }*/
+                    // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+                    Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
+                    myIntent.putExtra("url", url); //Optional parameters
+                    getActivity().startActivity(myIntent);
+                    return true;
+                }
+            });
             return rootView;
         }
 
@@ -348,10 +387,10 @@ public class MainActivity extends ActionBarActivity
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
                         // This is my web site, so do not override; let my WebView load the page
                         return false;
-                    }
+                    }*/
                     // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
                     Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
                     myIntent.putExtra("url", url); //Optional parameters
@@ -400,12 +439,18 @@ public class MainActivity extends ActionBarActivity
             myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Index.htm");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
-            //myWebView.setWebViewClient(new CustomWebViewClient());
-
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
-                public void onPageFinished(WebView view, String url) {
-                    //MainActivity.this.setTitle(view.getTitle());
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                        // This is my web site, so do not override; let my WebView load the page
+                        return false;
+                    }*/
+                    // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+                    Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
+                    myIntent.putExtra("url", url); //Optional parameters
+                    getActivity().startActivity(myIntent);
+                    return true;
                 }
             });
 
