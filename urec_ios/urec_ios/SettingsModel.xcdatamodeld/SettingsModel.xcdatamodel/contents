@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C1514" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Notifications" representedClassName="SettingsModel.Notifications" syncable="YES">
+    <entity name="Notifications" representedClassName="urec_ios.Notifications" syncable="YES">
         <attribute name="climbingwall_notifications" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="intramurals_notifications" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="outdoorrec_notifications" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>

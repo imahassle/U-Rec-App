@@ -367,22 +367,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
                                 <rect key="frame" x="500" y="121" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="LHh-KU-Hxn"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
                                 <rect key="frame" x="500" y="160" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="GcG-Fw-W5u"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
                                 <rect key="frame" x="500" y="199" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="20X-vS-KRB"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
                                 <rect key="frame" x="500" y="238" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="TIh-Lw-9eG"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
                                 <rect key="frame" x="500" y="277" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="ocJ-ra-XZJ"/>
+                                </connections>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="U-Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="U-Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
                                 <rect key="frame" x="52" y="117" width="159" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -391,7 +406,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Outdoor Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Outdoor Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
                                 <rect key="frame" x="52" y="156" width="195" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -401,7 +416,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Rentals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Rentals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
                                 <rect key="frame" x="52" y="195" width="159" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -410,7 +425,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Climbing Wall Notiifcations" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Climbing Wall Notiifcations" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
                                 <rect key="frame" x="52" y="234" width="188" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -419,7 +434,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Intramurals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Intramurals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
                                 <rect key="frame" x="52" y="273" width="173" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

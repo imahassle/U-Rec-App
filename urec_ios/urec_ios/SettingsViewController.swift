@@ -21,9 +21,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        println(managedObjectContext)
-        
         if(willInsertFirstRow()) {
             println("Inserting entries...")
             createFirstEntities()
@@ -54,7 +51,6 @@ class SettingsViewController: UIViewController {
             else {
                 willInsert = true
             }
-            
         }
         
         return willInsert
@@ -62,16 +58,16 @@ class SettingsViewController: UIViewController {
     
     func createFirstEntities() {
         let newItem = NSEntityDescription.insertNewObjectForEntityForName("Notifications", inManagedObjectContext: self.managedObjectContext!) as Notifications
-        newItem.urec_notifications = 1
-        newItem.climbingwall_notifications = 1
-        newItem.rentals_notifications = 0
-        newItem.outdoorrec_notifications = 1
-        newItem.intramurals_notifications = 1
+        newItem.urec_notifications = true
+        newItem.climbingwall_notifications = true
+        newItem.rentals_notifications = true
+        newItem.outdoorrec_notifications = true
+        newItem.intramurals_notifications = true
     }
     
     func setUpSwitches() {
         
-        var switchTextArray: [String] = ["urec_notifications", "intramurals_notifications", "climbingwall_notifications", "outdoorrec_notifications", "rentals_notificaitons"];
+        var switchTextArray: [String] = ["urec_notifications", "intramurals_notifications", "climbingwall_notifications", "outdoorrec_notifications", "rentals_notifications"];
         var switchesArray: [UISwitch] = [urec_notifications, intramurals_notifications, climbingwall_notifications, outdoorrec_notifications, rentals_notifications]
         for theswitch in 0...switchTextArray.count-1 {
             setSwitch(switchesArray[theswitch], text: switchTextArray[theswitch])
@@ -79,24 +75,70 @@ class SettingsViewController: UIViewController {
     }
     
     func setSwitch(theswitch: UISwitch, text: String) {
-        let entityDescription = NSEntityDescription.entityForName("Notifications", inManagedObjectContext: managedObjectContext!)
-        
-        let request = NSFetchRequest()
-        request.entity = entityDescription
-        
-        let pred = NSPredicate(format: "%@ == NO", text)
-        request.predicate = pred
         var error: NSError?
-        var objects = managedObjectContext?.executeFetchRequest(request, error: &error)
-        if let results = objects {
-            if results.count > 0 {
-                let match = results[0] as NSManagedObject
+        let entityDescription = NSEntityDescription.entityForName("Notifications", inManagedObjectContext: managedObjectContext!)
+        let request = NSFetchRequest()
+        var myPredicate : String = text + " == NO"
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: myPredicate)
+
+        var results = managedObjectContext?.executeFetchRequest(request, error: &error) as? [Notifications]
+        if let var objects = results {
+            if objects.count > 0 {
+                //let match = results[0] as NSManagedObject
                 theswitch.setOn(false, animated: false)
+                println("Switch for \(text) has been set to \"off\".")
+            }
+        }
+    }
+    
+    @IBAction func switchValueChanged (sender: UISwitch) {
+        var error: NSError?
+        let entityDescription = NSEntityDescription.entityForName("Notifications", inManagedObjectContext: managedObjectContext!)
+        let request = NSFetchRequest()
+        var originalstate : String = (sender.on) ? "NO" : "YES"
+        var futurestate : String = (sender.on) ? "YES" : "NO"
+        var sendertitle = getSenderAsStringForPredicate(sender)
+
+        var myPredicate : String = sendertitle + " = " + originalstate
+        request.entity = entityDescription
+        request.predicate = NSPredicate(format: myPredicate)
+        
+        var results = managedObjectContext?.executeFetchRequest(request, error: &error) as? [Notifications]
+        if let var objects = results {
+            if objects.count > 0 {
+                objects[0].setValue(sender.on, forKey: sendertitle)
+                println("Switch for \(sendertitle) has been set to \(futurestate).")
             } else {
                 println("No Match")
             }
         }
     }
+    
+    func getSenderAsStringForPredicate (sender: UISwitch) -> String{
+        var sendertitle : String = ""
+        if(sender == urec_notifications) {
+            sendertitle = "urec_notifications"
+        }
+        else if(sender == intramurals_notifications) {
+            sendertitle = "intramurals_notifications"
+        }
+        else if (sender == climbingwall_notifications) {
+            sendertitle = "climbingwall_notifications"
+        }
+        else if (sender == rentals_notifications) {
+            sendertitle = "rentals_notifications"
+        }
+        else if (sender == outdoorrec_notifications) {
+            sendertitle = "outdoorrec_notifications"
+        }
+        else {
+            println("COULD NOT FIND CORRECT SENDER TITLE.")
+        }
+        return sendertitle
+    }
+    
+    
 
     
 }
