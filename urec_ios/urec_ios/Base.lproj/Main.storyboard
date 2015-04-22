@@ -474,7 +474,7 @@
         <scene sceneID="p4s-L1-OQP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zLP-8w-deP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec@3x.png" selectedImage="U-Rec@3x.png" id="acW-dT-cKf" userLabel="U-Rec"/>
+                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec@3x.png" id="acW-dT-cKf" userLabel="U-Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SAm-Pp-zTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -493,7 +493,7 @@
         <scene sceneID="hP1-Yd-4aJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO7-N0-pjw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec@3x.png" selectedImage="OutdoorRec@3x.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
+                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec@3x.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sk0-Sv-bsw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -512,7 +512,7 @@
         <scene sceneID="xzw-6C-uhL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WAr-Jh-ewo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals@3x.png" selectedImage="Rentals@3x.png" id="4yz-V4-gFV" userLabel="Rentals"/>
+                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals@3x.png" id="4yz-V4-gFV" userLabel="Rentals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dny-so-ebo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -531,7 +531,7 @@
         <scene sceneID="LCj-be-V4b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pIV-Fw-Sn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall@3x.png" selectedImage="ClimbingWall@3x.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
+                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall@3x.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fuo-N5-COv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -550,7 +550,7 @@
         <scene sceneID="Oez-3Y-ma4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s2G-8K-ypI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals@3x.png" selectedImage="Intramurals@3x.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
+                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals@3x.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yCD-UJ-ZNl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

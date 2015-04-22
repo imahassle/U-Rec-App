@@ -8,20 +8,13 @@
 
 import UIKit
 
-class OutdoorRecViewController: UIViewController, UIWebViewDelegate {
+class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
 
-    @IBOutlet var webView: UIWebView!
-    @IBOutlet var activity: UIActivityIndicatorView!
-    @IBOutlet var navigationBar: UINavigationItem!
-    var isRoot = false
-    var firstTime = true
-    var url : String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(firstTime) {
-            println("FIRST TIME!")
+            println("First time viewing OUTDOOR REC viewcontroller!")
             if(url == "") {
                 self.title = "Outdoor Rec"
                 url = "http://www.whitworth.edu/Administration/RecreationCenter/OutdoorRec.htm"
@@ -35,77 +28,10 @@ class OutdoorRecViewController: UIViewController, UIWebViewDelegate {
         
         setInitialWebView()
         
-        //navigationController?.pushViewController(newVC, animated: true)
-        
     }
-    
-    func setInitialWebView() {
-        let request = NSURLRequest(URL: (NSURL(string: url))!)
-        webView.delegate = self
-        webView.loadRequest(request)
-        webView.scalesPageToFit = true
-        webView.frame=self.view.bounds
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
-        var ret : Bool = false
-        var currURL = url
-        var newpage = request.URL.absoluteString!
-        
-        if let dotRange = newpage.rangeOfString("#") {
-            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
-        }
-        
-        if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
-            ret = true
-        }
-        else if (newpage != url && !firstTime) {
-            let newURL : String = (request.URL.absoluteString)!
-            println(newURL)
-            
-            webView.stopLoading()
-            
-            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("OutdoorRec") as OutdoorRecViewController
-            newVC.url = newURL
-            self.navigationController?.pushViewController(newVC, animated: true)
-            
-            stopAnimating()
-        }
-        return ret
-    }
-    
-    func webViewDidStartLoad(webView: UIWebView) {
-        startAnimating()
-    }
-    
-    
-    func goBack() {
-        navigationController?.popViewControllerAnimated(true);
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView){
-        if(firstTime) {
-            if(!isRoot) {
-                self.title = webView.stringByEvaluatingJavaScriptFromString("document.title")
-            }
-            firstTime = false
-        }
-        stopAnimating()
-    }
-    
-    func startAnimating(){
-        activity.hidden = false
-        activity.startAnimating()
-    }
-    
-    func stopAnimating(){
-        activity.stopAnimating()
     }
 }

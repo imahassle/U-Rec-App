@@ -20,23 +20,6 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if(firstTime) {
-            println("FIRST TIME!")
-            if(url == "") {
-                self.title = "Intramurals"
-                url = "http://www.whitworth.edu/Administration/RecreationCenter/IMStats/Index.htm"
-                isRoot = true
-            }
-            else {
-                println(url);
-            }
-        }
-        
-        setInitialWebView()
-        
-        //navigationController?.pushViewController(newVC, animated: true)
-        
     }
     
     func setInitialWebView() {
@@ -71,9 +54,42 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
             
             webView.stopLoading()
             
-            let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Intramurals") as IntramuralsViewController
-            newVC.url = newURL
-            self.navigationController?.pushViewController(newVC, animated: true)
+            if(self.isKindOfClass(FacilityViewController)) {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Showing new FACILITY view controller...")
+            }
+            else if (self.isKindOfClass(RentalsViewController)) {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Rentals") as RentalsViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Showng new RENTALS view controller...")
+            }
+            else if (self.isKindOfClass(OutdoorRecViewController)) {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("OutdoorRec") as OutdoorRecViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Showing new OUTDOOR REC view controller...")
+            }
+            else if (self.isKindOfClass(IntramuralsViewController)) {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Intramurals") as IntramuralsViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Pushing new INTRAMURALS view controller...")
+            }
+            else if (self.isKindOfClass(ClimbingWallViewController)) {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClimbingWall") as ClimbingWallViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Pushing new CLIMBING WALL view controller...")
+            }
+            else {
+                let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
+                newVC.url = newURL
+                self.navigationController?.pushViewController(newVC, animated: true)
+                println("Error finding the view controller needed.")
+            }
             
             stopAnimating()
         }
