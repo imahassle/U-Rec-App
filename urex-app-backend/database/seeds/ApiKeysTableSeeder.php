@@ -17,7 +17,7 @@ class ApiKeysTableSeeder extends Seeder {
           $apiKey = App::make(Config::get('apiguard.model', 'Chrisbjr\ApiGuard\Models\ApiKey'));
           $apiKey->key = $apiKey->generateKey();
           $apiKey->user_id = $i;
-          $apiKey->level = $i;
+          $apiKey->level = 1;
           $apiKey->ignore_limits = 1;
           $apiKey->save();
         }

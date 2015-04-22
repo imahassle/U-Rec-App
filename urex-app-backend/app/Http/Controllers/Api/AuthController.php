@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ class AuthController extends Controller {
         }
 
         return Response::json(array_merge($user->toArray(), [ Category::find($user->category_id)->name ])
-            ->withCookie(cookie('U-Rex-API-Key', User::api_key->key, 10080));
+            ->withCookie(cookie('U-Rex-API-Key', User::api_key()->key, 10080)));
     }
 
     /*

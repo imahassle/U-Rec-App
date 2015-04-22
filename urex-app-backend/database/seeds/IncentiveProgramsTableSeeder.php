@@ -16,8 +16,7 @@ class IncentiveProgramsTableSeeder extends Seeder {
           IncentiveProgram::create([
             'title' => 'Title #'.$i,
             'description' => 'Description #'.$i,
-            'user_id' => $i,
-            'image_id' => $i
+            'user_id' => $i
           ]);
         }
 

@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -56,7 +56,7 @@ class HoursExceptionController extends ApiGuardController {
         $date = date('Y-m-d', strtotime(Request::input('date')));
         if(Hour::whereCategoryId($category_id)->whereDate($date)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'A category can only have one entry per date in the Hours Exception table.'
             ], 400);
         }
@@ -126,7 +126,7 @@ class HoursExceptionController extends ApiGuardController {
         $date = date('Y-m-d', strtotime(Request::input('date')));
         if(Hour::whereCategoryId($category_id)->whereDate($date)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'A category can only have one entry per date in the Hours Exception table.'
             ], 400);
         }

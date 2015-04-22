@@ -2,6 +2,9 @@
 
 use Closure;
 use Illuminate\Contracts\Routing\Middleware;
+use Chrisbjr\ApiGuard\Models\ApiKey;
+use App\Category;
+use Response;
 
 class AdminCheck implements Middleware {
 
@@ -14,17 +17,17 @@ class AdminCheck implements Middleware {
      */
     public function handle($request, Closure $next)
     {
-        if(isNull($request->header('X-Authorization'))) {
+        if(is_null($request->header('X-Authorization'))) {
             return Response::json([
                 'code' => 403,
                 'message' => 'No valid API key found.'
             ], 403);
         }
 
-        $user = ApiKey::whereKey($request->header('X-Authorization'))->user;
+        $user = ApiKey::whereKey($request->header('X-Authorization'))->first()->user;
 
-        if($user->category_id != Category::whereName('Administration')->id) {
-            return Response::json([
+        if($user->category_id != Category::whereName('Administration')->first()->id) {
+            return \Response::json([
                 'code' => 403,
                 'message' => "You aren't supposed to access this functionality..."
             ], 403);

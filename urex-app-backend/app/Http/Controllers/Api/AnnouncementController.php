@@ -1,9 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
+use Response;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 use App\Announcement;
+use App\Exceptions\UrexException;
 
 class AnnouncementController extends ApiGuardController {
 
@@ -34,7 +36,7 @@ class AnnouncementController extends ApiGuardController {
             return Response::json([]);
         }
 
-        return Response::json(Announcement::whereCategoryId($category_id)->toArray());
+        return Response::json(Announcement::whereCategoryId($category_id)->get()->toArray());
     }
 
     /**
@@ -44,27 +46,16 @@ class AnnouncementController extends ApiGuardController {
      */
     public function store()
     {
-        $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
-
-        $announcement = new Announcement;
-        $announcement->message = Request::input('message');
-        $announcement->date = date("Y-m-d h:i A", strtotime(Request::input('date')));
-        $announcement->user_id = $user->id;
-
-        if(Request::has('category_id')) {
-            $announcement->category_id = Request::input('category_id');
-        } else {
-            $announcement->category_id = $user->category()->id;
-        }
-
-        if(!$announcement->save()) {
+        try {
+            $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
+            Announcement::create($attributes);
+            return Response::json(['message' => 'Announcement created succesffully.']);
+        } catch(UrexException $e) {
             return Response::json([
-                'code' => 500,
-                'message' => 'Announcement was not created due to an internal server error.'
-            ], 500);
+                'code' => $e->code(),
+                'message' => $e->getMessage()
+            ], $e->code());
         }
-
-        return Response::json(['message' => 'Announcement created succesffully.']);
     }
 
     /**
@@ -75,16 +66,14 @@ class AnnouncementController extends ApiGuardController {
      */
     public function show($id)
     {
-        $announcement = Announcement::find($id);
-
-        if($announcement == null) {
+        try {
+            return Response::json(Announcement::find($id)->toArray());
+        } catch (UrexException $e) {
             return Response::json([
-                'code' => 400,
-                'message' => 'Announcement not found.'
-            ], 400);
+                'code' => $e->code(),
+                'message' => $e->getMessage()
+            ], $e->code());
         }
-
-        return Response::json($announcement->toArray());
     }
 
     /**
@@ -95,35 +84,16 @@ class AnnouncementController extends ApiGuardController {
      */
     public function update($id)
     {
-        $announcement = Announcement::find($id);
-
-        if($announcement == null) {
+        try {
+            $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
+            Announcement::find($id)->update($attributes);
+            return Response::json(['message' => 'Announcement updated succesfully.']);
+        } catch(UrexException $e) {
             return Response::json([
-                'code' => 400,
-                'message' => 'Announcement not found.'
-            ], 400);
+                'code' => $e->code(),
+                'message' => $e->getMessage()
+            ], $e->code());
         }
-
-        $user = ApiKey::whereKey(Request::header('X-Authorization'))->user;
-
-        $announcement->message = Request::input('message');
-        $announcement->date = date("Y-m-d h:i A", strtotime(Request::input('date')));
-        $announcement->user_id = $user->id;
-
-        if(Request::has('category_id')) {
-            $announcement->category_id = Request::input('category_id');
-        } else {
-            $announcement->category_id = $user->category()->id;
-        }
-
-        if(!$announcement->save()) {
-            return Response::json([
-                'code' => 500,
-                'message' => 'Announcement was not updated due to an internal server error.'
-            ], 500);
-        }
-
-        return Response::json(['message' => 'Announcement updated succesffully.']);
     }
 
     /**
@@ -134,23 +104,15 @@ class AnnouncementController extends ApiGuardController {
      */
     public function destroy($id)
     {
-        $announcement = Announcement::find($id);
-
-        if($announcement == null) {
+        try {
+            Announcement::find($id)->delete();
+            return Response::json(['message' => 'Announcement deleted succesfully.']);
+        } catch(UrexException $e) {
             return Response::json([
-                'code' => 400,
-                'message' => 'Announcement not found.'
-            ], 400);
+                'code' => $e->code(),
+                'message' => $e->getMessage()
+            ], $e->code());
         }
-
-        if(!$announcement->delete()) {
-            return Response::json([
-                'code' => 500,
-                'message' => 'Announcement was not deleted due to an internal server error.'
-            ], 500);
-        }
-
-        return Response::json(['message' => 'Announcement deleted successfully.']);
     }
 
 }

@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ class CategoryController extends ApiGuardController {
     protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
         'show' => [ 'keyAuthentication' => false ]
-    ]
+    ];
 
     public function __construct()
     {

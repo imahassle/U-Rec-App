@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -165,7 +165,7 @@ class EventController extends ApiGuardController {
     {
         if(EventImage::whereEventId($id)->whereImageId($image_id)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'Image already associated with event.'
             ], 400);
         }

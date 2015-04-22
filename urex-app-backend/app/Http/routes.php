@@ -13,105 +13,110 @@
 
 Route::get('/', 'HomeController@index');
 
+// RESTful API Routes
 Route::group(['prefix' => 'api'], function() {
-    $restExceptions = ['except' => ['create', 'edit']];
-
     // Login routes
-    Route::post('login', 'AuthController@login');
+    Route::post('login', 'Api\AuthController@login');
 
     // Announcement routes
-    Route::group(['prefix' => 'announcement'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'AnnouncementController',
-            $restExceptions
-        );
-        Route::get('category/{category_id}', 'AnnouncementController@index_category');
+    Route::group(['prefix' => 'announcement'], function() {
+        Route::get('/', 'Api\AnnouncementController@index');
+        Route::post('/' , 'Api\AnnouncementController@store');
+        Route::get('/{id}', 'Api\AnnouncementController@show');
+        Route::put('/{id}', 'Api\AnnouncementController@update');
+        Route::delete('/{id}', 'Api\AnnouncementController@destroy');
+        Route::get('category/{category_id}', 'Api\AnnouncementController@index_category');
     });
 
     // Category routes
-    Route::resource(
-        'category',
-        'CategoryController',
-        $restExceptions
-    );
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('/', 'Api\CategoryController@index');
+        Route::post('/' , 'Api\CategoryController@store');
+        Route::get('/{id}', 'Api\CategoryController@show');
+        Route::put('/{id}', 'Api\CategoryController@update');
+        Route::delete('/{id}', 'Api\CategoryController@destroy');
+    });
 
     // Event routes
-    Route::group(['prefix' => 'event'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'EventController',
-            $restExceptions
-        );
-        Route::get('category/{category_id}', 'EventController@index_category');
-        Route::get('{id}/image', 'EventController@show_images');
-        Route::put('{id}/image/{image_id}', 'EventController@add_image');
-        Route::delete('{id}/image/{image_id}', 'EventController@delete_image');
+    Route::group(['prefix' => 'event'], function() {
+        Route::get('/', 'Api\EventController@index');
+        Route::post('/' , 'Api\EventController@store');
+        Route::get('/{id}', 'Api\EventController@show');
+        Route::put('/{id}', 'Api\EventController@update');
+        Route::delete('/{id}', 'Api\EventController@destroy');
+        Route::get('category/{category_id}', 'Api\EventController@index_category');
+        Route::get('{id}/image', 'Api\EventController@show_images');
+        Route::put('{id}/image/{image_id}', 'Api\EventController@add_image');
+        Route::delete('{id}/image/{image_id}', 'Api\EventController@delete_image');
     });
 
     // Feedback routes
-    Route::resource(
-        'feedback',
-        'FeedbackController',
-        $restExceptions + ['update']
-    );
+    Route::group(['prefix' => 'feedback'], function() {
+        Route::get('/', 'Api\FeedbackController@index');
+        Route::post('/' , 'Api\FeedbackController@store');
+        Route::get('/{id}', 'Api\FeedbackController@show');
+        Route::delete('/{id}', 'Api\FeedbackController@destroy');
+    });
 
     // Hour routes
-    Route::group(['prefix' => 'hour'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'HourController',
-            $restExceptions
-        );
-        Route::get('category/{category_id}', 'HourController@index_category');
+    Route::group(['prefix' => 'hour'], function() {
+        Route::get('/', 'Api\HourController@index');
+        Route::post('/' , 'Api\HourController@store');
+        Route::get('/{id}', 'Api\HourController@show');
+        Route::put('/{id}', 'Api\HourController@update');
+        Route::delete('/{id}', 'Api\HourController@destroy');
+        Route::get('category/{category_id}', 'Api\HourController@index_category');
     });
 
     // Hours Exception routes
-    Route::group(['prefix' => 'hours_exception'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'HoursExceptionController',
-            $restExceptions
-        );
-        Route::get('category/{category_id}', 'HoursExceptionController@index_category');
+    Route::group(['prefix' => 'hours_exception'], function() {
+        Route::get('/', 'Api\HoursExceptionController@index');
+        Route::post('/' , 'Api\HoursExceptionController@store');
+        Route::get('/{id}', 'Api\HoursExceptionController@show');
+        Route::put('/{id}', 'Api\HoursExceptionController@update');
+        Route::delete('/{id}', 'Api\HoursExceptionController@destroy');
+        Route::get('category/{category_id}', 'Api\HoursExceptionController@index_category');
     });
 
     // Image routes
-    Route::group(['prefix' => 'image'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'ImageController',
-            $restExceptions + ['update']
-        );
-        Route::get('category/{category_id}', 'ImageController@index_category');
+    Route::group(['prefix' => 'image'], function() {
+        Route::get('/', 'Api\ImageController@index');
+        Route::post('/' , 'Api\ImageController@store');
+        Route::get('/{id}', 'Api\ImageController@show');
+        Route::put('/{id}', 'Api\ImageController@update');
+        Route::delete('/{id}', 'Api\ImageController@destroy');
+        Route::get('category/{category_id}', 'Api\ImageController@index_category');
     });
 
     // Incentive Program routes
-    Route::group(['prefix' => 'incentive_program'], function() use ($restExceptions) {
-        Route::resource(
-            '/',
-            'IncentiveProgramController',
-            $restExceptions
-        );
-        Route::get('{id}/image', 'IncentiveProgramController@show_images');
-        Route::put('{id}/image/{image_id}', 'IncentiveProgramController@add_image');
-        Route::delete('{id}/image/{image_id}', 'IncentiveProgramController@delete_image');
+    Route::group(['prefix' => 'incentive_program'], function() {
+        Route::get('/', 'Api\IncentiveProgramController@index');
+        Route::post('/' , 'Api\IncentiveProgramController@store');
+        Route::get('/{id}', 'Api\IncentiveProgramController@show');
+        Route::put('/{id}', 'Api\IncentiveProgramController@update');
+        Route::delete('/{id}', 'Api\IncentiveProgramController@destroy');
+        Route::get('{id}/image', 'Api\IncentiveProgramController@show_images');
+        Route::put('{id}/image/{image_id}', 'Api\IncentiveProgramController@add_image');
+        Route::delete('{id}/image/{image_id}', 'Api\IncentiveProgramController@delete_image');
     });
 
     // Item Rental routes
-    Route::resource(
-        'item_rental', 
-        'ItemRentalController', 
-        $restExceptions
-    );
+    Route::group(['prefix' => 'item_rental'], function() {
+        Route::get('/', 'Api\ItemRentalController@index');
+        Route::post('/' , 'Api\ItemRentalController@store');
+        Route::get('/{id}', 'Api\ItemRentalController@show');
+        Route::put('/{id}', 'Api\ItemRentalController@update');
+        Route::delete('/{id}', 'Api\ItemRentalController@destroy');
+    });
 
     // User routes
-    Route::group(['prefix' => 'user'], function() use ($restExceptions) {
-        Route::resource(
-            '/', 
-            'UserController', 
-            $restExceptions
-        );
-        Route::get('category/{category_id}', 'UserController@index_category');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'Api\UserController@index');
+        Route::post('/' , 'Api\UserController@store');
+        Route::get('/{id}', 'Api\UserController@show');
+        Route::put('/{id}', 'Api\UserController@update');
+        Route::delete('/{id}', 'Api\UserController@destroy');
+        Route::get('category/{category_id}', 'Api\UserController@index_category');
+        Route::put('/{id}/password', 'Api\UserController@update_password');
     });
 });

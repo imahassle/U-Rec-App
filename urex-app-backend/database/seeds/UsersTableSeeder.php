@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder {
 
         User::create([
           'username' => 'jcorry',
-          'password' => Hash::make('jcorry'),
+          'password' => 'jcorry',
           'first_name' => 'Joey',
           'last_name' => 'Corry',
           'email' => 'jcorry15@my.whitworth.edu',
@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder {
         ]);
         User::create([
           'username' => 'hgamiel',
-          'password' => Hash::make('hgamiel'),
+          'password' => 'hgamiel',
           'first_name' => 'Hannah',
           'last_name' => 'Gamiel',
           'email' => 'hgamiel15@my.whitworth.edu',
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder {
         ]);
         User::create([
           'username' => 'lpangborn',
-          'password' => Hash::make('lpangborn'),
+          'password' => 'lpangborn',
           'first_name' => 'Lauren',
           'last_name' => 'Pangborn',
           'email' => 'lpangborn15@my.whitworth.edu',
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder {
         ]);
         User::create([
           'username' => 'bhassell',
-          'password' => Hash::make('bhassell'),
+          'password' => 'bhassell',
           'first_name' => 'Bryan',
           'last_name' => 'Hassell',
           'email' => 'bhassell15@my.whitworth.edu',
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder {
         ]);
         User::create([
           'username' => 'wcunningham15',
-          'password' => Hash::make('wcunningham15'),
+          'password' => 'wcunningham15',
           'first_name' => 'Sean',
           'last_name' => 'Cunningham',
           'email' => 'wcunningham15@my.whitworth.edu',

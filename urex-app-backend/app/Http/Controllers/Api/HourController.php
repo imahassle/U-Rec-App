@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -55,7 +55,7 @@ class HourController extends ApiGuardController {
 
         if(Hour::whereCategoryId($category_id)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'A category can only have one entry in the Hours table.'
             ], 400);
         }
@@ -135,7 +135,7 @@ class HourController extends ApiGuardController {
 
         if(Hour::whereCategoryId($category_id)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'A category can only have one entry in the Hours table.'
             ], 400);
         }

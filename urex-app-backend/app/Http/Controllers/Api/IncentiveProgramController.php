@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -129,7 +129,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         if(ImageIncentiveProgram::whereIncentiveProgramId($id)->whereImageId($image_id)->exists()) {
             return Response::json([
-                'code' => 400
+                'code' => 400,
                 'message' => 'Image already associated with incentive program.'
             ], 400);
         }
