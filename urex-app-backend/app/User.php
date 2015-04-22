@@ -17,6 +17,11 @@ class User extends Model {
         return $this->belongsTo('App\Category');
     }
 
+    public function apiKey()
+    {
+        return $this->hasOne('Chrisbjr\ApiGuard\Models\ApiKey');
+    }
+
     public static function find($id, $columns = array('*'))
     {
         $user = parent::find($id, $columns);

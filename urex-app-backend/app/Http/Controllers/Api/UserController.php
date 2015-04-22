@@ -5,9 +5,11 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 use App\User;
-use App\Exceptions\UrexException;
+use App\Traits\UrexControllerExecutionHandler;
 
 class UserController extends ApiGuardController {
+
+    use UrexControllerExecutionHandler;
 
     public function __construct()
     {
@@ -31,65 +33,40 @@ class UserController extends ApiGuardController {
 
     public function store()
     {
-        try {
+        return $this->attemptExecution(function() {
             User::create(Request::all());
             return Response::json(['message' => 'User created succesfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 
     public function show($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             return Response::json(User::find($id)->toArray());
-        } catch (UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 
     public function update($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             User::find($id)->update(Request::all());
             return Response::json(['message' => 'User updated succesfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 
     public function update_password($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             User::find($id)->update_password(Request::all());
             return Response::json(['message' => 'User password updated successfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 
     public function destroy($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             User::find($id)->delete();
             return Response::json(['message' => 'User deleted succesfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 }
