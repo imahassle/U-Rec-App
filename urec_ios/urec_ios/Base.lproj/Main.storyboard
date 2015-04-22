@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -53,7 +53,13 @@
                             <constraint firstItem="IIS-wh-cS7" firstAttribute="centerY" secondItem="fEa-3m-73U" secondAttribute="centerY" id="uz0-dN-xhl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q3l-Ix-mVP"/>
+                    <navigationItem key="navigationItem" id="Q3l-Ix-mVP">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="jbj-BL-ZgA">
+                            <connections>
+                                <segue destination="byj-oH-mJv" kind="show" id="9dU-0H-0Ji"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activity" destination="IIS-wh-cS7" id="X7q-YB-US0"/>
                         <outlet property="webView" destination="fEa-3m-73U" id="AZy-4R-8Fu"/>
@@ -75,7 +81,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
                                 <rect key="frame" x="154" y="279" width="292" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
@@ -92,7 +98,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -107,10 +113,17 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9gP-re-H4o" secondAttribute="trailing" constant="-16" id="WXX-6c-gtv"/>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="9gP-re-H4o" secondAttribute="centerX" id="fHL-eI-KJb"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="9gP-re-H4o" secondAttribute="bottom" id="g39-12-1DR"/>
+                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="oUQ-xc-UJP"/>
                             <constraint firstItem="B0I-gD-4de" firstAttribute="centerX" secondItem="NDk-cv-Gan" secondAttribute="centerX" id="uFb-sC-Tx0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ghr-2v-anx"/>
+                    <navigationItem key="navigationItem" id="ghr-2v-anx">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="dXc-TG-p2c">
+                            <connections>
+                                <segue destination="byj-oH-mJv" kind="show" identifier="settings" id="xKx-gq-wNq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activity" destination="B0I-gD-4de" id="DaL-Uo-Mc0"/>
                         <outlet property="webView" destination="9gP-re-H4o" id="sgM-Fl-len"/>
@@ -163,8 +176,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by RentalsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h68-R9-XIM" userLabel="Loaded by RentalsViewController">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by RentalsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h68-R9-XIM" userLabel="Loaded by RentalsViewController">
                                 <rect key="frame" x="192" y="329" width="216" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="216" id="rrN-2J-6u8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -173,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -185,14 +201,20 @@
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="leading" secondItem="hXb-UA-cM2" secondAttribute="leadingMargin" constant="-16" id="Aya-Up-kB4"/>
                             <constraint firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="Cvu-4L-WhE"/>
                             <constraint firstAttribute="centerY" secondItem="sCf-Yg-mZf" secondAttribute="centerY" id="GxG-FL-ngw"/>
-                            <constraint firstItem="h68-R9-XIM" firstAttribute="top" secondItem="sCf-Yg-mZf" secondAttribute="bottom" constant="8" symbolic="YES" id="QFu-gc-TkI"/>
+                            <constraint firstItem="h68-R9-XIM" firstAttribute="top" secondItem="sCf-Yg-mZf" secondAttribute="bottom" constant="8" symbolic="YES" id="Hsi-kw-cFO"/>
+                            <constraint firstItem="h68-R9-XIM" firstAttribute="centerX" secondItem="LHu-3v-Pib" secondAttribute="centerX" id="WHB-sW-GhC"/>
                             <constraint firstItem="adQ-4y-W9Y" firstAttribute="top" secondItem="cXB-Cn-gkS" secondAttribute="bottom" id="abg-UF-FDf"/>
                             <constraint firstItem="tcb-b6-eCx" firstAttribute="top" secondItem="adQ-4y-W9Y" secondAttribute="bottom" id="jFc-Fa-SN3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="adQ-4y-W9Y" secondAttribute="trailing" constant="-16" id="mjc-gZ-fFs"/>
-                            <constraint firstItem="h68-R9-XIM" firstAttribute="centerX" secondItem="sCf-Yg-mZf" secondAttribute="centerX" id="vWl-HT-cKd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Erq-SC-vmX"/>
+                    <navigationItem key="navigationItem" id="Erq-SC-vmX">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="YEs-EG-PdY">
+                            <connections>
+                                <segue destination="byj-oH-mJv" kind="show" id="FGI-5h-syX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="LHu-3v-Pib" id="lZy-Tb-iVT"/>
@@ -232,7 +254,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -251,7 +273,13 @@
                             <constraint firstItem="Q5O-eY-6nL" firstAttribute="top" secondItem="PHF-ic-TQf" secondAttribute="bottom" id="vBs-Wl-XJM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zfU-we-snw"/>
+                    <navigationItem key="navigationItem" id="zfU-we-snw">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="nCV-zj-CSz">
+                            <connections>
+                                <segue destination="byj-oH-mJv" kind="presentation" identifier="settings" id="ABT-Kv-yMH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="xgT-vr-4DN" id="a1n-2M-ixs"/>
@@ -291,7 +319,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -310,7 +338,13 @@
                             <constraint firstItem="tGK-eg-BRZ" firstAttribute="top" secondItem="Vj6-Qn-TJY" secondAttribute="bottom" id="kd4-7d-sdO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zvC-9S-edw"/>
+                    <navigationItem key="navigationItem" id="zvC-9S-edw">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Sra-9c-JVO">
+                            <connections>
+                                <segue destination="byj-oH-mJv" kind="presentation" identifier="settings" id="epB-Tu-iRB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="byM-Jb-jke" id="c4T-Rr-dg3"/>
@@ -321,11 +355,126 @@
             </objects>
             <point key="canvasLocation" x="1562" y="1702"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="0CZ-kJ-WNM">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="byj-oH-mJv" userLabel="Settings" customClass="SettingsViewController" customModule="urec_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hK5-qQ-pWP"/>
+                        <viewControllerLayoutGuide type="bottom" id="OFb-2G-Trj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MxI-ay-Kkm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
+                                <rect key="frame" x="500" y="121" width="51" height="31"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
+                                <rect key="frame" x="500" y="160" width="51" height="31"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
+                                <rect key="frame" x="500" y="199" width="51" height="31"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
+                                <rect key="frame" x="500" y="238" width="51" height="31"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
+                                <rect key="frame" x="500" y="277" width="51" height="31"/>
+                            </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="U-Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
+                                <rect key="frame" x="52" y="117" width="159" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="6Oj-gu-Krl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Outdoor Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
+                                <rect key="frame" x="52" y="156" width="195" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="i7P-5X-jbq"/>
+                                    <constraint firstAttribute="height" constant="35" id="vig-u4-ROC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Rentals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
+                                <rect key="frame" x="52" y="195" width="159" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="w3o-iM-kK8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Climbing Wall Notiifcations" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
+                                <rect key="frame" x="52" y="234" width="188" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="It7-FC-uwN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Intramurals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
+                                <rect key="frame" x="52" y="273" width="173" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="kcf-ek-So8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="leading" secondItem="MxI-ay-Kkm" secondAttribute="leadingMargin" constant="36" id="9LD-Ty-s5x"/>
+                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="top" secondItem="BTW-et-OQY" secondAttribute="bottom" constant="8" symbolic="YES" id="9U6-9b-AdG"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="trailing" secondItem="A2A-Qg-JLa" secondAttribute="trailing" id="9v9-eh-cRk"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="leading" secondItem="A2A-Qg-JLa" secondAttribute="leading" id="Ao3-Vw-wnn"/>
+                            <constraint firstItem="YhN-se-sTh" firstAttribute="top" secondItem="dJQ-LU-dDo" secondAttribute="bottom" constant="8" symbolic="YES" id="BA4-Vc-EpC"/>
+                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="bottom" secondItem="qVp-DN-jJf" secondAttribute="bottom" id="D1P-ok-hHJ"/>
+                            <constraint firstItem="o0H-xq-ix3" firstAttribute="top" secondItem="JYn-Vh-Uvm" secondAttribute="bottom" constant="8" symbolic="YES" id="DIm-VN-C4I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BTW-et-OQY" secondAttribute="trailing" constant="35" id="ED4-C2-pBZ"/>
+                            <constraint firstItem="dJQ-LU-dDo" firstAttribute="top" secondItem="o0H-xq-ix3" secondAttribute="bottom" constant="8" symbolic="YES" id="Hrf-B7-a3T"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="leading" secondItem="p0X-Yy-DUb" secondAttribute="leading" id="Hsz-WD-TqX"/>
+                            <constraint firstItem="o0H-xq-ix3" firstAttribute="leading" secondItem="dJQ-LU-dDo" secondAttribute="leading" id="M6j-hk-CN2"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="92" id="R2B-ZF-BAK"/>
+                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="leading" secondItem="o0H-xq-ix3" secondAttribute="leading" id="TXq-c7-KJd"/>
+                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="53" id="Tgo-cr-2kY"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="leading" secondItem="qVp-DN-jJf" secondAttribute="leading" id="UWq-xG-BIY"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="leading" secondItem="NzJ-va-N4b" secondAttribute="leading" id="VQ4-cN-4jr"/>
+                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="leading" secondItem="BTW-et-OQY" secondAttribute="leading" id="YYr-0q-QpR"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="qVp-DN-jJf" secondAttribute="bottom" constant="4" id="fI9-T2-VMe"/>
+                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="NzJ-va-N4b" secondAttribute="bottom" constant="277" id="liN-nf-qYv"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="top" secondItem="qVp-DN-jJf" secondAttribute="bottom" constant="43" id="o5g-Il-w7o"/>
+                            <constraint firstItem="YhN-se-sTh" firstAttribute="leading" secondItem="dJQ-LU-dDo" secondAttribute="leading" id="qMH-rF-OGk"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="A2A-Qg-JLa" secondAttribute="bottom" constant="38" id="s4L-g5-5s4"/>
+                            <constraint firstItem="p0X-Yy-DUb" firstAttribute="top" secondItem="lj1-tD-5nZ" secondAttribute="bottom" constant="38" id="sMU-aK-Jd6"/>
+                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="p0X-Yy-DUb" secondAttribute="bottom" constant="238" id="vmC-1e-tt9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cfd-7G-69y"/>
+                    <connections>
+                        <outlet property="climbingwall_notifications" destination="dJQ-LU-dDo" id="IwP-eb-vx4"/>
+                        <outlet property="intramurals_notifications" destination="YhN-se-sTh" id="hQ9-a1-nWG"/>
+                        <outlet property="outdoorrec_notifications" destination="JYn-Vh-Uvm" id="Z3S-wO-s9d"/>
+                        <outlet property="rentals_notifications" destination="o0H-xq-ix3" id="azF-kH-lpX"/>
+                        <outlet property="urec_notifications" destination="BTW-et-OQY" id="DJo-oE-ZwD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EXD-LB-iuH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3126" y="815"/>
+        </scene>
         <!--U-Rec-->
         <scene sceneID="p4s-L1-OQP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zLP-8w-deP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec.png" selectedImage="U-Rec.png" id="acW-dT-cKf" userLabel="U-Rec"/>
+                    <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec@3x.png" id="acW-dT-cKf" userLabel="U-Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SAm-Pp-zTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -344,7 +493,7 @@
         <scene sceneID="hP1-Yd-4aJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO7-N0-pjw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec.png" selectedImage="OutdoorRec.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
+                    <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec@3x.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sk0-Sv-bsw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -363,7 +512,7 @@
         <scene sceneID="xzw-6C-uhL">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WAr-Jh-ewo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals.png" selectedImage="Rentals.png" id="4yz-V4-gFV" userLabel="Rentals"/>
+                    <tabBarItem key="tabBarItem" title="Rentals" image="Rentals@3x.png" id="4yz-V4-gFV" userLabel="Rentals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dny-so-ebo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -382,7 +531,7 @@
         <scene sceneID="LCj-be-V4b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pIV-Fw-Sn5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall.png" selectedImage="ClimbingWall.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
+                    <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall@3x.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fuo-N5-COv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -401,7 +550,7 @@
         <scene sceneID="Oez-3Y-ma4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s2G-8K-ypI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals.png" selectedImage="Intramurals.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
+                    <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals@3x.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yCD-UJ-ZNl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -418,10 +567,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ClimbingWall.png" width="144" height="96"/>
-        <image name="Intramurals.png" width="144" height="96"/>
-        <image name="OutdoorRec.png" width="144" height="96"/>
-        <image name="Rentals.png" width="144" height="96"/>
-        <image name="U-Rec.png" width="144" height="96"/>
+        <image name="ClimbingWall@3x.png" width="144" height="96"/>
+        <image name="Intramurals@3x.png" width="144" height="96"/>
+        <image name="OutdoorRec@3x.png" width="144" height="96"/>
+        <image name="Rentals@3x.png" width="144" height="96"/>
+        <image name="U-Rec@3x.png" width="144" height="96"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="epB-Tu-iRB"/>
+    </inferredMetricsTieBreakers>
 </document>
