@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Chrisbjr\ApiGuard\Models\ApiKey;
-use App\Exceptions\ServerException;
-use App\Exceptions\ClientException;
 use App\Exceptions\AuthException;
+use App\Exceptions\ClientException;
+use App\Exceptions\ServerException;
 use Hash;
 
 class User extends Model {
@@ -89,7 +89,7 @@ class User extends Model {
 
     public function delete() 
     {
-        $apiKey = ApiKey::whereUserId($this->id)->first();
+        $apiKey = $this->apiKey;
 
         if((!is_null($apiKey) && !$apiKey->delete()) || !parent::delete()) {
             throw new ServerException("User was not deleted successfully due to an internal server error.");

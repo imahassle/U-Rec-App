@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Event;
+use App\User;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
@@ -21,12 +22,10 @@ class EventsTableSeeder extends Seeder {
             'cost' => 12345.67,
             'spots' => $i * 10,
             'gear_needed' => '',
-            'user_id' => $i,
+            'X-Authorization' => User::find($i)->apiKey->key,
             'category_id' => $i
           ]);
         }
-
-        $this->command->info('Events table seeded!');
     }
 
 }

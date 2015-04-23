@@ -17,8 +17,6 @@ class CategoriesTableSeeder extends Seeder {
         Category::create(['name' => 'Outdoor Rec']);
         Category::create(['name' => 'Intramurals']);
         Category::create(['name' => 'Climbing Wall']);
-
-        $this->command->info('Categories table seeded!');
     }
 
 }

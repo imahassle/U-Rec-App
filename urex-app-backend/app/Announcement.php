@@ -2,12 +2,13 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Chrisbjr\ApiGuard\Models\ApiKey;
-use App\Exceptions\ServerException;
 use App\Exceptions\ClientException;
+use App\Exceptions\ServerException;
 
 class Announcement extends Model {
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function getDateAttribute($value)
     {
@@ -40,8 +41,7 @@ class Announcement extends Model {
             $announcement->category_id = $user->category->id;
         }
 
-        if(!$announcement->save())
-        {
+        if(!$announcement->save()) {
             throw new ServerException("Announcement was not created successfully due to an internal server error.");
         }
 
@@ -62,8 +62,7 @@ class Announcement extends Model {
             $this->category_id = $user->category->id;
         }
 
-        if(!$this->save())
-        {
+        if(!$this->save()) {
             throw new ServerException("Announcement was not updated successfully due to an internal server error.");
         }
     }

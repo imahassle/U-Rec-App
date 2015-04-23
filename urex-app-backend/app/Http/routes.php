@@ -15,8 +15,9 @@ Route::get('/', 'HomeController@index');
 
 // RESTful API Routes
 Route::group(['prefix' => 'api'], function() {
-    // Login routes
+    // Auth routes
     Route::post('login', 'Api\AuthController@login');
+    Route::get('logout', 'Api\AuthController@logout');
 
     // Announcement routes
     Route::group(['prefix' => 'announcement'], function() {
@@ -46,8 +47,8 @@ Route::group(['prefix' => 'api'], function() {
         Route::delete('/{id}', 'Api\EventController@destroy');
         Route::get('category/{category_id}', 'Api\EventController@index_category');
         Route::get('{id}/image', 'Api\EventController@show_images');
-        Route::put('{id}/image/{image_id}', 'Api\EventController@add_image');
-        Route::delete('{id}/image/{image_id}', 'Api\EventController@delete_image');
+        Route::post('{id}/image/{image_id}', 'Api\EventController@associate_image');
+        Route::delete('{id}/image/{image_id}', 'Api\EventController@dissociate_image');
     });
 
     // Feedback routes
@@ -83,7 +84,6 @@ Route::group(['prefix' => 'api'], function() {
         Route::get('/', 'Api\ImageController@index');
         Route::post('/' , 'Api\ImageController@store');
         Route::get('/{id}', 'Api\ImageController@show');
-        Route::put('/{id}', 'Api\ImageController@update');
         Route::delete('/{id}', 'Api\ImageController@destroy');
         Route::get('category/{category_id}', 'Api\ImageController@index_category');
     });
@@ -96,8 +96,8 @@ Route::group(['prefix' => 'api'], function() {
         Route::put('/{id}', 'Api\IncentiveProgramController@update');
         Route::delete('/{id}', 'Api\IncentiveProgramController@destroy');
         Route::get('{id}/image', 'Api\IncentiveProgramController@show_images');
-        Route::put('{id}/image/{image_id}', 'Api\IncentiveProgramController@add_image');
-        Route::delete('{id}/image/{image_id}', 'Api\IncentiveProgramController@delete_image');
+        Route::post('{id}/image/{image_id}', 'Api\IncentiveProgramController@associate_image');
+        Route::delete('{id}/image/{image_id}', 'Api\IncentiveProgramController@dissociate_image');
     });
 
     // Item Rental routes
