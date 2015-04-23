@@ -14,6 +14,7 @@ var app = (function() {
 			this.rentalInfo = new TempRentals();
 			// this.rentalInfo.fetch();
 			// this.rentalInfo.bind('reset', function() {console.log(this.rentalInfo);});
+
 			Backbone.history.start();
 			return this;
 		},
@@ -207,7 +208,7 @@ var app = (function() {
 			"login": "login"
 		},
 		home: function() {
-			// api.changeContent(ViewsFactory.cms().$el);
+			api.changeContent(ViewsFactory.login().$el);
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);

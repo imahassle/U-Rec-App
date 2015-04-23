@@ -35,7 +35,7 @@
 
     <div class="header aug-top-bar">
         <label for="logout-button">Hello, User!</label>
-        <a href="#">Log out</a>
+        <a id="logout-button" href="#">Log out</a>
     </div>
 
     <div id="menu"></div>
@@ -51,12 +51,45 @@
 
 <script type="text/template" id="login">
   <div class="content login-view">
-    <form action="" class="pure-form pure-form-stacked">
+    <form id="login-form" class="pure-form pure-form-stacked">
       <h3>Login to the U-Rec App CMS</h3>
-      <input type="text">
-      <input type="password">
+      <input id="usernameField" name="username" type="text">
+      <input id="passwordField" name="password" type="password">
       <input type="submit" class="pure-button red pure-button-main">
     </form>
+  </div>
+  <script type="text/javascript">
+  $('#login-form').submit(function(event) {
+    console.log("Logging in...");
+    event.preventDefault();
+    var data = {
+      username: $("#usernameField").val(),
+      password: $("#passwordField").val()
+    };
+    $.ajax({
+      url: "api/login",
+      method: "POST",
+      data: data
+    }).done(function(data) {
+      // console.log("response: ", data);
+      $.cookie('U-Rex-API-Key', data.api_key);
+      console.log($.cookie('U-Rex-API-Key'));
+      $.ajaxSetup({
+        headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+      });
+    });
+  });
+  </script>
+
+</script>
+
+<script type="text/template" id="announcement_home">
+  <div class="home-announcement">
+      <i class="fa fa-trash fa-2x right red"></i>
+      <i class="fa fa-edit fa-2x right red"></i>
+      <p class="announcement-date"><%= date %></p>
+      <h4><%= title %></h4>
+      <p class="announcement-blurb"><%= message %></p>
   </div>
 </script>
 
@@ -77,20 +110,8 @@
                 </form>
             </div>
             <!-- Announcement Template Below -->
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>U-Rec Closed March 17th for St. Patrick's Day</h4>
-                <p class="announcement-blurb">But join us for our St. Patrick's Day parade in the Hub, March 18th! Lorem Ipsum blah blah blah. Bacon.</p>
-            </div>
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>U-Rec Closed March 17th for St. Patrick's Day</h4>
-                <p class="announcement-blurb">But join us for our St. Patrick's Day parade in the Hub, March 18th! Lorem Ipsum blah blah blah. Bacon.</p>
-            </div>
+            <%= fill %>
+
         </div>
         <!-- Quick links menu here -->
         <div class="pure-u-2-5 quick-menu">
@@ -991,11 +1012,18 @@
 <script src="js/vendor/jquery-2.1.3.min.js"></script>
 <script src="js/vendor/underscore.js"></script>
 <script src="js/vendor/backbone.js"></script>
+<script src="js/vendor/jquery.cookie.js"></script>
 
 
 <!-- === Backbone App === -->
 
 <script src="js/App.js"></script>
+
+<!-- App Models  -->
+<script src="js/models/announcement.js"></script>
+<!-- App Collections -->
+<script src="js/collections/facility.js"></script>
+
 <script src="js/models/rentals.js"></script>
 <script src="js/collections/rentals.js"></script>
 <script src="js/views/menu.js"></script>
@@ -1009,10 +1037,21 @@
 <script src="js/views/climbingwallViews.js"></script>
 <script src="js/views/intramuralsViews.js"></script>
 
+
+
 <script type="text/javascript">
     window.onload = function() {
         app.init();
     }
+</script>
+
+<script>
+  $("#logout-button").on('click', function() {
+    console.log("Logging you on out...");
+    $.removeCookie('U-Rex-API-Key');
+    $.ajaxSetup();
+    console.log($.cookie('U-Rex-API-Key'));
+  });
 </script>
 
 

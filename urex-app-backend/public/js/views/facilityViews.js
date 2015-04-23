@@ -1,11 +1,29 @@
 app.views.facilityHome = Backbone.View.extend({
 	template: _.template($("#facilityHome").html()),
+	subtemplate: _.template($("#announcement_home").html()),
+	filler: "",
 	initialize: function() {
+		this.collection = new app.collections.facilityAnnouncement;
 		this.render();
 	},
 	render: function() {
-	this.$el.html(this.template({}));
-		return this;
+	var that = this, p;
+	console.log("fetching...");
+	p = this.collection.fetch();
+	// console.log(p);
+	// p.fetch();
+	p.done(function() {
+		console.log("fetched!");
+		// console.log(that.collection);
+		_.each(that.collection.models, function(item) {
+			console.log(item);
+			that.filler += that.subtemplate(item.attributes);
+		}, that);
+		console.log(that.filler);
+		that.$el.html(that.template({fill: that.filler}));
+			return that;
+	});
+
 	}
 });
 
