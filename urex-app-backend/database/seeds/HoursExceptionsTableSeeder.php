@@ -19,8 +19,6 @@ class HoursExceptionsTableSeeder extends Seeder {
             'close' => date("H:i:s")
           ]);
         }
-
-        $this->command->info('Hours Exceptions table seeded!');
     }
 
 }

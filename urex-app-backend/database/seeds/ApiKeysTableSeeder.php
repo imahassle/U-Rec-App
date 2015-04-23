@@ -21,8 +21,6 @@ class ApiKeysTableSeeder extends Seeder {
           $apiKey->ignore_limits = 1;
           $apiKey->save();
         }
-
-        $this->command->info('Api Keys table seeded!');
     }
 
 }

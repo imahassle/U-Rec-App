@@ -25,8 +25,6 @@ class ItemRentalsTableSeeder extends Seeder {
             'student_pricing_4' => $i * 5.0
           ]);
         }
-
-        $this->command->info('Item Rentals table seeded!');
     }
 
 }
