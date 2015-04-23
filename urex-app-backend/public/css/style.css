@@ -64,10 +64,14 @@ button i {
   height: 300px;
 }
 
-.login-view {
-  width: 600px;
+.content.login-view {
+  text-align: center;
 }
-.login-view form {
+.content.login-view form {
+  padding: 20px;
+  border-radius: 1em;
+  display: inline-block;
+  background-color: #fff;
   margin: 0 auto;
   background: #FFFFFF;
 }
