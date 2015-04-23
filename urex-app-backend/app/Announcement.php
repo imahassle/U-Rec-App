@@ -31,6 +31,7 @@ class Announcement extends Model {
         $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
 
         $announcement = new Announcement;
+        $announcement->title = $attributes['title'];
         $announcement->message = $attributes['message'];
         $announcement->date = date("Y-m-d h:i:s", strtotime($attributes['date']));
         $announcement->user_id = $user->id;
@@ -52,6 +53,7 @@ class Announcement extends Model {
     {
         $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
 
+        $this->title = $attributes['title'];
         $this->message = $attributes['message'];
         $this->date = date("Y-m-d h:i:s", strtotime($attributes['date']));
         $this->user_id = $user->id;

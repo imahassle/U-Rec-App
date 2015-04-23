@@ -19,7 +19,6 @@ Route::get('/', function() {
 Route::group(['prefix' => 'api'], function() {
     // Auth routes
     Route::post('login', 'Api\AuthController@login');
-    Route::get('logout', 'Api\AuthController@logout');
 
     // Announcement routes
     Route::group(['prefix' => 'announcement'], function() {

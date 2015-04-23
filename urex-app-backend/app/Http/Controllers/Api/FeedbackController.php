@@ -1,17 +1,16 @@
 <?php namespace App\Http\Controllers\Api;
 
+use Response;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
 use App\Feedback;
+use App\Traits\UrexExecutionHandlerTrait;
 
 class FeedbackController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+    use UrexExecutionHandlerTrait;
+
     public function index()
     {
         if(Request::header('X-Authorization') == null) {
@@ -24,11 +23,6 @@ class FeedbackController extends Controller {
         return Response::json(Feedback::all()->toArray());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
         if(Request::header('X-Authorization') != null) {
@@ -38,27 +32,12 @@ class FeedbackController extends Controller {
             ], 403);
         }
 
-        $feedback = new Feedback;
-        $feedback->message = Request::input('feedback');
-        $feedback->email = Request::input('email');
-        $feedback->date = date('Y-m-d h:i A', strtotime(Request::input('date')));
-
-        if(!$feedback->save()) {
-            return Response::json([
-                'code' => 500,
-                'message' => 'Feedback was not created due to an internal server error.'
-            ], 500);
-        }
-
-        return Response::json(['message' => 'Feedback created successfully.']);
+        return $this->attemptExecution(function() {
+            Feedback::create(Request::all());
+            return Response::json(['message' => 'Feedback created successfully.']);
+        });
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
         if(Request::header('X-Authorization') == null) {
@@ -68,24 +47,11 @@ class FeedbackController extends Controller {
             ], 403);
         }
 
-        $feedback = Feedback::find($id);
-
-        if($feedback == null) {
-            return Response::json([
-                'code' => 400,
-                'message' => 'Feedback not found.'
-            ], 400);
-        }
-
-        return Response::json($feedback->toArray());
+        return $this->attemptExecution(function() use ($id) {
+            return Response::json(Feedback::find($id)->toArray());
+        });
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id)
     {
         if(Request::header('X-Authorization') == null) {
@@ -95,23 +61,10 @@ class FeedbackController extends Controller {
             ], 403);
         }
 
-        $feedback = Feedback::find($id);
-
-        if($feedback == null) {
-            return Response::json([
-                'code' => 400,
-                'message' => 'Feedback not found.'
-            ], 400);
-        }
-
-        if(!$feedback->delete()) {
-            return Response::json([
-                'code' => 500,
-                'message' => 'Feedback was not deleted due to an internal server error.'
-            ], 500);
-        }
-
-        return Response::json(['message' => 'Feedback deleted successfully.']);
+        return $this->attemptExecution(function() use ($id) {
+            Feedback::find($id)->delete();
+            return Response::json(['message' => 'Feedback deleted successfully.']);
+        });
     }
 
 }
