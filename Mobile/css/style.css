@@ -4,18 +4,26 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   font-family: 'Lato', sans-serif;
 }
 
+input, textarea {
+  font-size: 1.3em;
+}
+
+button, .ui-btn {
+  font-size: 1em;
+}
+
 body {
   padding: 5px;
-  background: #EFEFEF;
+  background: #efefef;
 }
 
 .ui-btn {
-  background-color: #B70724;
+  background-color: #b70724;
   color: white;
 }
 
 .ui-header {
-  background-color: #B70724 !important;
+  background-color: #b70724 !important;
 }
 
 .ui-title {
@@ -25,27 +33,27 @@ body {
   font-weight: lighter;
 }
 
+.hours {
+  text-align: center;
+}
 .hours p {
   display: inline-block;
   padding: 0;
   margin: 0;
-}
-.hours p {
   color: #949494;
 }
 .hours p.info {
-  color: #B70724;
+  color: #b70724;
   padding-left: 10px;
 }
 .hours button {
   text-transform: uppercase;
-  background-color: #B70724 !important;
+  background-color: #b70724 !important;
   color: white !important;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  display: inline-block;
-  margin: 0 0 0 30%;
+  margin: 0 auto;
 }
 
 .hours-popup {
@@ -53,7 +61,7 @@ body {
 }
 .hours-popup h4 {
   text-align: center;
-  color: #B70724;
+  color: #b70724;
   text-transform: uppercase;
 }
 .hours-popup p {
@@ -63,8 +71,8 @@ body {
   color: #949494 !important;
 }
 .hours-popup p.info {
-  color: #B70724 !important;
-  padding-left: 10px;
+  color: #b70724 !important;
+  padding-left: 5%;
   font-weight: bold;
 }
 
@@ -73,15 +81,14 @@ body {
 }
 
 .panel {
-  padding: 10px;
+  padding: 5%;
   background: #FFFFFF;
   margin-bottom: 10px;
   /*font-size: 32px;*/
   /*font-color: $lightGray;*/
 }
 .panel img.left-img {
-  width: 50px;
-  height: 50px;
+  width: 20%;
 }
 .panel label {
   vertical-align: center;
@@ -89,17 +96,17 @@ body {
   color: #949494;
 }
 .panel input[type="submit"] {
-  background-color: #B70724;
+  background-color: #b70724;
 }
 .panel .splash-menu button {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  background-color: #B70724 !important;
+  background-color: #b70724 !important;
   color: white;
   font-size: 1.2em;
   text-transform: uppercase;
-  padding: 20px 0;
+  padding: 1.3em 0;
   text-shadow: none;
 }
 .panel table {
@@ -118,7 +125,7 @@ body {
   text-align: center;
 }
 .panel table thead td {
-  color: #B70724;
+  color: #b70724;
   font-weight: bold;
 }
 .panel table tbody td {
@@ -129,8 +136,7 @@ body {
   display: inline-block;
 }
 .panel.shout img {
-  width: 90px;
-  height: 90px;
+  width: 20%;
   float: left;
   vertical-align: top;
 }
@@ -142,7 +148,7 @@ body {
   padding-left: 10px;
 }
 .panel.shout .shout-content .shout-title {
-  color: #B70724;
+  color: #b70724;
   font-weight: bold;
 }
 .panel.shout .shout-content p {
@@ -150,5 +156,3 @@ body {
   color: #949494;
   vertical-align: top;
 }
-
-/*# sourceMappingURL=style.css.map */
