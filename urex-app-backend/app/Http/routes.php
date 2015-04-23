@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
+    return View::make('application');
+});
 
 // RESTful API Routes
 Route::group(['prefix' => 'api'], function() {
