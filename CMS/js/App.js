@@ -23,6 +23,14 @@ var app = (function() {
 		}
 	};
 	var ViewsFactory = {
+		login: function() {
+			if(!this.loginView) {
+				this.loginView = new api.views.login({
+					el: this.content
+				});
+			}
+			return this.loginView;
+		},
 		menu: function() {
 			if(!this.menuView) {
 				this.menuView = new api.views.menu({
@@ -254,7 +262,7 @@ var app = (function() {
 		},
 		stats: function() {},
 		login: function(valid) {
-			api.changeContent(ViewsFactory.login().verify(valid).$el);
+			api.changeContent(ViewsFactory.login().$el);
 		}
 	});
 	api.router = new Router();

@@ -64,6 +64,14 @@ button i {
   height: 300px;
 }
 
+.login-view {
+  width: 600px;
+}
+.login-view form {
+  margin: 0 auto;
+  background: #FFFFFF;
+}
+
 .round-button {
   border-radius: 2em;
   -moz-border-radius: 2em;
