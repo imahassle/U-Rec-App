@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <CheckBoxPreference
+        android:key="URecNotifications"
+        android:summary="Get notified about new incentive programs, announcements, etc."
+        android:title="U-Rec"
+        android:defaultValue="true"
+    />
+    <CheckBoxPreference
+        android:key="OutdoorRecNotifications"
+        android:summary="Get notified about new incentive programs, announcements, etc."
+        android:title="Outdoor Rec"
+        android:defaultValue="true"
+        />
+    <CheckBoxPreference
+        android:key="RentalsNotifications"
+        android:summary="Get notified about new gear available for rent."
+        android:title="Rentals"
+        android:defaultValue="true"
+        />
+    <CheckBoxPreference
+        android:key="IntramuralsNotifications"
+        android:summary="Get notified about upcoming seasons and announcements."
+        android:title="Intramurals"
+        android:defaultValue="true"
+        />
+    <CheckBoxPreference
+        android:key="ClimbingWallNotifications"
+        android:summary="Get notified about events and announcements from the climbing wall."
+        android:title="ClimbingWall"
+        android:defaultValue="true"
+        />
+
+</PreferenceScreen>

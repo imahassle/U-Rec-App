@@ -143,8 +143,13 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.preferences:
+                // Launch settings activity
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                break;
+            // more code...
         }
 
         return super.onOptionsItemSelected(item);

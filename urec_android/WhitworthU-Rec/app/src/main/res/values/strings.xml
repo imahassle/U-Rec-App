@@ -22,5 +22,22 @@
     <string name="title_activity_rentals">RentalsActivity</string>
     <string name="title_activity_intramurals">IntramuralsActivity</string>
     <string name="title_activity_outdoor_rec">OutdoorRecActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!--Settings page-->
+    <string name="OutdoorRecNotifications">Outdoor Recreation</string>
+    <string name="OutdoorRecNotificationsDescription">Get notified about new trips, hikes, announcements, and more! </string>
+
+    <string name="URecNotifications">General U-Rec</string>
+    <string name="URecNotificationsDescription">Get notified about new incentive programs, announcements, etc.</string>
+
+    <string name="RentalNotifications">Rentals</string>
+    <string name="RentalNotificationsDescription">Get notified about new gear available for rent.</string>
+
+    <string name="IntramuralsNotifications">Intramurals</string>
+    <string name="IntramuralsNotificationsDescription">Get notified about upcoming seasons and announcements.</string>
+
+    <string name="ClimbingWallNotifications">Climbing Wall</string>
+    <string name="ClimbingWallNotificationsDescription">Get notified about events and announcements from the climbing wall.</string>
 
 </resources>
