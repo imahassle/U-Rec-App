@@ -98,7 +98,7 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
             ret = true
         }
-        
+
         return ret
     }
     
