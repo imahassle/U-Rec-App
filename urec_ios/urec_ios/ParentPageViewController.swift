@@ -47,12 +47,8 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         var ret : Bool = false
         var newpage : String = request.URL.absoluteString!
         
-        if let dotRange = newpage.rangeOfString(".html") {
-            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
-        }
-        else if let dotRange = newpage.rangeOfString(".php") {
-            newpage.removeRange(newpage.startIndex..<newpage.endIndex)
-        }
+        var delimitedstring = newpage.componentsSeparatedByString("#")
+        newpage = delimitedstring[0]
         
         if (newpage != url && !firstTime) {
             let newURL : String = (request.URL.absoluteString)!
@@ -102,7 +98,7 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
             ret = true
         }
-        
+
         return ret
     }
     
