@@ -31,8 +31,6 @@ class HoursTableSeeder extends Seeder {
             'category_id' => $i
           ]);
         }
-
-        $this->command->info('Hours table seeded!');
     }
 
 }

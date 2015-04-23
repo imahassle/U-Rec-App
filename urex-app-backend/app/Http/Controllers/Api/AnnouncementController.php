@@ -5,9 +5,11 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 use App\Announcement;
-use App\Exceptions\UrexException;
+use App\Traits\UrexExecutionHandlerTrait;
 
 class AnnouncementController extends ApiGuardController {
+
+    use UrexExecutionHandlerTrait;
 
     protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
@@ -15,104 +17,50 @@ class AnnouncementController extends ApiGuardController {
         'show' => [ 'keyAuthentication' => false ]
     ];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
         return Response::json(Announcement::all()->toArray());
     }
 
-    /**
-     * Display a list of the resource with given category id.
-     *
-     * @return Response
-     */
     public function index_category($category_id)
     {
         if(!Announcement::whereCategoryId($category_id)->exists()) {
             return Response::json([]);
         }
-
         return Response::json(Announcement::whereCategoryId($category_id)->get()->toArray());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
-        try {
+        return $this->attemptExecution(function() {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
             Announcement::create($attributes);
-            return Response::json(['message' => 'Announcement created succesffully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+            return Response::json(['message' => 'Announcement created successfully.']);
+        });
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             return Response::json(Announcement::find($id)->toArray());
-        } catch (UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+        });
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function update($id)
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
             Announcement::find($id)->update($attributes);
-            return Response::json(['message' => 'Announcement updated succesfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+            return Response::json(['message' => 'Announcement updated successfully.']);
+        });
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function destroy($id) 
     {
-        try {
+        return $this->attemptExecution(function() use ($id) {
             Announcement::find($id)->delete();
-            return Response::json(['message' => 'Announcement deleted succesfully.']);
-        } catch(UrexException $e) {
-            return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
-            ], $e->code());
-        }
+            return Response::json(['message' => 'Announcement deleted successfully.']);
+        });
     }
 
 }

@@ -5,11 +5,11 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Request;
 use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
 use App\User;
-use App\Traits\UrexControllerExecutionHandler;
+use App\Traits\UrexExecutionHandlerTrait;
 
 class UserController extends ApiGuardController {
 
-    use UrexControllerExecutionHandler;
+    use UrexExecutionHandlerTrait;
 
     public function __construct()
     {
@@ -27,7 +27,6 @@ class UserController extends ApiGuardController {
         if(!User::whereCategoryId($category_id)->exists()) {
             return Response::json([]);
         }
-
         return Response::json(User::whereCategoryId($category_id)->get()->toArray());
     }
 
@@ -35,7 +34,7 @@ class UserController extends ApiGuardController {
     {
         return $this->attemptExecution(function() {
             User::create(Request::all());
-            return Response::json(['message' => 'User created succesfully.']);
+            return Response::json(['message' => 'User created successfully.']);
         });
     }
 
@@ -50,7 +49,7 @@ class UserController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             User::find($id)->update(Request::all());
-            return Response::json(['message' => 'User updated succesfully.']);
+            return Response::json(['message' => 'User updated successfully.']);
         });
     }
 
@@ -66,7 +65,8 @@ class UserController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             User::find($id)->delete();
-            return Response::json(['message' => 'User deleted succesfully.']);
+            return Response::json(['message' => 'User deleted successfully.']);
         });
     }
+    
 }

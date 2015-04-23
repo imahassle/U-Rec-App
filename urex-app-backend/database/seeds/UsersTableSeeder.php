@@ -52,8 +52,6 @@ class UsersTableSeeder extends Seeder {
           'email' => 'wcunningham15@my.whitworth.edu',
           'category_id' => 5
         ]);
-
-        $this->command->info('Users table seeded!');
     }
 
 }

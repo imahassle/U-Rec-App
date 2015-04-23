@@ -19,8 +19,6 @@ class FeedbackTableSeeder extends Seeder {
             'date' => date("Y-m-d H:i:s")
           ]);
         }
-
-        $this->command->info('Feedback table seeded!');
     }
 
 }

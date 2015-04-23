@@ -3,11 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class AuthController extends Controller {
 
-    // Cookie will need to be deleted on client-side at logout.
     public function login()
     {
         $username = Request::input('username');
@@ -20,6 +19,11 @@ class AuthController extends Controller {
 
         return Response::json(array_merge($user->toArray(), [ Category::find($user->category_id)->name ])
             ->withCookie(cookie('U-Rex-API-Key', $user->apiKey->key, 10080)));
+    }
+
+    public function logout()
+    {
+        return Response::make('')->withCookie(Cookie::forget('U-Rex-API-Key'));
     }
 
     /*

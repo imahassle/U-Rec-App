@@ -5,8 +5,13 @@ use Illuminate\Contracts\Routing\Middleware;
 use Chrisbjr\ApiGuard\Models\ApiKey;
 use App\Category;
 use Response;
+use Illuminate\Http\Request;
+use App\Traits\UrexExecutionHandlerTrait;
+use App\Exceptions\AdminException;
 
 class AdminCheck implements Middleware {
+
+    use UrexExecutionHandlerTrait;
 
     /**
      * Handle an incoming request.
@@ -17,20 +22,19 @@ class AdminCheck implements Middleware {
      */
     public function handle($request, Closure $next)
     {
-        if(is_null($request->header('X-Authorization'))) {
-            return Response::json([
-                'code' => 403,
-                'message' => 'No valid API key found.'
-            ], 403);
-        }
+        $response = $this->attemptExecution(function() use ($request) {
+            if(is_null($request->header('X-Authorization'))) {
+                throw new AuthException("No valid API key found.");
+            }
+            $user = ApiKey::whereKey($request->header('X-Authorization'))->first()->user;
+            if($user->category_id != Category::whereName('Administration')->first()->id) {
+                throw new AdminException("You aren't supposed to access this functionality...");
+            }
+            return null;
+        });
 
-        $user = ApiKey::whereKey($request->header('X-Authorization'))->first()->user;
-
-        if($user->category_id != Category::whereName('Administration')->first()->id) {
-            return \Response::json([
-                'code' => 403,
-                'message' => "You aren't supposed to access this functionality..."
-            ], 403);
+        if(!is_null($response)) {
+            return $response;
         }
 
         return $next($request);
