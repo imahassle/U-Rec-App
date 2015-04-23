@@ -27,6 +27,8 @@ class RentalsViewController: ParentPageViewController, UIWebViewDelegate {
         
         setInitialWebView()
         
+        setStyle()
+        
         //navigationController?.pushViewController(newVC, animated: true)
         
     }

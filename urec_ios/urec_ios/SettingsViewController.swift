@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.backItem = "x.png" -- Need Lauren Slicing
         
         if(willInsertFirstRow()) {
             println("Inserting entries...")
@@ -85,9 +86,7 @@ class SettingsViewController: UIViewController {
         var results = managedObjectContext?.executeFetchRequest(request, error: &error) as? [Notifications]
         if let var objects = results {
             if objects.count > 0 {
-                //let match = results[0] as NSManagedObject
                 theswitch.setOn(false, animated: false)
-                println("Switch for \(text) has been set to \"off\".")
             }
         }
     }

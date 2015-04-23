@@ -26,6 +26,7 @@ class ClimbingWallViewController: ParentPageViewController, UIWebViewDelegate {
         }
         
         setInitialWebView()
+        setStyle()
         
     }
     

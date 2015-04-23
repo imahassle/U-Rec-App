@@ -26,8 +26,7 @@ class IntramuralsViewController: ParentPageViewController, UIWebViewDelegate {
         }
         
         setInitialWebView()
-        
-        //navigationController?.pushViewController(newVC, animated: true)
+        setStyle()
         
     }
     

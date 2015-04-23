@@ -55,6 +55,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Q3l-Ix-mVP">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="jbj-BL-ZgA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="byj-oH-mJv" kind="show" id="9dU-0H-0Ji"/>
                             </connections>
@@ -62,6 +63,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="IIS-wh-cS7" id="X7q-YB-US0"/>
+                        <outlet property="navigationBar" destination="Q3l-Ix-mVP" id="OY9-8b-csl"/>
                         <outlet property="webView" destination="fEa-3m-73U" id="AZy-4R-8Fu"/>
                     </connections>
                 </viewController>
@@ -119,6 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ghr-2v-anx">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="dXc-TG-p2c">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="byj-oH-mJv" kind="show" identifier="settings" id="xKx-gq-wNq"/>
                             </connections>
@@ -126,6 +129,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activity" destination="B0I-gD-4de" id="DaL-Uo-Mc0"/>
+                        <outlet property="navigationBar" destination="ghr-2v-anx" id="ff5-T0-ycy"/>
                         <outlet property="webView" destination="9gP-re-H4o" id="sgM-Fl-len"/>
                     </connections>
                 </viewController>
@@ -210,6 +214,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Erq-SC-vmX">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="YEs-EG-PdY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="byj-oH-mJv" kind="show" id="FGI-5h-syX"/>
                             </connections>
@@ -218,6 +223,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="LHu-3v-Pib" id="lZy-Tb-iVT"/>
+                        <outlet property="navigationBar" destination="Erq-SC-vmX" id="TV3-oY-AJz"/>
                         <outlet property="webView" destination="adQ-4y-W9Y" id="TcA-gW-ASc"/>
                     </connections>
                 </viewController>
@@ -275,6 +281,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zfU-we-snw">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="nCV-zj-CSz">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="byj-oH-mJv" kind="presentation" identifier="settings" id="ABT-Kv-yMH"/>
                             </connections>
@@ -283,6 +290,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="xgT-vr-4DN" id="a1n-2M-ixs"/>
+                        <outlet property="navigationBar" destination="zfU-we-snw" id="1a6-D8-mL9"/>
                         <outlet property="webView" destination="Q5O-eY-6nL" id="dQu-x6-f1M"/>
                     </connections>
                 </viewController>
@@ -340,6 +348,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zvC-9S-edw">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Sra-9c-JVO">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="byj-oH-mJv" kind="presentation" identifier="settings" id="epB-Tu-iRB"/>
                             </connections>
@@ -348,6 +357,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activity" destination="byM-Jb-jke" id="c4T-Rr-dg3"/>
+                        <outlet property="navigationBar" destination="zvC-9S-edw" id="PFx-xW-6Ri"/>
                         <outlet property="webView" destination="tGK-eg-BRZ" id="U9L-gv-JSd"/>
                     </connections>
                 </viewController>
@@ -589,6 +599,7 @@
         <image name="U-Rec@3x.png" width="144" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="epB-Tu-iRB"/>
+        <segue reference="xKx-gq-wNq"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
