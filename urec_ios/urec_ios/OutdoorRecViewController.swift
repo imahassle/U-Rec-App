@@ -28,6 +28,8 @@ class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
         
         setInitialWebView()
         
+        setStyle()
+        
     }
     
     override func didReceiveMemoryWarning() {

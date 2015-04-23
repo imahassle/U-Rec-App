@@ -36,6 +36,12 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func setStyle() {
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.718, green: 0.027, blue: 0.141, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    }
+    
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         var ret : Bool = false
