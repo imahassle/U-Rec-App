@@ -47,7 +47,7 @@ return [
     'connections' => [
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => 'cs1',
             'database'  => 'urex_appdb',
             'username'  => 'urex_user',
             'password'  => 'urex_password',
