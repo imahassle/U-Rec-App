@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.backItem = "x.png" -- Need Lauren Slicing
-        self.title = "Preferences"
+        self.title = "PREFERENCES"
         if(willInsertFirstRow()) {
             println("Inserting entries...")
             createFirstEntities()

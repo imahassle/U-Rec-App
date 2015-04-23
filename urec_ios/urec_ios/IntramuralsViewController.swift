@@ -16,7 +16,7 @@ class IntramuralsViewController: ParentPageViewController, UIWebViewDelegate {
         if(firstTime) {
             println("First time viewing INTRAMURALS viewcontroller!")
             if(url == "") {
-                self.title = "Intramurals"
+                self.navigationBar.title = "INTRAMURALS"
                 url = "http://www.whitworth.edu/Administration/RecreationCenter/IMStats/Index.htm"
                 isRoot = true
             }

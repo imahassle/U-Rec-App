@@ -17,7 +17,7 @@ class FacilityViewController: ParentPageViewController, UIWebViewDelegate  {
         if(firstTime) {
             println("First time viewing FACILITY viewcontroller!")
             if(url == "") {
-                self.title = "U-Rec"
+                self.navigationBar.title = "U-REC"
                 url = "http://www.whitworth.edu/urec/"
                 isRoot = true
             }
@@ -29,6 +29,8 @@ class FacilityViewController: ParentPageViewController, UIWebViewDelegate  {
         setInitialWebView()
         
         setStyle()
+        
+        
 
         //navigationController?.pushViewController(newVC, animated: true)
  

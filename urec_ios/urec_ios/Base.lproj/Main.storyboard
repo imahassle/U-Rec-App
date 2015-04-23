@@ -4,6 +4,22 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Light.ttf">
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
+            <string>Lato-Light</string>
+        </mutableArray>
+        <mutableArray key="Lato-Semibold.ttf">
+            <string>Lato-Semibold</string>
+            <string>Lato-Semibold</string>
+            <string>Lato-Semibold</string>
+            <string>Lato-Semibold</string>
+            <string>Lato-Semibold</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--U-Rec-->
         <scene sceneID="hNz-n2-bh7">
@@ -14,27 +30,27 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Facility View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD" userLabel="U-Rec">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Facility View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD" userLabel="U-Rec">
                                 <rect key="frame" x="201" y="280" width="200" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FacilityViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L" userLabel="Loaded by U-RecViewController">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by FacilityViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L" userLabel="Loaded by U-RecViewController">
                                 <rect key="frame" x="195" y="330" width="212" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEa-3m-73U">
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEa-3m-73U">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IIS-wh-cS7">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -54,6 +70,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q3l-Ix-mVP">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="u4t-i8-MLH"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="jbj-BL-ZgA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -61,6 +78,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="activity" destination="IIS-wh-cS7" id="X7q-YB-US0"/>
                         <outlet property="navigationBar" destination="Q3l-Ix-mVP" id="OY9-8b-csl"/>
@@ -80,27 +98,27 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Outdoor Rec View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5" userLabel="Outdoor Rec View">
                                 <rect key="frame" x="154" y="279" width="292" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by OutdoorRecViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan" userLabel="Loaded by OutdoorRecViewController">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by OutdoorRecViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan" userLabel="Loaded by OutdoorRecViewController">
                                 <rect key="frame" x="178" y="329" width="245" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-re-H4o">
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gP-re-H4o">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B0I-gD-4de">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -120,6 +138,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ghr-2v-anx">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HdE-nM-OwY"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="dXc-TG-p2c">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -127,6 +146,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="activity" destination="B0I-gD-4de" id="DaL-Uo-Mc0"/>
                         <outlet property="navigationBar" destination="ghr-2v-anx" id="ff5-T0-ycy"/>
@@ -145,8 +165,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.72549019609999998" green="0.0" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -170,18 +188,18 @@
                         <viewControllerLayoutGuide type="bottom" id="tcb-b6-eCx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hXb-UA-cM2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Rentals View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="sCf-Yg-mZf" userLabel="Rentals View">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
+                                <rect key="frame" x="195" y="223" width="210" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by RentalsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h68-R9-XIM" userLabel="Loaded by RentalsViewController">
-                                <rect key="frame" x="192" y="329" width="216" height="17"/>
+                                <rect key="frame" x="192" y="273" width="216" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="216" id="rrN-2J-6u8"/>
                                 </constraints>
@@ -189,11 +207,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-4y-W9Y">
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-4y-W9Y">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LHu-3v-Pib">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -213,6 +231,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Erq-SC-vmX">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="f5N-gf-rea"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="YEs-EG-PdY">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -220,7 +239,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="activity" destination="LHu-3v-Pib" id="lZy-Tb-iVT"/>
                         <outlet property="navigationBar" destination="Erq-SC-vmX" id="TV3-oY-AJz"/>
@@ -240,27 +259,27 @@
                         <viewControllerLayoutGuide type="bottom" id="VCI-Ho-u8W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d1j-6a-4j1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Intramurals View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jVl-e4-kgT" userLabel="Intramurals View">
-                                <rect key="frame" x="166" y="279" width="268" height="42"/>
+                                <rect key="frame" x="166" y="223" width="268" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by IntramuralsViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDD-uo-ebT" userLabel="Loaded by IntramuralsViewController">
-                                <rect key="frame" x="181" y="329" width="239" height="17"/>
+                                <rect key="frame" x="181" y="273" width="239" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5O-eY-6nL">
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5O-eY-6nL">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-vr-4DN">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -280,6 +299,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zfU-we-snw">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="oC9-qt-U4Q"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="nCV-zj-CSz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -287,7 +307,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="activity" destination="xgT-vr-4DN" id="a1n-2M-ixs"/>
                         <outlet property="navigationBar" destination="zfU-we-snw" id="1a6-D8-mL9"/>
@@ -307,27 +327,27 @@
                         <viewControllerLayoutGuide type="bottom" id="0Ry-SY-lpy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6e2-pT-vom">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Climbing Wall View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-xJ-Lg4" userLabel="Climbing Wall View">
-                                <rect key="frame" x="147" y="279" width="307" height="42"/>
+                                <rect key="frame" x="147" y="223" width="307" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by ClimbingWallViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-7x-PKy" userLabel="Loaded by ClimbingWallViewController">
-                                <rect key="frame" x="175" y="329" width="250" height="17"/>
+                                <rect key="frame" x="175" y="273" width="250" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGK-eg-BRZ">
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGK-eg-BRZ">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="byM-Jb-jke">
                                 <rect key="frame" x="282" y="289" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -347,6 +367,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zvC-9S-edw">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aOU-7G-P70"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Sra-9c-JVO">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -354,7 +375,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="activity" destination="byM-Jb-jke" id="c4T-Rr-dg3"/>
                         <outlet property="navigationBar" destination="zvC-9S-edw" id="PFx-xW-6Ri"/>
@@ -374,120 +395,181 @@
                         <viewControllerLayoutGuide type="bottom" id="OFb-2G-Trj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MxI-ay-Kkm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
-                                <rect key="frame" x="500" y="121" width="51" height="31"/>
+                                <rect key="frame" x="500" y="24" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="LHh-KU-Hxn"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
-                                <rect key="frame" x="500" y="160" width="51" height="31"/>
+                                <rect key="frame" x="500" y="85" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="GcG-Fw-W5u"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
-                                <rect key="frame" x="500" y="199" width="51" height="31"/>
+                                <rect key="frame" x="500" y="150" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="20X-vS-KRB"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
-                                <rect key="frame" x="500" y="238" width="51" height="31"/>
+                                <rect key="frame" x="500" y="211" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="TIh-Lw-9eG"/>
                                 </connections>
                             </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="U-Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
+                                <rect key="frame" x="52" y="20" width="159" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="IaN-L8-i0L"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Outdoor Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
+                                <rect key="frame" x="52" y="83" width="195" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="3SW-3n-137"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Rentals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
+                                <rect key="frame" x="52" y="146" width="159" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Climbing Wall notifcations" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
+                                <rect key="frame" x="52" y="207" width="188" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="188" id="LpI-1O-ryv"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Intramurals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
+                                <rect key="frame" x="52" y="269" width="173" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="u3q-8H-smt"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about new incentive programs, events, and more." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBl-gE-4L4">
+                                <rect key="frame" x="58" y="41" width="399" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NcC-d2-yns"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about new trips, photos, and announcements." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qog-pW-3RJ">
+                                <rect key="frame" x="58" y="104" width="399" height="34"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified when new gear is bought. " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYG-6H-NgO">
+                                <rect key="frame" x="58" y="165" width="399" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="vEC-Ii-s7a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about events, photos and more." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iok-CV-71q">
+                                <rect key="frame" x="58" y="227" width="399" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="fAg-6s-vmx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about new seasons and announcements." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWm-fE-t7I">
+                                <rect key="frame" x="58" y="289" width="399" height="34"/>
+                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
-                                <rect key="frame" x="500" y="277" width="51" height="31"/>
+                                <rect key="frame" x="500" y="273" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="ocJ-ra-XZJ"/>
                                 </connections>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="U-Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
-                                <rect key="frame" x="52" y="117" width="159" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="159" id="6Oj-gu-Krl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Outdoor Rec notifications" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
-                                <rect key="frame" x="52" y="156" width="195" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="i7P-5X-jbq"/>
-                                    <constraint firstAttribute="height" constant="35" id="vig-u4-ROC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Rentals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
-                                <rect key="frame" x="52" y="195" width="159" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="w3o-iM-kK8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Climbing Wall Notiifcations" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
-                                <rect key="frame" x="52" y="234" width="188" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="188" id="It7-FC-uwN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Intramurals notifications" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
-                                <rect key="frame" x="52" y="273" width="173" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="173" id="kcf-ek-So8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="leading" secondItem="MxI-ay-Kkm" secondAttribute="leadingMargin" constant="36" id="9LD-Ty-s5x"/>
-                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="top" secondItem="BTW-et-OQY" secondAttribute="bottom" constant="8" symbolic="YES" id="9U6-9b-AdG"/>
-                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="trailing" secondItem="A2A-Qg-JLa" secondAttribute="trailing" id="9v9-eh-cRk"/>
-                            <constraint firstItem="qVp-DN-jJf" firstAttribute="leading" secondItem="A2A-Qg-JLa" secondAttribute="leading" id="Ao3-Vw-wnn"/>
-                            <constraint firstItem="YhN-se-sTh" firstAttribute="top" secondItem="dJQ-LU-dDo" secondAttribute="bottom" constant="8" symbolic="YES" id="BA4-Vc-EpC"/>
-                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="bottom" secondItem="qVp-DN-jJf" secondAttribute="bottom" id="D1P-ok-hHJ"/>
-                            <constraint firstItem="o0H-xq-ix3" firstAttribute="top" secondItem="JYn-Vh-Uvm" secondAttribute="bottom" constant="8" symbolic="YES" id="DIm-VN-C4I"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BTW-et-OQY" secondAttribute="trailing" constant="35" id="ED4-C2-pBZ"/>
-                            <constraint firstItem="dJQ-LU-dDo" firstAttribute="top" secondItem="o0H-xq-ix3" secondAttribute="bottom" constant="8" symbolic="YES" id="Hrf-B7-a3T"/>
-                            <constraint firstItem="NzJ-va-N4b" firstAttribute="leading" secondItem="p0X-Yy-DUb" secondAttribute="leading" id="Hsz-WD-TqX"/>
-                            <constraint firstItem="o0H-xq-ix3" firstAttribute="leading" secondItem="dJQ-LU-dDo" secondAttribute="leading" id="M6j-hk-CN2"/>
-                            <constraint firstItem="qVp-DN-jJf" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="92" id="R2B-ZF-BAK"/>
-                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="leading" secondItem="o0H-xq-ix3" secondAttribute="leading" id="TXq-c7-KJd"/>
-                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="53" id="Tgo-cr-2kY"/>
-                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="leading" secondItem="qVp-DN-jJf" secondAttribute="leading" id="UWq-xG-BIY"/>
-                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="leading" secondItem="NzJ-va-N4b" secondAttribute="leading" id="VQ4-cN-4jr"/>
-                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="leading" secondItem="BTW-et-OQY" secondAttribute="leading" id="YYr-0q-QpR"/>
-                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="qVp-DN-jJf" secondAttribute="bottom" constant="4" id="fI9-T2-VMe"/>
-                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="NzJ-va-N4b" secondAttribute="bottom" constant="277" id="liN-nf-qYv"/>
-                            <constraint firstItem="NzJ-va-N4b" firstAttribute="top" secondItem="qVp-DN-jJf" secondAttribute="bottom" constant="43" id="o5g-Il-w7o"/>
-                            <constraint firstItem="YhN-se-sTh" firstAttribute="leading" secondItem="dJQ-LU-dDo" secondAttribute="leading" id="qMH-rF-OGk"/>
-                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="A2A-Qg-JLa" secondAttribute="bottom" constant="38" id="s4L-g5-5s4"/>
-                            <constraint firstItem="p0X-Yy-DUb" firstAttribute="top" secondItem="lj1-tD-5nZ" secondAttribute="bottom" constant="38" id="sMU-aK-Jd6"/>
-                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="p0X-Yy-DUb" secondAttribute="bottom" constant="238" id="vmC-1e-tt9"/>
+                            <constraint firstItem="o0H-xq-ix3" firstAttribute="leading" secondItem="dJQ-LU-dDo" secondAttribute="leading" id="0jt-9l-Daj"/>
+                            <constraint firstItem="jWm-fE-t7I" firstAttribute="top" secondItem="iok-CV-71q" secondAttribute="bottom" constant="28" id="0zS-r8-idc"/>
+                            <constraint firstItem="iok-CV-71q" firstAttribute="top" secondItem="wYG-6H-NgO" secondAttribute="bottom" constant="28" id="2nm-xU-qlS"/>
+                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="trailing" secondItem="lj1-tD-5nZ" secondAttribute="trailing" id="7EG-QC-OuX"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="Qog-pW-3RJ" secondAttribute="bottom" constant="8" symbolic="YES" id="8bJ-sA-9LM"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="top" secondItem="yBl-gE-4L4" secondAttribute="bottom" constant="8" symbolic="YES" id="ALP-vm-G8b"/>
+                            <constraint firstItem="dJQ-LU-dDo" firstAttribute="top" secondItem="o0H-xq-ix3" secondAttribute="bottom" constant="30" id="Ay3-z5-yRs"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="leading" secondItem="p0X-Yy-DUb" secondAttribute="leading" id="BBq-tX-Usz"/>
+                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="jWm-fE-t7I" secondAttribute="bottom" constant="164" id="ClR-ef-gcS"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="top" secondItem="lj1-tD-5nZ" secondAttribute="bottom" constant="21" id="HYF-r0-Nj7"/>
+                            <constraint firstItem="wYG-6H-NgO" firstAttribute="trailing" secondItem="Qog-pW-3RJ" secondAttribute="trailing" id="JAF-Ms-Yiu"/>
+                            <constraint firstItem="dJQ-LU-dDo" firstAttribute="leading" secondItem="YhN-se-sTh" secondAttribute="leading" id="JMz-ny-r6g"/>
+                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="top" secondItem="MxI-ay-Kkm" secondAttribute="top" constant="20" symbolic="YES" id="MXh-pR-jRD"/>
+                            <constraint firstItem="o0H-xq-ix3" firstAttribute="top" secondItem="JYn-Vh-Uvm" secondAttribute="bottom" constant="34" id="NPA-t1-DO4"/>
+                            <constraint firstItem="BTW-et-OQY" firstAttribute="leading" secondItem="JYn-Vh-Uvm" secondAttribute="leading" id="R1e-5s-CxE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BTW-et-OQY" secondAttribute="trailing" constant="35" id="R9R-hS-7b8"/>
+                            <constraint firstItem="JYn-Vh-Uvm" firstAttribute="top" secondItem="BTW-et-OQY" secondAttribute="bottom" constant="30" id="V1U-J2-eik"/>
+                            <constraint firstItem="iok-CV-71q" firstAttribute="trailing" secondItem="wYG-6H-NgO" secondAttribute="trailing" id="YTV-ry-KLz"/>
+                            <constraint firstItem="iok-CV-71q" firstAttribute="leading" secondItem="jWm-fE-t7I" secondAttribute="leading" id="Z2H-Pp-kly"/>
+                            <constraint firstItem="o0H-xq-ix3" firstAttribute="leading" secondItem="JYn-Vh-Uvm" secondAttribute="leading" id="ZS2-UY-YZQ"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="top" secondItem="wYG-6H-NgO" secondAttribute="bottom" constant="8" symbolic="YES" id="ZlJ-jD-4b4"/>
+                            <constraint firstItem="wYG-6H-NgO" firstAttribute="leading" secondItem="iok-CV-71q" secondAttribute="leading" id="Zoh-hH-IE9"/>
+                            <constraint firstItem="A2A-Qg-JLa" firstAttribute="leading" secondItem="MxI-ay-Kkm" secondAttribute="leadingMargin" constant="36" id="a4s-Gg-dK9"/>
+                            <constraint firstItem="BTW-et-OQY" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="24" id="bJD-JC-d74"/>
+                            <constraint firstItem="NzJ-va-N4b" firstAttribute="leading" secondItem="lj1-tD-5nZ" secondAttribute="leading" id="bTh-Km-5ra"/>
+                            <constraint firstItem="wYG-6H-NgO" firstAttribute="top" secondItem="Qog-pW-3RJ" secondAttribute="bottom" constant="27" id="bfS-Lb-aaa"/>
+                            <constraint firstItem="Qog-pW-3RJ" firstAttribute="top" secondItem="yBl-gE-4L4" secondAttribute="bottom" constant="29" id="bik-3w-UeB"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="leading" secondItem="A2A-Qg-JLa" secondAttribute="leading" id="duu-Me-Gw6"/>
+                            <constraint firstItem="Qog-pW-3RJ" firstAttribute="leading" secondItem="yBl-gE-4L4" secondAttribute="leading" id="fap-Zf-Jw4"/>
+                            <constraint firstItem="p0X-Yy-DUb" firstAttribute="top" secondItem="NzJ-va-N4b" secondAttribute="bottom" constant="22" id="h3a-Oz-jY7"/>
+                            <constraint firstItem="yBl-gE-4L4" firstAttribute="trailing" secondItem="Qog-pW-3RJ" secondAttribute="trailing" id="hki-1i-os5"/>
+                            <constraint firstItem="jWm-fE-t7I" firstAttribute="trailing" secondItem="iok-CV-71q" secondAttribute="trailing" id="jbC-Kz-2LI"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="top" secondItem="qVp-DN-jJf" secondAttribute="bottom" constant="28" id="kFs-u2-EvS"/>
+                            <constraint firstItem="YhN-se-sTh" firstAttribute="top" secondItem="dJQ-LU-dDo" secondAttribute="bottom" constant="31" id="kMj-G2-R8o"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="centerY" secondItem="JYn-Vh-Uvm" secondAttribute="centerY" id="lDa-Zz-oof"/>
+                            <constraint firstItem="OFb-2G-Trj" firstAttribute="top" secondItem="p0X-Yy-DUb" secondAttribute="bottom" constant="178" id="nsi-Ib-Q49"/>
+                            <constraint firstItem="yBl-gE-4L4" firstAttribute="top" secondItem="hK5-qQ-pWP" secondAttribute="bottom" constant="41" id="o6e-dq-CUu"/>
+                            <constraint firstItem="yBl-gE-4L4" firstAttribute="leading" secondItem="MxI-ay-Kkm" secondAttribute="leadingMargin" constant="42" id="oJA-Mr-Fji"/>
+                            <constraint firstItem="BTW-et-OQY" firstAttribute="leading" secondItem="yBl-gE-4L4" secondAttribute="trailing" constant="43" id="oo6-n9-ofu"/>
+                            <constraint firstItem="lj1-tD-5nZ" firstAttribute="leading" secondItem="qVp-DN-jJf" secondAttribute="leading" id="psz-Sj-WT6"/>
+                            <constraint firstItem="p0X-Yy-DUb" firstAttribute="top" secondItem="iok-CV-71q" secondAttribute="bottom" constant="8" symbolic="YES" id="pxv-IU-fwA"/>
+                            <constraint firstItem="wYG-6H-NgO" firstAttribute="leading" secondItem="Qog-pW-3RJ" secondAttribute="leading" id="sUN-dP-AO3"/>
+                            <constraint firstItem="qVp-DN-jJf" firstAttribute="top" secondItem="A2A-Qg-JLa" secondAttribute="bottom" constant="23" id="z72-ku-pvN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cfd-7G-69y"/>
+                    <navigationItem key="navigationItem" id="cfd-7G-69y">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="myO-Jg-MNR"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="climbingwall_notifications" destination="dJQ-LU-dDo" id="IwP-eb-vx4"/>
                         <outlet property="intramurals_notifications" destination="YhN-se-sTh" id="hQ9-a1-nWG"/>
@@ -506,9 +588,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zLP-8w-deP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="U-Rec" image="U-Rec@3x.png" id="acW-dT-cKf" userLabel="U-Rec"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SAm-Pp-zTy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="SAm-Pp-zTy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -525,9 +608,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AO7-N0-pjw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Outdoor Rec" image="OutdoorRec@3x.png" id="cPa-gy-q4n" userLabel="Outdoor Rec"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sk0-Sv-bsw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="sk0-Sv-bsw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -544,9 +628,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WAr-Jh-ewo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Rentals" image="Rentals@3x.png" id="4yz-V4-gFV" userLabel="Rentals"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dny-so-ebo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dny-so-ebo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -563,9 +648,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pIV-Fw-Sn5" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Climbing Wall" image="ClimbingWall@3x.png" id="MPk-s9-H1d" userLabel="Climbing Wall"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fuo-N5-COv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fuo-N5-COv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -582,9 +668,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s2G-8K-ypI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Intramurals" image="Intramurals@3x.png" id="8I5-Y4-znM" userLabel="Intramurals"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yCD-UJ-ZNl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="yCD-UJ-ZNl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.72549019607843135" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -604,7 +691,7 @@
         <image name="U-Rec@3x.png" width="144" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABT-Kv-yMH"/>
+        <segue reference="FGI-5h-syX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
