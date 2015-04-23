@@ -16,7 +16,7 @@ class ClimbingWallViewController: ParentPageViewController, UIWebViewDelegate {
         if(firstTime) {
             println("First time viewing CLIMBING WALL viewcontroller!")
             if(url == "") {
-                self.title = "Climbing Wall"
+                self.navigationBar.title = "CLIMBING WALL"
                 url = "http://localhost:8888/urec/Mobile/splash.html"
                 isRoot = true
             }

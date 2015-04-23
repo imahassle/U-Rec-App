@@ -16,7 +16,7 @@ class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
         if(firstTime) {
             println("First time viewing OUTDOOR REC viewcontroller!")
             if(url == "") {
-                self.title = "Outdoor Rec"
+                self.navigationBar.title = "OUTDOOR REC"
                 url = "http://www.whitworth.edu/Administration/RecreationCenter/OutdoorRec.htm"
                 
                 isRoot = true

@@ -50,9 +50,11 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     }
     
     func setStyle() {
-        navigationController?.navigationBar.barTintColor = UIColorFromRGB("B70724", alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Lato-Semibold", size: 20)!]
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
+        self.tabBarController?.tabBar.selectedImageTintColor = UIColorFromRGB("B9001E", alpha: 1)
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {

@@ -46,5 +46,23 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-Thin.ttf</string>
+		<string>Lato-Semibold.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-Medium.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-Heavy.ttf</string>
+		<string>Lato-Hairline.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-Bold.ttf</string>
+	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<false/>
 </dict>
 </plist>
