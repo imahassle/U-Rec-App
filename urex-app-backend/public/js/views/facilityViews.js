@@ -16,10 +16,10 @@ app.views.facilityHome = Backbone.View.extend({
 		console.log("fetched!");
 		// console.log(that.collection);
 		_.each(that.collection.models, function(item) {
-			console.log(item);
+			// console.log(item);
 			that.filler += that.subtemplate(item.attributes);
 		}, that);
-		console.log(that.filler);
+		// console.log(that.filler);
 		that.$el.html(that.template({fill: that.filler}));
 			return that;
 	});

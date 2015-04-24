@@ -12,7 +12,7 @@ class Announcement extends Model {
 
     public function getDateAttribute($value)
     {
-        return date("m/d/Y", strtotime($value));
+        return date("M d, Y", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -26,7 +26,7 @@ class Announcement extends Model {
         return $announcement;
     }
 
-    public static function create(array $attributes) 
+    public static function create(array $attributes)
     {
         $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
 
@@ -69,11 +69,11 @@ class Announcement extends Model {
         }
     }
 
-    public function delete() 
+    public function delete()
     {
         if(!parent::delete()) {
             throw new ServerException("Announcement was not deleted successfully due to an internal server error.");
         }
     }
-    
+
 }
