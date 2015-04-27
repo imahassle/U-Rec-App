@@ -12,7 +12,7 @@ class Announcement extends Model {
 
     public function getDateAttribute($value)
     {
-        return date("M d, Y", strtotime($value));
+        return date("M d, Y h:i", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -30,10 +30,12 @@ class Announcement extends Model {
     {
         $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
 
+        date_default_timezone_set("America/Los_Angeles");
+
         $announcement = new Announcement;
         $announcement->title = $attributes['title'];
         $announcement->message = $attributes['message'];
-        $announcement->date = date("Y-m-d h:i:s", strtotime($attributes['date']));
+        $announcement->date = date("Y-m-d h:i:s");//, strtotime($attributes['date']));
         $announcement->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {

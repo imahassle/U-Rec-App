@@ -130,13 +130,12 @@
           title: $("#facilities-announcement > input[name='title']").val(),
           message: $("#facilities-announcement > textarea[name='message']").val(),
           date: new Date().toString(),
-          category_id: 0,
-          'X-Authorization': $.cookie("U-Rex-API-Key")
+          category_id: 0
         };
         console.log(data);
-        // $.ajaxSetup({
-        //   headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
-        // });
+        $.ajaxSetup({
+          headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+        });
         $.ajax({
           url: "api/announcement",
           method: "POST",

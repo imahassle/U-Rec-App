@@ -41,11 +41,9 @@ var app = (function() {
 			return this.menuView;
 		},
 		facilityHome: function() {
-			if(!this.facilityHomeView) {
 				this.facilityHomeView = new api.views.facilityHome({
 					el: this.content
 				});
-			}
 			return this.facilityHomeView;
 		},
 		facilityHours: function() {

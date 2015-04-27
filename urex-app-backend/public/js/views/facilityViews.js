@@ -22,7 +22,7 @@ app.views.facilityHome = Backbone.View.extend({
 		// console.log(that.filler);
 		that.$el.html(that.template({fill: that.filler}));
 			return that;
-	});
+		});
 
 	}
 });

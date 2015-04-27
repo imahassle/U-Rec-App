@@ -55,7 +55,7 @@ class AnnouncementController extends ApiGuardController {
         });
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         return $this->attemptExecution(function() use ($id) {
             Announcement::find($id)->delete();
