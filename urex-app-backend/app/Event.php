@@ -46,6 +46,7 @@ class Event extends Model {
         $event->end = date("Y-m-d h:i:s", strtotime($attributes['end']));
         $event->cost = $attributes['cost'];
         $event->spots = $attributes['spots'];
+        $event->gear_needed = $attributes['gear_needed'];
         $event->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
@@ -71,6 +72,7 @@ class Event extends Model {
         $this->end = date("Y-m-d h:i:s", strtotime($attributes['end']));
         $this->cost = $attributes['cost'];
         $this->spots = $attributes['spots'];
+        $this->gear_needed = $attributes['gear_needed'];
         $this->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
