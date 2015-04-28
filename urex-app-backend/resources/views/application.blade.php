@@ -102,11 +102,11 @@
         <div class="home-channel pure-u-3-5">
             <div class="home-main-banner">
                 <h3 class="banner">Announcements</h3>
-                <form class="pure-form pure-form-stacked">
+                <form action="javascript:" id="facilities-announcement" class="pure-form pure-form-stacked">
                     <h4>New Announcement</h4>
                     <button type="submit" class="pure-button pure-button-primary right red">POST</button>
-                    <input type="text" placeholder="Program Title">
-                    <textarea name="details" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
+                    <input name="title" type="text" placeholder="Program Title">
+                    <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
                 </form>
             </div>
             <!-- Announcement Template Below -->
@@ -123,6 +123,28 @@
             <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
         </div>
     </div>
+    <script type="text/javascript">
+      $('#facilities-announcement').on("submit", function(event) {
+        event.preventDefault();
+        var data = {
+          title: $("#facilities-announcement > input[name='title']").val(),
+          message: $("#facilities-announcement > textarea[name='message']").val(),
+          date: new Date().toString(),
+          category_id: 0
+        };
+        console.log(data);
+        $.ajaxSetup({
+          headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+        });
+        $.ajax({
+          url: "api/announcement",
+          method: "POST",
+          data: data
+        }).done(function(data) {
+          console.log("complete: ", data);
+        });
+      });
+    </script>
 </script>
 
 <script type="text/template" id="facilityFeedback"></script>
@@ -1013,6 +1035,7 @@
 <script src="js/vendor/underscore.js"></script>
 <script src="js/vendor/backbone.js"></script>
 <script src="js/vendor/jquery.cookie.js"></script>
+<script src="js/vendor/jquery-ui.js"></script>
 
 
 <!-- === Backbone App === -->
@@ -1037,24 +1060,13 @@
 <script src="js/views/climbingwallViews.js"></script>
 <script src="js/views/intramuralsViews.js"></script>
 
-
-
 <script type="text/javascript">
     window.onload = function() {
         app.init();
     }
 </script>
 
-<script>
-  $("#logout-button").on('click', function() {
-    console.log("Logging you on out...");
-    $.removeCookie('U-Rex-API-Key');
-    $.ajaxSetup();
-    console.log($.cookie('U-Rex-API-Key'));
-  });
-</script>
-
-
+<script src="js/script.js"></script>
 
 </body>
 </html>

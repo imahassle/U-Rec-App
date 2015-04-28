@@ -4,9 +4,16 @@ app.views.facilityHome = Backbone.View.extend({
 	filler: "",
 	initialize: function() {
 		this.collection = new app.collections.facilityAnnouncement;
-		this.render();
+		// this.collection.fetch();
+
+		// this.collection.on('change reset add remove', this.render, this);
+		// that.listenTo(this.collection, 'add', this.render);
+
+		// this.render();
+
 	},
 	render: function() {
+	// this.filler = "";
 	var that = this, p;
 	console.log("fetching...");
 	p = this.collection.fetch();
@@ -16,13 +23,14 @@ app.views.facilityHome = Backbone.View.extend({
 		console.log("fetched!");
 		// console.log(that.collection);
 		_.each(that.collection.models, function(item) {
-			console.log(item);
+			// console.log(item);
 			that.filler += that.subtemplate(item.attributes);
 		}, that);
-		console.log(that.filler);
+		// console.log(that.filler);
 		that.$el.html(that.template({fill: that.filler}));
+
 			return that;
-	});
+		});
 
 	}
 });

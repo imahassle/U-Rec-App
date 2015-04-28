@@ -45,6 +45,7 @@ var app = (function() {
 				this.facilityHomeView = new api.views.facilityHome({
 					el: this.content
 				});
+				this.facilityHomeView.render();
 			}
 			return this.facilityHomeView;
 		},
