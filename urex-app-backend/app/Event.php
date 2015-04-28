@@ -37,7 +37,7 @@ class Event extends Model {
 
     public static function create(array $attributes)
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $event = new Event;
         $event->title = $attributes['title'];
@@ -64,7 +64,7 @@ class Event extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];

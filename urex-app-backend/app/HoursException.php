@@ -33,7 +33,7 @@ class HoursException extends Model {
 
     public static function create(array $attributes)
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $hours_exception = new HoursException;
         $hours_exception->date = date("Y-m-d", strtotime($attributes['date']));
@@ -55,7 +55,7 @@ class HoursException extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $this->date = date("Y-m-d", strtotime($attributes['date']));
         $this->open = date("h:i A", strtotime($attributes['open']));

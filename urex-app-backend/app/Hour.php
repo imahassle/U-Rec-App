@@ -33,7 +33,7 @@ class Hour extends Model {
 
     public static function create(array $attributes)
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $hour = new Hour;
         $hour->open = date("h:i:s", strtotime($attributes['open']));
@@ -55,7 +55,7 @@ class Hour extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $this->open = date("h:i A", strtotime($attributes['open']));
         $this->close = date("h:i A", strtotime($attributes['close']));

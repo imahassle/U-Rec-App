@@ -28,7 +28,7 @@ class Announcement extends Model {
 
     public static function create(array $attributes)
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         date_default_timezone_set("America/Los_Angeles");
 
@@ -53,7 +53,7 @@ class Announcement extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $this->title = $attributes['title'];
         $this->message = $attributes['message'];
