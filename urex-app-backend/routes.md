@@ -439,6 +439,7 @@ DELETE    | api/user/{***id***}                   | Deletes specified user.
 
 #
 **POST api/user inputs:**
+
 Input         | Validation Rules
 ------------- | ----------------
 `username`    | 
@@ -450,6 +451,7 @@ Input         | Validation Rules
 
 #
 **PUT api/user/{*id*} inputs:**
+
 Input         | Validation Rules
 ------------- | ----------------
 `username`    | 
@@ -460,6 +462,7 @@ Input         | Validation Rules
 
 #
 **PUT api/user/{*id*}/password inputs:**
+
 Input          | Validation Rules
 -------------- | ----------------
 `old_password` | 
