@@ -49,6 +49,7 @@ return [
             'driver'    => 'mysql',
             'host'      => 'cs1',
             'database'  => 'urex_appdb',
+            'username'  => 'urex_user',
             'password'  => 'urex_password',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
