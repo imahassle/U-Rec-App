@@ -72,6 +72,7 @@
       data: data
     }).done(function(data) {
       // console.log("response: ", data);
+      app.viewsFactory.menu();
       $.cookie('U-Rex-API-Key', data.api_key);
       console.log($.cookie('U-Rex-API-Key'));
       $.ajaxSetup({
@@ -102,8 +103,8 @@
             <!-- Announcement Template Below -->
             <% _.each(app.viewsFactory.facilityHome().collection.toJSON(), function(model) { %>
               <div class="home-announcement">
-                  <i class="fa fa-trash fa-2x right red"></i>
-                  <i class="fa fa-edit fa-2x right red"></i>
+                  <a href="#facility/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
+                  <a href="#facility/edit/<%= model.id %>"><i class="fa fa-edit fa-2x right red"></i></a>
                   <p class="announcement-date"><%= model.date %></p>
                   <h4><%= model.title %></h4>
                   <p class="announcement-blurb"><%= model.message %></p>
@@ -130,9 +131,9 @@
           date: new Date().toString().split(" G")[0],
         };
         console.log(data);
-        $.ajaxSetup({
-          headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
-        });
+        // $.ajaxSetup({
+        //   headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+        // });
         app.viewsFactory.facilityHome().collection.create(data, {
           url: "api/announcement",
           wait: true,

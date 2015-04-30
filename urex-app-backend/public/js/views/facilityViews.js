@@ -9,7 +9,11 @@ app.views.facilityHome = Backbone.View.extend({
 		this.collection.fetch().done(function() {
 			that.render();
 			console.log("fetched!");
-			that.listenTo(that.collection, 'add sync', that.render);
+			// that.listenTo(that.collection, 'add remove sync', that.render);
+			that.collection.listenTo(that.collection, "remove sync reset add change", function() {
+				console.log("changed...");
+				that.render();
+			});
 		});
 
 		// this.collection.on('change reset add remove', this.render, this);

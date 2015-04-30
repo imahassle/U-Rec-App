@@ -11,10 +11,16 @@ var app = (function() {
 		viewsFactory: null,
 		init: function() {
 			this.content = $("#main"); //Sets initial view for app
-			ViewsFactory.menu();
-			this.rentalInfo = new TempRentals();
+			if($.cookie('U-Rex-API-Key')) {
+				ViewsFactory.menu();
+			}
+
+			// this.rentalInfo = new TempRentals();
 			// this.rentalInfo.fetch();
 			// this.rentalInfo.bind('reset', function() {console.log(this.rentalInfo);});
+			$.ajaxSetup({
+				headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+			});
 
 			Backbone.history.start();
 			return this;
@@ -39,6 +45,11 @@ var app = (function() {
 					el: $("#menu")
 				});
 			}
+			return this.menuView;
+		},
+		removeMenu: function() {
+			$("#menu").html("");
+			this.menuView = null;
 			return this.menuView;
 		},
 		facilityHome: function() {
@@ -200,7 +211,7 @@ var app = (function() {
 			"facility/events": "facilityEvents",
 			"facility/photos": "facilityPhotos",
 			"facility/feedback": "facilityFeedback",
-			"facility/remove": "facilityRemove",
+			"facility/remove/:id": "facilityRemove",
 			"outdoorrec": "outdoorrecHome",
 			"outdoorrec/trips": "outdoorrecTrips",
 			"outdoorrec/photos": "outdoorrecPhotos",
@@ -274,7 +285,10 @@ var app = (function() {
 			api.changeContent(ViewsFactory.login().$el);
 		},
 		facilityRemove: function(id) {
-			
+
+			console.log("removing ", id);
+			api.viewsFactory.facilityHome().collection.get(id).destroy();
+			this.navigate("#facility");
 		}
 	});
 	api.router = new Router();
