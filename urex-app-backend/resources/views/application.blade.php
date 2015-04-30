@@ -129,20 +129,18 @@
         var data = {
           title: $("#facilities-announcement > input[name='title']").val(),
           message: $("#facilities-announcement > textarea[name='message']").val(),
-          date: new Date().toString(),
-          category_id: 0
+          date: new Date().toString().split(" (")[0],
         };
         console.log(data);
-        $.ajaxSetup({
-          headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
-        });
-        $.ajax({
-          url: "api/announcement",
-          method: "POST",
-          data: data
-        }).done(function(data) {
-          console.log("complete: ", data);
-        });
+        app.viewsFactory.facilityHome().collection.create(data);
+        console.log(app);
+        // $.ajax({
+        //   url: "api/announcement",
+        //   method: "POST",
+        //   data: data
+        // }).done(function(data) {
+        //   console.log("complete: ", data);
+        // });
       });
     </script>
 </script>

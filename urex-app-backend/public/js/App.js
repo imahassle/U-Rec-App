@@ -8,6 +8,7 @@ var app = (function() {
 		content: null,
 		router: null,
 		cms: null,
+		viewsFactory: null,
 		init: function() {
 			this.content = $("#main"); //Sets initial view for app
 			ViewsFactory.menu();
@@ -186,6 +187,11 @@ var app = (function() {
 			return this.rentalsView;
 		}
 	};
+
+	api.viewsFactory = ViewsFactory;
+
+	// api.facilityView = ViewsFactory.facilityHome();
+
 	var Router = Backbone.Router.extend({
 		routes: {
 			"facility": "facilityHome",

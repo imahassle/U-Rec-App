@@ -1,4 +1,6 @@
 app.collections.facilityAnnouncement = Backbone.Collection.extend({
-  model: app.models.announcement,
+  model: Announcement,
   url: "api/announcement",
 });
+
+// var facilityAnnouncements = new app.collections.facilityAnnouncement;
