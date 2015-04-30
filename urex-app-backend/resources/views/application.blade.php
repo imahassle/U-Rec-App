@@ -134,6 +134,7 @@
         console.log(data);
         app.viewsFactory.facilityHome().collection.create(data, {
           url: "api/announcement",
+          wait: true,
         });
         // console.log(app);
         // $.ajax({
