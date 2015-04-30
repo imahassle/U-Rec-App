@@ -83,10 +83,6 @@
 
 </script>
 
-<script type="text/template" id="announcement_home">
-
-</script>
-
 <script type="text/template" id="facilityHome">
 <div class="header aug-header">
     <h1>Facilities Home</h1>
