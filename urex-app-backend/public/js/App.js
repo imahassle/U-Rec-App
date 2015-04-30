@@ -200,6 +200,7 @@ var app = (function() {
 			"facility/events": "facilityEvents",
 			"facility/photos": "facilityPhotos",
 			"facility/feedback": "facilityFeedback",
+			"facility/remove": "facilityRemove",
 			"outdoorrec": "outdoorrecHome",
 			"outdoorrec/trips": "outdoorrecTrips",
 			"outdoorrec/photos": "outdoorrecPhotos",
@@ -271,6 +272,9 @@ var app = (function() {
 		stats: function() {},
 		login: function(valid) {
 			api.changeContent(ViewsFactory.login().$el);
+		},
+		facilityRemove: function(id) {
+			
 		}
 	});
 	api.router = new Router();

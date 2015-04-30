@@ -130,6 +130,9 @@
           date: new Date().toString().split(" G")[0],
         };
         console.log(data);
+        $.ajaxSetup({
+          headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+        });
         app.viewsFactory.facilityHome().collection.create(data, {
           url: "api/announcement",
           wait: true,
