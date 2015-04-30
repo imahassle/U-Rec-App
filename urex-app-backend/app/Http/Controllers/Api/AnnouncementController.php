@@ -34,8 +34,7 @@ class AnnouncementController extends ApiGuardController {
     {
         return $this->attemptExecution(function() {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Announcement::create($attributes);
-            return Response::json(['message' => 'Announcement created successfully.']);
+            return Response::json(Announcement::create($attributes)->toArray());
         });
     }
 
@@ -50,8 +49,7 @@ class AnnouncementController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Announcement::find($id)->update($attributes);
-            return Response::json(['message' => 'Announcement updated successfully.']);
+            return Response::json(Announcement::find($id)->update($attributes)->toArray());
         });
     }
 
@@ -59,7 +57,7 @@ class AnnouncementController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             Announcement::find($id)->delete();
-            return Response::json(['message' => 'Announcement deleted successfully.']);
+            return Response::make(['success' => true]);
         });
     }
 
