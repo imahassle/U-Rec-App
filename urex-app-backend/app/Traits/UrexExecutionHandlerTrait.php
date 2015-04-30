@@ -12,8 +12,7 @@ trait UrexExecutionHandlerTrait
             return $func();
         } catch(UrexException $e) {
             return Response::json([
-                'code' => $e->code(),
-                'message' => $e->getMessage()
+                'error' => $e->getMessage()
             ], $e->code());
         }
     }

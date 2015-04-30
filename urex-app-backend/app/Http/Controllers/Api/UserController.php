@@ -33,8 +33,7 @@ class UserController extends ApiGuardController {
     public function store()
     {
         return $this->attemptExecution(function() {
-            User::create(Request::all());
-            return Response::json(['message' => 'User created successfully.']);
+            return Response::json(User::create(Request::all())->toArray());
         });
     }
 
@@ -48,8 +47,7 @@ class UserController extends ApiGuardController {
     public function update($id)
     {
         return $this->attemptExecution(function() use ($id) {
-            User::find($id)->update(Request::all());
-            return Response::json(['message' => 'User updated successfully.']);
+            return Response::json(User::find($id)->update(Request::all())->toArray());
         });
     }
 
@@ -57,7 +55,7 @@ class UserController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             User::find($id)->update_password(Request::all());
-            return Response::json(['message' => 'User password updated successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
@@ -65,7 +63,7 @@ class UserController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             User::find($id)->delete();
-            return Response::json(['message' => 'User deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
     

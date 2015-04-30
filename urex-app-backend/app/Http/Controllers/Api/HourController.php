@@ -34,8 +34,7 @@ class HourController extends ApiGuardController {
     {
         return $this->attemptExecution(function() {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Hour::create($attributes);
-            return Response::json(['message' => 'Hours created successfully.']);
+            return Response::json(Hour::create($attributes)->toArray());
         });
     }
 
@@ -50,8 +49,7 @@ class HourController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Hour::find($id)->update($attributes);
-            return Response::json(['message' => 'Hours updated successfully.']);
+            return Response::json(Hour::find($id)->update($attributes)->toArray());
         });
     }
 
@@ -59,7 +57,7 @@ class HourController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             Hour::find($id)->delete();
-            return Response::json(['message' => 'Hours deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

@@ -55,6 +55,8 @@ class ItemRental extends Model {
         if(!$this->save()) {
             throw new ServerException("Item was not updated successfully due to an internal server error.");
         }
+
+        return $this;
     }
 
     public function delete() 

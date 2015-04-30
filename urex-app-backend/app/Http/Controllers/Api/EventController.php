@@ -35,8 +35,7 @@ class EventController extends ApiGuardController {
     {
         return $this->attemptExecution(function() {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Event::create($attributes);
-            return Response::json(['message' => 'Event created succesffully.']);
+            return Response::json(Event::create($attributes)->toArray());
         });
     }
 
@@ -58,8 +57,7 @@ class EventController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            Event::find($id)->update($attributes);
-            return Response::json(['message' => 'Event updated successfully.']);
+            return Response::json(Event::find($id)->update($attributes)->toArray());
         });
     }
 
@@ -67,7 +65,7 @@ class EventController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id, $image_id) {
             Event::find($id)->associate_image($image_id);
-            return Response::json(['message' => 'Image associated with event successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
@@ -75,7 +73,7 @@ class EventController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id, $image_id) {
             Event::find($id)->dissociate_image($image_id);
-            return Response::json(['message' => 'Image dissociated with event successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
@@ -83,7 +81,7 @@ class EventController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             Event::find($id)->delete();
-            return Response::json(['message' => 'Event deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

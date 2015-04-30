@@ -25,8 +25,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         return $this->attemptExecution(function() {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            IncentiveProgram::create($attributes);
-            return Response::json(['message' => 'Program created succesffully.']);
+            return Response::json(IncentiveProgram::create($attributes)->toArray());
         });
     }
 
@@ -48,8 +47,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
-            IncentiveProgram::find($id)->update($attributes);
-            return Response::json(['message' => 'Program updated successfully.']);
+            return Response::json(IncentiveProgram::find($id)->update($attributes)->toArray());
         });
     }
 
@@ -57,7 +55,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id, $image_id) {
             IncentiveProgram::find($id)->associate_image($image_id);
-            return Response::json(['message' => 'Image associated with program successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
@@ -65,7 +63,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id, $image_id) {
             IncentiveProgram::find($id)->dissociate_image($image_id);
-            return Response::json(['message' => 'Image dissociated with program successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
@@ -73,7 +71,7 @@ class IncentiveProgramController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             IncentiveProgram::find($id)->delete();
-            return Response::json(['message' => 'Program deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

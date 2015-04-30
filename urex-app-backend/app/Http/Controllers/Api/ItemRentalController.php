@@ -24,8 +24,7 @@ class ItemRentalController extends ApiGuardController {
     public function store()
     {
         return $this->attemptExecution(function() {
-            ItemRental::create(Request::all());
-            return Response::json(['message' => 'Item created successfully.']);
+            return Response::json(ItemRental::create(Request::all())->toArray());
         });
     }
 
@@ -39,8 +38,7 @@ class ItemRentalController extends ApiGuardController {
     public function update($id)
     {
         return $this->attemptExecution(function() use ($id) {
-            ItemRental::find($id)->update(Request::all());
-            return Response::json(['message' => 'Item updated successfully.']);
+            return Response::json(ItemRental::find($id)->update(Request::all())->toArray());
         });
     }
 
@@ -48,7 +46,7 @@ class ItemRentalController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             ItemRental::find($id)->delete();
-            return Response::json(['message' => 'Item deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

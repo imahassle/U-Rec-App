@@ -52,6 +52,8 @@ class IncentiveProgram extends Model {
         if(!$this->save()) {
             throw new ServerException("Program was not updated successfully due to an internal server error.");
         }
+
+        return $this;
     }
 
     public function delete() 

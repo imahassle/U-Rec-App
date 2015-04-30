@@ -84,6 +84,8 @@ class Event extends Model {
         if(!$this->save()) {
             throw new ServerException("Event was not updated successfully due to an internal server error.");
         }
+
+        return $this;
     }
 
     public function delete() 

@@ -32,8 +32,7 @@ class ImageController extends ApiGuardController {
                             'X-Authorization' => Request::header('X-Authorization'),
                             'file' => Request::file('image') 
                           ];
-            Image::create($attributes);
-            return Response::json(['message' => 'Image created successfully.']);
+            return Response::json(Image::create($attributes)->toArray());
         });
     }
 
@@ -48,7 +47,7 @@ class ImageController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             Image::find($id)->delete();
-            return Response::json(['message' => 'Image deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

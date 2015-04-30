@@ -70,6 +70,8 @@ class HoursException extends Model {
         if(!$this->save()) {
             throw new ServerException("Exception was not created successfully due to an internal server error.");
         }
+
+        return $this;
     }
 
     public function delete()

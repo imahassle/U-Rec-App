@@ -15,8 +15,7 @@ class FeedbackController extends Controller {
     {
         if(Request::header('X-Authorization') == null) {
             return Response::json([
-                'code' => 403,
-                'message' => 'Non-authorized users are not allowed to see feedback.'
+                'error' => 'Non-authorized users are not allowed to see feedback.'
             ], 403);
         }
 
@@ -27,14 +26,12 @@ class FeedbackController extends Controller {
     {
         if(Request::header('X-Authorization') != null) {
             return Response::json([
-                'code' => 403,
-                'message' => 'Authorized users are not allowed to submit feedback.'
+                'error' => 'Authorized users are not allowed to submit feedback.'
             ], 403);
         }
 
         return $this->attemptExecution(function() {
-            Feedback::create(Request::all());
-            return Response::json(['message' => 'Feedback created successfully.']);
+            return Response::json(Feedback::create(Request::all())->toArray());
         });
     }
 
@@ -42,8 +39,7 @@ class FeedbackController extends Controller {
     {
         if(Request::header('X-Authorization') == null) {
             return Response::json([
-                'code' => 403,
-                'message' => 'Non-authorized users are not allowed to see feedback.'
+                'error' => 'Non-authorized users are not allowed to see feedback.'
             ], 403);
         }
 
@@ -56,14 +52,13 @@ class FeedbackController extends Controller {
     {
         if(Request::header('X-Authorization') == null) {
             return Response::json([
-                'code' => 403,
-                'message' => 'Non-authorized users are not allowed to delete feedback.'
+                'error' => 'Non-authorized users are not allowed to delete feedback.'
             ], 403);
         }
 
         return $this->attemptExecution(function() use ($id) {
             Feedback::find($id)->delete();
-            return Response::json(['message' => 'Feedback deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 

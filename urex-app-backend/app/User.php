@@ -72,6 +72,8 @@ class User extends Model {
         if(!$this->save()) {
             throw new ServerException("User was not updated successfully due to an internal server error.");
         }
+
+        return $this;
     }
 
     public function update_password($attributes)
