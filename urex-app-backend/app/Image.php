@@ -24,7 +24,7 @@ class Image extends Model {
 
     public static function create(array $attributes) 
     {
-        $user = ApiKey::whereKey($attributes['X-Authorization'])->first()->user;
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $image = new Image;
         $image->file_location = '';
