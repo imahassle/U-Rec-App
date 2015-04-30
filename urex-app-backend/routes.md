@@ -69,8 +69,8 @@ where `error` is a string.
 
 Successful responses from:
 * GET requests
-* POST requests of the form /api/<resource>
-* PUT requests of the form /api/<resource>/{id}  
+* POST requests of the form /api/resource
+* PUT requests of the form /api/resource/{id}  
 
 #
 will be one of these two formats (depending on if the request is for a specific resource or a collection):
