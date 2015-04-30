@@ -129,11 +129,13 @@
         var data = {
           title: $("#facilities-announcement > input[name='title']").val(),
           message: $("#facilities-announcement > textarea[name='message']").val(),
-          date: new Date().toString().split(" (")[0],
+          date: new Date().toString().split(" G")[0],
         };
         console.log(data);
-        app.viewsFactory.facilityHome().collection.create(data);
-        console.log(app);
+        app.viewsFactory.facilityHome().collection.create(data, {
+          url: "api/announcement",
+        });
+        // console.log(app);
         // $.ajax({
         //   url: "api/announcement",
         //   method: "POST",

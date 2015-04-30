@@ -3,9 +3,7 @@ var Announcement = Backbone.Model.extend({
     // console.log("initialized announcement model");
   },
   defaults: {
-    "id": "",
-    "category_id": "",
-    "user_id": "",
+    id: null,
     "title": "New Title",
     "message": "Details",
     "date": "05/22/1993"

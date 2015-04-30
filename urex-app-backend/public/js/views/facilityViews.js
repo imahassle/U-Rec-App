@@ -4,7 +4,8 @@ app.views.facilityHome = Backbone.View.extend({
 	filler: "",
 	initialize: function() {
 		this.collection = new app.collections.facilityAnnouncement;
-		// this.collection.fetch();
+		console.log("fetching...");
+		this.collection.fetch();
 
 		// this.collection.on('change reset add remove', this.render, this);
 		// that.listenTo(this.collection, 'add', this.render);
@@ -15,11 +16,11 @@ app.views.facilityHome = Backbone.View.extend({
 	render: function() {
 	// this.filler = "";
 	var that = this, p;
-	console.log("fetching...");
-	p = this.collection.fetch();
+	console.log("Updating...");
+	// p = this.collection.fetch();
 	// console.log(p);
 	// p.fetch();
-	p.done(function() {
+	this.collection.done(function() {
 		console.log("fetched!");
 		// console.log(that.collection);
 		_.each(that.collection.models, function(item) {
