@@ -12,12 +12,12 @@ class Hour extends Model {
 
     public function getOpenAttribute($value)
     {
-        return date("h:i A", strtotime($value));
+        return date("h:ia", strtotime($value));
     }
 
     public function getCloseAttribute($value)
     {
-        return date("h:i A", strtotime($value));
+        return date("h:ia", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -36,8 +36,8 @@ class Hour extends Model {
         $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $hour = new Hour;
-        $hour->open = date("h:i:s", strtotime($attributes['open']));
-        $hour->close = date("h:i:s", strtotime($attributes['close']));
+        $hour->open = date("H:i:s", strtotime($attributes['open']));
+        $hour->close = date("H:i:s", strtotime($attributes['close']));
         $hour->day_of_week = $attributes['day_of_week'];
 
         if(array_key_exists('category_id', $attributes)) {
@@ -57,8 +57,8 @@ class Hour extends Model {
     {
         $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
-        $this->open = date("h:i A", strtotime($attributes['open']));
-        $this->close = date("h:i A", strtotime($attributes['close']));
+        $this->open = date("H:i:s", strtotime($attributes['open']));
+        $this->close = date("H:i:s", strtotime($attributes['close']));
         $this->day_of_week = $attributes['day_of_week'];
 
         if(array_key_exists('category_id', $attributes)) {

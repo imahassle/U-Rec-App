@@ -16,12 +16,12 @@ class Event extends Model {
 
     public function getStartAttribute($value)
     {
-        return date("m/d/Y h:i A", strtotime($value));
+        return date("M d, Y h:ia", strtotime($value));
     }
 
     public function getEndAttribute($value)
     {
-        return date("m/d/Y h:i A", strtotime($value));
+        return date("M d, Y h:ia", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -42,8 +42,8 @@ class Event extends Model {
         $event = new Event;
         $event->title = $attributes['title'];
         $event->description = $attributes['description'];
-        $event->start = date("Y-m-d h:i:s", strtotime($attributes['start']));
-        $event->end = date("Y-m-d h:i:s", strtotime($attributes['end']));
+        $event->start = date("Y-m-d H:i:s", strtotime($attributes['start']));
+        $event->end = date("Y-m-d H:i:s", strtotime($attributes['end']));
         $event->cost = $attributes['cost'];
         $event->spots = $attributes['spots'];
         $event->gear_needed = $attributes['gear_needed'];
@@ -68,8 +68,8 @@ class Event extends Model {
 
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];
-        $this->start = date("Y-m-d h:i:s", strtotime($attributes['start']));
-        $this->end = date("Y-m-d h:i:s", strtotime($attributes['end']));
+        $this->start = date("Y-m-d H:i:s", strtotime($attributes['start']));
+        $this->end = date("Y-m-d H:i:s", strtotime($attributes['end']));
         $this->cost = $attributes['cost'];
         $this->spots = $attributes['spots'];
         $this->gear_needed = $attributes['gear_needed'];

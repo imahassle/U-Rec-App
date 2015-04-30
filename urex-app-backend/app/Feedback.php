@@ -12,7 +12,7 @@ class Feedback extends Model {
 
     public function getDateAttribute($value)
     {
-        return date("m/d/Y h:i A", strtotime($value));
+        return date("M d, Y h:ia", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -31,7 +31,7 @@ class Feedback extends Model {
         $feedback = new Feedback;
         $feedback->message = $attributes['message'];
         $feedback->email = $attributes['email'];
-        $feedback->date = date("Y-m-d h:i:s", strtotime($attributes['date']));
+        $feedback->date = date("Y-m-d H:i:s", strtotime($attributes['date']));
 
         if(!$feedback->save()) {
             throw new ServerException("Feedback was not created successfully due to an internal server error.");
