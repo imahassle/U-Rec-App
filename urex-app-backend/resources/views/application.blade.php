@@ -84,13 +84,7 @@
 </script>
 
 <script type="text/template" id="announcement_home">
-  <div class="home-announcement">
-      <i class="fa fa-trash fa-2x right red"></i>
-      <i class="fa fa-edit fa-2x right red"></i>
-      <p class="announcement-date"><%= date %></p>
-      <h4><%= title %></h4>
-      <p class="announcement-blurb"><%= message %></p>
-  </div>
+
 </script>
 
 <script type="text/template" id="facilityHome">
@@ -110,7 +104,15 @@
                 </form>
             </div>
             <!-- Announcement Template Below -->
-            <%= fill %>
+            <% _.each(app.viewsFactory.facilityHome().collection.toJSON(), function(model) { %>
+              <div class="home-announcement">
+                  <i class="fa fa-trash fa-2x right red"></i>
+                  <i class="fa fa-edit fa-2x right red"></i>
+                  <p class="announcement-date"><%= model.date %></p>
+                  <h4><%= model.title %></h4>
+                  <p class="announcement-blurb"><%= model.message %></p>
+              </div>
+            <% }); %>
 
         </div>
         <!-- Quick links menu here -->

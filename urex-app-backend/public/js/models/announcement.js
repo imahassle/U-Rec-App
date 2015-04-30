@@ -4,9 +4,9 @@ var Announcement = Backbone.Model.extend({
   },
   defaults: {
     id: null,
-    "title": "New Title",
-    "message": "Details",
-    "date": "05/22/1993"
+    title: "New Title",
+    message: "Details",
+    date: "05/22/1993"
   }
 });
 
