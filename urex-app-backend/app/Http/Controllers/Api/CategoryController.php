@@ -30,8 +30,7 @@ class CategoryController extends ApiGuardController {
     public function store()
     {
         return $this->attemptExecution(function() {
-            Category::create(Request::all());
-            return Response::json(['message' => 'Category created successfully.']);
+            return Response::json(Category::create(Request::all())->toArray());
         });
     }
 
@@ -45,8 +44,7 @@ class CategoryController extends ApiGuardController {
     public function update($id)
     {
         return $this->attemptExecution(function() use ($id) {
-            Category::find($id)->update(Request::all());
-            return Response::json(['message' => 'Category updated successfully.']);
+            return Response::json(Category::find($id)->update(Request::all())->toArray());
         });
     }
 
@@ -54,7 +52,7 @@ class CategoryController extends ApiGuardController {
     {
         return $this->attemptExecution(function() use ($id) {
             Category::find($id)->delete();
-            return Response::json(['message' => 'Category deleted successfully.']);
+            return Response::json(['success' => true]);
         });
     }
 
