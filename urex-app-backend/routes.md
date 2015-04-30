@@ -60,15 +60,20 @@ For **401** errors (representing an authentication error), the response will be:
 For all other errors, the response will be of this format:
 ```javascript
 {
-    "code" : code,
-    "message" : message
+    "error" : message
 }
 ```
-where `code` is an integer and `message` is a string.
+where `error` is a string.
 
 #
 
-Successful responses from a GET request will be one of these two formats (depending on if the request is for a specific resource or a collection):
+Successful responses from:
+* GET requests
+* POST requests of the form /api/<resource>
+* PUT requests of the form /api/<resource>/{id}  
+
+#
+will be one of these two formats (depending on if the request is for a specific resource or a collection):
 ```javascript
 {
     "output_1" : output_1,
@@ -95,7 +100,7 @@ Successful responses from a GET request will be one of these two formats (depend
 Successful responses from all other request types will be of the format:
 ```javascript
 {
-    "message": "<resource> <action>ed successfully."
+    "success": true
 }
 ```
 
