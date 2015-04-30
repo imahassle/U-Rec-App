@@ -12,12 +12,12 @@ class HoursException extends Model {
 
     public function getOpenAttribute($value)
     {
-        return date("h:i A", strtotime($value));
+        return date("h:ia", strtotime($value));
     }
 
     public function getCloseAttribute($value)
     {
-        return date("h:i A", strtotime($value));
+        return date("h:ia", strtotime($value));
     }
 
     public static function find($id, $columns = array('*'))
@@ -37,8 +37,8 @@ class HoursException extends Model {
 
         $hours_exception = new HoursException;
         $hours_exception->date = date("Y-m-d", strtotime($attributes['date']));
-        $hours_exception->open = date("h:i:s", strtotime($attributes['open']));
-        $hours_exception->close = date("h:i:s", strtotime($attributes['close']));
+        $hours_exception->open = date("H:i:s", strtotime($attributes['open']));
+        $hours_exception->close = date("H:i:s", strtotime($attributes['close']));
 
         if(array_key_exists('category_id', $attributes)) {
             $hours_exception->category_id = $attributes['category_id'];
@@ -58,8 +58,8 @@ class HoursException extends Model {
         $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
 
         $this->date = date("Y-m-d", strtotime($attributes['date']));
-        $this->open = date("h:i A", strtotime($attributes['open']));
-        $this->close = date("h:i A", strtotime($attributes['close']));
+        $this->open = date("H:i:s", strtotime($attributes['open']));
+        $this->close = date("H:i:s", strtotime($attributes['close']));
 
         if(array_key_exists('category_id', $attributes)) {
             $this->category_id = $attributes['category_id'];
