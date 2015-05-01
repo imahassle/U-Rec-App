@@ -27,11 +27,7 @@ class ImageController extends ApiGuardController {
     public function store()
     {
         return $this->attemptExecution(function() {
-            $attributes = Request::all() 
-                        + [
-                            'X-Authorization' => Request::header('X-Authorization'),
-                            'file' => Request::file('image') 
-                          ];
+            $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
             return Response::json(Image::create($attributes)->toArray());
         });
     }

@@ -43,9 +43,24 @@ class Image extends Model {
         $image->file_location = "images/image_"
                               . strval($image->id)
                               . '.'
-                              . $attributes['file']->getClientOriginalExtension();
+                              . $attributes['extension'];
 
-        $attributes['file']->move(public_path() . '/images', str_replace("images/", "", $image->file_location));
+        if(!File::isDirectory(public_path().'/images')) {
+            File::makeDirectory(public_path().'/images', 0775);
+        }
+        $dst = fopen(public_path().'/'.$image->file_location, 'wb');
+        echo $attributes['file'];
+        if(strpos($attributes['file'], 'data') !== false) {
+            $attributes['file'] = explode(',', $attributes['file'])[1];
+        }
+        File::put(public_path()."/images/temp.data", $attributes['file']);
+        $src = fopen(public_path()."/images/temp.data", 'rb');
+        while(!feof($src)) {
+            fwrite($dst, base64_decode(fread($src, 1024)));
+        }
+        fclose($src);
+        fclose($dst);
+        File::delete(public_path()."/images/temp.data");
 
         if(!$image->save() 
         || !File::exists(public_path() . "/" . $image->file_location)) {
