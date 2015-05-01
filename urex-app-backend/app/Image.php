@@ -49,7 +49,6 @@ class Image extends Model {
             File::makeDirectory(public_path().'/images', 0775);
         }
         $dst = fopen(public_path().'/'.$image->file_location, 'wb');
-        echo $attributes['file'];
         if(strpos($attributes['file'], 'data') !== false) {
             $attributes['file'] = explode(',', $attributes['file'])[1];
         }
