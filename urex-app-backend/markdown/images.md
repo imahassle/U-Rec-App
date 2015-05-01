@@ -2,6 +2,8 @@
 
 **This API is somewhat tentative. I may have to change it due to the social network requirements.**
 
+**NOTE: Image uploads need to be 5 megabytes or less.**
+
 X-Authorization?   | HTTP Verb | URI                                    | Description
 :----------------: | --------- | -------------------------------------- | -----------------------------------------------
 :heavy_check_mark: | GET       | api/image                              | Retrieves all images.
@@ -14,7 +16,8 @@ X-Authorization?   | HTTP Verb | URI                                    | Descri
 Input         | Optional?          | Validation Rules
 ------------- | :----------------: | ----------------
 `caption`     | :heavy_minus_sign: |
-`file`        | :heavy_minus_sign: | `file`
+`file`        | :heavy_minus_sign: | `base64 encoded`
+`extension`   | :heavy_minus_sign: |
 `category_id` | :heavy_check_mark: | 
 
 #
