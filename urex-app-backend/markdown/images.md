@@ -2,6 +2,8 @@
 
 **This API is somewhat tentative. I may have to change it due to the social network requirements.**
 
+**NOTE: Image uploads need to be 5 megabytes or less.**
+
 X-Authorization?   | HTTP Verb | URI                                    | Description
 :----------------: | --------- | -------------------------------------- | -----------------------------------------------
 :heavy_check_mark: | GET       | api/image                              | Retrieves all images.
