@@ -18,29 +18,13 @@ app.views.facilityHome = Backbone.View.extend({
 
 		// this.collection.on('change reset add remove', this.render, this);
 
-
-
-
 	},
 	render: function() {
-	// this.filler = "";
-	// var that = this, p;
+
 	console.log("Updating...");
-	// p = this.collection.fetch();
-	// console.log(p);
-	// p.fetch();
-	// this.collection.done(function() {
-
-		// console.log(that.collection);
-		// _.each(that.collection.models, function(item) {
-		// 	// console.log(item);
-		// 	that.filler += that.subtemplate(item.attributes);
-		// }, that);
-		// console.log(that.filler);
-		this.$el.html(this.template());
-
-			return this;
-		// });
+	this.$el.html(this.template());
+	
+	return this;
 
 	}
 });

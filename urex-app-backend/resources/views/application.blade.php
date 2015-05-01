@@ -21,6 +21,8 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
+
+
 </head>
 <body>
 
@@ -84,6 +86,32 @@
 
 </script>
 
+<script type="text/template" id="editAnnouncement">
+<form action="javascript:" class="editAnnouncement" value="<%= model.id %>" class="pure-form pure-form-stacked">
+  <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
+  <input name="title" type="text" placeholder="Program Title" value="<%=model.title%>">
+  <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details" value=""><%=model.message%></textarea>
+</form>
+<script type="text/javascript">
+$(".editAnnouncement").on("submit", function() {
+  console.log("saving changes...");
+  var ID = $(this).attr("value");
+  // console.log(ID);
+  var data = new Announcement({
+    id: ID,
+    title: $(this).children("input[name=title]").val(),
+    message: $(this).children("textarea[name=message]").val(),
+  });
+  app.viewsFactory.facilityHome().collection.get(ID).sync("update", data, {url:"api/announcement/"+ID}).done(function(error) {
+    checkError(error);
+    app.viewsFactory.facilityHome().collection.fetch();
+  });
+
+
+});
+</script>
+</script>
+
 <script type="text/template" id="facilityHome">
 <div class="header aug-header">
     <h1>Facilities Home</h1>
@@ -102,9 +130,9 @@
             </div>
             <!-- Announcement Template Below -->
             <% _.each(app.viewsFactory.facilityHome().collection.toJSON(), function(model) { %>
-              <div class="home-announcement">
+              <div class="home-announcement" id="<%= model.id %>">
                   <a href="#facility/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
-                  <a href="#facility/edit/<%= model.id %>"><i class="fa fa-edit fa-2x right red"></i></a>
+                  <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
                   <p class="announcement-date"><%= model.date %></p>
                   <h4><%= model.title %></h4>
                   <p class="announcement-blurb"><%= model.message %></p>
@@ -131,22 +159,23 @@
           date: new Date().toString().split(" G")[0],
         };
         console.log(data);
-        // $.ajaxSetup({
-        //   headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
-        // });
         app.viewsFactory.facilityHome().collection.create(data, {
           url: "api/announcement",
           wait: true,
+          success: function() {
+            console.log("refreshing view after submittal...");
+            app.viewsFactory.facilityHome().collection.fetch();
+          }
         });
-        // console.log(app);
-        // $.ajax({
-        //   url: "api/announcement",
-        //   method: "POST",
-        //   data: data
-        // }).done(function(data) {
-        //   console.log("complete: ", data);
-        // });
       });
+      $(".editAnnouncementButton").on('click', function() {
+        var id = $(this).parent(".home-announcement").attr("id");
+        var parent = $(this).parent(".home-announcement");
+        var template = _.template($("#editAnnouncement").html())
+        console.log("Now editing announcement", id);
+        $(parent).html(template({model: app.viewsFactory.facilityHome().collection.get(id).attributes}));
+      });
+
     </script>
 </script>
 
@@ -1062,6 +1091,9 @@
 <script src="js/views/outdoorrecViews.js"></script>
 <script src="js/views/climbingwallViews.js"></script>
 <script src="js/views/intramuralsViews.js"></script>
+
+//Error reporting script
+<script type="text/javascript" src="js/errorReporting"></script>
 
 <script type="text/javascript">
     window.onload = function() {
