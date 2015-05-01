@@ -29,8 +29,8 @@ Output        | Type      | Format
 `id`          | `integer` |
 `title`       | `string`  |
 `description` | `string`  |
-`start`       | `string`  | `mm/dd/yyyy hh:mm [AM|PM]`
-`end`         | `string`  | `mm/dd/yyyy hh:mm [AM|PM]`
+`start`       | `string`  | `mm dd, yyyy hh:mm[am|pm]`
+`end`         | `string`  | `mm dd, yyyy hh:mm[am|pm]`
 `cost`        | `string`  |
 `spots`       | `integer` |
 `gear_needed` | `string`  |
