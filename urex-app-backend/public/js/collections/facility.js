@@ -1,4 +1,4 @@
-app.collections.facilityAnnouncement = Backbone.Collection.extend({
+app.collections.generalAnnouncement = Backbone.Collection.extend({
   model: Announcement,
   url: "api/announcement",
   comparator: function(a,b) {

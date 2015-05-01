@@ -10,4 +10,4 @@ var Announcement = Backbone.Model.extend({
   }
 });
 
-var announcement = new Announcement;
+// var announcement = new Announcement;
