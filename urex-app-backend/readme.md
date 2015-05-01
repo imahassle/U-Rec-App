@@ -109,7 +109,7 @@ Successful responses from all other request types will be of the format:
 #
 ---
 
-### **Route Explanations**
+### **Resource Route Explanations**
 * [Login](markdown/login.md)
 * [Announcements](markdown/announcements.md)
 * [Categories](markdown/categories.md)
