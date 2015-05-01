@@ -403,10 +403,17 @@ html {
     }
   }
   .perm-button {
+    background: none;
     position: fixed;
+    display: inline-block;
     top: 170px;
     // right: 30px;
     right: 1%;
+    text-align: right;
+    input, button {
+      display: inline;
+      margin-right: auto;
+    }
   }
 }
 

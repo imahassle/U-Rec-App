@@ -103,7 +103,7 @@ $(".editAnnouncement").on("submit", function() {
     message: $(this).children("textarea[name=message]").val(),
   });
   app.viewsFactory.facilityHome().collection.get(ID).sync("update", data, {url:"api/announcement/"+ID}).done(function(error) {
-    checkError(error);
+    // checkError(error);
     app.viewsFactory.facilityHome().collection.fetch();
   });
 
@@ -129,7 +129,7 @@ $(".editAnnouncement").on("submit", function() {
                 </form>
             </div>
             <!-- Announcement Template Below -->
-            <% _.each(app.viewsFactory.facilityHome().collection.toJSON(), function(model) { %>
+            <% _.each(collection, function(model) { %>
               <div class="home-announcement" id="<%= model.id %>">
                   <a href="#facility/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
                   <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
@@ -156,6 +156,7 @@ $(".editAnnouncement").on("submit", function() {
         var data = {
           title: $("#facilities-announcement > input[name='title']").val(),
           message: $("#facilities-announcement > textarea[name='message']").val(),
+          category_id: 1,
           date: new Date().toString().split(" G")[0],
         };
         console.log(data);
@@ -190,28 +191,23 @@ $(".editAnnouncement").on("submit", function() {
         <div class="home-channel pure-u-3-5">
             <div class="home-main-banner">
                 <h3 class="banner">Announcements</h3>
-                <form class="pure-form pure-form-stacked">
+                <form  action="javascript:" id="outdoorrec-announcement" class="pure-form pure-form-stacked">
                     <h4>New Announcement</h4>
                     <button type="submit" class="pure-button pure-button-primary right red">POST</button>
-                    <input type="text" placeholder="Title">
-                    <textarea name="details" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
+                    <input name="title" type="text" placeholder="Title">
+                    <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
                 </form>
             </div>
             <!-- Announcement Template Below -->
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
+            <% _.each(collection, function(model) { %>
+              <div class="home-announcement" id="<%= model.id %>">
+                  <a href="#outdoorrec/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
+                  <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
+                  <p class="announcement-date"><%= model.date %></p>
+                  <h4><%= model.title %></h4>
+                  <p class="announcement-blurb"><%= model.message %></p>
+              </div>
+            <% }); %>
         </div>
         <!-- Quick links menu here -->
         <div class="pure-u-2-5 quick-menu">
@@ -220,6 +216,33 @@ $(".editAnnouncement").on("submit", function() {
             <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
         </div>
     </div>
+    <script type="text/javascript">
+    $('#outdoorrec-announcement').on("submit", function(event) {
+      event.preventDefault();
+      var data = {
+        title: $("#outdoorrec-announcement > input[name='title']").val(),
+        message: $("#outdoorrec-announcement > textarea[name='message']").val(),
+        category_id: 2,
+        date: new Date().toString().split(" G")[0],
+      };
+      console.log(data);
+      app.viewsFactory.outdoorrecHome().collection.create(data, {
+        url: "api/announcement",
+        wait: true,
+        success: function() {
+          console.log("refreshing view after submittal...");
+          app.viewsFactory.outdoorrecHome().collection.fetch();
+        }
+      });
+    });
+    $(".editAnnouncementButton").on('click', function() {
+      var id = $(this).parent(".home-announcement").attr("id");
+      var parent = $(this).parent(".home-announcement");
+      var template = _.template($("#editAnnouncement").html())
+      console.log("Now editing announcement", id);
+      $(parent).html(template({model: app.viewsFactory.outdoorrecHome().collection.get(id).attributes}));
+    });
+    </script>
 </script>
 
 <script type="text/template" id="intramuralsHome">
@@ -375,33 +398,64 @@ $(".editAnnouncement").on("submit", function() {
         <div class=" pure-u-4-5 ">
             <div class="pure-g">
                 <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
+                <% _.each(collection, function(model) { %>
+                  <div class="pure-u-1-4">
+                    <img id="<%= model.id %>" src="<%= model.file_location %>" alt="<%= model.caption %>">
+                    </div>
+                <% }); %>
             </div>
         </div>
-        <button class="pure-button perm-button red">Upload Photos</button>
+        <div class="perm-button">
+          <input type="file" class="pure-button" value="Upload Photos">
+          <br>
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </div>
     </div>
+    <script type="text/javascript">
+      $("input[type=file]").on("change", function() {
+        console.log(this.files[0].name);
+      });
+      $(".imageSubmit").on("click", function() {
+        if(typeof $(".perm-button > input[type=file]")[0].files[0] == "undefined") {
+          alert("Please select an image");
+        }
+        else {
+          var theFile = $(".perm-button > input[type=file]")[0].files[0];
+          var reader = new FileReader();
+          var extension = null;
+          var fileData = null;
+
+          reader.onload = function(theFile) {
+            return function(e) {
+              //set the model
+              console.log("FILE INFO", theFile);
+              // that.set({file: e.target.result, extension: theFile.name.split('.').pop()});
+
+              fileData = e.target.result;
+              console.log(fileData);
+            };
+          };
+          extension = theFile.name.split('.').pop();
+          reader.readAsDataURL(theFile);
+          // fileData = reader.result;
+          // console.log(reader);
+          // var image = {
+          //   caption: "Hello World",
+          //   file: $(".perm-button > input[type=file]")[0].files[0],
+          //   category_id: 1
+          // };
+
+          app.viewsFactory.facilityPhotosView.collection.create(image, {
+            url: "api/image",
+            wait: true,
+            success: function() {
+              console.log("refreshing view after submittal...");
+              app.viewsFactory.facilityPhotosView.collection.fetch();
+            }
+          });
+        }
+      });
+    </script>
 </script>
 
 <script type="text/template" id="climbingwallHome">
@@ -1076,23 +1130,24 @@ $(".editAnnouncement").on("submit", function() {
 
 <!-- App Models  -->
 <script src="js/models/announcement.js"></script>
+<script src="js/models/rentals.js"></script>
+<script src="js/models/image.js"></script>
 <!-- App Collections -->
 <script src="js/collections/facility.js"></script>
-
-<script src="js/models/rentals.js"></script>
+<script src="js/collections/image.js"></script>
 <script src="js/collections/rentals.js"></script>
+<!-- App Views -->
 <script src="js/views/menu.js"></script>
-<!-- <script src="js/views/about.js"></script> -->
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/rentals.js"></script>
-<script src="js/views/insertDummy.js"></script>
+<!-- <script src="js/views/insertDummy.js"></script> -->
 <script src="js/views/facilityViews.js"></script>
 <script src="js/views/outdoorrecViews.js"></script>
 <script src="js/views/climbingwallViews.js"></script>
 <script src="js/views/intramuralsViews.js"></script>
 
-//Error reporting script
+<!-- //Error reporting script -->
 <script type="text/javascript" src="js/errorReporting"></script>
 
 <script type="text/javascript">

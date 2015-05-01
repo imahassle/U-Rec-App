@@ -215,6 +215,7 @@ var app = (function() {
 			"outdoorrec": "outdoorrecHome",
 			"outdoorrec/trips": "outdoorrecTrips",
 			"outdoorrec/photos": "outdoorrecPhotos",
+			"outdoorrec/remove/:id": "outdoorrecRemove",
 			"intramurals": "intramuralsHome",
 			"intramurals/photos": "intramuralsPhotos",
 			"climbingwall": "climbingwallHome",
@@ -287,8 +288,33 @@ var app = (function() {
 		facilityRemove: function(id) {
 
 			console.log("removing ", id);
-			api.viewsFactory.facilityHome().collection.get(id).destroy();
+			var item = api.viewsFactory.facilityHome().collection.get(id);
+			if(item.isNew()) {
+				console.log("It's new!");
+				item.sync("read", item, {url: "api/announcement"}).done(function() {
+					item.destroy({url:"api/announcement/"+id});
+				});
+			}
+			else {
+				item.destroy({url:"api/announcement/"+id});
+			}
+
 			this.navigate("#facility");
+		},
+		outdoorrecRemove: function(id) {
+			console.log("removing ", id);
+			var item = api.viewsFactory.outdoorrecHome().collection.get(id);
+			if(item.isNew()) {
+				console.log("It's new!");
+				item.sync("read", item, {url: "api/announcement"}).done(function() {
+					item.destroy({url:"api/announcement/"+id});
+				});
+			}
+			else {
+				item.destroy({url:"api/announcement/"+id});
+			}
+
+			this.navigate("#outdoorrec");
 		}
 	});
 	api.router = new Router();
