@@ -21,7 +21,7 @@ Input         | Optional?          | Validation Rules
 Output        | Type      | Format
 ------------- | :-------: | ---------------
 `id`          | `integer` |
-`date`        | `string`  | `mm/dd/yyyy`
-`open`        | `string`  | `hh:mm [AM|PM]`
-`close`       | `string`  | `hh:mm [AM|PM]`
+`date`        | `string`  | `mm dd, yyyy`
+`open`        | `string`  | `hh:mm[am|pm]`
+`close`       | `string`  | `hh:mm[am|pm]`
 `category_id` | `integer` |
