@@ -14,7 +14,8 @@ X-Authorization?   | HTTP Verb | URI                                    | Descri
 Input         | Optional?          | Validation Rules
 ------------- | :----------------: | ----------------
 `caption`     | :heavy_minus_sign: |
-`file`        | :heavy_minus_sign: | `file`
+`file`        | :heavy_minus_sign: | `base64 encoded`
+`extension`   | :heavy_minus_sign: |
 `category_id` | :heavy_check_mark: | 
 
 #
