@@ -23,6 +23,6 @@ Output          | Type      | Format
 `id`            | `integer` |
 `title`         | `string`  |
 `message`       | `string`  |
-`date`          | `string`  | `mm/dd/yyyy`
+`date`          | `string`  | `mm dd, yyyy hh:mm[am|pm]`
 `user_id`       | `integer` |
 `category_id`   | `integer` |
