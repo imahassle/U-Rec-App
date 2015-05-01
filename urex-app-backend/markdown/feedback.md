@@ -20,4 +20,4 @@ Output    | Type      | Format
 `id`      | `integer` |
 `message` | `string`  |
 `email`   | `string`  |
-`date`    | `string`  | `mm/dd/yyyy hh:mm [AM|PM]`
+`date`    | `string`  | `mm dd, yyyy hh:mm[am|pm]`
