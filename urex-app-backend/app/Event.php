@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Chrisbjr\ApiGuard\Models\ApiKey;
 use App\Exceptions\ClientException;
 use App\Exceptions\ServerException;
+use App\EventImage;
 
 class Event extends Model {
     

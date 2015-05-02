@@ -5,6 +5,8 @@ use Chrisbjr\ApiGuard\Models\ApiKey;
 use App\Exceptions\ClientException;
 use App\Exceptions\ServerException;
 use File;
+use App\EventImage;
+use App\IncentiveProgram;
 
 class Image extends Model {
 
@@ -77,6 +79,9 @@ class Image extends Model {
         if(File::exists(public_path() . "/" . $this->file_location) || !parent::delete()) {
             throw new ServerException("Image was not deleted successfully due to an internal server error.");
         }
+
+        EventImage::whereImageId($this->id)->delete();
+        ImageIncentiveProgram::whereImageId($this->id)->delete();
     }
     
 }
