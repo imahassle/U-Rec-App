@@ -35,7 +35,12 @@
         <span></span>
     </a>
 
+    <div id="error-report" style="display: none">
+
+    </div>
+
     <div class="header aug-top-bar">
+
         <label for="logout-button">Hello, User!</label>
         <a id="logout-button" href="#">Log out</a>
     </div>
@@ -48,6 +53,17 @@
 </div>
 
 <!-- === Views === -->
+
+<script type="text/template" id="error-report-template">
+  <p class="error-type">Error:</p>
+  <p class="error-text"><%= message %></p>
+  <a id="error-close"><i class="fa fa-times right"></i></a>
+  <script>
+  $("#error-close").on("click", function() {
+    $("#error-report").slideToggle();
+  });
+  </script>
+</script>
 
 
 
@@ -394,49 +410,79 @@ $(".editAnnouncement").on("submit", function() {
     <div class="header aug-header">
         <h1>Facility Photos</h1>
     </div>
+    <div class="content">
+      <div class="previewImage">
+
+      </div>
+      <form action="javascript:" id="facilityPhotosUpload" class="pure-form pure-form-stacked">
+        <input id="fileUpload" type="file" value="Upload Photos">
+        <br>
+        <fieldset>
+          <input class="pure-input" type="text" placeholder="Caption">
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </fieldset>
+
+      </form>
+
+    </div>
     <div class="content pure-g photos-view">
         <div class=" pure-u-4-5 ">
             <div class="pure-g">
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
                 <% _.each(collection, function(model) { %>
                   <div class="pure-u-1-4">
-                    <img id="<%= model.id %>" src="<%= model.file_location %>" alt="<%= model.caption %>">
+                    <img id="<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>">
+                    <p><%= model.caption %></p>
                     </div>
                 <% }); %>
             </div>
         </div>
-        <div class="perm-button">
-          <input type="file" class="pure-button" value="Upload Photos">
-          <br>
-          <button class="pure-button red imageSubmit">SUBMIT</button>
-        </div>
+
     </div>
     <script type="text/javascript">
-      $("input[type=file]").on("change", function() {
-        console.log(this.files[0].name);
+      $("#facilityPhotosUpload input[type=file]").on("change", function() {
+        console.log(this.files[0]);
       });
-      $(".imageSubmit").on("click", function() {
-        if(typeof $(".perm-button > input[type=file]")[0].files[0] == "undefined") {
-          alert("Please select an image");
+      $("#facilityPhotosUpload .imageSubmit").on("click", function() {
+        var theFile = $("#fileUpload")[0].files[0];
+        if(typeof theFile == "undefined") {
+          // alert("Please select an image");
+          checkError({error: "Please select an image!"});
+        }
+        else if (theFile.size > 5242880) {
+          checkError({error: "Your file size is too big! Try uploading a smaller image."});
         }
         else {
-          var theFile = $(".perm-button > input[type=file]")[0].files[0];
           var reader = new FileReader();
-          var extension = null;
+          var fileExt = null;
           var fileData = null;
+          var size = theFile.size;
 
-          reader.onload = function(theFile) {
-            return function(e) {
-              //set the model
-              console.log("FILE INFO", theFile);
-              // that.set({file: e.target.result, extension: theFile.name.split('.').pop()});
-
-              fileData = e.target.result;
-              console.log(fileData);
-            };
-          };
-          extension = theFile.name.split('.').pop();
+          console.log(theFile);
+          fileExt = theFile.name.split('.').pop();
           reader.readAsDataURL(theFile);
+          reader.onload = function(file) {
+            fileData = file.target.result;
+
+            var image = {
+              file: fileData,
+              caption: $("#facilityPhotosUpload input[type=text]").val(),
+              extension: fileExt,
+            };
+            console.log(image);
+
+            app.viewsFactory.facilityPhotosView.collection.create(image, {
+              url: "api/image",
+              wait: true,
+              success: function() {
+                console.log("refreshing view after submittal...");
+                app.viewsFactory.facilityPhotosView.collection.fetch();
+              },
+              error: function(error) {
+                console.log(error);
+              }
+            });
+
+          };
           // fileData = reader.result;
           // console.log(reader);
           // var image = {
@@ -445,14 +491,7 @@ $(".editAnnouncement").on("submit", function() {
           //   category_id: 1
           // };
 
-          app.viewsFactory.facilityPhotosView.collection.create(image, {
-            url: "api/image",
-            wait: true,
-            success: function() {
-              console.log("refreshing view after submittal...");
-              app.viewsFactory.facilityPhotosView.collection.fetch();
-            }
-          });
+
         }
       });
     </script>
@@ -1123,6 +1162,8 @@ $(".editAnnouncement").on("submit", function() {
 <script src="js/vendor/jquery.cookie.js"></script>
 <script src="js/vendor/jquery-ui.js"></script>
 
+<!-- //Error reporting script -->
+<script type="text/javascript" src="js/errorReporting.js"></script>
 
 <!-- === Backbone App === -->
 
@@ -1147,8 +1188,7 @@ $(".editAnnouncement").on("submit", function() {
 <script src="js/views/climbingwallViews.js"></script>
 <script src="js/views/intramuralsViews.js"></script>
 
-<!-- //Error reporting script -->
-<script type="text/javascript" src="js/errorReporting"></script>
+
 
 <script type="text/javascript">
     window.onload = function() {

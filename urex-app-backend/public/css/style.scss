@@ -72,6 +72,25 @@ button i {
   height: 300px;
 }
 
+#error-report {
+  padding: 3px 10px;
+  // width: 100%;
+  background-color: #f6ffc1;
+  text-align: left;
+  .error-type {
+    color: $primaryRed;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+  i {
+    cursor: pointer;
+  }
+
+}
+
 .content.login-view {
   // min-width: 0px;
   // width:
