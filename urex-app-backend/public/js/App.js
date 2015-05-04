@@ -19,7 +19,10 @@ var app = (function() {
 			// this.rentalInfo.fetch();
 			// this.rentalInfo.bind('reset', function() {console.log(this.rentalInfo);});
 			$.ajaxSetup({
-				headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
+				headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')},
+				error: function(jqXHR, textStatus, errorThrown) {
+					checkError({message: errorThrown});
+				},
 			});
 
 			Backbone.history.start();
@@ -208,6 +211,7 @@ var app = (function() {
 			"facility": "facilityHome",
 			"facility/hours": "facilityHours",
 			"facility/programs": "facilityProg",
+			"facility/programs/remove/:id": "facilityRemoveProg",
 			"facility/events": "facilityEvents",
 			"facility/photos": "facilityPhotos",
 			"facility/feedback": "facilityFeedback",
@@ -300,6 +304,21 @@ var app = (function() {
 			}
 
 			this.navigate("#facility");
+		},
+		facilityRemoveProg: function(id) {
+			console.log("removing program ", id);
+			var item = api.viewsFactory.facilityProg().collection.get(id);
+			if(item.isNew()) {
+				console.log("It's new!");
+				item.sync("read", item, {url: "api/image"}).done(function() {
+					item.destroy({url:"api/incentive_program/"+id});
+				});
+			}
+			else {
+				item.destroy({url:"api/incentive_program/"+id});
+			}
+
+			this.navigate("#facility/programs");
 		},
 		outdoorrecRemove: function(id) {
 			console.log("removing ", id);

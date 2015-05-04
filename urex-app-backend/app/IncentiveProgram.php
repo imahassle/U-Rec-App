@@ -57,7 +57,7 @@ class IncentiveProgram extends Model {
         return $this;
     }
 
-    public function delete() 
+    public function delete()
     {
         if(!ImageIncentiveProgram::whereIncentiveProgramId($this->id)->delete() || !parent::delete()) {
             throw new ServerException("Program was not deleted successfully due to an internal server error.");
@@ -73,5 +73,5 @@ class IncentiveProgram extends Model {
     {
         ImageIncentiveProgram::whereImageId($image_id)->where('incentive_program_id', '=', $this->id)->delete();
     }
-    
+
 }

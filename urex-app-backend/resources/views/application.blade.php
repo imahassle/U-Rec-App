@@ -7,6 +7,7 @@
 
     <title>U Rec &ndash; CMS</title>
 
+<link rel="stylesheet" href="css/featherlight.css">
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
 
@@ -39,9 +40,9 @@
 
     </div>
 
-    <div class="header aug-top-bar">
+    <div class="header aug-top-bar" style="display: none">
 
-        <label for="logout-button">Hello, User!</label>
+        <label for="logout-button">Hello, <span id="userName">USER</span></label>
         <a id="logout-button" href="#">Log out</a>
     </div>
 
@@ -91,11 +92,14 @@
     }).done(function(data) {
       // console.log("response: ", data);
       app.viewsFactory.menu();
+      console.log(data);
       $.cookie('U-Rex-API-Key', data.api_key);
       console.log($.cookie('U-Rex-API-Key'));
       $.ajaxSetup({
         headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
       });
+      $("#userName").html(data.first_name);
+      $(".aug-top-bar").show();
     });
   });
   </script>
@@ -122,8 +126,6 @@ $(".editAnnouncement").on("submit", function() {
     // checkError(error);
     app.viewsFactory.facilityHome().collection.fetch();
   });
-
-
 });
 </script>
 </script>
@@ -411,42 +413,40 @@ $(".editAnnouncement").on("submit", function() {
         <h1>Facility Photos</h1>
     </div>
     <div class="content">
-      <div class="previewImage">
-
+      <div class="creation">
+        <form action="javascript:" id="facilityPhotosUpload" class="pure-form pure-form-stacked">
+          <input id="fileUpload" type="file" value="Upload Photos">
+          <br>
+          <fieldset>
+            <input class="pure-input" type="text" placeholder="Caption">
+            <button class="pure-button red imageSubmit">SUBMIT</button>
+          </fieldset>
+        </form>
       </div>
-      <form action="javascript:" id="facilityPhotosUpload" class="pure-form pure-form-stacked">
-        <input id="fileUpload" type="file" value="Upload Photos">
-        <br>
-        <fieldset>
-          <input class="pure-input" type="text" placeholder="Caption">
-          <button class="pure-button red imageSubmit">SUBMIT</button>
-        </fieldset>
-
-      </form>
-
     </div>
     <div class="content pure-g photos-view">
-        <div class=" pure-u-4-5 ">
             <div class="pure-g">
                 <% _.each(collection, function(model) { %>
                   <div class="pure-u-1-4">
-                    <img id="<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>">
+                  <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
+                    <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
                     <p><%= model.caption %></p>
                     </div>
                 <% }); %>
             </div>
-        </div>
-
     </div>
     <script type="text/javascript">
       $("#facilityPhotosUpload input[type=file]").on("change", function() {
         console.log(this.files[0]);
       });
+      $(".deletePhoto").on('click', function() {
+        app.viewsFactory.facilityPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
+      });
       $("#facilityPhotosUpload .imageSubmit").on("click", function() {
         var theFile = $("#fileUpload")[0].files[0];
         if(typeof theFile == "undefined") {
           // alert("Please select an image");
-          checkError({error: "Please select an image!"});
+          checkError({message: "Please select an image!"});
         }
         else if (theFile.size > 5242880) {
           checkError({error: "Your file size is too big! Try uploading a smaller image."});
@@ -467,6 +467,7 @@ $(".editAnnouncement").on("submit", function() {
               file: fileData,
               caption: $("#facilityPhotosUpload input[type=text]").val(),
               extension: fileExt,
+              category_id: 1,
             };
             console.log(image);
 
@@ -539,6 +540,32 @@ $(".editAnnouncement").on("submit", function() {
     </div>
 </script>
 
+<script type="text/template" id="editProgram">
+  <form class="editProgram pure-form pure-form-stacked" value="<%= model.id %>" action="javascript:">
+    <input type="text" name="title" value="<%= model.title %>" >
+    <div class="buttons-group">
+      <input type="submit" class="pure-button red" value="Save">
+    </div>
+    <textarea style="width: 100%" name="message"><%= model.description %></textarea>
+  </form>
+
+    <script type="text/javascript">
+    $(".editProgram").on("submit", function() {
+      console.log("saving changes...");
+      var ID = $(this).attr("value");
+      // console.log(ID);
+      var data = new Announcement({
+        id: ID,
+        title: $(this).children("input[name=title]").val(),
+        description: $(this).children("textarea[name=message]").val(),
+      });
+      app.viewsFactory.facilityProg().collection.get(ID).sync("update", data, {url:"api/incentive_program/"+ID}).done(function() {
+        app.viewsFactory.facilityProg().collection.fetch();
+      });
+    });
+    </script>
+</script>
+
 <script type="text/template" id="facilityProg">
     <div class="header aug-header">
         <h1>Incentive Programs</h1>
@@ -555,26 +582,26 @@ $(".editAnnouncement").on("submit", function() {
                 <textarea name="" class="pure-u-1" id="" rows="4" placeholder="Details"></textarea>
             </form>
         </div>
-        <div class="creation">
-            <h4>Lunge to Dutch Bros (Feb 23-27)</h4>
+        <% _.each(collection, function(model) { %>
+          <div class="creation" id="<%= model.id %>">
+            <h4><%= model.title %></h4>
             <div class="buttons-group">
-                <i class="fa fa-edit fa-2x icon-hover"></i>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
+                <i class="fa fa-edit fa-2x icon-hover editProgramButton"></i>
+                <a href="#facility/programs/remove/<%=model.id%>"><i class="fa fa-trash fa-2x icon-hover"></i></a>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices viverra libero, sed bibendum tellus malesuada nec. Nunc volutpat egestas urna. Pellentesque luctus mauris a pretium euismod. Donec ac dictum leo. Donec id dolor turpis. Nulla facilisis lobortis ligula, nec fringilla sapien. Sed a condimentum magna. Pellentesque feugiat risus vitae magna iaculis, dignissim laoreet urna luctus. Phasellus tempor aliquam justo, a rutrum neque sollicitudin eget. Maecenas venenatis dictum dolor eu sollicitudin. Curabitur sed blandit ante, vel ullamcorper augue.</p>
-        </div>
-        <div class="creation">
-            <div class="buttons-group">
-                <button class="pure-button medGray">Cancel</button>
-                <button class="pure-button red">Save</button>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <form class="pure-form pure-form-stacked">
-                <input type="text" class="pure-u-1-3" placeholder="Program Title" value="100 Miles in March (March 1-31)">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices viverra libero, sed bibendum tellus malesuada nec. Nunc volutpat egestas urna. Pellentesque luctus mauris a pretium euismod. Donec ac dictum leo. Donec id dolor turpis. Nulla facilisis lobortis ligula, nec fringilla sapien. Sed a condimentum magna. Pellentesque feugiat risus vitae magna iaculis, dignissim laoreet urna luctus. Phasellus tempor aliquam justo, a rutrum neque sollicitudin eget. Maecenas venenatis dictum dolor eu sollicitudin. Curabitur sed blandit ante, vel ullamcorper augue.</textarea>
-            </form>
-        </div>
+            <p><%= model.description %></p>
+          </div>
+        <% }); %>
     </div>
+    <script type="text/javascript">
+    $(".editProgramButton").on('click', function() {
+      var id = $(this).parent().parent(".creation").attr("id");
+      var parent = $(this).parent().parent(".creation");
+      var template = _.template($("#editProgram").html())
+      console.log("Now editing program", id);
+      $(parent).html(template({model: app.viewsFactory.facilityProg().collection.get(id).attributes}));
+    });
+    </script>
 </script>
 
 <script type="text/template" id="facilityEvents">
@@ -711,77 +738,165 @@ $(".editAnnouncement").on("submit", function() {
 </script>
 
 <script type="text/template" id="outdoorrecPhotos">
-    <div class="header aug-header">
-        <h1>Outdoor Rec Photos</h1>
+  <div class="header aug-header">
+      <h1>Outdoor Rec Photos</h1>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
+        <input id="fileUpload" type="file" value="Upload Photos">
+        <br>
+        <fieldset>
+          <input class="pure-input" type="text" placeholder="Caption">
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </fieldset>
+      </form>
     </div>
-    <div class="content pure-g photos-view">
-        <div class=" pure-u-4-5 ">
-            <div class="pure-g">
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-            </div>
-        </div>
-        <button class="pure-button perm-button red">Upload Photos</button>
-    </div>
+  </div>
+  <div class="content pure-g photos-view">
+          <div class="pure-g">
+              <% _.each(collection, function(model) { %>
+                <div class="pure-u-1-4">
+                <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
+                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
+                  <p><%= model.caption %></p>
+                  </div>
+              <% }); %>
+          </div>
+  </div>
+  <script type="text/javascript">
+    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
+      console.log(this.files[0]);
+    });
+    $(".deletePhoto").on('click', function() {
+      app.viewsFactory.outdoorrecPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
+    });
+    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
+      var theFile = $("#fileUpload")[0].files[0];
+      if(typeof theFile == "undefined") {
+        // alert("Please select an image");
+        checkError({message: "Please select an image!"});
+      }
+      else if (theFile.size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else {
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
+
+        console.log(theFile);
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var image = {
+            file: fileData,
+            caption: $("#outdoorPhotosUpload input[type=text]").val(),
+            extension: fileExt,
+            category_id: 2
+          };
+          console.log(image);
+
+          app.viewsFactory.outdoorrecPhotosView.collection.create(image, {
+            url: "api/image",
+            wait: true,
+            success: function() {
+              console.log("refreshing view after submittal...");
+              app.viewsFactory.outdoorrecPhotosView.collection.fetch();
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+
+        };
+      }
+    });
+  </script>
 </script>
 
 <script type="text/template" id="intramuralsPhotos">
-    <div class="header aug-header">
-        <h1>Intramurals Photos</h1>
+  <div class="header aug-header">
+      <h1>Intramurals Photos</h1>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
+        <input id="fileUpload" type="file" value="Upload Photos">
+        <br>
+        <fieldset>
+          <input class="pure-input" type="text" placeholder="Caption">
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </fieldset>
+      </form>
     </div>
-    <div class="content pure-g photos-view">
-        <div class=" pure-u-4-5 ">
-            <div class="pure-g">
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-            </div>
-        </div>
-        <button class="pure-button perm-button red">Upload Photos</button>
-    </div>
+  </div>
+  <div class="content pure-g photos-view">
+          <div class="pure-g">
+              <% _.each(collection, function(model) { %>
+                <div class="pure-u-1-4">
+                <i id="<%= model.id %>" class="fa fa-times red deletePhoto"></i>
+                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
+                  <p><%= model.caption %></p>
+                  </div>
+              <% }); %>
+          </div>
+  </div>
+  <script type="text/javascript">
+    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
+      console.log(this.files[0]);
+    });
+    $(".deletePhoto").on('click', function() {
+      app.viewsFactory.intramuralsPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
+    });
+    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
+      var theFile = $("#fileUpload")[0].files[0];
+      if(typeof theFile == "undefined") {
+        // alert("Please select an image");
+        checkError({message: "Please select an image!"});
+      }
+      else if (theFile.size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else {
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
+
+        console.log(theFile);
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var image = {
+            file: fileData,
+            caption: $("#outdoorPhotosUpload input[type=text]").val(),
+            extension: fileExt,
+            category_id: 3
+          };
+          console.log(image);
+
+          app.viewsFactory.intramuralsPhotosView.collection.create(image, {
+            url: "api/image",
+            wait: true,
+            success: function() {
+              console.log("refreshing view after submittal...");
+              app.viewsFactory.intramuralsPhotosView.collection.fetch();
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+
+        };
+      }
+    });
+  </script>
 </script>
 
 <script type="text/template" id="climbingwallHours">
@@ -887,40 +1002,84 @@ $(".editAnnouncement").on("submit", function() {
 </script>
 
 <script type="text/template" id="climbingwallPhotos">
-    <div class="header aug-header">
-        <h1>Climbing Wall Photos</h1>
+  <div class="header aug-header">
+      <h1>Climbing Wall Photos</h1>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
+        <input id="fileUpload" type="file" value="Upload Photos">
+        <br>
+        <fieldset>
+          <input class="pure-input" type="text" placeholder="Caption">
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </fieldset>
+      </form>
     </div>
-    <div class="content pure-g photos-view">
-        <div class=" pure-u-4-5 ">
-            <div class="pure-g">
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/400x600/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-                <div class="pure-u-1-4"><img src="http://dummyimage.com/600x400/000/fff" alt=""></div>
-            </div>
-        </div>
-        <button class="pure-button perm-button red">Upload Photos</button>
-    </div>
+  </div>
+  <div class="content pure-g photos-view">
+          <div class="pure-g">
+              <% _.each(collection, function(model) { %>
+                <div class="pure-u-1-4">
+                <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
+                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
+                  <p><%= model.caption %></p>
+                  </div>
+              <% }); %>
+          </div>
+  </div>
+  <script type="text/javascript">
+    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
+      console.log(this.files[0]);
+    });
+    $(".deletePhoto").on('click', function() {
+      app.viewsFactory.climbingwallPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
+    });
+    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
+      var theFile = $("#fileUpload")[0].files[0];
+      if(typeof theFile == "undefined") {
+        // alert("Please select an image");
+        checkError({message: "Please select an image!"});
+      }
+      else if (theFile.size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else {
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
+
+        console.log(theFile);
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var image = {
+            file: fileData,
+            caption: $("#outdoorPhotosUpload input[type=text]").val(),
+            extension: fileExt,
+            category_id: 4
+          };
+          console.log(image);
+
+          app.viewsFactory.climbingwallPhotosView.collection.create(image, {
+            url: "api/image",
+            wait: true,
+            success: function() {
+              console.log("refreshing view after submittal...");
+              app.viewsFactory.climbingwallPhotosView.collection.fetch();
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+
+        };
+      }
+    });
+  </script>
 </script>
 
 <script type="text/template" id="climbingwallEvents">
@@ -1161,6 +1320,7 @@ $(".editAnnouncement").on("submit", function() {
 <script src="js/vendor/backbone.js"></script>
 <script src="js/vendor/jquery.cookie.js"></script>
 <script src="js/vendor/jquery-ui.js"></script>
+<script src="js/vendor/featherlight.js"></script>
 
 <!-- //Error reporting script -->
 <script type="text/javascript" src="js/errorReporting.js"></script>
