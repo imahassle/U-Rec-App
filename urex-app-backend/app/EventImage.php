@@ -32,4 +32,12 @@ class EventImage extends Model {
         return $event_image;
     }
 
+    public function delete()
+    {
+        if(!parent::delete())
+        {
+            throw new ServerException("Event-image association was not deleted successfully due to an internal server error.");
+        }
+    }
+
 }
