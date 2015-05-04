@@ -32,7 +32,7 @@ body {
 .ui-btn {
 	background-color: $primaryRed;
 	color: white;
-	font-size: 33px;
+	font-size: 35px;
 }
 
 .ui-header {
@@ -136,6 +136,9 @@ body {
 			padding: 1.3em 0;
 			text-shadow: none;
 			// font-weight: lighter;
+		}
+		a {
+			text-decoration: none;
 		}
 	}
 
