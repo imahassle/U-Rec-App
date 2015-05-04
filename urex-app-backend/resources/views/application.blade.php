@@ -94,6 +94,7 @@
       app.viewsFactory.menu();
       console.log(data);
       $.cookie('U-Rex-API-Key', data.api_key);
+      $.cookie('First-Name', data.first_name);
       console.log($.cookie('U-Rex-API-Key'));
       $.ajaxSetup({
         headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}

@@ -13,6 +13,8 @@ var app = (function() {
 			this.content = $("#main"); //Sets initial view for app
 			if($.cookie('U-Rex-API-Key')) {
 				ViewsFactory.menu();
+				$("#userName").html($.cookie('First-Name'));
+				$(".aug-top-bar").show();
 			}
 
 			// this.rentalInfo = new TempRentals();
