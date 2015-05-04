@@ -57,6 +57,19 @@ return [
             'strict'    => false,
         ],
     ],
+    // 'connections' => [
+    //     'mysql' => [
+    //         'driver'    => 'mysql',
+    //         'host'      => 'localhost',
+    //         'database'  => 'urex_appdb',
+    //         'username'  => 'root',
+    //         'password'  => '',
+    //         'charset'   => 'utf8',
+    //         'collation' => 'utf8_unicode_ci',
+    //         'prefix'    => '',
+    //         'strict'    => false,
+    //     ],
+    // ],
 
     /*
     |--------------------------------------------------------------------------
