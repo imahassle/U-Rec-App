@@ -91,7 +91,8 @@ class Event extends Model {
 
     public function delete() 
     {
-        if(!EventImage::whereEventId($this->id)->delete() || !parent::delete()) {
+        $associations = EventImage::whereEventId($this->id);
+        if(count($associations->get()) != $associations->delete() || !parent::delete()) {
             throw new ServerException("Event was not deleted successfully due to an internal server error.");
         }
     }

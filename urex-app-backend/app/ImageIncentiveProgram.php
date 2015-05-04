@@ -32,11 +32,4 @@ class ImageIncentiveProgram extends Model {
         return $image_incentive_program;
     }
 
-    public function delete() 
-    {
-        if(!parent::delete()) {
-            throw new ServerException("Image-program association was not deleted successfully due to an internal server error.");
-        }
-    }
-
 }
