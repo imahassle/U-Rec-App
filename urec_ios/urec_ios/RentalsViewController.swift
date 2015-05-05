@@ -17,7 +17,7 @@ class RentalsViewController: ParentPageViewController, UIWebViewDelegate {
             println("First time viewing RENTALS viewcontroller!")
             if(url == "") {
                 self.navigationBar.title = "RENTALS"
-                url = "http://hannahgamiel.com"
+                url = "http://localhost:8888/urec/Mobile/rentals/index.html"
                 isRoot = true
             }
             else {
