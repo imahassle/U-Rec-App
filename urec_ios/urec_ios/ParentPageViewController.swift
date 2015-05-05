@@ -61,11 +61,14 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         
         var ret : Bool = false
         var newpage : String = request.URL.absoluteString!
+        var secondhalf : String = ""
         
         var delimitedstring = newpage.componentsSeparatedByString("#")
         newpage = delimitedstring[0]
-        
-        if (newpage != url && !firstTime) {
+        if(delimitedstring.count > 1) {
+            secondhalf = delimitedstring[1]
+        }
+        if ((newpage != url || (secondhalf != "" && secondhalf != url && secondhalf[secondhalf.startIndex] == "/")) && !firstTime && secondhalf != newpage) {
             let newURL : String = (request.URL.absoluteString)!
             println(newURL)
             
@@ -108,9 +111,16 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
                 println("Error finding the view controller needed.")
             }
             
-            stopAnimating()
+            ret = false
         }
-        else if (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil || firstTime == true) {
+        else if (firstTime == false && secondhalf[secondhalf.startIndex] == "/") {
+            webView.stopLoading()
+            ret = false
+        }
+        else if (firstTime == true) {
+            ret = true
+        }
+        else if ((secondhalf != "" && secondhalf[secondhalf.startIndex] != "/") && (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil)) {
             ret = true
         }
 
@@ -127,6 +137,7 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView){
+        webView.stopLoading()
         if(firstTime) {
             if(!isRoot) {
                 self.title = webView.stringByEvaluatingJavaScriptFromString("document.title")
