@@ -1,34 +1,37 @@
-var announcementInit = function(url, that) {
-	that.collection = new app.collections.generalAnnouncement;
-	that.collection.url = url;
-	console.log("fetching...");
-	// var that = this;
-	that.collection.fetch().done(function() {
-		that.render();
-		console.log("fetched!");
-		// that.listenTo(that.collection, 'add remove sync', that.render);
-		that.collection.listenTo(that.collection, "remove sync reset add change", function() {
-			console.log("changed...");
+var announcementView = Backbone.View.extend({
+	// template: _.template($("#insert").html()),
+	// fetchURL: "../urex-app-backend/public/api/announcement/category/2",
+	initialize: function() {
+		this.el = this.options.el;
+		this.collection = new app.collections.generalAnnouncement;
+		this.collection.url = this.options.fetchURL;
+		this.template = this.options.template;
+		console.log("fetching from " + this.options.fetchURL);
+		// console.log(that);
+		var that = this;
+		that.collection.fetch().done(function() {
 			that.render();
+			console.log("fetched!");
+			// that.listenTo(that.collection, 'add remove sync', that.render);
+			that.collection.listenTo(that.collection, "remove sync reset add change", function() {
+				console.log("changed...");
+				that.render();
+			});
 		});
-	});
-};
-
-var renderFunc = function(that) {
-	console.log("Updating...");
-	that.$el.html(that.template());
-	return that;
-};
-
-app.views.outdoorrecHome = Backbone.View.extend({
-	template: _.template($("#outdoorrecAnnouncements").html()),
-	// collection: new app.collections.generalAnnouncement,
-	initialize: announcementInit("api/announcement/category/2", this),
+	},
 	render: function() {
-	this.$el.html(this.template({}));
+		console.log("Updating...");
+		// console.log(this.template());
+		this.$el.html(this.template({collection: this.collection.toJSON()}));
 		return this;
 	}
 });
+
+// app.views.outdoorrecHome = new announcementView({
+// 	el: this.content,
+// 	fetchURL: "../urex-app-backend/public/api/announcement/category/2",
+// 	template: _.template($("#insert").html())
+// });
 
 // app.views.outdoorrecTrips = Backbone.View.extend({
 // 	template: _.template($("#outdoorrecTrips").html()),
