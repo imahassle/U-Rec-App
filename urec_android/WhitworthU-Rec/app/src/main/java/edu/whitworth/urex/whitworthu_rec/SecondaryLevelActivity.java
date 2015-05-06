@@ -29,12 +29,33 @@ public class SecondaryLevelActivity extends ActionBarActivity {
         //actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
+        /* SecondaryWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                SecondaryLevelActivity.this.setTitle(view.getTitle());
+            }
+        }); */
+
         SecondaryWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 SecondaryLevelActivity.this.setTitle(view.getTitle());
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
+                        // This is my web site, so do not override; let my WebView load the page
+                        return false;
+                    }*/
+                // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
+                Intent myIntent = new Intent(getApplicationContext(), SecondaryLevelActivity.class);
+                myIntent.putExtra("url", url); //Optional parameters
+                startActivity(myIntent);
+                return true;
+            }
         });
+
     }
 
     @Override
