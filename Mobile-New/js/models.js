@@ -27,6 +27,14 @@ var Program = Backbone.Model.extend({
   }
 });
 
+var Event = Backbone.Model.extend({
+  defaults: {
+    id: null,
+    title: "Sample Title",
+    description: "Sample Description",
+  }
+});
+
 var Rental = Backbone.Model.extend({
 	defaults: {
 		name: "Item",

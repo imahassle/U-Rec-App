@@ -25,3 +25,9 @@ app.collections.generalProgram = Backbone.Collection.extend({
   url: "api/incentive_program",
   comparator: compare,
 });
+
+app.collections.generalEvent = Backbone.Collection.extend({
+  model: Event,
+  url: "api/event",
+  comparator: compare,
+})

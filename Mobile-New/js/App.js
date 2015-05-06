@@ -25,8 +25,7 @@ var app = (function() {
 		},
 		facilityHome: function() {
 			this.facilityHomeView = new announcementView({
-				fetchURL: "../urex-app-backend/public/api/announcement/category/1",
-				template: _.template($("#announcementTemplate").html())
+				url: "../urex-app-backend/public/api/announcement/category/1",
 			});
 			return this.facilityHomeView;
 		},
@@ -47,17 +46,14 @@ var app = (function() {
 			return this.facilityProgView;
 		},
 		facilityEvents: function() {
-			if(!this.facilityEventsView) {
-				this.facilityEventsView = new api.views.facilityEvents({
-					el: this.content
+				this.facilityEventsView = new eventView({
+					url: "../urex-app-backend/public/api/event/category/1",
 				});
-			}
 			return this.facilityEventsView;
 		},
 		facilityPhotos: function() {
 			this.facilityPhotosView = new imageView({
 				url: "../urex-app-backend/public/api/image/category/1",
-				template: _.template($("#imageTemplate").html())
 			});
 			return this.facilityPhotosView;
 		},
@@ -71,54 +67,43 @@ var app = (function() {
 		},
 		outdoorrecHome: function() {
 			this.outdoorrecHomeView = new announcementView({
-				el: this.content,
-				fetchURL: "../urex-app-backend/public/api/announcement/category/2",
-				template: _.template($("#announcementTemplate").html())
+				url: "../urex-app-backend/public/api/announcement/category/2",
 			});
 			return this.outdoorrecHomeView;
 		},
 		outdoorrecTrips: function() {
-			if(!this.outdoorrecTripsView) {
-				this.outdoorrecTripsView = new api.views.outdoorrecTrips({
-					el: this.content
-				});
-			}
+			this.outdoorrecTripsView = new eventView({
+				url: "../urex-app-backend/public/api/event/category/2",
+			});
 			return this.outdoorrecTripsView;
 		},
 		outdoorrecPhotos: function() {
 				this.outdoorrecPhotosView = new imageView({
 					url: "../urex-app-backend/public/api/image/category/2",
-					template: _.template($("#imageTemplate").html())
 				});
 			return this.outdoorrecPhotosView;
 		},
 		intramuralsHome: function() {
 			this.intramuralsHomeHome = new announcementView({
-				el: this.content,
-				fetchURL: "../urex-app-backend/public/api/announcement/category/3",
-				template: _.template($("#announcementTemplate").html())
+				url: "../urex-app-backend/public/api/announcement/category/3",
 			});
 			return this.intramuralsHomeHome;
 		},
 		intramuralsPhotos: function() {
 				this.intramuralsPhotosView = new imageView({
 					url: "../urex-app-backend/public/api/image/category/3",
-					template: _.template($("#imageTemplate").html())
 				});
 			return this.intramuralsPhotosView;
 		},
 		climbingwallHome: function() {
 				this.climbingwallHomeView = new announcementView({
-					el: this.content,
-					fetchURL: "../urex-app-backend/public/api/announcement/category/4",
-					template: _.template($("#announcementTemplate").html())
+					url: "../urex-app-backend/public/api/announcement/category/4",
 				});
 			return this.climbingwallHomeView;
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
 				this.climbingwallHoursView = new api.views.climbingwallHours({
-					el: this.content
 				});
 			}
 			return this.climbingwallHoursView;
@@ -126,17 +111,14 @@ var app = (function() {
 		climbingwallPhotos: function() {
 				this.climbingwallPhotosView = new imageView({
 					url: "../urex-app-backend/public/api/image/category/4",
-					template: _.template($("#imageTemplate").html())
 				});
 			return this.climbingwallPhotosView;
 		},
 		climbingwallEvents: function() {
-			if(!this.climingwallEventsView) {
-				this.climingwallEventsView = new api.views.climbingwallEvents({
-					el: this.content
-				});
-			}
-			return this.climingwallEventsView;
+			this.climbingwallEventsView = new eventView({
+				url: "../urex-app-backend/public/api/event/category/4",
+			});
+			return this.climbingwallEventsView;
 		},
 		login: function() {
 			if(!this.loginView) {
