@@ -20,13 +20,14 @@ var app = (function() {
 		}
 	};
 	var ViewsFactory = {
+		main: function() {
+			return $("#main").html();
+		},
 		facilityHome: function() {
-			if(!this.facilityHomeView) {
-				this.facilityHomeView = new api.views.facilityHome({
-					el: this.content
-				});
-				// this.facilityHomeView.render();
-			}
+			this.facilityHomeView = new announcementView({
+				fetchURL: "../urex-app-backend/public/api/announcement/category/1",
+				template: _.template($("#announcementTemplate").html())
+			});
 			return this.facilityHomeView;
 		},
 		facilityHours: function() {
@@ -54,11 +55,10 @@ var app = (function() {
 			return this.facilityEventsView;
 		},
 		facilityPhotos: function() {
-			if(!this.facilityPhotosView) {
-				this.facilityPhotosView = new api.views.facilityPhotos({
-					el: this.content
-				});
-			}
+			this.facilityPhotosView = new imageView({
+				url: "../urex-app-backend/public/api/image/category/1",
+				template: _.template($("#imageTemplate").html())
+			});
 			return this.facilityPhotosView;
 		},
 		facilityFeedback: function() {
@@ -70,15 +70,12 @@ var app = (function() {
 			return this.facilityFeedbackView;
 		},
 		outdoorrecHome: function() {
-			if(!this.outdoorrecHomeView) {
-				this.outdoorrecHomeView = new announcementView({
-					el: this.content,
-					fetchURL: "../urex-app-backend/public/api/announcement/category/2",
-					template: _.template($("#outdoorrecAnnouncements").html())
-				});
-			}
+			this.outdoorrecHomeView = new announcementView({
+				el: this.content,
+				fetchURL: "../urex-app-backend/public/api/announcement/category/2",
+				template: _.template($("#announcementTemplate").html())
+			});
 			return this.outdoorrecHomeView;
-			// return this.outdoorrecHome;
 		},
 		outdoorrecTrips: function() {
 			if(!this.outdoorrecTripsView) {
@@ -89,35 +86,33 @@ var app = (function() {
 			return this.outdoorrecTripsView;
 		},
 		outdoorrecPhotos: function() {
-			if(!this.outdoorrecPhotosView) {
-				this.outdoorrecPhotosView = new api.views.outdoorrecPhotos({
-					el: this.content
+				this.outdoorrecPhotosView = new imageView({
+					url: "../urex-app-backend/public/api/image/category/2",
+					template: _.template($("#imageTemplate").html())
 				});
-			}
 			return this.outdoorrecPhotosView;
 		},
 		intramuralsHome: function() {
-			if(!this.intramuralsHomeHome) {
-				this.intramuralsHomeHome = new api.views.intramuralsHome({
-					el: this.content
-				});
-			}
+			this.intramuralsHomeHome = new announcementView({
+				el: this.content,
+				fetchURL: "../urex-app-backend/public/api/announcement/category/3",
+				template: _.template($("#announcementTemplate").html())
+			});
 			return this.intramuralsHomeHome;
 		},
 		intramuralsPhotos: function() {
-			if(!this.intramuralsPhotosView) {
-				this.intramuralsPhotosView = new api.views.intramuralsPhotos({
-					el: this.content
+				this.intramuralsPhotosView = new imageView({
+					url: "../urex-app-backend/public/api/image/category/3",
+					template: _.template($("#imageTemplate").html())
 				});
-			}
 			return this.intramuralsPhotosView;
 		},
 		climbingwallHome: function() {
-			if(!this.climbingwallHomeView) {
-				this.climbingwallHomeView = new api.views.climbingwallHome({
-					el: this.content
+				this.climbingwallHomeView = new announcementView({
+					el: this.content,
+					fetchURL: "../urex-app-backend/public/api/announcement/category/4",
+					template: _.template($("#announcementTemplate").html())
 				});
-			}
 			return this.climbingwallHomeView;
 		},
 		climbingwallHours: function() {
@@ -129,11 +124,10 @@ var app = (function() {
 			return this.climbingwallHoursView;
 		},
 		climbingwallPhotos: function() {
-			if(!this.climbingwallPhotosView) {
-				this.climbingwallPhotosView = new api.views.climbingwallPhotos({
-					el: this.content
+				this.climbingwallPhotosView = new imageView({
+					url: "../urex-app-backend/public/api/image/category/4",
+					template: _.template($("#imageTemplate").html())
 				});
-			}
 			return this.climbingwallPhotosView;
 		},
 		climbingwallEvents: function() {
@@ -198,7 +192,7 @@ var app = (function() {
 			"": "home",
 		},
 		home: function() {
-			api.changeContent(ViewsFactory.main().$el);
+			api.changeContent(ViewsFactory.main());
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);
