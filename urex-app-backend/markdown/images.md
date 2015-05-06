@@ -6,8 +6,8 @@
 
 X-Authorization?   | HTTP Verb | URI                                    | Description
 :----------------: | --------- | -------------------------------------- | -----------------------------------------------
-:heavy_check_mark: | GET       | api/image                              | Retrieves all images.
-:heavy_check_mark: | GET       | api/image/category/{***category_id***} | Retrieves all images within specified category.
+:heavy_minus_sign: | GET       | api/image                              | Retrieves all images.
+:heavy_minus_sign: | GET       | api/image/category/{***category_id***} | Retrieves all images within specified category.
 :heavy_check_mark: | GET       | api/image/{***id***}                   | Retrieves specified image.
 :heavy_check_mark: | POST      | api/image                              | Creates new image.
 :heavy_check_mark: | DELETE    | api/image/{***id***}                   | Deletes specified image.

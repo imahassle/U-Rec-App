@@ -11,6 +11,11 @@ class ImageController extends ApiGuardController {
 
     use UrexExecutionHandlerTrait;
 
+    protected $apiMethods = [
+        'index' => [ 'keyAuthentication' => false ],
+        'index_category' => [ 'keyAuthentication' => false ]
+    ];
+
     public function index()
     {
         return Response::json(Image::all()->toArray());
