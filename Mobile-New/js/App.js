@@ -11,7 +11,7 @@ var app = (function() {
 		viewsFactory: null,
 		init: function() {
 			this.content = $("#insert"); //Sets initial view for app
-			// Backbone.history.start();
+			Backbone.history.start();
 			return this;
 		},
 		changeContent: function(el) {
@@ -71,11 +71,14 @@ var app = (function() {
 		},
 		outdoorrecHome: function() {
 			if(!this.outdoorrecHomeView) {
-				this.outdoorrecHomeView = new api.views.outdoorrecHome({
-					el: this.content
+				this.outdoorrecHomeView = new announcementView({
+					el: this.content,
+					fetchURL: "../urex-app-backend/public/api/announcement/category/2",
+					template: _.template($("#outdoorrecAnnouncements").html())
 				});
 			}
 			return this.outdoorrecHomeView;
+			// return this.outdoorrecHome;
 		},
 		outdoorrecTrips: function() {
 			if(!this.outdoorrecTripsView) {
