@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Text in each row-->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
-    android:layout_height="50dip"
+    android:layout_height="60dip"
     android:layout_width="fill_parent"
     android:textSize="20sp"
     android:paddingLeft="15dip"
     android:paddingRight="6dip"
+    android:layout_marginRight="10dp"
     android:gravity="center_vertical"
     android:listSelector="@android:color/transparent"
     android:background="@drawable/selector"
-    android:textColor="@color/White"
+    android:textColor="@color/CoreRed"
 />

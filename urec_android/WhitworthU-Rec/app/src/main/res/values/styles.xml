@@ -1,24 +1,19 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="RedAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/RedActionBar</item>
-        <item name="android:titleTextStyle">@style/WhiteActionBarText</item>
-        <item name="android:listViewStyle">@style/RedNavigationDrawer</item>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="actionBarStyle">@style/ActionBar</item>
+    </style>
+
+    <style name="ActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/CoreRed</item>
     </style>
 
     <style name="RedActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:colorBackground">@color/CoreRed</item>
     </style>
 
-    <style name="WhiteActionBarText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="WhiteActionBarText" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/White</item>
-    </style>
-
-    <style name="RedNavigationDrawer" parent="@android:style/Widget.ListView">
-        <item name="android:background">@color/CoreRed</item>
-    </style>
-
-    <style name="NavDrawerItemSelected" parent="@style/RedAppTheme">
     </style>
 
     <style name="PreferencesTheme">
