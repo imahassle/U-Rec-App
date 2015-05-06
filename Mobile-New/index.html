@@ -34,13 +34,11 @@
 
     <script type="text/template" id="announcementTemplate">
       <% _.each(collection, function(model) { %>
-        <div class="panel shout">
-      		<div class="shout-content">
-      			<!-- <img src="http://dummyimage.com/100x100/B70724/B70724" alt=""> -->
-      			<fieldset>
-      				<div class="shout-title"><%=model.title%></div>
-      				<p><%=model.message%></p>
-      			</fieldset>
+        <div class="panel">
+      		<div class="announcement">
+      			  <!-- <img src="../urex-app-backend/public/<%=model.file_location%>" alt=""> -->
+      				<h3><%=model.title%></h3>
+      				<p class="message"><%=model.message%></p>
       		</div>
       	</div>
       <% }); %>
@@ -48,10 +46,10 @@
 
     <script type="text/template" id="imageTemplate">
       <% _.each(collection, function(model) { %>
-        <div class="useyourimaginationhannah">
+        <div class="image-container">
           <a data-featherlight="#image-<%= model.id %>">
             <img id="image-<%= model.id %>" src="../urex-app-backend/public/<%= model.file_location %>" title="<%= model.caption %>">
-            </a>
+          </a>
           <p><%= model.caption %></p>
         </div>
       <% }); %>
