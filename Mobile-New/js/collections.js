@@ -1,0 +1,27 @@
+var compare = function(a,b) {
+  if(a.id < b.id) {
+    return 1;
+  }
+  if(a.id > b.id) {
+    return -1;
+  }
+  return 0;
+};
+
+app.collections.generalAnnouncement = Backbone.Collection.extend({
+  model: Announcement,
+  url: "api/announcement",
+  comparator: compare,
+});
+
+app.collections.generalImage = Backbone.Collection.extend({
+  model: Image,
+  url: "api/image",
+  comparator: compare,
+});
+
+app.collections.generalProgram = Backbone.Collection.extend({
+  model: Program,
+  url: "api/incentive_program",
+  comparator: compare,
+});
