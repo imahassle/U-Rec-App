@@ -16,6 +16,7 @@ Route::get('/', function() {
 });
 
 Route::get('/mobile', function() {
+    echo "nasknakjnfjanad";
     return View::make('mobile');
 });
 
