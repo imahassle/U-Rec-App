@@ -17,7 +17,7 @@ Route::get('/', function() {
 
 Route::get('/mobile', function() {
     return View::make('mobile');
-})
+});
 
 // RESTful API Routes
 Route::group(['prefix' => 'api'], function() {
