@@ -27,6 +27,7 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
     var isRoot = false
+    var jQuery : Bool = true
     
     var firstTime = true
     var url : String = ""
@@ -43,6 +44,13 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         webView.frame=self.view.bounds
     }
     
+    func runRequest(urlString: String) {
+        let request = NSURLRequest(URL: (NSURL(string: urlString))!)
+        webView.delegate = self
+        webView.loadRequest(request)
+        webView.scalesPageToFit = true
+        webView.frame=self.view.bounds
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,7 +62,11 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Lato-Semibold", size: 20)!]
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
-        self.tabBarController?.tabBar.selectedImageTintColor = UIColorFromRGB("B9001E", alpha: 1)
+        var r = CGFloat(Float(185)/255)
+        var g = CGFloat(Float(0)/255)
+        var b = CGFloat(Float(30)/255)
+        self.tabBarController?.tabBar.selectedImageTintColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -109,6 +121,11 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
                 newVC.url = newURL
                 self.navigationController?.pushViewController(newVC, animated: true)
                 println("Error finding the view controller needed.")
+            }
+            
+            if(jQuery && !firstTime) {
+                firstTime = true
+                runRequest(newpage)
             }
             
             ret = false

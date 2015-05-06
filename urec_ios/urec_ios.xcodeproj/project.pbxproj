@@ -12,6 +12,7 @@
 		8FC0C97B1AD734BF00DBB494 /* OutdoorRec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC0C9761AD734BF00DBB494 /* OutdoorRec@3x.png */; };
 		8FC0C97C1AD734BF00DBB494 /* Rentals@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC0C9771AD734BF00DBB494 /* Rentals@3x.png */; };
 		8FC0C97D1AD734BF00DBB494 /* U-Rec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FC0C9781AD734BF00DBB494 /* U-Rec@3x.png */; };
+		BB582D731AF99AE10082AF4D /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB582D721AF99AE10082AF4D /* x.png */; };
 		BB6CC8211AD72C8300837886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8201AD72C8300837886 /* AppDelegate.swift */; };
 		BB6CC8231AD72C8300837886 /* FacilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8221AD72C8300837886 /* FacilityViewController.swift */; };
 		BB6CC8251AD72C8300837886 /* OutdoorRecViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8241AD72C8300837886 /* OutdoorRecViewController.swift */; };
@@ -53,6 +54,7 @@
 		8FC0C9761AD734BF00DBB494 /* OutdoorRec@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OutdoorRec@3x.png"; sourceTree = "<group>"; };
 		8FC0C9771AD734BF00DBB494 /* Rentals@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rentals@3x.png"; sourceTree = "<group>"; };
 		8FC0C9781AD734BF00DBB494 /* U-Rec@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "U-Rec@3x.png"; sourceTree = "<group>"; };
+		BB582D721AF99AE10082AF4D /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
 		BB6CC81B1AD72C8300837886 /* urec_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = urec_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6CC81F1AD72C8300837886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6CC8201AD72C8300837886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		8FC0C9731AD7348F00DBB494 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BB582D721AF99AE10082AF4D /* x.png */,
 				8FC0C9741AD734BF00DBB494 /* ClimbingWall@3x.png */,
 				8FC0C9751AD734BF00DBB494 /* Intramurals@3x.png */,
 				8FC0C9761AD734BF00DBB494 /* OutdoorRec@3x.png */,
@@ -286,6 +289,7 @@
 				8FC0C97B1AD734BF00DBB494 /* OutdoorRec@3x.png in Resources */,
 				8FC0C97A1AD734BF00DBB494 /* Intramurals@3x.png in Resources */,
 				BB6CC8281AD72C8300837886 /* Main.storyboard in Resources */,
+				BB582D731AF99AE10082AF4D /* x.png in Resources */,
 				BB6CC82D1AD72C8400837886 /* LaunchScreen.xib in Resources */,
 				8FC0C97C1AD734BF00DBB494 /* Rentals@3x.png in Resources */,
 				BBB80E951AE8C022008BE8C7 /* Lato-Thin.ttf in Resources */,

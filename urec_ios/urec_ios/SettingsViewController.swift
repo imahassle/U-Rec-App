@@ -22,12 +22,28 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.backItem = "x.png" -- Need Lauren Slicing
         self.title = "PREFERENCES"
+        //setNavBarStyle()
         if(willInsertFirstRow()) {
             println("Inserting entries...")
             createFirstEntities()
         }
         setUpSwitches()
         
+    }
+    
+    func setNavBarStyle() {
+        var backButtonImage : UIImage = UIImage(named: "x.png")!
+        var r = CGFloat(Float(185)/255)
+        var g = CGFloat(Float(0)/255)
+        
+        var b = CGFloat(Float(30)/255)
+        
+        navigationController?.navigationItem.backBarButtonItem?.setBackgroundImage(backButtonImage, forState: .Normal, barMetrics: .Default)
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: r, green: g, blue: b, alpha: 1.0), NSFontAttributeName: UIFont(name: "Lato-Semibold", size: 20)!]
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
+        self.tabBarController?.tabBar.selectedImageTintColor = UIColor.whiteColor()
     }
     
     

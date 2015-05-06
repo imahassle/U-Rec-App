@@ -563,9 +563,7 @@
                             <constraint firstItem="qVp-DN-jJf" firstAttribute="top" secondItem="yBl-gE-4L4" secondAttribute="bottom" constant="8" symbolic="YES" id="zcJ-be-3bO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cfd-7G-69y">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="myO-Jg-MNR"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="cfd-7G-69y"/>
                     <connections>
                         <outlet property="climbingwall_notifications" destination="dJQ-LU-dDo" id="IwP-eb-vx4"/>
                         <outlet property="intramurals_notifications" destination="YhN-se-sTh" id="hQ9-a1-nWG"/>
