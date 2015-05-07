@@ -250,7 +250,7 @@
   </div>
   <div class="content pure-g photos-view">
           <div class="pure-g">
-              <% _.each(collection, function(model) { %>
+              <% _.each(collection.toJSON(), function(model) { %>
                 <div class="pure-u-1-4">
                 <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
                   <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
@@ -260,11 +260,12 @@
           </div>
   </div>
   <script type="text/javascript">
+  var collection = <%=coll%>;
     $("#photoUpload input[type=file]").on("change", function() {
       console.log(this.files[0]);
     });
     $(".deletePhoto").on('click', function() {
-      app.viewsFactory.facilityPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
+      collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
     });
     $("#photoUpload .imageSubmit").on("click", function() {
       var theFile = $("#fileUpload")[0].files[0];
@@ -291,13 +292,11 @@
             file: fileData,
             caption: $("#photoUpload input[type=text]").val(),
             extension: fileExt,
-            category_id: <%=id%>,
+            category_id: <%=cat%>,
           };
           console.log(image);
 
-          var coll = <%=collection%>;
-
-          coll.create(image, {
+          collection.create(image, {
             url: "api/image",
             wait: true
           });

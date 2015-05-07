@@ -27,7 +27,8 @@ var imageView = Backbone.View.extend({
 	initialize: function() {
 		this.$el.html($("#loading").html());
 		this.collection = new app.collections.generalImage;
-		this.collection.url = this.options.url;
+		this.collection.url = "api/image/category/" + this.options.category;
+		this.collectionName = this.options.collectionName;
 		var that = this;
 		console.log("taking pictures...");
 		this.collection.fetch().done(function() {
@@ -37,7 +38,7 @@ var imageView = Backbone.View.extend({
 	},
 	render: function() {
 		console.log("imaging...");
-		this.$el.html(this.template({collection: this.collection.toJSON()}));
+		this.$el.html(this.template({collection: this.collection, cat: this.options.category, name: this.options.name, coll: this.collectionName}));
 		return this;
 	}
 });

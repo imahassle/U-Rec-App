@@ -99,7 +99,9 @@ var app = (function() {
 		},
 		facilityPhotos: function() {
 			this.facilityPhotosView = new imageView({
-				url: "api/image/category/1",
+				category: 1,
+				name: "U-Rec",
+				collectionName: "app.viewsFactory.facilityPhotosView.collection"
 			});
 			return this.facilityPhotosView;
 		},
