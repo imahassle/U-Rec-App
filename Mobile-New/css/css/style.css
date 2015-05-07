@@ -1,0 +1,171 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic);
+/* line 14, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+html, button, input, select, textarea, .pure-g [class*="pure-u"] {
+  /* Set your content font stack here: */
+  font-family: 'Lato', sans-serif; }
+
+/* line 19, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+input, textarea {
+  font-size: 1.3em; }
+
+/* line 23, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+button, .ui-btn {
+  font-size: 1em; }
+
+/* line 27, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+body {
+  padding: 5px;
+  background: #EFEFEF; }
+
+/* line 32, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.ui-btn {
+  background-color: #B70724;
+  color: white;
+  font-size: 35px; }
+
+/* line 38, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.ui-header {
+  background-color: #B70724 !important; }
+
+/* line 41, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.ui-title {
+  color: white;
+  text-transform: uppercase;
+  text-shadow: none;
+  font-weight: lighter; }
+
+/* line 48, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.image-container {
+  padding: 5px; }
+  /* line 50, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .image-container img {
+    width: 100%; }
+
+/* line 55, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.hours {
+  text-align: center; }
+  /* line 57, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours p {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    color: #949494; }
+  /* line 64, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours p.info {
+    color: #B70724;
+    padding-left: 10px; }
+  /* line 74, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours button {
+    text-transform: uppercase;
+    background-color: #B70724 !important;
+    color: white !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 auto; }
+
+/* line 84, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.hours-popup {
+  padding: 20px; }
+  /* line 87, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours-popup h4 {
+    text-align: center;
+    color: #B70724;
+    text-transform: uppercase; }
+  /* line 92, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours-popup p {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    color: #949494 !important; }
+  /* line 98, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .hours-popup p.info {
+    color: #B70724 !important;
+    padding-left: 5%;
+    font-weight: bold; }
+
+/* line 107, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.photos-grid .ui-grid-b img {
+  width: 100%; }
+
+/* line 113, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.panel {
+  padding: 5%;
+  background: #FFFFFF;
+  margin-bottom: 10px;
+  /*font-size: 32px;*/
+  /*font-color: $lightGray;*/ }
+  /* line 121, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel img.left-img {
+    width: 20%; }
+  /* line 126, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel label {
+    vertical-align: center;
+    margin-top: 15px;
+    color: #949494; }
+  /* line 132, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel input[type="submit"] {
+    background-color: #B70724; }
+  /* line 137, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel .splash-menu button {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    background-color: #B70724 !important;
+    color: white;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    padding: 1.3em 0;
+    text-shadow: none;
+    width: 70%; }
+  /* line 148, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel .splash-menu a {
+    text-decoration: none; }
+  /* line 153, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel table {
+    width: 100%; }
+    /* line 155, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel table tr {
+      width: 100%;
+      margin-bottom: 10px; }
+      /* line 158, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+      .panel table tr td:first-child {
+        width: 50%;
+        text-align: left; }
+      /* line 162, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+      .panel table tr td {
+        font-size: 0.9em;
+        width: 12%;
+        text-align: center; }
+    /* line 169, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel table thead td {
+      color: #B70724;
+      font-weight: bold; }
+    /* line 175, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel table tbody td {
+      color: #949494; }
+
+/* line 182, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+.panel.shout {
+  display: inline-block; }
+  /* line 184, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel.shout img {
+    width: 20%;
+    float: left;
+    vertical-align: top; }
+  /* line 190, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+  .panel.shout .shout-content {
+    vertical-align: top; }
+    /* line 192, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel.shout .shout-content fieldset {
+      word-wrap: normal;
+      padding-left: 10px; }
+    /* line 196, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel.shout .shout-content .shout-title {
+      color: #B70724;
+      font-weight: bold; }
+    /* line 200, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+    .panel.shout .shout-content p {
+      margin: 0;
+      color: #949494;
+      vertical-align: top; }
