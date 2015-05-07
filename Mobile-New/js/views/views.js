@@ -62,6 +62,26 @@ var eventView = Backbone.View.extend({
 	}
 });
 
+var rentalView = Backbone.View.extend({
+	template: _.template($("#rentalTemplate").html()),
+	initialize: function() {
+		this.$el.html($("#loading").html());
+		this.collection = new app.collections.generalEvent;
+		this.collection.url = this.options.url;
+		var that = this;
+		console.log("renting view...");
+		this.collection.fetch().done(function() {
+			that.render();
+			console.log("rented!");
+		});
+	},
+	render: function() {
+		console.log("rentals...");
+		this.$el.html(this.template({collection: this.collection.toJSON()}));
+		return this;
+	}
+});
+
 var homeView = Backbone.View.extend({
 	template: _.template($("#homeTemplate").html()),
 	initialize: function() {

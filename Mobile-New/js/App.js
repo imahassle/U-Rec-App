@@ -169,11 +169,9 @@ var app = (function() {
 			return this.statsView;
 		},
 		rentals: function() {
-			if(!this.rentalsView) {
-				this.rentalsView = new api.views.rentals({
-					collection: api.rentalInfo
-				});
-			}
+			this.rentalsView = new rentalView({
+				url: "../urex-app-backend/public/api/item_rental",
+			});
 			return this.rentalsView;
 		}
 	};
