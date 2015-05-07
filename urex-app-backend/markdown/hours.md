@@ -30,6 +30,7 @@ Output        | Type      | Format
 
 #
 **Specific details for `GET api/hour/category/{category_id}/week`**
+
 Input | Validation Rules
 ----- | ----------------
 `day` | `date`
