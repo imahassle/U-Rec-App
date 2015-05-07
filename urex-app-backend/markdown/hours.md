@@ -51,5 +51,6 @@ Output will look like:
     },
     ...
 ]
+```
 
 Seven days will be given, starting with the date given as `day` for input. *Note that this takes into account any hours exceptions.*
