@@ -14,6 +14,7 @@ class HourController extends ApiGuardController {
     protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
         'index_category' => [ 'keyAuthentication' => false ],
+        'index_category_week' => [ 'keyAuthentication' => false ],
         'show' => [ 'keyAuthentication' => false ]
     ];
 
@@ -28,6 +29,16 @@ class HourController extends ApiGuardController {
             return Response::json([]);
         }
         return Response::json(Hour::whereCategoryId($category_id)->get()->toArray());
+    }
+
+    public function index_category_week($category_id)
+    {
+        if(!Hour::whereCategoryId($category_id)->exists())  {
+            return Response::json([]);
+        }
+        return $this->attemptExecution(function() use ($category_id) {
+            return Response::json(Hour::getNextWeek(Request::input('day'), $category_id));
+        });
     }
 
     public function store()

@@ -14,9 +14,10 @@ class CreateHoursExceptionsTable extends Migration {
     {
         Schema::create('hours_exceptions', function(Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
+            $table->date('day');
             $table->time('open');
             $table->time('close');
+            $table->boolean('closed');
             $table->integer('category_id')->unsigned();
             //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

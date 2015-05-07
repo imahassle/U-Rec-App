@@ -26,14 +26,14 @@ class Image extends Model {
 
     public static function create(array $attributes) 
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $image = new Image;
         $image->file_location = '';
         $image->caption = $attributes['caption'];
 
         if(array_key_exists('category_id', $attributes)) {
-            $image->category_id = $attributes['category_id'];
+            $image->category_id = intval($attributes['category_id']);
         } else {
             $image->category_id = $user->category->id;
         }

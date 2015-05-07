@@ -28,7 +28,7 @@ class Announcement extends Model {
 
     public static function create(array $attributes)
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $announcement = new Announcement;
         $announcement->title = $attributes['title'];
@@ -37,7 +37,7 @@ class Announcement extends Model {
         $announcement->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
-            $announcement->category_id = $attributes['category_id'];
+            $announcement->category_id = intval($attributes['category_id']);
         } else {
             $announcement->category_id = $user->category->id;
         }
@@ -51,7 +51,7 @@ class Announcement extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $this->title = $attributes['title'];
         $this->message = $attributes['message'];
@@ -59,7 +59,7 @@ class Announcement extends Model {
         $this->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
-            $this->category_id = $attributes['category_id'];
+            $this->category_id = intval($attributes['category_id']);
         } else {
             $this->category_id = $user->category->id;
         }

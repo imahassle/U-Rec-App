@@ -16,6 +16,7 @@ class CreateHoursTable extends Migration {
             $table->increments('id');
             $table->time('open');
             $table->time('close');
+            $table->boolean('closed');
             $table->integer('day_of_week')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->timestamps();

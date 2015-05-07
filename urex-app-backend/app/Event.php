@@ -38,20 +38,20 @@ class Event extends Model {
 
     public static function create(array $attributes)
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $event = new Event;
         $event->title = $attributes['title'];
         $event->description = $attributes['description'];
         $event->start = date("Y-m-d H:i:s", strtotime($attributes['start']));
         $event->end = date("Y-m-d H:i:s", strtotime($attributes['end']));
-        $event->cost = $attributes['cost'];
-        $event->spots = $attributes['spots'];
+        $event->cost = floatval($attributes['cost']);
+        $event->spots = intval($attributes['spots']);
         $event->gear_needed = $attributes['gear_needed'];
         $event->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
-            $event->category_id = $attributes['category_id'];
+            $event->category_id = intval($attributes['category_id']);
         } else {
             $event->category_id = $user->category()->id;
         }
@@ -65,19 +65,19 @@ class Event extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];
         $this->start = date("Y-m-d H:i:s", strtotime($attributes['start']));
         $this->end = date("Y-m-d H:i:s", strtotime($attributes['end']));
-        $this->cost = $attributes['cost'];
-        $this->spots = $attributes['spots'];
+        $this->cost = floatval($attributes['cost']);
+        $this->spots = intval($attributes['spots']);
         $this->gear_needed = $attributes['gear_needed'];
         $this->user_id = $user->id;
 
         if(array_key_exists('category_id', $attributes)) {
-            $this->category_id = $attributes['category_id'];
+            $this->category_id = intval($attributes['category_id']);
         } else {
             $this->category_id = $user->category()->id;
         }

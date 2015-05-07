@@ -28,7 +28,7 @@ class IncentiveProgram extends Model {
 
     public static function create(array $attributes)
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $incentive_program = new IncentiveProgram;
         $incentive_program->title = $attributes['title'];
@@ -44,7 +44,7 @@ class IncentiveProgram extends Model {
 
     public function update(array $attributes = array())
     {
-        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->id);
+        $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
 
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];

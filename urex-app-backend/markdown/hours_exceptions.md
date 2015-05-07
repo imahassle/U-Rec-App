@@ -12,7 +12,7 @@ X-Authorization?   | HTTP Verb | URI                                            
 #
 Input         | Optional?          | Validation Rules
 ------------- | :----------------: | ----------------
-`date`        | :heavy_minus_sign: | `date`
+`day`         | :heavy_minus_sign: | `date`
 `open`        | :heavy_minus_sign: | `time`
 `close`       | :heavy_minus_sign: | `time`
 `category_id` | :heavy_check_mark: |
@@ -21,7 +21,7 @@ Input         | Optional?          | Validation Rules
 Output        | Type      | Format
 ------------- | :-------: | ---------------
 `id`          | `integer` |
-`date`        | `string`  | `mm dd, yyyy`
+`day`         | `string`  | `mm dd, yyyy`
 `open`        | `string`  | `hh:mm[am|pm]`
 `close`       | `string`  | `hh:mm[am|pm]`
 `category_id` | `integer` |

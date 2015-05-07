@@ -41,7 +41,7 @@ class User extends Model {
         $user->first_name = $attributes['first_name'];
         $user->last_name = $attributes['last_name'];
         $user->email = $attributes['email'];
-        $user->category_id = $attributes['category_id'];
+        $user->category_id = intval($attributes['category_id']);
 
         if(!$user->save()) {
             throw new ServerException("User was not created successfully due to an internal server error.");
@@ -67,7 +67,7 @@ class User extends Model {
         $this->first_name = $attributes['first_name'];
         $this->last_name = $attributes['last_name'];
         $this->email = $attributes['email'];
-        $this->category_id = $attributes['category_id'];
+        $this->category_id = intval($attributes['category_id']);
 
         if(!$this->save()) {
             throw new ServerException("User was not updated successfully due to an internal server error.");

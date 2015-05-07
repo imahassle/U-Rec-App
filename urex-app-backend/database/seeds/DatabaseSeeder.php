@@ -18,8 +18,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('AnnouncementsTableSeeder');
         $this->call('EventsTableSeeder');
         $this->call('FeedbackTableSeeder');
-        $this->call('HoursTableSeeder');
-        $this->call('HoursExceptionsTableSeeder');
         $this->call('IncentiveProgramsTableSeeder');
         $this->call('ItemRentalsTableSeeder');
     }

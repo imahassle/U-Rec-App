@@ -72,6 +72,7 @@ Route::group(['prefix' => 'api'], function() {
         Route::put('/{id}', 'Api\HourController@update');
         Route::delete('/{id}', 'Api\HourController@destroy');
         Route::get('category/{category_id}', 'Api\HourController@index_category');
+        Route::get('/category/{category_id}/week', 'Api\HourController@index_category_week');
     });
 
     // Hours Exception routes
