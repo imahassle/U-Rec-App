@@ -17,7 +17,7 @@ class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
             println("First time viewing OUTDOOR REC viewcontroller!")
             if(url == "") {
                 self.navigationBar.title = "OUTDOOR REC"
-                url = "http://localhost:8888/urec/Mobile/outdoorrec/index.html"
+                url = "http://localhost:8888/urec/Mobile-New/#outdoorrec"
                 
                 isRoot = true
             }
