@@ -10,7 +10,7 @@ var app = (function() {
 		cms: null,
 		viewsFactory: null,
 		init: function() {
-			this.content = $("#main"); //Sets initial view for app
+			this.content = $("#insert"); //Sets initial view for app
 			if($.cookie('U-Rex-API-Key')) {
 				ViewsFactory.menu();
 				$("#userName").html($.cookie('First-Name'));
@@ -38,33 +38,42 @@ var app = (function() {
 	var ViewsFactory = {
 		login: function() {
 			if(!this.loginView) {
-				this.loginView = new api.views.login({
+				this.loginView = new loginView({
 					el: this.content
 				});
 			}
 			return this.loginView;
 		},
 		menu: function() {
-			if(!this.menuView) {
-				this.menuView = new api.views.menu({
-					el: $("#menu")
+			console.log("Menu load?");
+			if(!this.menuViews) {
+				this.menuViews = new menuView({
+					el: $("#menu"),
+					permissions: "admin"
 				});
 			}
-			return this.menuView;
+			return this.menuViews;
 		},
 		removeMenu: function() {
+			console.log("removing menu...");
 			$("#menu").html("");
 			this.menuView = null;
 			return this.menuView;
 		},
 		facilityHome: function() {
-			if(!this.facilityHomeView) {
-				this.facilityHomeView = new api.views.facilityHome({
-					el: this.content
-				});
-				// this.facilityHomeView.render();
-			}
+			this.facilityHomeView = new homeView({
+				category: 1,
+				sub: $("#facilityMenu"),
+				name: "U-Rec",
+				collectionName: "app.viewsFactory.facilityHomeView.collection"
+			});
 			return this.facilityHomeView;
+		},
+		facilityAnnouncements: function() {
+			this.facilityAnnouncementsView = new announcementView({
+				url: "api/announcement/category/1",
+			});
+			return this.facilityAnnouncementsView;
 		},
 		facilityHours: function() {
 			if(!this.facilityHoursView) {
@@ -83,19 +92,15 @@ var app = (function() {
 			return this.facilityProgView;
 		},
 		facilityEvents: function() {
-			if(!this.facilityEventsView) {
-				this.facilityEventsView = new api.views.facilityEvents({
-					el: this.content
+				this.facilityEventsView = new eventView({
+					url: "api/event/category/1",
 				});
-			}
 			return this.facilityEventsView;
 		},
 		facilityPhotos: function() {
-			if(!this.facilityPhotosView) {
-				this.facilityPhotosView = new api.views.facilityPhotos({
-					el: this.content
-				});
-			}
+			this.facilityPhotosView = new imageView({
+				url: "api/image/category/1",
+			});
 			return this.facilityPhotosView;
 		},
 		facilityFeedback: function() {
@@ -107,84 +112,86 @@ var app = (function() {
 			return this.facilityFeedbackView;
 		},
 		outdoorrecHome: function() {
-			if(!this.outdoorrecHomeView) {
-				this.outdoorrecHomeView = new api.views.outdoorrecHome({
-					el: this.content
-				});
-			}
+			this.outdoorrecHomeView = new homeView({
+				category: 2,
+				sub: $("#outdoorrecMenu"),
+				name: "Outdoor Rec",
+				collectionName: "app.viewsFactory.outdoorrecHomeView.collection"
+			});
 			return this.outdoorrecHomeView;
 		},
+		outdoorrecAnnouncements: function() {
+			this.outdoorrecAnnouncementsView = new announcementView({
+				url: "api/announcement/category/2",
+			});
+			return this.outdoorrecAnnouncementsView;
+		},
 		outdoorrecTrips: function() {
-			if(!this.outdoorrecTripsView) {
-				this.outdoorrecTripsView = new api.views.outdoorrecTrips({
-					el: this.content
-				});
-			}
+			this.outdoorrecTripsView = new eventView({
+				url: "api/event/category/2",
+			});
 			return this.outdoorrecTripsView;
 		},
 		outdoorrecPhotos: function() {
-			if(!this.outdoorrecPhotosView) {
-				this.outdoorrecPhotosView = new api.views.outdoorrecPhotos({
-					el: this.content
+				this.outdoorrecPhotosView = new imageView({
+					url: "api/image/category/2",
 				});
-			}
 			return this.outdoorrecPhotosView;
 		},
 		intramuralsHome: function() {
-			if(!this.intramuralsHomeHome) {
-				this.intramuralsHomeHome = new api.views.intramuralsHome({
-					el: this.content
-				});
-			}
-			return this.intramuralsHomeHome;
+			this.intramuralsHomeView = new homeView({
+				category: 3,
+				sub: $("#intramuralsMenu"),
+				name: "Intramurals",
+				collectionName: "app.viewsFactory.intramuralsHomeView.collection"
+			});
+			return this.intramuralsHomeView;
+		},
+		intramuralsAnnouncements: function() {
+			this.intramuralsAnnouncementsView = new announcementView({
+				url: "api/announcement/category/3",
+			});
+			return this.intramuralsAnnouncementsView;
 		},
 		intramuralsPhotos: function() {
-			if(!this.intramuralsPhotosView) {
-				this.intramuralsPhotosView = new api.views.intramuralsPhotos({
-					el: this.content
+				this.intramuralsPhotosView = new imageView({
+					url: "api/image/category/3",
 				});
-			}
 			return this.intramuralsPhotosView;
 		},
 		climbingwallHome: function() {
-			if(!this.climbingwallHomeView) {
-				this.climbingwallHomeView = new api.views.climbingwallHome({
-					el: this.content
+				this.climbingwallHomeView = new homeView({
+					category: 4,
+					sub: $("#climbingwallMenu"),
+					name: "Climbing Wall",
+					collectionName: "app.viewsFactory.climbingwallHomeView.collection"
 				});
-			}
 			return this.climbingwallHomeView;
+		},
+		climbingwallAnnouncements: function() {
+				this.climbingwallAnnouncementsView = new announcementView({
+					url: "api/announcement/category/4",
+				});
+			return this.climbingwallAnnouncementsView;
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
 				this.climbingwallHoursView = new api.views.climbingwallHours({
-					el: this.content
 				});
 			}
 			return this.climbingwallHoursView;
 		},
 		climbingwallPhotos: function() {
-			if(!this.climbingwallPhotosView) {
-				this.climbingwallPhotosView = new api.views.climbingwallPhotos({
-					el: this.content
+				this.climbingwallPhotosView = new imageView({
+					url: "api/image/category/4",
 				});
-			}
 			return this.climbingwallPhotosView;
 		},
 		climbingwallEvents: function() {
-			if(!this.climingwallEventsView) {
-				this.climingwallEventsView = new api.views.climbingwallEvents({
-					el: this.content
-				});
-			}
-			return this.climingwallEventsView;
-		},
-		login: function() {
-			if(!this.loginView) {
-				this.loginView = new api.views.login({
-					el: this.content
-				});
-			}
-			return this.loginView;
+			this.climbingwallEventsView = new eventView({
+				url: "api/event/category/4",
+			});
+			return this.climbingwallEventsView;
 		},
 		stats: function() {
 			if(!this.statsView) {
@@ -288,55 +295,9 @@ var app = (function() {
 			// api.rentalInfo.fetch({reset: "true"});
 		},
 		stats: function() {},
-		login: function(valid) {
+		login: function() {
 			api.changeContent(ViewsFactory.login().$el);
 		},
-		facilityRemove: function(id) {
-
-			console.log("removing ", id);
-			var item = api.viewsFactory.facilityHome().collection.get(id);
-			if(item.isNew()) {
-				console.log("It's new!");
-				item.sync("read", item, {url: "api/announcement"}).done(function() {
-					item.destroy({url:"api/announcement/"+id});
-				});
-			}
-			else {
-				item.destroy({url:"api/announcement/"+id});
-			}
-
-			this.navigate("#facility");
-		},
-		facilityRemoveProg: function(id) {
-			console.log("removing program ", id);
-			var item = api.viewsFactory.facilityProg().collection.get(id);
-			if(item.isNew()) {
-				console.log("It's new!");
-				item.sync("read", item, {url: "api/image"}).done(function() {
-					item.destroy({url:"api/incentive_program/"+id});
-				});
-			}
-			else {
-				item.destroy({url:"api/incentive_program/"+id});
-			}
-
-			this.navigate("#facility/programs");
-		},
-		outdoorrecRemove: function(id) {
-			console.log("removing ", id);
-			var item = api.viewsFactory.outdoorrecHome().collection.get(id);
-			if(item.isNew()) {
-				console.log("It's new!");
-				item.sync("read", item, {url: "api/announcement"}).done(function() {
-					item.destroy({url:"api/announcement/"+id});
-				});
-			}
-			else {
-				item.destroy({url:"api/announcement/"+id});
-			}
-
-			this.navigate("#outdoorrec");
-		}
 	});
 	api.router = new Router();
 

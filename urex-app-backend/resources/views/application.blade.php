@@ -22,8 +22,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-
-
 </head>
 <body>
 
@@ -36,19 +34,17 @@
         <span></span>
     </a>
 
-    <div id="error-report" style="display: none">
-
-    </div>
+    <div id="error-report" style="display: none"></div>
 
     <div class="header aug-top-bar" style="display: none">
-
         <label for="logout-button">Hello, <span id="userName">USER</span></label>
         <a id="logout-button" href="#">Log out</a>
     </div>
 
     <div id="menu"></div>
 
-    <div id="main">
+    <div id="insert">
+      <!-- Insert content here -->
     </div>
     <!-- Ignore below -->
 </div>
@@ -59,14 +55,12 @@
   <p class="error-type">Error:</p>
   <p class="error-text"><%= message %></p>
   <a id="error-close"><i class="fa fa-times right"></i></a>
-  <script>
+  <script type="text/javascript">
   $("#error-close").on("click", function() {
     $("#error-report").slideToggle();
   });
   </script>
 </script>
-
-
 
 <script type="text/template" id="login">
   <div class="content login-view">
@@ -104,43 +98,46 @@
     });
   });
   </script>
-
 </script>
 
 <script type="text/template" id="editAnnouncement">
-<form action="javascript:" class="editAnnouncement" value="<%= model.id %>" class="pure-form pure-form-stacked">
-  <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
-  <input name="title" type="text" placeholder="Program Title" value="<%=model.title%>">
-  <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details" value=""><%=model.message%></textarea>
-</form>
-<script type="text/javascript">
-$(".editAnnouncement").on("submit", function() {
-  console.log("saving changes...");
-  var ID = $(this).attr("value");
-  // console.log(ID);
-  var data = new Announcement({
-    id: ID,
-    title: $(this).children("input[name=title]").val(),
-    message: $(this).children("textarea[name=message]").val(),
+  <form action="javascript:" class="editAnnouncement" value="<%= model.id %>" class="pure-form pure-form-stacked">
+    <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
+    <input name="title" type="text" placeholder="Program Title" value="<%=model.title%>">
+    <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details" value=""><%=model.message%></textarea>
+  </form>
+  <script type="text/javascript">
+  var collection = <%=coll%>;
+  $(".editAnnouncement").on("submit", function() {
+    console.log("saving changes...");
+    var ID = $(this).attr("value");
+    // console.log(ID);
+    var data = {
+      title: $(".editAnnouncement input[name=title]").val(),
+      message: $(".editAnnouncement textarea[name=message]").val(),
+      category_id: collection.get(ID).attributes.category_id
+    };
+    console.log(data);
+    // collection.get(ID).set(data);
+    // collection.get(ID).sync("UPDATE", collection.get(ID), {url:"api/announcement/"+ID}).done(function(error) {
+    //   // checkError(error);
+    // collection.fetch();
+    // });
+    collection.get(ID).save(data, {url:"api/announcement/"+ID});
   });
-  app.viewsFactory.facilityHome().collection.get(ID).sync("update", data, {url:"api/announcement/"+ID}).done(function(error) {
-    // checkError(error);
-    app.viewsFactory.facilityHome().collection.fetch();
-  });
-});
-</script>
+  </script>
 </script>
 
-<script type="text/template" id="facilityHome">
+<script type="text/template" id="homeTemplate">
 <div class="header aug-header">
-    <h1>Facilities Home</h1>
+    <h1><%=name%> Home</h1>
 </div>
     <div class="content home-view pure-g">
         <!-- Welcome Banner and Post form -->
         <div class="home-channel pure-u-3-5">
             <div class="home-main-banner">
                 <h3 class="banner">Announcements</h3>
-                <form action="javascript:" id="facilities-announcement" class="pure-form pure-form-stacked">
+                <form action="javascript:" id="announcement-form" class="pure-form pure-form-stacked">
                     <h4>New Announcement</h4>
                     <button type="submit" class="pure-button pure-button-primary right red">POST</button>
                     <input name="title" type="text" placeholder="Program Title">
@@ -150,7 +147,7 @@ $(".editAnnouncement").on("submit", function() {
             <!-- Announcement Template Below -->
             <% _.each(collection, function(model) { %>
               <div class="home-announcement" id="<%= model.id %>">
-                  <a href="#facility/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
+                  <a id="<%=model.id%>" class="removeAnnouncementButton"><i class="fa fa-trash fa-2x right red"></i></a>
                   <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
                   <p class="announcement-date"><%= model.date %></p>
                   <h4><%= model.title %></h4>
@@ -160,31 +157,25 @@ $(".editAnnouncement").on("submit", function() {
 
         </div>
         <!-- Quick links menu here -->
-        <div class="pure-u-2-5 quick-menu">
-            <a href="#facilites/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
-            <a href="#facility/programs"><div class="quick-item"><i class="fa fa-git fa-3x"></i><h3>Incentive Programs</h3></div></a>
-            <a href="#facility/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
-            <a href="#facility/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-            <a href="#facility/feedback"><div class="quick-item"><i class="fa fa-comment fa-3x"></i><h3>View Feedback</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
-        </div>
+        <%=menu%>
     </div>
     <script type="text/javascript">
-      $('#facilities-announcement').on("submit", function(event) {
+    var collection = <%=coll%>;
+      $('#announcement-form').on("submit", function(event) {
         event.preventDefault();
         var data = {
-          title: $("#facilities-announcement > input[name='title']").val(),
-          message: $("#facilities-announcement > textarea[name='message']").val(),
-          category_id: 1,
+          title: $("#announcement-form > input[name='title']").val(),
+          message: $("#announcement-form > textarea[name='message']").val(),
+          category_id: <%=category%>,
           date: new Date().toString().split(" G")[0],
         };
         console.log(data);
-        app.viewsFactory.facilityHome().collection.create(data, {
+        collection.create(data, {
           url: "api/announcement",
           wait: true,
           success: function() {
             console.log("refreshing view after submittal...");
-            app.viewsFactory.facilityHome().collection.fetch();
+            collection.fetch();
           }
         });
       });
@@ -193,116 +184,128 @@ $(".editAnnouncement").on("submit", function() {
         var parent = $(this).parent(".home-announcement");
         var template = _.template($("#editAnnouncement").html())
         console.log("Now editing announcement", id);
-        $(parent).html(template({model: app.viewsFactory.facilityHome().collection.get(id).attributes}));
+        $(parent).html(template({model: collection.get(id).attributes, coll: "<%=coll%>"}));
       });
-
+      $(".removeAnnouncementButton").on('click', function() {
+        console.log("Removing announcement", $(this).attr('id'));
+        var id = $(this).attr('id');
+        collection.get(id).destroy({url:"api/announcement/"+id});
+      });
     </script>
+</script>
+
+<script type="text/template" id="facilityMenu">
+  <div class="pure-u-2-5 quick-menu">
+      <a href="#facilites/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
+      <a href="#facility/programs"><div class="quick-item"><i class="fa fa-git fa-3x"></i><h3>Incentive Programs</h3></div></a>
+      <a href="#facility/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
+      <a href="#facility/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+      <a href="#facility/feedback"><div class="quick-item"><i class="fa fa-comment fa-3x"></i><h3>View Feedback</h3></div></a>
+      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+  </div>
+</script>
+
+<script type="text/template" id="outdoorrecMenu">
+  <div class="pure-u-2-5 quick-menu">
+      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Trips</h3></div></a>
+      <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+  </div>
+</script>
+
+<script type="text/template" id="intramuralsMenu">
+  <div class="pure-u-2-5 quick-menu">
+      <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-futbol-o fa-3x"></i><h3>IMLeagues</h3></div></a>
+      <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
+  </div>
+</script>
+
+<script type="text/template" id="climbingwallMenu">
+  <div class="pure-u-2-5 quick-menu">
+      <a href="#climbingwall/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-barcode fa-3x"></i><h3>Climb Stuff</h3></div></a>
+      <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
+      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+  </div>
 </script>
 
 <script type="text/template" id="facilityFeedback"></script>
 
-<script type="text/template" id="outdoorrecHome">
-<div class="header aug-header">
-    <h1>Outdoor Rec Home</h1>
-</div>
-    <div class="content home-view pure-g">
-        <!-- Welcome Banner and Post form -->
-        <div class="home-channel pure-u-3-5">
-            <div class="home-main-banner">
-                <h3 class="banner">Announcements</h3>
-                <form  action="javascript:" id="outdoorrec-announcement" class="pure-form pure-form-stacked">
-                    <h4>New Announcement</h4>
-                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
-                    <input name="title" type="text" placeholder="Title">
-                    <textarea name="message" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
-                </form>
-            </div>
-            <!-- Announcement Template Below -->
-            <% _.each(collection, function(model) { %>
-              <div class="home-announcement" id="<%= model.id %>">
-                  <a href="#outdoorrec/remove/<%= model.id %>"><i class="fa fa-trash fa-2x right red"></i></a>
-                  <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
-                  <p class="announcement-date"><%= model.date %></p>
-                  <h4><%= model.title %></h4>
-                  <p class="announcement-blurb"><%= model.message %></p>
-              </div>
-            <% }); %>
-        </div>
-        <!-- Quick links menu here -->
-        <div class="pure-u-2-5 quick-menu">
-            <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Trips</h3></div></a>
-            <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
-        </div>
+<script type="text/template" id="imageTemplate">
+  <div class="header aug-header">
+      <h1><%=name%> Photos</h1>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <form action="javascript:" id="photoUpload" class="pure-form pure-form-stacked">
+        <input id="fileUpload" type="file" value="Upload Photos">
+        <br>
+        <fieldset>
+          <input class="pure-input" type="text" placeholder="Caption">
+          <button class="pure-button red imageSubmit">SUBMIT</button>
+        </fieldset>
+      </form>
     </div>
-    <script type="text/javascript">
-    $('#outdoorrec-announcement').on("submit", function(event) {
-      event.preventDefault();
-      var data = {
-        title: $("#outdoorrec-announcement > input[name='title']").val(),
-        message: $("#outdoorrec-announcement > textarea[name='message']").val(),
-        category_id: 2,
-        date: new Date().toString().split(" G")[0],
-      };
-      console.log(data);
-      app.viewsFactory.outdoorrecHome().collection.create(data, {
-        url: "api/announcement",
-        wait: true,
-        success: function() {
-          console.log("refreshing view after submittal...");
-          app.viewsFactory.outdoorrecHome().collection.fetch();
-        }
-      });
+  </div>
+  <div class="content pure-g photos-view">
+          <div class="pure-g">
+              <% _.each(collection, function(model) { %>
+                <div class="pure-u-1-4">
+                <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
+                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
+                  <p><%= model.caption %></p>
+                  </div>
+              <% }); %>
+          </div>
+  </div>
+  <script type="text/javascript">
+    $("#photoUpload input[type=file]").on("change", function() {
+      console.log(this.files[0]);
     });
-    $(".editAnnouncementButton").on('click', function() {
-      var id = $(this).parent(".home-announcement").attr("id");
-      var parent = $(this).parent(".home-announcement");
-      var template = _.template($("#editAnnouncement").html())
-      console.log("Now editing announcement", id);
-      $(parent).html(template({model: app.viewsFactory.outdoorrecHome().collection.get(id).attributes}));
+    $(".deletePhoto").on('click', function() {
+      app.viewsFactory.facilityPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
     });
-    </script>
-</script>
+    $("#photoUpload .imageSubmit").on("click", function() {
+      var theFile = $("#fileUpload")[0].files[0];
+      if(typeof theFile == "undefined") {
+        // alert("Please select an image");
+        checkError({message: "Please select an image!"});
+      }
+      else if (theFile.size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else {
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
 
-<script type="text/template" id="intramuralsHome">
-<div class="header aug-header">
-    <h1>Intramurals Home</h1>
-</div>
-    <div class="content home-view pure-g">
-        <!-- Welcome Banner and Post form -->
-        <div class="home-channel pure-u-3-5">
-            <div class="home-main-banner">
-                <h3 class="banner">Announcements</h3>
-                <form class="pure-form pure-form-stacked">
-                    <h4>New Announcement</h4>
-                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
-                    <input type="text" placeholder="Title">
-                    <textarea name="details" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
-                </form>
-            </div>
-            <!-- Announcement Template Below -->
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
-        </div>
-        <!-- Quick links menu here -->
-        <div class="pure-u-2-5 quick-menu">
-            <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-            <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-futbol-o fa-3x"></i><h3>IMLeagues</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
-        </div>
-    </div>
+        console.log(theFile);
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var image = {
+            file: fileData,
+            caption: $("#photoUpload input[type=text]").val(),
+            extension: fileExt,
+            category_id: <%=id%>,
+          };
+          console.log(image);
+
+          var coll = <%=collection%>;
+
+          coll.create(image, {
+            url: "api/image",
+            wait: true
+          });
+
+        };
+      }
+    });
+  </script>
 </script>
 
 <script type="text/template" id="facilityHours">
@@ -407,140 +410,6 @@ $(".editAnnouncement").on("submit", function() {
       </div>
 </script>
 
-
-
-<script type='text/template' id="facilityPhotos">
-    <div class="header aug-header">
-        <h1>Facility Photos</h1>
-    </div>
-    <div class="content">
-      <div class="creation">
-        <form action="javascript:" id="facilityPhotosUpload" class="pure-form pure-form-stacked">
-          <input id="fileUpload" type="file" value="Upload Photos">
-          <br>
-          <fieldset>
-            <input class="pure-input" type="text" placeholder="Caption">
-            <button class="pure-button red imageSubmit">SUBMIT</button>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <div class="content pure-g photos-view">
-            <div class="pure-g">
-                <% _.each(collection, function(model) { %>
-                  <div class="pure-u-1-4">
-                  <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
-                    <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
-                    <p><%= model.caption %></p>
-                    </div>
-                <% }); %>
-            </div>
-    </div>
-    <script type="text/javascript">
-      $("#facilityPhotosUpload input[type=file]").on("change", function() {
-        console.log(this.files[0]);
-      });
-      $(".deletePhoto").on('click', function() {
-        app.viewsFactory.facilityPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
-      });
-      $("#facilityPhotosUpload .imageSubmit").on("click", function() {
-        var theFile = $("#fileUpload")[0].files[0];
-        if(typeof theFile == "undefined") {
-          // alert("Please select an image");
-          checkError({message: "Please select an image!"});
-        }
-        else if (theFile.size > 5242880) {
-          checkError({error: "Your file size is too big! Try uploading a smaller image."});
-        }
-        else {
-          var reader = new FileReader();
-          var fileExt = null;
-          var fileData = null;
-          var size = theFile.size;
-
-          console.log(theFile);
-          fileExt = theFile.name.split('.').pop();
-          reader.readAsDataURL(theFile);
-          reader.onload = function(file) {
-            fileData = file.target.result;
-
-            var image = {
-              file: fileData,
-              caption: $("#facilityPhotosUpload input[type=text]").val(),
-              extension: fileExt,
-              category_id: 1,
-            };
-            console.log(image);
-
-            app.viewsFactory.facilityPhotosView.collection.create(image, {
-              url: "api/image",
-              wait: true,
-              success: function() {
-                console.log("refreshing view after submittal...");
-                app.viewsFactory.facilityPhotosView.collection.fetch();
-              },
-              error: function(error) {
-                console.log(error);
-              }
-            });
-
-          };
-          // fileData = reader.result;
-          // console.log(reader);
-          // var image = {
-          //   caption: "Hello World",
-          //   file: $(".perm-button > input[type=file]")[0].files[0],
-          //   category_id: 1
-          // };
-
-
-        }
-      });
-    </script>
-</script>
-
-<script type="text/template" id="climbingwallHome">
-    <div class="header aug-header">
-    <h1>Climbing Wall Home</h1>
-</div>
-    <div class="content home-view pure-g">
-        <!-- Welcome Banner and Post form -->
-        <div class="home-channel pure-u-3-5">
-            <div class="home-main-banner">
-                <h3 class="banner">Announcements</h3>
-                <form class="pure-form pure-form-stacked">
-                    <h4>New Announcement</h4>
-                    <button type="submit" class="pure-button pure-button-primary right red">POST</button>
-                    <input type="text" placeholder="Title">
-                    <textarea name="details" id="programDetails" cols="62" rows="2" placeholder="Details"></textarea>
-                </form>
-            </div>
-            <!-- Announcement Template Below -->
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
-            <div class="home-announcement">
-                <i class="fa fa-trash fa-2x right red"></i>
-                <i class="fa fa-edit fa-2x right red"></i>
-                <p class="announcement-date">March 13th at 9:04am</p>
-                <h4>3 More Spots in our Spring Break trip!</h4>
-                <p class="announcement-blurb">Spots are going fast. Come sign up in the U-Rec to reserve your spot! Cost is $350.</p>
-            </div>
-        </div>
-        <!-- Quick links menu here -->
-        <div class="pure-u-2-5 quick-menu">
-            <a href="#climbingwall/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-            <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-barcode fa-3x"></i><h3>Climb Stuff</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
-            <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
-        </div>
-    </div>
-</script>
-
 <script type="text/template" id="editProgram">
   <form class="editProgram pure-form pure-form-stacked" value="<%= model.id %>" action="javascript:">
     <input type="text" name="title" value="<%= model.title %>" >
@@ -605,7 +474,7 @@ $(".editAnnouncement").on("submit", function() {
     </script>
 </script>
 
-<script type="text/template" id="facilityEvents">
+<script type="text/template" id="eventTemplate">
     <div class="header aug-header">
         <h1>Facility Events</h1>
     </div>
@@ -738,350 +607,6 @@ $(".editAnnouncement").on("submit", function() {
     </div>
 </script>
 
-<script type="text/template" id="outdoorrecPhotos">
-  <div class="header aug-header">
-      <h1>Outdoor Rec Photos</h1>
-  </div>
-  <div class="content">
-    <div class="creation">
-      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
-        <input id="fileUpload" type="file" value="Upload Photos">
-        <br>
-        <fieldset>
-          <input class="pure-input" type="text" placeholder="Caption">
-          <button class="pure-button red imageSubmit">SUBMIT</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-  <div class="content pure-g photos-view">
-          <div class="pure-g">
-              <% _.each(collection, function(model) { %>
-                <div class="pure-u-1-4">
-                <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
-                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
-                  <p><%= model.caption %></p>
-                  </div>
-              <% }); %>
-          </div>
-  </div>
-  <script type="text/javascript">
-    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
-      console.log(this.files[0]);
-    });
-    $(".deletePhoto").on('click', function() {
-      app.viewsFactory.outdoorrecPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
-    });
-    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
-      var theFile = $("#fileUpload")[0].files[0];
-      if(typeof theFile == "undefined") {
-        // alert("Please select an image");
-        checkError({message: "Please select an image!"});
-      }
-      else if (theFile.size > 5242880) {
-        checkError({error: "Your file size is too big! Try uploading a smaller image."});
-      }
-      else {
-        var reader = new FileReader();
-        var fileExt = null;
-        var fileData = null;
-        var size = theFile.size;
-
-        console.log(theFile);
-        fileExt = theFile.name.split('.').pop();
-        reader.readAsDataURL(theFile);
-        reader.onload = function(file) {
-          fileData = file.target.result;
-
-          var image = {
-            file: fileData,
-            caption: $("#outdoorPhotosUpload input[type=text]").val(),
-            extension: fileExt,
-            category_id: 2
-          };
-          console.log(image);
-
-          app.viewsFactory.outdoorrecPhotosView.collection.create(image, {
-            url: "api/image",
-            wait: true,
-            success: function() {
-              console.log("refreshing view after submittal...");
-              app.viewsFactory.outdoorrecPhotosView.collection.fetch();
-            },
-            error: function(error) {
-              console.log(error);
-            }
-          });
-
-        };
-      }
-    });
-  </script>
-</script>
-
-<script type="text/template" id="intramuralsPhotos">
-  <div class="header aug-header">
-      <h1>Intramurals Photos</h1>
-  </div>
-  <div class="content">
-    <div class="creation">
-      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
-        <input id="fileUpload" type="file" value="Upload Photos">
-        <br>
-        <fieldset>
-          <input class="pure-input" type="text" placeholder="Caption">
-          <button class="pure-button red imageSubmit">SUBMIT</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-  <div class="content pure-g photos-view">
-          <div class="pure-g">
-              <% _.each(collection, function(model) { %>
-                <div class="pure-u-1-4">
-                <i id="<%= model.id %>" class="fa fa-times red deletePhoto"></i>
-                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
-                  <p><%= model.caption %></p>
-                  </div>
-              <% }); %>
-          </div>
-  </div>
-  <script type="text/javascript">
-    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
-      console.log(this.files[0]);
-    });
-    $(".deletePhoto").on('click', function() {
-      app.viewsFactory.intramuralsPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
-    });
-    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
-      var theFile = $("#fileUpload")[0].files[0];
-      if(typeof theFile == "undefined") {
-        // alert("Please select an image");
-        checkError({message: "Please select an image!"});
-      }
-      else if (theFile.size > 5242880) {
-        checkError({error: "Your file size is too big! Try uploading a smaller image."});
-      }
-      else {
-        var reader = new FileReader();
-        var fileExt = null;
-        var fileData = null;
-        var size = theFile.size;
-
-        console.log(theFile);
-        fileExt = theFile.name.split('.').pop();
-        reader.readAsDataURL(theFile);
-        reader.onload = function(file) {
-          fileData = file.target.result;
-
-          var image = {
-            file: fileData,
-            caption: $("#outdoorPhotosUpload input[type=text]").val(),
-            extension: fileExt,
-            category_id: 3
-          };
-          console.log(image);
-
-          app.viewsFactory.intramuralsPhotosView.collection.create(image, {
-            url: "api/image",
-            wait: true,
-            success: function() {
-              console.log("refreshing view after submittal...");
-              app.viewsFactory.intramuralsPhotosView.collection.fetch();
-            },
-            error: function(error) {
-              console.log(error);
-            }
-          });
-
-        };
-      }
-    });
-  </script>
-</script>
-
-<script type="text/template" id="climbingwallHours">
-  <div class="header aug-header">
-          <h1>Climbing Wall Hours</h1>
-      </div>
-      <div class="content">
-          <div class="creation">
-              <div class="buttons-group">
-                  <button type="submit" class="pure-button pure-button-primary right red">Save Hours</button>
-              </div>
-              <h3>Set the standard open hours for the climbing wall:</h3>
-              <form class="pure-form pure-form-aligned">
-                  <div class="pure-control-group">
-                      <label for="startTime">Monday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Tuesday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Wednesday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Thursday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Friday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Saturday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Sunday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <br>
-                  <div class="pure-control-group">
-                    <label>Exception:</label>
-                    <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
-                    <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
-                    <i class="fa fa-times-circle fa-lg"></i>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">from this date</label>
-                      <input id="startTime" class="pure-u-1-5" type="date">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="date">
-                  </div>
-                  <div class="pure-control-group">
-                    <label for="startTime">at this time</label>
-                    <input id="startTime" class="pure-u-1-5" type="time">
-                    <label class="secondLabel">to</label>
-                    <input class="pure-u-1-5" type="time">
-                  </div>
-                  <br>
-                  <div class="pure-control-group">
-                    <button class="pure-button">Add Exception</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-</script>
-
-<script type="text/template" id="climbingwallPhotos">
-  <div class="header aug-header">
-      <h1>Climbing Wall Photos</h1>
-  </div>
-  <div class="content">
-    <div class="creation">
-      <form action="javascript:" id="outdoorPhotosUpload" class="pure-form pure-form-stacked">
-        <input id="fileUpload" type="file" value="Upload Photos">
-        <br>
-        <fieldset>
-          <input class="pure-input" type="text" placeholder="Caption">
-          <button class="pure-button red imageSubmit">SUBMIT</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-  <div class="content pure-g photos-view">
-          <div class="pure-g">
-              <% _.each(collection, function(model) { %>
-                <div class="pure-u-1-4">
-                <i id="<%=model.id%>" class="fa fa-times red deletePhoto"></i>
-                  <a data-featherlight="#image-<%= model.id %>"><img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>"></a>
-                  <p><%= model.caption %></p>
-                  </div>
-              <% }); %>
-          </div>
-  </div>
-  <script type="text/javascript">
-    $("#outdoorPhotosUpload input[type=file]").on("change", function() {
-      console.log(this.files[0]);
-    });
-    $(".deletePhoto").on('click', function() {
-      app.viewsFactory.climbingwallPhotosView.collection.get($(this).attr('id')).destroy({url:"api/image/"+$(this).attr('id')});
-    });
-    $("#outdoorPhotosUpload .imageSubmit").on("click", function() {
-      var theFile = $("#fileUpload")[0].files[0];
-      if(typeof theFile == "undefined") {
-        // alert("Please select an image");
-        checkError({message: "Please select an image!"});
-      }
-      else if (theFile.size > 5242880) {
-        checkError({error: "Your file size is too big! Try uploading a smaller image."});
-      }
-      else {
-        var reader = new FileReader();
-        var fileExt = null;
-        var fileData = null;
-        var size = theFile.size;
-
-        console.log(theFile);
-        fileExt = theFile.name.split('.').pop();
-        reader.readAsDataURL(theFile);
-        reader.onload = function(file) {
-          fileData = file.target.result;
-
-          var image = {
-            file: fileData,
-            caption: $("#outdoorPhotosUpload input[type=text]").val(),
-            extension: fileExt,
-            category_id: 4
-          };
-          console.log(image);
-
-          app.viewsFactory.climbingwallPhotosView.collection.create(image, {
-            url: "api/image",
-            wait: true,
-            success: function() {
-              console.log("refreshing view after submittal...");
-              app.viewsFactory.climbingwallPhotosView.collection.fetch();
-            },
-            error: function(error) {
-              console.log(error);
-            }
-          });
-
-        };
-      }
-    });
-  </script>
-</script>
 
 <script type="text/template" id="climbingwallEvents">
     <div class="header aug-header">
@@ -1175,16 +700,11 @@ $(".editAnnouncement").on("submit", function() {
                 <li><a href="#climbingwall/events" class="pure-menu-link">Events</a></li>
             </ul>
         <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
-        <!--<li class="pure-menu-item"><a href="#stats" class="pure-menu-link">Stats</a></li> -->
-        <!--<li class="pure-menu-item"><a href="#login" class="pure-menu-link">Login</a></li> -->
     </ul>
 </div>
 </script>
 
-
-
-
-<script type="text/template" id="rentals">
+<script type="text/template" id="rentalTemplate">
 <div class="header aug-header">
     <h1>Rentals</h1>
 </div>
@@ -1224,39 +744,6 @@ $(".editAnnouncement").on("submit", function() {
                 <td>$30</td>
                 <td>$40</td>
             </tr>
-            <tr>
-                <td class="aug-tr-lead">Bike Helmet</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-            </tr>
-            <tr>
-                <td class="aug-tr-lead">Bocce Ball Set</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-            </tr>
-            <tr>
-                <td class="aug-tr-lead">Tent all season - 3 person</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-            </tr>
         </tbody>
     </table>
     <form class="pure-form right">
@@ -1268,47 +755,14 @@ $(".editAnnouncement").on("submit", function() {
 
 </script>
 
-
-
-<script type="text/template" id="login-prompt">
-<div class="content">
-    <form id="login-form" class="pure-form login-prompt">
-        <!-- <div id="load-ani" class="spinner">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-        </div> -->
-
-        <fieldset class="pure-group">
-            <legend>Login</legend>
-            <h2 class="pure-sub-header" <%= valid %>>Invalid login</h2>
-            <!-- <label for="username">Username</label> -->
-            <input id="username" class="pure-input-1" type="text" placeholder="Username">
-            <!-- <label for="password">Password</label> -->
-            <input id="password" class="pure-input-1" type="password" placeholder="Password">
-            <button type="submit" class="pure-button pure-input-1 pure-button-primary">Login</button>
-        </fieldset>
-    </form>
-
-</div>
-</script>
-
 <script type="text/template" id="home">
 <div class="header aug-header">
-    <h1>Home</h1>
+    <h1>Welcome the the U-Rec CMS</h1>
 </div>
 <div class="content">
-</div>
-</script>
-
-<script type='text/template' id="dummy">
-<div class="header aug-header">
-    <h1>Dummy Page</h1>
-</div>
-<div class="content">
-    <p>Lorem Ipsum</p>
+  <div class="panel">
+    <p>Click on a link on the left to get started</p>
+  </div>
 </div>
 </script>
 
@@ -1331,23 +785,28 @@ $(".editAnnouncement").on("submit", function() {
 <script src="js/App.js"></script>
 
 <!-- App Models  -->
-<script src="js/models/announcement.js"></script>
+<script src="js/models/models.js"></script>
+<!-- <script src="js/models/announcement.js"></script>
 <script src="js/models/rentals.js"></script>
-<script src="js/models/image.js"></script>
+<script src="js/models/image.js"></script> -->
+
 <!-- App Collections -->
-<script src="js/collections/facility.js"></script>
+<script src="js/collections/collections.js"></script>
+<!-- <script src="js/collections/facility.js"></script>
 <script src="js/collections/image.js"></script>
-<script src="js/collections/rentals.js"></script>
+<script src="js/collections/rentals.js"></script> -->
+
 <!-- App Views -->
-<script src="js/views/menu.js"></script>
+<script src="js/views/views.js"></script>
+<!-- <script src="js/views/menu.js"></script>
 <script src="js/views/login.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/rentals.js"></script>
-<!-- <script src="js/views/insertDummy.js"></script> -->
+<script src="js/views/insertDummy.js"></script>
 <script src="js/views/facilityViews.js"></script>
 <script src="js/views/outdoorrecViews.js"></script>
 <script src="js/views/climbingwallViews.js"></script>
-<script src="js/views/intramuralsViews.js"></script>
+<script src="js/views/intramuralsViews.js"></script> -->
 
 
 

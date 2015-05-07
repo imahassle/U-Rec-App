@@ -1,23 +1,26 @@
-var announcementView = Backbone.View.extend({
-	template: _.template($("#announcementTemplate").html()),
+var menuView = Backbone.View.extend({
+	template: _.template($("#cms-menu").html()),
 	initialize: function() {
-		this.$el.html($("#loading").html());
-		this.collection = new app.collections.generalAnnouncement;
-		this.collection.url = this.options.url;
-		console.log("fetching from " + this.options.fetchURL);
-		var that = this;
-		that.collection.fetch().done(function() {
-			console.log("fetched!");
-		});
-
-		this.collection.on("sync", this.render, this);
+		this.el = this.options.el;
+		this.render();
 	},
 	render: function() {
-		console.log("Updating...");
-		this.$el.html(this.template({collection: this.collection.toJSON()}));
+		this.$el.html(this.template({permissions: this.options.permissions}));
 		return this;
 	}
 });
+
+var loginView = Backbone.View.extend({
+	template: _.template($("#login").html()),
+	initialize: function() {
+		this.render();
+	},
+	render: function() {
+	this.$el.html(this.template({}));
+		return this;
+	}
+});
+
 
 var imageView = Backbone.View.extend({
 	template: _.template($("#imageTemplate").html()),
@@ -83,20 +86,26 @@ var homeView = Backbone.View.extend({
 	template: _.template($("#homeTemplate").html()),
 	initialize: function() {
 		this.$el.html($("#loading").html());
-		this.collection = new app.collections.generalHome;
-		this.collection.url = this.options.url;
+		this.collection = new app.collections.generalAnnouncement;
+		this.category = this.options.category;
+		this.collection.url = "api/announcement/category/"+this.category;
 		this.subTemplate = this.options.sub;
 		this.titleName = this.options.name;
+		this.collectionName = this.options.collectionName;
 		var that = this;
 		console.log("loading homepage...");
 		this.collection.fetch().done(function() {
 			that.render();
 			console.log("loaded!");
+			that.collection.listenTo(that.collection, "remove sync reset add change", function() {
+				console.log("changed...");
+				that.render();
+			});
 		});
 	},
 	render: function() {
 		console.log("homepage...");
-		this.$el.html(this.template({collection: this.collection.toJSON(), menu: this.subTemplate.html(), name: this.titleName}));
+		this.$el.html(this.template({collection: this.collection.toJSON(), category: this.category, menu: this.subTemplate.html(), name: this.titleName, coll: this.collectionName}));
 		return this;
 	}
 });
