@@ -15,6 +15,7 @@ Input         | Optional?          | Validation Rules
 ------------- | :----------------: | ----------------
 `open`        | :heavy_minus_sign: | `time`
 `close`       | :heavy_minus_sign: | `time`
+`closed`      | :heavy_minus_sign: | `boolean`
 `day_of_week` | :heavy_minus_sign: | 
 `category_id` | :heavy_check_mark: |
 
