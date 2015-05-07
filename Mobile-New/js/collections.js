@@ -30,4 +30,10 @@ app.collections.generalEvent = Backbone.Collection.extend({
   model: Event,
   url: "api/event",
   comparator: compare,
+});
+
+app.collections.generalHome = Backbone.Collection.extend({
+  model: Hours,
+  url: "api/hours",
+  comparator: compare,
 })

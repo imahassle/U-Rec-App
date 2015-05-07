@@ -24,10 +24,18 @@ var app = (function() {
 			return $("#main").html();
 		},
 		facilityHome: function() {
-			this.facilityHomeView = new announcementView({
-				url: "../urex-app-backend/public/api/announcement/category/1",
+			this.facilityHomeView = new homeView({
+				url: "../urex-app-backend/public/api/hour/category/1",
+				sub: $("#facilityMenu"),
+				name: "U-Rec"
 			});
 			return this.facilityHomeView;
+		},
+		facilityAnnouncements: function() {
+			this.facilityAnnouncementsView = new announcementView({
+				url: "../urex-app-backend/public/api/announcement/category/1",
+			});
+			return this.facilityAnnouncementsView;
 		},
 		facilityHours: function() {
 			if(!this.facilityHoursView) {
@@ -66,10 +74,18 @@ var app = (function() {
 			return this.facilityFeedbackView;
 		},
 		outdoorrecHome: function() {
-			this.outdoorrecHomeView = new announcementView({
-				url: "../urex-app-backend/public/api/announcement/category/2",
+			this.outdoorrecHomeView = new homeView({
+				url: "../urex-app-backend/public/api/hour/category/2",
+				sub: $("#outdoorrecMenu"),
+				name: "Outdoor Rec"
 			});
 			return this.outdoorrecHomeView;
+		},
+		outdoorrecAnnouncements: function() {
+			this.outdoorrecAnnouncementsView = new announcementView({
+				url: "../urex-app-backend/public/api/announcement/category/2",
+			});
+			return this.outdoorrecAnnouncementsView;
 		},
 		outdoorrecTrips: function() {
 			this.outdoorrecTripsView = new eventView({
@@ -84,10 +100,18 @@ var app = (function() {
 			return this.outdoorrecPhotosView;
 		},
 		intramuralsHome: function() {
-			this.intramuralsHomeHome = new announcementView({
+			this.intramuralsHomeView = new homeView({
+				url: "../urex-app-backend/public/api/hour/category/1",
+				sub: $("#intramuralsMenu"),
+				name: "Intramurals"
+			});
+			return this.intramuralsHomeView;
+		},
+		intramuralsAnnouncements: function() {
+			this.intramuralsAnnouncementsView = new announcementView({
 				url: "../urex-app-backend/public/api/announcement/category/3",
 			});
-			return this.intramuralsHomeHome;
+			return this.intramuralsAnnouncementsView;
 		},
 		intramuralsPhotos: function() {
 				this.intramuralsPhotosView = new imageView({
@@ -96,10 +120,18 @@ var app = (function() {
 			return this.intramuralsPhotosView;
 		},
 		climbingwallHome: function() {
-				this.climbingwallHomeView = new announcementView({
-					url: "../urex-app-backend/public/api/announcement/category/4",
+				this.climbingwallHomeView = new homeView({
+					url: "../urex-app-backend/public/api/hour/category/3",
+					sub: $("#climbingwallMenu"),
+					name: "The Climbing Wall"
 				});
 			return this.climbingwallHomeView;
+		},
+		climbingwallAnnouncements: function() {
+				this.climbingwallAnnouncementsView = new announcementView({
+					url: "../urex-app-backend/public/api/announcement/category/4",
+				});
+			return this.climbingwallAnnouncementsView;
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
@@ -153,6 +185,7 @@ var app = (function() {
 	var Router = Backbone.Router.extend({
 		routes: {
 			"facility": "facilityHome",
+			"facility/announcements": "facilityAnnouncements",
 			"facility/hours": "facilityHours",
 			"facility/programs": "facilityProg",
 			"facility/programs/remove/:id": "facilityRemoveProg",
@@ -161,12 +194,15 @@ var app = (function() {
 			"facility/feedback": "facilityFeedback",
 			"facility/remove/:id": "facilityRemove",
 			"outdoorrec": "outdoorrecHome",
+			"outdoorrec/announcements": "outdoorrecAnnouncements",
 			"outdoorrec/trips": "outdoorrecTrips",
 			"outdoorrec/photos": "outdoorrecPhotos",
 			"outdoorrec/remove/:id": "outdoorrecRemove",
 			"intramurals": "intramuralsHome",
+			"intramurals/announcements": "intramuralsAnnouncements",
 			"intramurals/photos": "intramuralsPhotos",
 			"climbingwall": "climbingwallHome",
+			"climbingwall/announcements": "climbingwallAnnouncements",
 			"climbingwall/hours": "climbingwallHours",
 			"climbingwall/photos": "climbingwallPhotos",
 			"climbingwall/events": "climbingwallEvents",
@@ -178,6 +214,9 @@ var app = (function() {
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);
+		},
+		facilityAnnouncements: function() {
+			api.changeContent(ViewsFactory.facilityAnnouncements().$el);
 		},
 		facilityHours: function() {
 			// alert("Hit about");
@@ -199,6 +238,9 @@ var app = (function() {
 		outdoorrecHome: function() {
 			api.changeContent(ViewsFactory.outdoorrecHome().$el);
 		},
+		outdoorrecAnnouncements: function() {
+			api.changeContent(ViewsFactory.outdoorrecAnnouncements().$el);
+		},
 		outdoorrecTrips: function() {
 			api.changeContent(ViewsFactory.outdoorrecTrips().$el);
 		},
@@ -208,11 +250,17 @@ var app = (function() {
 		intramuralsHome: function() {
 			api.changeContent(ViewsFactory.intramuralsHome().$el);
 		},
+		intramuralsAnnouncements: function() {
+			api.changeContent(ViewsFactory.intramuralsAnnouncements().$el);
+		},
 		intramuralsPhotos: function() {
 			api.changeContent(ViewsFactory.intramuralsPhotos().$el);
 		},
 		climbingwallHome: function() {
 			api.changeContent(ViewsFactory.climbingwallHome().$el);
+		},
+		climbingwallAnnouncements: function() {
+			api.changeContent(ViewsFactory.climbingwallAnnouncements().$el);
 		},
 		climbingwallHours: function() {
 			api.changeContent(ViewsFactory.climbingwallHours().$el);

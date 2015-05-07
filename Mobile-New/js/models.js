@@ -48,3 +48,12 @@ var Rental = Backbone.Model.extend({
 		f_price4: 10
 	}
 });
+
+var Hours = Backbone.Model.extend({
+  defaults: {
+    id: null,
+    open: "Open Time",
+    close: "Close Time",
+    day_of_week: 1,
+  }
+});

@@ -18,19 +18,14 @@
     </div>
 
     <script type="text/template" id="main">
-      <ul>
-        <li><a href="#outdoorrec">outdoorrec</a></li>
-        <li><a href="#facility">facility</a></li>
-        <li><a href="#climbingwall">climbingwall</a></li>
-        <li><a href="#intramurals">intramurals</a></li>
-        <li><a href="#facility/photos">facility/photos</a></li>
-        <li><a href="#outdoorrec/photos">outdoorrec/photos</a></li>
-        <li><a href="#climbingwall/photos">climbingwall/photos</a></li>
-        <li><a href="#intramurals/photos">intramurals/photos</a></li>
-        <li><a href="#facility/events">facility/events</a></li>
-        <li><a href="#outdoorrec/trips">outdoorrec/trips</a></li>
-        <li><a href="#climbingwall/events">climbingwall/events</a></li>
-      </ul>
+      <div class="panel">
+        <div class="splash-menu">
+          <a href="#facility"><button>U-Rec Center</button></a>
+          <a href="#outdoorrec"><button>outdoorrec</button></a>
+          <a href="#climbingwall"><button>climbingwall</button></a>
+          <a href="#intramurals"><button>intramurals</button></a>
+        </div>
+      </div>
     </script>
 
     <script type="text/template" id="loading"></script>
@@ -75,6 +70,90 @@
       		</div>
       	</div>
       <% }); %>
+    </script>
+
+    <script type="text/template" id="facilityMenu">
+      <div class="panel">
+    		<div class="splash-menu">
+    			<a href = "#facility/announcements"><button>Announcements</button></a>
+    			<a href = "#facility/events"><button>Events</button></a>
+    			<a href = "#facility/photos"><button>Photos</button></a>
+    			<button>Facebook</button>
+    		</div>
+    	</div>
+    </script>
+
+    <script type="text/template" id="outdoorrecMenu">
+      <div class="panel">
+    		<div class="splash-menu">
+    			<a href = "#outdoorrec/announcements"><button>Announcements</button></a>
+    			<a href = "#outdoorrec/trips"><button>Trips</button></a>
+    			<a href = "#outdoorrec/photos"><button>Photos</button></a>
+    			<button>Facebook</button>
+    		</div>
+    	</div>
+    </script>
+
+    <script type="text/template" id="intramuralsMenu">
+      <div class="panel">
+    		<div class="splash-menu">
+    			<a href = "#intramurals/announcements"><button>Announcements</button></a>
+    			<!-- <a href = "#intramurals/events"><button>Events</button></a> -->
+    			<a href = "#intramurals/photos"><button>Photos</button></a>
+    			<button>Facebook</button>
+    		</div>
+    	</div>
+    </script>
+
+    <script type="text/template" id="climbingwallMenu">
+      <div class="panel">
+    		<div class="splash-menu">
+    			<a href = "#climbingwall/announcements"><button>Announcements</button></a>
+    			<a href = "#climbingwall/events"><button>Events</button></a>
+    			<a href = "#climbingwall/photos"><button>Photos</button></a>
+    			<button>Facebook</button>
+    		</div>
+    	</div>
+    </script>
+
+    <script type="text/template" id="homeTemplate">
+      <div class="panel hours">
+    		<p><%=name%> is currently: <p class="info">Open</p></p>
+    		<br>
+    		<p>Today's Hours:<p class="info">8am - 10am</p></p>
+    		<br>
+    		<br>
+    		<button id="week-popup">This Week's Hours</button>
+    	</div>
+
+    	<div data-role="popup" id="hours-popup" data-overlay-theme="a" class="hours-popup panel">
+          <h4 class="hours-title">This Week's Hours</h4>
+      		<p class="info">Friday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+      		<p class="info">Saturday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+      		<p class="info">Sunday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+      		<p class="info">Monday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+      		<p class="info">Tuesday:</p> <p>CLOSED</p>
+      		<br>
+      		<p class="info">Wednesday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+      		<p class="info">Thursday:</p> <p>7:00am - 10:00pm</p>
+      		<br>
+    	</div>
+
+      <%= menu %>
+
+      <script type="text/javascript">
+        $("#hours-popup").hide();
+        $("#week-popup").on('click', function() {
+          $("#hours-popup").slideToggle();
+          $(this).fadeOut();
+        });
+      </script>
+
     </script>
 
 

@@ -61,3 +61,25 @@ var eventView = Backbone.View.extend({
 		return this;
 	}
 });
+
+var homeView = Backbone.View.extend({
+	template: _.template($("#homeTemplate").html()),
+	initialize: function() {
+		this.$el.html($("#loading").html());
+		this.collection = new app.collections.generalHome;
+		this.collection.url = this.options.url;
+		this.subTemplate = this.options.sub;
+		this.titleName = this.options.name;
+		var that = this;
+		console.log("loading homepage...");
+		this.collection.fetch().done(function() {
+			that.render();
+			console.log("loaded!");
+		});
+	},
+	render: function() {
+		console.log("homepage...");
+		this.$el.html(this.template({collection: this.collection.toJSON(), menu: this.subTemplate.html(), name: this.titleName}));
+		return this;
+	}
+});
