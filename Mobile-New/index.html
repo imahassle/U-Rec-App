@@ -74,10 +74,18 @@
     <script type="text/template" id="facilityMenu">
       <div class="panel">
     		<div class="splash-menu">
-    			<a href = "#facility/announcements"><button>Announcements</button></a>
-    			<a href = "#facility/events"><button>Events</button></a>
-    			<a href = "#facility/photos"><button>Photos</button></a>
-    			<button>Facebook</button>
+    			<a href = "#facility/announcements">
+            <button id="FacilityAnnouncements">Announcements</button>
+          </a>
+    			<a href = "#facility/events">
+            <button id="FacilityEvents">Events</button>
+          </a>
+    			<a href = "#facility/photos">
+            <button id="FacilityPhotos">Photos</button>
+          </a>
+          <a href="https://www.facebook.com/WhitworthUrec">
+    			 <button id="FacilityFacebook">Facebook</button>
+          </a>
     		</div>
     	</div>
     </script>
@@ -85,10 +93,18 @@
     <script type="text/template" id="outdoorrecMenu">
       <div class="panel">
     		<div class="splash-menu">
-    			<a href = "#outdoorrec/announcements"><button>Announcements</button></a>
-    			<a href = "#outdoorrec/trips"><button>Trips</button></a>
-    			<a href = "#outdoorrec/photos"><button>Photos</button></a>
-    			<button>Facebook</button>
+    			<a href = "#outdoorrec/announcements">
+            <button id="OutdoorRecAnnouncements">Announcements</button>
+          </a>
+    			<a href = "#outdoorrec/trips">
+            <button id="OutdoorRecTrips">Upcoming Trips</button>
+          </a>
+    			<a href = "#outdoorrec/photos">
+            <button id="OutdoorRecPhotos">Photos</button>
+          </a>
+          <a href = "https://www.facebook.com/WhitworthOutdoorRec">
+    			 <button id="OutdoorRecFacebook">Facebook</button>
+          </a> 
     		</div>
     	</div>
     </script>
@@ -96,10 +112,15 @@
     <script type="text/template" id="intramuralsMenu">
       <div class="panel">
     		<div class="splash-menu">
-    			<a href = "#intramurals/announcements"><button>Announcements</button></a>
-    			<!-- <a href = "#intramurals/events"><button>Events</button></a> -->
-    			<a href = "#intramurals/photos"><button>Photos</button></a>
-    			<button>Facebook</button>
+    			<a href = "#intramurals/announcements">
+            <button id="IntramuralsAnnouncements">Announcements</button>
+          </a>
+    			<a href = "#intramurals/photos">
+            <button id="IntramuralsPhotos">Photos</button>
+          </a>
+          <a href = "https://twitter.com/BucsIntramurals">
+    			 <button id="IntramuralsTwitter">Twitter</button>
+          </a>
     		</div>
     	</div>
     </script>
@@ -107,10 +128,18 @@
     <script type="text/template" id="climbingwallMenu">
       <div class="panel">
     		<div class="splash-menu">
-    			<a href = "#climbingwall/announcements"><button>Announcements</button></a>
-    			<a href = "#climbingwall/events"><button>Events</button></a>
-    			<a href = "#climbingwall/photos"><button>Photos</button></a>
-    			<button>Facebook</button>
+    			<a href = "#climbingwall/announcements">
+            <button id="ClimbingWallAnnouncements">Announcements</button>
+          </a>
+    			<a href = "#climbingwall/events">
+            <button id="ClimbingWallEvents">Events</button>
+          </a>
+    			<a href = "#climbingwall/photos">
+            <button id="ClimbingWallPhotos">Photos</button>
+          </a>
+          <a href = "https://www.facebook.com/climbwhitworth">
+    			 <button id="ClimbingWallFacebook">Facebook</button>
+          </a>
     		</div>
     	</div>
     </script>
@@ -177,12 +206,19 @@
       </style>
       <div class="panel">
         <div class="rentals-buttons">
-          <span class="student-button selected">Student</span>
-          <span class="faculty-button">Faculty</span>
+          <span class="student-button selected">Student Prices</span>
+          <span class="faculty-button">Faculty Prices</span>
         </div>
       </div>
       <div class="panel">
         <table>
+          <tr>
+            <th>Days:</th>
+            <th>1</th>
+            <th>2-3</th>
+            <th>4-5</th>
+            <th>6-7</th>
+          </tr>
           <% _.each(collection, function(model) { %>
             <tr class="student">
               <td><%=model.name%></td>
