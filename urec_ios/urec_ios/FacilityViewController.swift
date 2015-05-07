@@ -18,7 +18,7 @@ class FacilityViewController: ParentPageViewController, UIWebViewDelegate  {
             println("First time viewing FACILITY viewcontroller!")
             if(url == "") {
                 self.navigationBar.title = "U-REC"
-                url = "http://localhost:8888/urec/Mobile/facility/index.html"
+                url = "http://localhost:8888/urec/Mobile-New/#facility"
                 isRoot = true
             }
             else {

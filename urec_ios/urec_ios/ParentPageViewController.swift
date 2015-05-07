@@ -66,21 +66,28 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         var g = CGFloat(Float(0)/255)
         var b = CGFloat(Float(30)/255)
         self.tabBarController?.tabBar.selectedImageTintColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
-        
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        var ret : Bool = false
+        var ret : Bool = true
         var newpage : String = request.URL.absoluteString!
         var secondhalf : String = ""
-        
+        var part : String = ""
+        var baseURL : String = ""
         var delimitedstring = newpage.componentsSeparatedByString("#")
+        var parts = secondhalf.componentsSeparatedByString("/")
+        
         newpage = delimitedstring[0]
         if(delimitedstring.count > 1) {
             secondhalf = delimitedstring[1]
+            if (parts.count >= 1) {
+                part = parts[0]
+                baseURL = newpage + "#" + part
+            }
         }
-        if ((newpage != url || (secondhalf != "" && secondhalf != url && secondhalf[secondhalf.startIndex] == "/")) && !firstTime && secondhalf != newpage) {
+        
+        if(!firstTime) {
             let newURL : String = (request.URL.absoluteString)!
             println(newURL)
             
@@ -96,7 +103,7 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
                 let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Rentals") as RentalsViewController
                 newVC.url = newURL
                 self.navigationController?.pushViewController(newVC, animated: true)
-                println("Showng new RENTALS view controller...")
+                println("Shownig new RENTALS view controller...")
             }
             else if (self.isKindOfClass(OutdoorRecViewController)) {
                 let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("OutdoorRec") as OutdoorRecViewController
@@ -108,13 +115,13 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
                 let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Intramurals") as IntramuralsViewController
                 newVC.url = newURL
                 self.navigationController?.pushViewController(newVC, animated: true)
-                println("Pushing new INTRAMURALS view controller...")
+                println("Showing new INTRAMURALS view controller...")
             }
             else if (self.isKindOfClass(ClimbingWallViewController)) {
                 let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("ClimbingWall") as ClimbingWallViewController
                 newVC.url = newURL
                 self.navigationController?.pushViewController(newVC, animated: true)
-                println("Pushing new CLIMBING WALL view controller...")
+                println("Showing new CLIMBING WALL view controller...")
             }
             else {
                 let newVC = self.storyboard?.instantiateViewControllerWithIdentifier("Facility") as FacilityViewController
@@ -123,22 +130,13 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
                 println("Error finding the view controller needed.")
             }
             
-            if(jQuery && !firstTime) {
+            // reload current page to be page we left from -- hack to defeat backbone's origin
+            if(part != "") {
                 firstTime = true
-                runRequest(newpage)
+                runRequest(baseURL)
             }
             
             ret = false
-        }
-        else if (firstTime == false && secondhalf[secondhalf.startIndex] == "/") {
-            webView.stopLoading()
-            ret = false
-        }
-        else if (firstTime == true) {
-            ret = true
-        }
-        else if ((secondhalf != "" && secondhalf[secondhalf.startIndex] != "/") && (request.URL.absoluteString?.rangeOfString("#") != nil || request.URL.absoluteString?.rangeOfString("?") != nil)) {
-            ret = true
         }
 
         return ret
@@ -154,12 +152,15 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView){
-        webView.stopLoading()
+        
         if(firstTime) {
             if(!isRoot) {
                 self.title = webView.stringByEvaluatingJavaScriptFromString("document.title")
             }
             firstTime = false
+        }
+        else {
+            webView.stopLoading()
         }
         stopAnimating()
     }
