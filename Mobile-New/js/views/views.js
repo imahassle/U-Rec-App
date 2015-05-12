@@ -1,5 +1,11 @@
+var updateRender = function(that) {
+	console.log("fetching new content...");
+	that.collection.fetch();
+};
+
 var announcementView = Backbone.View.extend({
 	template: _.template($("#announcementTemplate").html()),
+	collection: new Backbone.Collection(),
 	initialize: function() {
 		this.$el.html($("#loading").html());
 		this.collection = new app.collections.generalAnnouncement;
@@ -9,8 +15,8 @@ var announcementView = Backbone.View.extend({
 		that.collection.fetch().done(function() {
 			console.log("fetched!");
 		});
-
-		this.collection.on("sync", this.render, this);
+		this.collection.on("change sync", this.render, this);
+		setInterval(function() {updateRender(that);}, 1000*60*5);
 	},
 	render: function() {
 		console.log("Updating...");
@@ -28,9 +34,11 @@ var imageView = Backbone.View.extend({
 		var that = this;
 		console.log("taking pictures...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("snapped!");
 		});
+		this.collection.on("change sync", this.render, this);
+		setInterval(function() {updateRender(that);}, 1000*60*5);
 	},
 	render: function() {
 		console.log("imaging...");
@@ -48,9 +56,11 @@ var eventView = Backbone.View.extend({
 		var that = this;
 		console.log("eventing events...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("evented!");
 		});
+		this.collection.on("change sync", this.render, this);
+		setInterval(function() {updateRender(that);}, 1000*60*5);
 	},
 	render: function() {
 		console.log("events...");
@@ -68,9 +78,11 @@ var rentalView = Backbone.View.extend({
 		var that = this;
 		console.log("renting view...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("rented!");
 		});
+		this.collection.on("change sync", this.render, this);
+		setInterval(function() {updateRender(that);}, 1000*60*5);
 	},
 	render: function() {
 		console.log("rentals...");
@@ -90,13 +102,15 @@ var homeView = Backbone.View.extend({
 		var that = this;
 		console.log("loading homepage...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("loaded!");
 		});
+		this.collection.on("change sync", this.render, this);
+		setInterval(function() {updateRender(that);}, 1000*60*30);
 	},
 	render: function() {
 		console.log("homepage...");
-		this.$el.html(this.template({collection: this.collection.toJSON(), menu: this.subTemplate.html(), name: this.titleName}));
+		this.$el.html(this.template({collection: this.collection.toJSON(), menu: this.subTemplate.html(), name: this.titleName, toggleHours: this.options.toggle}));
 		return this;
 	}
 });
