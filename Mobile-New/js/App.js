@@ -11,6 +11,11 @@ var app = (function() {
 		viewsFactory: null,
 		init: function() {
 			this.content = $("#insert"); //Sets initial view for app
+			$.ajaxSetup({
+				error: function(jqXHR, textStatus, errorThrown) {
+					checkError({message: errorThrown});
+				},
+			});
 			Backbone.history.start();
 			return this;
 		},
@@ -67,12 +72,10 @@ var app = (function() {
 			return this.facilityPhotosView;
 		},
 		facilityFeedback: function() {
-			if(!this.facilityFeedbackView) {
-				this.facilityFeedbackView = new api.views.facilityFeedback({
-					el: this.content
-				});
-			}
-			return this.facilityFeedbackView;
+			// if(!this.facilityFeedbackView) {
+			// 	this.facilityFeedbackView = new api.views.facilityFeedback();
+			// }
+			return $("#feedback").html();
 		},
 		outdoorrecHome: function() {
 			if(!this.outdoorrecHomeView) {
@@ -179,12 +182,15 @@ var app = (function() {
 			return this.climbingwallEventsView;
 		},
 		rentals: function() {
-			if(!this.rentalsView) {
+			// if(!this.rentalsView) {
 			this.rentalsView = new rentalView({
 				url: "../urex-app-backend/public/api/item_rental",
 			});
-		}
+		// }
 			return this.rentalsView;
+		},
+		about: function() {
+			return $("#aboutView").html();
 		}
 	};
 
@@ -217,6 +223,7 @@ var app = (function() {
 			"climbingwall/photos": "climbingwallPhotos",
 			"climbingwall/events": "climbingwallEvents",
 			"rentals": "rentals",
+			"about": "about",
 			"": "home",
 		},
 		home: function() {
@@ -248,7 +255,7 @@ var app = (function() {
 		},
 		facilityFeedback: function() {
 			$("title").html("Feedback");
-			api.changeContent(ViewsFactory.facilityFeedback().$el);
+			api.changeContent(ViewsFactory.facilityFeedback());
 		},
 		outdoorrecHome: function() {
 			$("title").html("Outdoor Rec");
@@ -300,6 +307,10 @@ var app = (function() {
 		rentals: function() {
 			$("title").html("Rentals");
 			api.changeContent(ViewsFactory.rentals().$el);
+		},
+		about: function() {
+			$("title").html("About this App");
+			api.changeContent(ViewsFactory.about());
 		}
 	});
 	api.router = new Router();

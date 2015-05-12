@@ -82,7 +82,7 @@ var rentalView = Backbone.View.extend({
 			console.log("rented!");
 		});
 		this.collection.on("change sync", this.render, this);
-		setInterval(function() {updateRender(that);}, 1000*60*5);
+		// setInterval(function() {updateRender(that);}, 1000*60*5);
 	},
 	render: function() {
 		console.log("rentals...");

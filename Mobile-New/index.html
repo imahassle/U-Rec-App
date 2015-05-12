@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/stylesheets/style.css">
   </head>
   <body>
+    <div id="error-report"></div>
     <div id="insert">
 
     </div>
@@ -20,9 +21,11 @@
         <div class="splash-menu">
           <a href="#facility"><button>U-Rec Center</button></a>
           <a href="#outdoorrec"><button>outdoorrec</button></a>
-          <a href="#climbingwall"><button>climbingwall</button></a>
+          <a href="#climbingwall"><button>climbing wall</button></a>
           <a href="#intramurals"><button>intramurals</button></a>
           <a href="#rentals"><button>Rentals</button></a>
+          <a href="#facility/feedback"><button>Feedback</button></a>
+          <a href="#about"><button>About</button></a>
         </div>
       </div>
     </script>
@@ -242,7 +245,7 @@
         </table>
       </div>
       <script type="text/javascript">
-      $(".faculty").hide();
+        $(".faculty").hide();
         $(".rentals-buttons").on('click', function() {
           console.log("switched");
           $(".student").toggle();
@@ -253,6 +256,86 @@
       </script>
     </script>
 
+    <script type="text/template" id="feedback">
+      <div class="panel feedback">
+        <form id="feedbackForm">
+          <input id="feedbackEmail" type="text" placeholder="My Email">
+          <br>
+          <textarea id="feedbackMessage" name="" id="" rows="5">Message</textarea>
+          <br>
+          <button>Submit Feedback</button>
+        </form>
+      </div>
+      <div class="panel feedbackSuccess">
+        <h3>Thank you for your feedback!</h3>
+        <p>Your message is highly appreciated and will be taken into consideration. A representative of the U-Rec Center may be in touch with you later about any concerns you have.</p>
+      </div>
+      <script type="text/javascript">
+      $(".feedbackSuccess").hide();
+        $("#feedbackForm").on("submit", function(e) {
+          e.preventDefault();
+          var data = {
+            email: $("#feedbackEmail").val(),
+            message: $("#feedbackMessage").val(),
+            date: new Date().toString().split(" G")[0],
+          };
+          $.ajax({
+            url: "../urex-app-backend/public/api/feedback",
+            data: data,
+            method: "POST",
+            success: function() {
+              $(".feedback").hide();
+              $(".feedbackSuccess").show();
+            }
+          });
+        });
+      </script>
+    </script>
+
+    <script type="text/template" id="aboutView">
+      <div class="panel">
+        <p>This app made with  <i class="fa fa-heart-o"></i>  from the U-Rex team</p>
+      </div>
+      <div class="panel">
+        <h4>Hannah Gamiel</h4>
+        <p>Mobile Development</p>
+      </div>
+      <div class="panel">
+        <h4>Lauren Pangborn</h4>
+        <p>Design, User Experience, Mobile Development</p>
+      </div>
+      <div class="panel">
+        <h4>Joey Corry</h4>
+        <p>Backend developer</p>
+      </div>
+      <div class="panel">
+        <h4>Sean Cunningham</h4>
+        <p>Task Manager, Server Management, Research</p>
+      </div>
+      <div class="panel">
+        <h4>Bryan Hassell</h4>
+        <p>Web Developer</p>
+      </div>
+      <div class="panel">
+        <h4>Pete Tucker</h4>
+        <p>Comp Sci Professor, Project Manager</p>
+      </div>
+      <div class="panel">
+        <h4>Todd Sandberg</h4>
+        <p>Client</p>
+      </div>
+    </script>
+
+    <script type="text/template" id="error-report-template">
+      <p class="error-type">Error:</p>
+      <p class="error-text"><%= message %></p>
+      <a id="error-close"><i class="fa fa-times right"></i></a>
+      <script type="text/javascript">
+      $("#error-close").on("click", function() {
+        $("#error-report").slideToggle();
+      });
+    </script>
+
 
   </body>
   <footer>
@@ -261,6 +344,9 @@
     <script src="js/vendor/underscore.js"></script>
     <script src="js/vendor/backbone.js"></script>
     <script src="js/vendor/spin.js"></script>
+
+    <!-- Error Checking -->
+    <script src="js/error.js"></script>
 
     <!-- Backbone App -->
     <script src="js/app.js"></script>
