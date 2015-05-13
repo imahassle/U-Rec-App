@@ -107,9 +107,7 @@ var app = (function() {
 		},
 		facilityFeedback: function() {
 			if(!this.facilityFeedbackView) {
-				this.facilityFeedbackView = new api.views.facilityFeedback({
-					el: this.content
-				});
+				this.facilityFeedbackView = new feedbackView();
 			}
 			return this.facilityFeedbackView;
 		},

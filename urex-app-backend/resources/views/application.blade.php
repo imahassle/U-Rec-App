@@ -230,7 +230,37 @@
   </div>
 </script>
 
-<script type="text/template" id="facilityFeedback"></script>
+<script type="text/template" id="facilityFeedback">
+  <div class="header aug-header">
+    <h1>Feedback</h1>
+  </div>
+  <div>
+    <% var count = Math.ceil(collection.length / 5);
+       var isFirst = true;
+       var index = 0; %>
+    <% _(count).times(function() { %>
+      <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+        <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
+          <div class="creation">
+            <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
+            <p>From: <%=model.email%></p>
+            <p>Submitted: <%=model.date%></p>
+            <p><%= model.message %></p>
+          </div>
+        <% }); %>
+        <button class="center pure-button red showMore">Show More</button>
+      </div>
+      <% index += 5;
+      isFirst = false;  %>
+    <% }); %>
+  </div>
+  <script type="text/javascript">
+    $(".showMore").on("click", function() {
+      $("#insert").find(".set:hidden").not("script").first().show();
+      $(this).hide();
+    });
+  </script>
+</script>
 
 <script type="text/template" id="imageTemplate">
   <div class="header aug-header">
@@ -282,7 +312,7 @@
         var fileData = null;
         var size = theFile.size;
 
-        console.log(theFile);
+        // console.log(theFile);
         fileExt = theFile.name.split('.').pop();
         reader.readAsDataURL(theFile);
         reader.onload = function(file) {
@@ -294,12 +324,16 @@
             extension: fileExt,
             category_id: <%=cat%>,
           };
-          console.log(image);
+          // console.log(image);
 
           collection.create(image, {
             url: "api/image",
-            wait: true
+            wait: true,
+            success: function() {
+              console.log("Successfully uploaded image");
+            }
           });
+          // collection.fetch();
 
         };
       }

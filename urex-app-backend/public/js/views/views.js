@@ -32,9 +32,10 @@ var imageView = Backbone.View.extend({
 		var that = this;
 		console.log("taking pictures...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("snapped!");
 		});
+		this.collection.on("sync add change remove", this.render, this);
 	},
 	render: function() {
 		console.log("imaging...");
@@ -107,6 +108,30 @@ var homeView = Backbone.View.extend({
 	render: function() {
 		console.log("homepage...");
 		this.$el.html(this.template({collection: this.collection.toJSON(), category: this.category, menu: this.subTemplate.html(), name: this.titleName, coll: this.collectionName}));
+		return this;
+	}
+});
+
+var feedbackView = Backbone.View.extend({
+	template: _.template($("#facilityFeedback").html()),
+	initialize: function() {
+		this.$el.html($("#loading").html());
+		this.collection = new app.collections.generalAnnouncement;
+		this.collection.url = "api/feedback";
+		var that = this;
+		console.log("loading homepage...");
+		this.collection.fetch().done(function() {
+			that.render();
+			console.log("loaded!");
+			that.collection.listenTo(that.collection, "remove sync reset add change", function() {
+				console.log("changed...");
+				that.render();
+			});
+		});
+	},
+	render: function() {
+		console.log("feedback...");
+		this.$el.html(this.template({collection: this.collection}));
 		return this;
 	}
 });
