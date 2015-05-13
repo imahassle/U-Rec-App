@@ -4,6 +4,18 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   font-family: 'Lato', sans-serif;
 }
 
+html {
+  min-height: 100%;
+}
+
+#insert {
+  min-height: 100%;
+}
+
+#layout {
+  min-height: 100%;
+}
+
 .custom-restricted-width {
   width: 100px;
 }
@@ -306,6 +318,8 @@ html {
   position: relative;
   padding: 20px;
   margin-bottom: 20px;
+  /* start commented backslash hack \*/
+  /* close commented backslash hack */
 }
 .creation img {
   width: 200px;
@@ -336,6 +350,7 @@ html {
   display: inline-block;
   top: 0;
   right: 0;
+  float: right;
 }
 .creation .buttons-group button {
   color: #fff;
@@ -345,6 +360,23 @@ html {
   margin-right: 10px;
   color: #b70724;
   vertical-align: middle;
+}
+.creation .clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.creation .clearfix {
+  display: inline-block;
+}
+.creation * html .clearfix {
+  height: 1%;
+}
+.creation .clearfix {
+  display: block;
 }
 .creation form {
   margin-top: 10px;

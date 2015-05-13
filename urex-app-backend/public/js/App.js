@@ -93,7 +93,9 @@ var app = (function() {
 		},
 		facilityEvents: function() {
 				this.facilityEventsView = new eventView({
-					url: "api/event/category/1",
+					category: 1,
+					name: "U-Rec",
+					collectionName: "app.viewsFactory.facilityEventsView.collection"
 				});
 			return this.facilityEventsView;
 		},

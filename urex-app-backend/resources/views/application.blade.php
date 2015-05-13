@@ -9,6 +9,8 @@
 
 <link rel="stylesheet" href="css/featherlight.css">
 
+<link rel="stylesheet" href="css/jquery.datetimepicker.css">
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
 
 <link rel="stylesheet" href="css/pure-release-0.6.0/pure-min.css">
@@ -47,9 +49,12 @@
       <!-- Insert content here -->
     </div>
     <!-- Ignore below -->
+    <!-- <div id="loading"></div> -->
 </div>
 
 <!-- === Views === -->
+
+<script type="text/template" id="loading"></script>
 
 <script type="text/template" id="error-report-template">
   <p class="error-type">Error:</p>
@@ -145,22 +150,34 @@
                 </form>
             </div>
             <!-- Announcement Template Below -->
-            <% _.each(collection, function(model) { %>
-              <div class="home-announcement" id="<%= model.id %>">
-                  <a id="<%=model.id%>" class="removeAnnouncementButton"><i class="fa fa-trash fa-2x right red"></i></a>
-                  <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
-                  <p class="announcement-date"><%= model.date %></p>
-                  <h4><%= model.title %></h4>
-                  <p class="announcement-blurb"><%= model.message %></p>
+            <% var count = Math.ceil(collection.length / 5);
+               var isFirst = true;
+               var index = 0; %>
+            <% _(count).times(function() { %>
+              <div class="set" <% if(!isFirst) { %> style="display: none" <% } %>>
+                <% var c = 0; %>
+                <% _.each(collection.slice(index, index+5), function(model) { %>
+                  <div class="home-announcement" id="<%= model.id %>">
+                      <a id="<%=model.id%>" class="removeAnnouncementButton"><i class="fa fa-trash fa-2x right red"></i></a>
+                      <a class="editAnnouncementButton"><i class="fa fa-edit fa-2x right red"></i></a>
+                      <p class="announcement-date"><%= model.date %></p>
+                      <h4><%= model.title %></h4>
+                      <p class="announcement-blurb"><%= model.message %></p>
+                  </div>
+                  <% c++; %>
+                <% }); %>
+                <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+                <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
               </div>
+              <% index += 5;
+              isFirst = false;  %>
             <% }); %>
-
         </div>
         <!-- Quick links menu here -->
         <%=menu%>
     </div>
     <script type="text/javascript">
-    var collection = <%=coll%>;
+      var collection = <%=coll%>;
       $('#announcement-form').on("submit", function(event) {
         event.preventDefault();
         var data = {
@@ -190,6 +207,10 @@
         console.log("Removing announcement", $(this).attr('id'));
         var id = $(this).attr('id');
         collection.get(id).destroy({url:"api/announcement/"+id});
+      });
+      $(".showMore").on("click", function() {
+        $("#insert").find(".set:hidden").not("script").first().show();
+        $(this).hide();
       });
     </script>
 </script>
@@ -240,6 +261,7 @@
        var index = 0; %>
     <% _(count).times(function() { %>
       <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+        <% var c = 0; %>
         <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
           <div class="creation">
             <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
@@ -247,8 +269,10 @@
             <p>Submitted: <%=model.date%></p>
             <p><%= model.message %></p>
           </div>
+          <% c++; %>
         <% }); %>
-        <button class="center pure-button red showMore">Show More</button>
+        <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+        <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
       </div>
       <% index += 5;
       isFirst = false;  %>
@@ -300,7 +324,6 @@
     $("#photoUpload .imageSubmit").on("click", function() {
       var theFile = $("#fileUpload")[0].files[0];
       if(typeof theFile == "undefined") {
-        // alert("Please select an image");
         checkError({message: "Please select an image!"});
       }
       else if (theFile.size > 5242880) {
@@ -312,7 +335,6 @@
         var fileData = null;
         var size = theFile.size;
 
-        // console.log(theFile);
         fileExt = theFile.name.split('.').pop();
         reader.readAsDataURL(theFile);
         reader.onload = function(file) {
@@ -324,7 +346,6 @@
             extension: fileExt,
             category_id: <%=cat%>,
           };
-          // console.log(image);
 
           collection.create(image, {
             url: "api/image",
@@ -333,8 +354,6 @@
               console.log("Successfully uploaded image");
             }
           });
-          // collection.fetch();
-
         };
       }
     });
@@ -507,53 +526,79 @@
     </script>
 </script>
 
+<script type="text/template" id="editEvent">
+
+</script>
+
 <script type="text/template" id="eventTemplate">
     <div class="header aug-header">
-        <h1>Facility Events</h1>
+        <h1><%=name%> Events</h1>
     </div>
     <div class="content">
         <div class="creation">
             <h3>Create a New Event</h3>
-            <div class="buttons-group">
-                <button class="pure-button medGray">Clear</button>
-                <button class="pure-button red">Done</button>
-            </div>
-            <form class="pure-form pure-form-aligned">
+            <form id="eventForm" class="pure-form pure-form-aligned">
                 <div class="pure-control-group">
-                <input type="text" class="pure-u-1-3" placeholder="Event Title">
+                <input name="title" type="text" class="pure-u-1-3" placeholder="Event Title">
                 </div>
                 <div class="pure-control-group">
                     <label class="firstLabel" for="startTime">Starts at</label>
-                    <input id="startTime" class="pure-u-1-5" type="text">
+                    <input id="startDate" type="text">
+                    <!-- <input id="startTime" type="time">
                     <label class="secondLabel">on</label>
-                    <input class="pure-u-1-5" type="text">
+                    <input id="startDate" class="pure-u-1-5" type="date"> -->
                 </div>
                 <div class="pure-control-group">
                     <label class="firstLabel" for="endTime">Ends at</label>
-                    <input type="text">
+                    <input id="endDate" type="text">
+                    <!-- <input id="endTime" type="time">
                     <label class="secondLabel">on</label>
-                    <input type="text">
+                    <input id="endDate" type="date"> -->
                 </div>
                 <div class="pure-control-group">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
+                  <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Details"></textarea>
                 </div>
                 <div class="pure-control-group">
                     <label class="firstLabel">Photo</label>
-                    <button class="pure-button medGray">Upload a photo</button>
-                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
+                    <input id="fileUpload" type="file">
                 </div>
+                <div class="right">
+                    <!-- <button id="clearForm" class="pure-button medGray">Clear</button> -->
+                    <!-- <button id="done" class="pure-button red">Done</button> -->
+
+                    <input type="submit" class="pure-button red" value="Done">
+                </div>
+                <div class="clearfix"></div>
             </form>
         </div>
-        <div class="creation">
-            <img src="http://dummyimage.com/600x400/000/fff">
-            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
-            <h5>2:00PM, February 7 - 6:00pm, February 8</h5>
-            <div class="buttons-group">
-                <i class="fa fa-edit fa-2x icon-hover"></i>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
-        </div>
+      </div>
+        <!-- Announcement Template Below -->
+        <% var count = Math.ceil(collection.length / 5);
+           var isFirst = true;
+           var index = 0; %>
+        <% _(count).times(function() { %>
+          <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+            <% var c = 0; %>
+            <% _.each(collection.slice(index, index+5), function(model) { %>
+                <div class="creation" id="<%=model.id%>">
+                    <img src="api/event/<%=model.id%>/image">
+                    <h4><%=model.title%> </h4>
+                    <h5><%=model.start%> - <%=model.end%> </h5>
+                    <div class="buttons-group">
+                        <i class="fa fa-edit fa-2x icon-hover"></i>
+                        <i class="fa fa-trash fa-2x icon-hover"></i>
+                    </div>
+                    <p><%=model.description%> </p>
+                    <div class="clearfix"></div>
+                </div>
+              <% c++; %>
+            <% }); %>
+            <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+            <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
+          </div>
+          <% index += 5;
+          isFirst = false;  %>
+        <% }); %>
         <div class="creation">
             <div class="buttons-group">
                 <button class="pure-button medGray">Cancel</button>
@@ -565,7 +610,110 @@
                 <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
             </form>
         </div>
-    </div>
+    <script type="text/javascript">
+    $("#startDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+    $("#endDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+    var collection = <%=coll%>;
+    $('#eventForm').on("submit", function(event) {
+      event.preventDefault();
+      console.log();
+      var data = {
+        title: $("#eventForm input[name='title']").val(),
+        start: $("#startDate").val(),
+        end: $("#endDate").val(),
+        description: $("#eventForm #description").val(),
+        cost: null,
+        spots: null,
+        gear_needed: null,
+        category_id: <%=category%>,
+      };
+      var eventID;
+      console.log(data);
+      collection.create(data, {
+        url: "api/event",
+        wait: true,
+        success: function(response) {
+          eventID = response.id;
+          console.log("refreshing view after submittal...");
+          collection.fetch();
+        }
+      });
+      console.log("New event id is " + eventID);
+      // Upload the file and associate it with the event
+      var theFile = $("#fileUpload")[0].files[0];
+      if(typeof theFile == "undefined") {
+        checkError({message: "Please select an image!"});
+      }
+      else if (theFile.size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else {
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
+
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var image = {
+            file: fileData,
+            caption: "Event"+eventID,
+            extension: fileExt,
+            category_id: <%=category%>,
+          };
+
+          collection.create(image, {
+            url: "api/image",
+            wait: true,
+            success: function(response) {
+              console.log("Successfully uploaded image with id of " + response.id);
+              $.ajax({
+                url: "api/event/"+eventID+"/image/"+response.id,
+                method: "POST",
+                success: function() {
+                  console.log("Successfully binded image to event");
+                },
+                error: function(error) {
+                  checkError(error);
+                }
+              })
+            }
+          });
+        };
+      }
+    });
+    $(".editEvent").on('click', function() {
+      var id = $(this).parent(".home-announcement").attr("id");
+      var parent = $(this).parent(".home-announcement");
+      var template = _.template($("#editAnnouncement").html())
+      console.log("Now editing announcement", id);
+      $(parent).html(template({model: collection.get(id).attributes, coll: "<%=coll%>"}));
+    });
+    $(".removeEvent").on('click', function() {
+      console.log("Removing announcement", $(this).attr('id'));
+      var id = $(this).attr('id');
+      collection.get(id).destroy({url:"api/announcement/"+id});
+    });
+    $(".showMore").on("click", function() {
+      $("#insert").find(".set:hidden").not("script").first().show();
+      $(this).hide();
+    });
+    $('img').error(function(){
+        // $(this).attr('src', '');
+        // var imageURL = "";
+        // $.ajax({url: $(this).attr('src')}).success(function(respnse) {console.log(response);if(response.length) {imageURL = response.file_location}});
+        // if(imageURL) {
+          // $(this).attr('src', imageURL);
+        // }
+        // else {
+          $(this).hide();
+        // }
+        // $(this).attr('title', 'Events with no images will not show an image in the app');
+      });
+    </script>
 </script>
 
 <script type="text/template" id="outdoorrecTrips">
@@ -809,6 +957,8 @@
 <script src="js/vendor/jquery.cookie.js"></script>
 <script src="js/vendor/jquery-ui.js"></script>
 <script src="js/vendor/featherlight.js"></script>
+<script src="js/vendor/jquery.datetimepicker.js"></script>
+<script src="js/vendor/spin.js"></script>
 
 <!-- //Error reporting script -->
 <script type="text/javascript" src="js/errorReporting.js"></script>
@@ -846,6 +996,26 @@
 <script type="text/javascript">
     window.onload = function() {
         app.init();
+        var opts = {
+          lines: 13, // The number of lines to draw
+          length: 20, // The length of each line
+          width: 10, // The line thickness
+          radius: 30, // The radius of the inner circle
+          corners: 1, // Corner roundness (0..1)
+          rotate: 0, // The rotation offset
+          direction: 1, // 1: clockwise, -1: counterclockwise
+          color: '#000', // #rgb or #rrggbb or array of colors
+          speed: 1, // Rounds per second
+          trail: 60, // Afterglow percentage
+          shadow: false, // Whether to render a shadow
+          hwaccel: false, // Whether to use hardware acceleration
+          className: 'spinner', // The CSS class to assign to the spinner
+          zIndex: 2e9, // The z-index (defaults to 2000000000)
+          top: '80%', // Top position relative to parent
+          left: '50%' // Left position relative to parent
+        };
+        var spinner = new Spinner(opts).spin();
+        $("#loading").append(spinner.el);
     }
 </script>
 

@@ -10,6 +10,18 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
     font-family: 'Lato', sans-serif;
 }
 
+html {
+  min-height: 100%;
+}
+
+#insert {
+  min-height: 100%;
+}
+
+#layout {
+  min-height: 100%;
+}
+
 .custom-restricted-width {
 	width: 100px;
 	li {
@@ -380,7 +392,7 @@ html {
     display: inline-block;
     top: 0;
     right: 0;
-    // float: right;
+    float: right;
     button {
       color: #fff;
       text-transform: uppercase;
@@ -391,6 +403,21 @@ html {
       vertical-align: middle;
     }
   }
+
+  .clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
   form {
     margin-top: 10px;
     .firstLabel {

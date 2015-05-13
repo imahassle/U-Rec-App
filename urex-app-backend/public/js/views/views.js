@@ -49,17 +49,19 @@ var eventView = Backbone.View.extend({
 	initialize: function() {
 		this.$el.html($("#loading").html());
 		this.collection = new app.collections.generalEvent;
-		this.collection.url = this.options.url;
+		this.collection.url = "api/event/category/"+this.options.category;
+		this.collectionName =  this.options.collectionName;
 		var that = this;
 		console.log("eventing events...");
 		this.collection.fetch().done(function() {
-			that.render();
+			// that.render();
 			console.log("evented!");
 		});
+		this.collection.on("sync add change remove", this.render, this);
 	},
 	render: function() {
 		console.log("events...");
-		this.$el.html(this.template({collection: this.collection.toJSON()}));
+		this.$el.html(this.template({collection: this.collection.toJSON(), name: this.options.name, coll: this.collectionName, category: this.options.category}));
 		return this;
 	}
 });
