@@ -38,6 +38,7 @@ class ImageIncentiveProgram extends Model {
         {
             throw new ServerException("Image-program association was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
 }

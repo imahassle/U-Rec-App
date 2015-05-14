@@ -76,6 +76,7 @@ class Announcement extends Model {
         if(!parent::delete()) {
             throw new ServerException("Announcement was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
 }

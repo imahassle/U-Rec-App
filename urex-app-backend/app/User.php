@@ -96,6 +96,7 @@ class User extends Model {
         if((!is_null($apiKey) && !$apiKey->delete()) || !parent::delete()) {
             throw new ServerException("User was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
     
 }

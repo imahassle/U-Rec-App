@@ -64,5 +64,6 @@ class ItemRental extends Model {
         if(!parent::delete()) {
             throw new ServerException("Item was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 }

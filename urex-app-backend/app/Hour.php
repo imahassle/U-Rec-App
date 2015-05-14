@@ -113,6 +113,7 @@ class Hour extends Model {
         if(!parent::delete()) {
             throw new ServerException("Hours were not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
     public static function getNextWeek($day, $category_id)

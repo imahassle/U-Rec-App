@@ -123,8 +123,10 @@ class Event extends Model {
             }
         }
         if(!parent::delete()) {
+            echo "NO HERE!";
             throw new ServerException("Event was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
 }
