@@ -11,8 +11,8 @@ X-Authorization?   | HTTP Verb | URI                                            
 #
 Input         | Optional?          | Validation Rules
 ------------- | :----------------: | ----------------
-`title`       | :heavy_minus_mark: | 
-`description` | :heavy_minus_mark: |
+`title`       | :heavy_minus_sign: | 
+`description` | :heavy_minus_sign: |
 `image`       | :heavy_check_mark: | `see below example`
 
 #
