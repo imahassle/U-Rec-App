@@ -51,9 +51,6 @@ Route::group(['prefix' => 'api'], function() {
         Route::put('/{id}', 'Api\EventController@update');
         Route::delete('/{id}', 'Api\EventController@destroy');
         Route::get('category/{category_id}', 'Api\EventController@index_category');
-        Route::get('{id}/image', 'Api\EventController@show_images');
-        Route::post('{id}/image/{image_id}', 'Api\EventController@associate_image');
-        Route::delete('{id}/image/{image_id}', 'Api\EventController@dissociate_image');
     });
 
     // Feedback routes
@@ -101,9 +98,6 @@ Route::group(['prefix' => 'api'], function() {
         Route::get('/{id}', 'Api\IncentiveProgramController@show');
         Route::put('/{id}', 'Api\IncentiveProgramController@update');
         Route::delete('/{id}', 'Api\IncentiveProgramController@destroy');
-        Route::get('{id}/image', 'Api\IncentiveProgramController@show_images');
-        Route::post('{id}/image/{image_id}', 'Api\IncentiveProgramController@associate_image');
-        Route::delete('{id}/image/{image_id}', 'Api\IncentiveProgramController@dissociate_image');
     });
 
     // Item Rental routes

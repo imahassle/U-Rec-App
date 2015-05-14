@@ -10,9 +10,22 @@ class IncentiveProgram extends Model {
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $hidden = ['created_at', 'updated_at'];
+    protected $appends = ['image'];
 
-    public function images() {
+    public function images() 
+    {
         return $this->belongsToMany('App\Image');
+    }
+
+    public function getImageAttribute()
+    {
+        $image = $this->images()->first();
+        if(is_null($image)) {
+            return null;
+        }
+        else {
+            return $image->file_location;
+        }
     }
 
     public static function find($id, $columns = array('*'))
@@ -39,6 +52,16 @@ class IncentiveProgram extends Model {
             throw new ServerException("Program was not created successfully due to an internal server error.");
         }
 
+        if(array_key_exists('image', $attributes) && array_key_exists('file', $attributes['image'])) {
+            $image = Image::create([
+                'X-Authorization' => $attributes['X-Authorization'], 
+                'file' => $attributes['image']['file'],
+                'extension' => $attributes['image']['extension'],
+                'caption' => $incentive_program->title
+            ]);
+            ImageIncentiveProgram::create(['image_id' => $image->id, 'incentive_program_id' => $incentive_program->id]);
+        }
+
         return $incentive_program;
     }
 
@@ -59,20 +82,15 @@ class IncentiveProgram extends Model {
 
     public function delete()
     {
-        $associations = ImageIncentiveProgram::whereIncentiveProgramId($this->id);
-        if(count($associations->get()) != $associations->delete() || !parent::delete()) {
+        $association = ImageIncentiveProgram::whereIncentiveProgramId($this->id)->first();
+        if(!is_null($association)) {
+            if(!$association->delete()) {
+                throw new ServerException("Program was not deleted successfully due to an internal server error.");
+            }
+        }
+        if(!parent::delete()) {
             throw new ServerException("Program was not deleted successfully due to an internal server error.");
         }
-    }
-
-    public function associate_image($image_id)
-    {
-        ImageIncentiveProgram::create(['image_id' => $image_id, 'incentive_program_id' => $this->id]);
-    }
-
-    public function dissociate_image($image_id)
-    {
-        ImageIncentiveProgram::whereImageId($image_id)->where('incentive_program_id', '=', $this->id)->delete();
     }
 
 }

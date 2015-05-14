@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder {
 
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('FeedbackTableSeeder');
         $this->call('IncentiveProgramsTableSeeder');
         $this->call('ItemRentalsTableSeeder');
+        File::deleteDirectory(public_path()."/images");
     }
 }

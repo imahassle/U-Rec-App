@@ -5,13 +5,16 @@ use Chrisbjr\ApiGuard\Models\ApiKey;
 use App\Exceptions\ClientException;
 use App\Exceptions\ServerException;
 use App\EventImage;
+use App\Image;
 
 class Event extends Model {
     
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $hidden = ['created_at', 'updated_at'];
+    protected $appends = ['image'];
 
-    public function images() {
+    public function images() 
+    {
         return $this->belongsToMany('App\Image');
     }
 
@@ -23,6 +26,17 @@ class Event extends Model {
     public function getEndAttribute($value)
     {
         return date("M d, Y h:ia", strtotime($value));
+    }
+
+    public function getImageAttribute()
+    {
+        $image = $this->images()->first();
+        if(is_null($image)) {
+            return null;
+        }
+        else {
+            return $image->file_location;
+        }
     }
 
     public static function find($id, $columns = array('*'))
@@ -53,11 +67,22 @@ class Event extends Model {
         if(array_key_exists('category_id', $attributes)) {
             $event->category_id = intval($attributes['category_id']);
         } else {
-            $event->category_id = $user->category()->id;
+            $event->category_id = $user->category->id;
         }
 
         if(!$event->save()) {
             throw new ServerException("Event was not created successfully due to an internal server error.");
+        }
+
+        if(array_key_exists('image', $attributes) && array_key_exists('file', $attributes['image'])) {
+            $image = Image::create([
+                'X-Authorization' => $attributes['X-Authorization'], 
+                'file' => $attributes['image']['file'],
+                'extension' => $attributes['image']['extension'],
+                'category_id' => $event->category_id,
+                'caption' => $event->title
+            ]);
+            EventImage::create(['event_id' => $event->id, 'image_id' => $image->id]);
         }
 
         return $event;
@@ -91,20 +116,15 @@ class Event extends Model {
 
     public function delete() 
     {
-        $associations = EventImage::whereEventId($this->id);
-        if(count($associations->get()) != $associations->delete() || !parent::delete()) {
+        $association = EventImage::whereEventId($this->id)->first();
+        if(!is_null($association)) {
+            if(!$association->delete()) {
+                throw new ServerException("Event was not deleted successfully due to an internal server error.");
+            }
+        }
+        if(!parent::delete()) {
             throw new ServerException("Event was not deleted successfully due to an internal server error.");
         }
-    }
-
-    public function associate_image($image_id)
-    {
-        EventImage::create(['event_id' => $this->id, 'image_id' => $image_id]);
-    }
-
-    public function dissociate_image($image_id)
-    {
-        EventImage::whereEventId($this->id)->where('image_id', '=', $image_id)->delete();
     }
 
 }

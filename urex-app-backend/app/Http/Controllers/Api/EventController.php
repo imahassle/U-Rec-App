@@ -14,8 +14,7 @@ class EventController extends ApiGuardController {
     protected $apiMethods = [
         'index' => [ 'keyAuthentication' => false ],
         'index_category' => [ 'keyAuthentication' => false ],
-        'show' => [ 'keyAuthentication' => false ],
-        'show_images' => [ 'keyAuthentication' => false ]
+        'show' => [ 'keyAuthentication' => false ]
     ];
 
     public function index()
@@ -46,34 +45,11 @@ class EventController extends ApiGuardController {
         });
     }
 
-    public function show_images($id)
-    {
-        return $this->attemptExecution(function() use ($id) {
-            return Response::json(Event::find($id)->images->toArray());
-        });
-    }
-
     public function update($id)
     {
         return $this->attemptExecution(function() use ($id) {
             $attributes = Request::all() + ['X-Authorization' => Request::header('X-Authorization')];
             return Response::json(Event::find($id)->update($attributes)->toArray());
-        });
-    }
-
-    public function associate_image($id, $image_id)
-    {
-        return $this->attemptExecution(function() use ($id, $image_id) {
-            Event::find($id)->associate_image($image_id);
-            return Response::json(['success' => true]);
-        });
-    }
-
-    public function dissociate_image($id, $image_id)
-    {
-        return $this->attemptExecution(function() use ($id, $image_id) {
-            Event::find($id)->dissociate_image($image_id);
-            return Response::json(['success' => true]);
         });
     }
 
