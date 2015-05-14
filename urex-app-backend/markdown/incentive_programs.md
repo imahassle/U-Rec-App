@@ -28,6 +28,7 @@ Input         | Optional?          | Validation Rules
 or
 ```javascript
 {
+  ...
   "image": {}
 }
 ```
