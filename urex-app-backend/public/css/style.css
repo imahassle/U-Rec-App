@@ -4,18 +4,6 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   font-family: 'Lato', sans-serif;
 }
 
-html {
-  min-height: 100%;
-}
-
-#insert {
-  min-height: 100%;
-}
-
-#layout {
-  min-height: 100%;
-}
-
 .custom-restricted-width {
   width: 100px;
 }
@@ -43,7 +31,7 @@ button {
   text-transform: uppercase;
 }
 
-i.red {
+i.red, b.red {
   background: inherit;
   color: #b70724;
 }
@@ -127,6 +115,15 @@ button i {
   border: none;
   width: 100%;
 }
+.aug-table i {
+  padding: 0 2px;
+  border-radius: 10px;
+}
+.aug-table i:hover {
+  cursor: pointer;
+  background-color: #b70724;
+  color: white;
+}
 .aug-table tbody tr {
   color: black;
 }
@@ -135,7 +132,7 @@ button i {
 }
 
 .table-wrapper {
-  width: 70%;
+  width: 100%;
 }
 
 html {
@@ -185,17 +182,17 @@ html {
   width: 30%;
 }
 
-.aug-th {
+.aug-table .aug-th {
   width: 35%;
   font-weight: normal;
   text-align: center;
   background-color: white;
   border-color: white;
 }
-
-.aug-tr-lead {
+.aug-table .aug-tr-lead {
   width: 30%;
   color: black;
+  text-align: left;
 }
 
 #menu {
@@ -457,63 +454,4 @@ html {
 .button-secondary {
   background: #42b8dd;
   /* this is a light blue */
-}
-
-.spinner {
-  margin: 50px auto;
-  width: 60px;
-  height: 50px;
-  text-align: center;
-  font-size: 10px;
-}
-
-.spinner > div {
-  background-color: #333;
-  height: 100%;
-  width: 6px;
-  display: inline-block;
-  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
-  animation: stretchdelay 1.2s infinite ease-in-out;
-}
-
-.spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
-
-.spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-.spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-.spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-
-@-webkit-keyframes stretchdelay {
-  0%, 40%, 100% {
-    -webkit-transform: scaleY(0.4);
-  }
-
-  20% {
-    -webkit-transform: scaleY(1);
-  }
-}
-
-@keyframes stretchdelay {
-  0%, 40%, 100% {
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }
-
-  20% {
-    transform: scaleY(1);
-    -webkit-transform: scaleY(1);
-  }
 }

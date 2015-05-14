@@ -33,7 +33,8 @@ var Event = Backbone.Model.extend({
     id: null,
     title: "Sample Title",
     description: "Sample Description",
-  }
+    image_url: ""
+  },
 });
 
 var Rental = Backbone.Model.extend({
@@ -51,10 +52,4 @@ var Rental = Backbone.Model.extend({
 });
 
 var Hours = Backbone.Model.extend({
-  defaults: {
-    id: null,
-    open: "Open Time",
-    close: "Close Time",
-    day_of_week: 1,
-  }
 });

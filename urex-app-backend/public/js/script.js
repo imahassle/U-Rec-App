@@ -7,4 +7,5 @@ $("#logout-button").on('click', function() {
   });
   console.log($.cookie('U-Rex-API-Key'));
   $(".aug-top-bar").hide();
+  app.changeContent(app.viewsFactory.login());
 });

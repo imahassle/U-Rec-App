@@ -40,16 +40,17 @@
 
     <div class="header aug-top-bar" style="display: none">
         <label for="logout-button">Hello, <span id="userName">USER</span></label>
-        <a id="logout-button" href="#">Log out</a>
+        <a id="logout-button" href="#login">Log out</a>
     </div>
 
     <div id="menu"></div>
 
     <div id="insert">
       <!-- Insert content here -->
+      <div id="loading"></div>
     </div>
     <!-- Ignore below -->
-    <!-- <div id="loading"></div> -->
+
 </div>
 
 <!-- === Views === -->
@@ -90,16 +91,18 @@
       data: data
     }).done(function(data) {
       // console.log("response: ", data);
-      app.viewsFactory.menu();
       console.log(data);
       $.cookie('U-Rex-API-Key', data.api_key);
       $.cookie('First-Name', data.first_name);
+      $.cookie('Permissions', data.category_id);
       console.log($.cookie('U-Rex-API-Key'));
       $.ajaxSetup({
         headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')}
       });
       $("#userName").html(data.first_name);
+      app.viewsFactory.menu();
       $(".aug-top-bar").show();
+      app.changeContent(app.viewsFactory.home());
     });
   });
   </script>
@@ -265,8 +268,8 @@
         <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
           <div class="creation">
             <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
-            <p>From: <%=model.email%></p>
-            <p>Submitted: <%=model.date%></p>
+            <p><b class="red">From:</b> <%=model.email%></p>
+            <p><b class="red">Submitted:</b> <%=model.date%></p>
             <p><%= model.message %></p>
           </div>
           <% c++; %>
@@ -282,6 +285,12 @@
     $(".showMore").on("click", function() {
       $("#insert").find(".set:hidden").not("script").first().show();
       $(this).hide();
+    });
+    var collection = <%=coll%>;
+    $(".feedbackDelete").on('click', function() {
+      console.log("Removing event", $(this).attr('id'));
+      var id = $(this).attr('id');
+      collection.get(id).destroy({url:"api/feedback/"+id});
     });
   </script>
 </script>
@@ -360,9 +369,9 @@
   </script>
 </script>
 
-<script type="text/template" id="facilityHours">
+<script type="text/template" id="hoursTemplate">
   <div class="header aug-header">
-          <h1>Facility Hours</h1>
+          <h1><%=name%> Hours</h1>
       </div>
       <div class="content">
           <div class="creation">
@@ -464,11 +473,20 @@
 
 <script type="text/template" id="editProgram">
   <form class="editProgram pure-form pure-form-stacked" value="<%= model.id %>" action="javascript:">
+    <% if(model.image != null) { %>
+      <img src="<%=model.image%>">
+    <% } %>
+
     <input type="text" name="title" value="<%= model.title %>" >
+    <div class="clearfix"></div>
     <div class="buttons-group">
       <input type="submit" class="pure-button red" value="Save">
     </div>
+    <div class="clearfix"></div>
     <textarea style="width: 100%" name="message"><%= model.description %></textarea>
+    <% if(model.image != null) { %>
+      <p>Images may be removed at the Photos page. If you need to change the photo, delete this event and create a new one.</p>
+    <% } %>
   </form>
 
     <script type="text/javascript">
@@ -488,46 +506,187 @@
     </script>
 </script>
 
-<script type="text/template" id="facilityProg">
-    <div class="header aug-header">
-        <h1>Incentive Programs</h1>
+<script type="text/template" id="programTemplate">
+  <div class="header aug-header">
+      <h1>Incentive Programs</h1>
+  </div>
+  <div class="content">
+      <div class="creation">
+          <h3>Create a New Incentive Program</h3>
+          <form id="eventForm" class="pure-form pure-form-aligned">
+              <div class="pure-control-group">
+              <input name="title" type="text" class="pure-u-1-3" placeholder="Program Title">
+              </div>
+              <div class="pure-control-group">
+                <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Description"></textarea>
+              </div>
+              <div class="pure-control-group">
+                  <label>Photo (optional)</label>
+                  <input id="fileUpload" type="file">
+              </div>
+              <div class="right">
+                  <input type="submit" class="pure-button red" value="Done">
+              </div>
+              <div class="clearfix"></div>
+          </form>
+      </div>
     </div>
-    <div class="content">
-        <div class="creation">
-            <h3>Create a New Incentive Program</h3>
-            <div class="buttons-group">
-                <button class="pure-button medGray">Clear</button>
-                <button class="pure-button red">Done</button>
-            </div>
-            <form class="pure-form pure-form-stacked">
-                <input type="text" class="pure-u-1-3" placeholder="Program Title">
-                <textarea name="" class="pure-u-1" id="" rows="4" placeholder="Details"></textarea>
-            </form>
+      <!-- Announcement Template Below -->
+      <% var count = Math.ceil(collection.length / 5);
+         var isFirst = true;
+         var index = 0; %>
+      <% _(count).times(function() { %>
+        <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+          <% var c = 0; %>
+          <% _.each(collection.slice(index, index+5), function(model) { %>
+              <div class="creation" id="<%=model.id%>">
+                <% if(model.image != null) { %>
+                  <img src="<%=model.image%>">
+                <% } %>
+                  <h4><%=model.title%> </h4>
+                  <div class="buttons-group">
+                      <i id="<%=model.id%>" class="fa fa-edit fa-2x icon-hover editEvent"></i>
+                      <i id="<%=model.id%>" class="fa fa-trash fa-2x icon-hover removeEvent"></i>
+                  </div>
+                  <p><%=model.description%> </p>
+                  <div class="clearfix"></div>
+              </div>
+            <% c++; %>
+          <% }); %>
+          <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+          <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
         </div>
-        <% _.each(collection, function(model) { %>
-          <div class="creation" id="<%= model.id %>">
-            <h4><%= model.title %></h4>
-            <div class="buttons-group">
-                <i class="fa fa-edit fa-2x icon-hover editProgramButton"></i>
-                <a href="#facility/programs/remove/<%=model.id%>"><i class="fa fa-trash fa-2x icon-hover"></i></a>
-            </div>
-            <p><%= model.description %></p>
-          </div>
-        <% }); %>
-    </div>
-    <script type="text/javascript">
-    $(".editProgramButton").on('click', function() {
-      var id = $(this).parent().parent(".creation").attr("id");
-      var parent = $(this).parent().parent(".creation");
-      var template = _.template($("#editProgram").html())
-      console.log("Now editing program", id);
-      $(parent).html(template({model: app.viewsFactory.facilityProg().collection.get(id).attributes}));
+        <% index += 5;
+        isFirst = false;  %>
+      <% }); %>
+  <script type="text/javascript">
+  $("#startDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  $("#endDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  var submitEvent = function(imageData) {
+    var collection = <%=coll%>;
+    var data = {
+      title: $("#eventForm input[name='title']").val(),
+      description: $("#eventForm #description").val(),
+      image: imageData
+    };
+    console.log(data);
+    collection.create(data, {
+      url: "api/incentive_program",
+      wait: true,
+      success: function(response) {
+        console.log("refreshing view after submittal...");
+        collection.fetch();
+      }
     });
-    </script>
+  };
+  var collection = <%=coll%>;
+  $('#eventForm').on("submit", function(event) {
+    event.preventDefault();
+    var theFile = $("#fileUpload")[0].files[0];
+    var size = 0;
+    var noFile = true;
+    var imageData = {};
+    if(typeof theFile != "undefined") {
+      size = theFile.size;
+      noFile = false;
+    }
+    if (size > 5242880) {
+      checkError({error: "Your file size is too big! Try uploading a smaller image."});
+    }
+    else if(!noFile) {
+      // Upload the file and associate it with the event
+      var reader = new FileReader();
+      var fileExt = null;
+      var fileData = null;
+      var size = theFile.size;
+
+      fileExt = theFile.name.split('.').pop();
+      reader.readAsDataURL(theFile);
+      reader.onload = function(file) {
+        fileData = file.target.result;
+
+        var imageData = {
+          file: fileData,
+          extension: fileExt,
+        };
+        submitEvent(imageData);
+      }
+    }
+    else { //Otherwise simply create event
+      submitEvent(imageData);
+    }
+  });
+  $(".editEvent").on('click', function() {
+    var id = $(this).attr("id");
+    var parent = $(this).parent().parent(".creation");
+    var template = _.template($("#editProgram").html());
+    console.log("Now editing event", id);
+    $(parent).html(template({model: collection.get(id).attributes, coll: "<%=coll%>"}));
+  });
+  $(".removeEvent").on('click', function() {
+    console.log("Removing event", $(this).attr('id'));
+    var id = $(this).attr('id');
+    collection.get(id).destroy({url:"api/event/"+id});
+  });
+  $(".showMore").on("click", function() {
+    $("#insert").find(".set:hidden").not("script").first().show();
+    $(this).hide();
+  });
+  </script>
 </script>
 
 <script type="text/template" id="editEvent">
-
+  <div class="">
+  <form class="editEvent" value="<%= model.id %>" class="pure-form pure-form-aligned">
+    <% if(model.image != null) { %>
+      <img src="<%=model.image%>">
+    <% } %>
+    <div class="pure-control-group">
+      <input name="editTitle" type="text" class="pure-u-1-3" placeholder="Event Title" value="<%=model.title%>">
+    </div>
+    <div class="pure-control-group">
+        <label class="firstLabel" for="editStartTime">Starts at</label>
+        <input id="editStartDate" type="text" value="<%-model.start%>">
+    </div>
+    <div class="pure-control-group">
+        <label class="firstLabel" for="editEndTime">Ends at</label>
+        <input id="editEndDate" type="text" value="<%-model.end%>">
+    </div>
+    <div class="pure-control-group">
+      <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Details"><%=model.description%></textarea>
+    </div>
+    <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
+    <% if(model.image != null) { %>
+      <p>Images may be removed at the Photos page. If you need to change the photo, delete this event and create a new one.</p>
+    <% } %>
+    <div class="clearfix"></div>
+  </form>
+</div>
+  <script type="text/javascript">
+  $("#editStartDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  $("#editEndDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  var collection = <%=coll%>;
+  $(".editEvent").on("submit", function(event) {
+    event.preventDefault();
+    console.log("saving changes...");
+    var ID = $(this).attr("value");
+    // console.log(ID);
+    var data = {
+      title: $(".editEvent input[name=editTitle]").val(),
+      description: $(".editEvent #description").val(),
+      start: $(".editEvent #editStartDate").val(),
+      end: $(".editEvent #editEndDate").val(),
+      // category_id: collection.get(ID).attributes.category_id
+    };
+    console.log(data);
+    collection.get(ID).set(data);
+    collection.get(ID).sync("UPDATE", collection.get(ID), {url:"api/event/"+ID}).done(function(error) {
+      // checkError(error);
+    // collection.fetch();
+    });
+    collection.get(ID).save(data, {url:"api/event/"+ID});
+  });
+  </script>
 </script>
 
 <script type="text/template" id="eventTemplate">
@@ -544,28 +703,19 @@
                 <div class="pure-control-group">
                     <label class="firstLabel" for="startTime">Starts at</label>
                     <input id="startDate" type="text">
-                    <!-- <input id="startTime" type="time">
-                    <label class="secondLabel">on</label>
-                    <input id="startDate" class="pure-u-1-5" type="date"> -->
                 </div>
                 <div class="pure-control-group">
                     <label class="firstLabel" for="endTime">Ends at</label>
                     <input id="endDate" type="text">
-                    <!-- <input id="endTime" type="time">
-                    <label class="secondLabel">on</label>
-                    <input id="endDate" type="date"> -->
                 </div>
                 <div class="pure-control-group">
                   <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Details"></textarea>
                 </div>
                 <div class="pure-control-group">
-                    <label class="firstLabel">Photo</label>
+                    <label>Photo (optional)</label>
                     <input id="fileUpload" type="file">
                 </div>
                 <div class="right">
-                    <!-- <button id="clearForm" class="pure-button medGray">Clear</button> -->
-                    <!-- <button id="done" class="pure-button red">Done</button> -->
-
                     <input type="submit" class="pure-button red" value="Done">
                 </div>
                 <div class="clearfix"></div>
@@ -581,12 +731,14 @@
             <% var c = 0; %>
             <% _.each(collection.slice(index, index+5), function(model) { %>
                 <div class="creation" id="<%=model.id%>">
-                    <img src="api/event/<%=model.id%>/image">
+                  <% if(model.image != null) { %>
+                    <img src="<%=model.image%>">
+                  <% } %>
                     <h4><%=model.title%> </h4>
                     <h5><%=model.start%> - <%=model.end%> </h5>
                     <div class="buttons-group">
-                        <i class="fa fa-edit fa-2x icon-hover"></i>
-                        <i class="fa fa-trash fa-2x icon-hover"></i>
+                        <i id="<%=model.id%>" class="fa fa-edit fa-2x icon-hover editEvent"></i>
+                        <i id="<%=model.id%>" class="fa fa-trash fa-2x icon-hover removeEvent"></i>
                     </div>
                     <p><%=model.description%> </p>
                     <div class="clearfix"></div>
@@ -599,24 +751,11 @@
           <% index += 5;
           isFirst = false;  %>
         <% }); %>
-        <div class="creation">
-            <div class="buttons-group">
-                <button class="pure-button medGray">Cancel</button>
-                <button class="pure-button red">Save</button>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <form class="pure-form pure-form-stacked">
-                <input type="text" class="pure-u-1-3" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
-            </form>
-        </div>
     <script type="text/javascript">
     $("#startDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
     $("#endDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
-    var collection = <%=coll%>;
-    $('#eventForm').on("submit", function(event) {
-      event.preventDefault();
-      console.log();
+    var submitEvent = function(imageData) {
+      var collection = <%=coll%>;
       var data = {
         title: $("#eventForm input[name='title']").val(),
         start: $("#startDate").val(),
@@ -626,28 +765,36 @@
         spots: null,
         gear_needed: null,
         category_id: <%=category%>,
+        image: imageData
       };
-      var eventID;
       console.log(data);
       collection.create(data, {
         url: "api/event",
         wait: true,
         success: function(response) {
-          eventID = response.id;
+          // eventID = response.id;
           console.log("refreshing view after submittal...");
           collection.fetch();
         }
       });
-      console.log("New event id is " + eventID);
-      // Upload the file and associate it with the event
+      // console.log("New event id is " + eventID);
+    };
+    var collection = <%=coll%>;
+    $('#eventForm').on("submit", function(event) {
+      event.preventDefault();
       var theFile = $("#fileUpload")[0].files[0];
-      if(typeof theFile == "undefined") {
-        checkError({message: "Please select an image!"});
+      var size = 0;
+      var noFile = true;
+      var imageData = {};
+      if(typeof theFile != "undefined") {
+        size = theFile.size;
+        noFile = false;
       }
-      else if (theFile.size > 5242880) {
+      if (size > 5242880) {
         checkError({error: "Your file size is too big! Try uploading a smaller image."});
       }
-      else {
+      else if(!noFile) {
+        // Upload the file and associate it with the event
         var reader = new FileReader();
         var fileExt = null;
         var fileData = null;
@@ -658,205 +805,274 @@
         reader.onload = function(file) {
           fileData = file.target.result;
 
-          var image = {
+          var imageData = {
             file: fileData,
-            caption: "Event"+eventID,
             extension: fileExt,
             category_id: <%=category%>,
           };
-
-          collection.create(image, {
-            url: "api/image",
-            wait: true,
-            success: function(response) {
-              console.log("Successfully uploaded image with id of " + response.id);
-              $.ajax({
-                url: "api/event/"+eventID+"/image/"+response.id,
-                method: "POST",
-                success: function() {
-                  console.log("Successfully binded image to event");
-                },
-                error: function(error) {
-                  checkError(error);
-                }
-              })
-            }
-          });
-        };
+          submitEvent(imageData);
+        }
+      }
+      else { //Otherwise simply create event
+        submitEvent(imageData);
       }
     });
     $(".editEvent").on('click', function() {
-      var id = $(this).parent(".home-announcement").attr("id");
-      var parent = $(this).parent(".home-announcement");
-      var template = _.template($("#editAnnouncement").html())
-      console.log("Now editing announcement", id);
+      var id = $(this).attr("id");
+      var parent = $(this).parent().parent(".creation");
+      var template = _.template($("#editEvent").html());
+      console.log("Now editing event", id);
       $(parent).html(template({model: collection.get(id).attributes, coll: "<%=coll%>"}));
     });
     $(".removeEvent").on('click', function() {
-      console.log("Removing announcement", $(this).attr('id'));
+      console.log("Removing event", $(this).attr('id'));
       var id = $(this).attr('id');
-      collection.get(id).destroy({url:"api/announcement/"+id});
+      collection.get(id).destroy({url:"api/event/"+id});
     });
     $(".showMore").on("click", function() {
       $("#insert").find(".set:hidden").not("script").first().show();
       $(this).hide();
     });
-    $('img').error(function(){
-        // $(this).attr('src', '');
-        // var imageURL = "";
-        // $.ajax({url: $(this).attr('src')}).success(function(respnse) {console.log(response);if(response.length) {imageURL = response.file_location}});
-        // if(imageURL) {
-          // $(this).attr('src', imageURL);
-        // }
-        // else {
-          $(this).hide();
-        // }
-        // $(this).attr('title', 'Events with no images will not show an image in the app');
-      });
     </script>
 </script>
 
-<script type="text/template" id="outdoorrecTrips">
-    <div class="header aug-header">
-        <h1>Outdoor Rec Trips</h1>
+<script type="text/template" id="editTrip">
+  <div class="">
+  <form class="editEvent" value="<%= model.id %>" class="pure-form pure-form-aligned">
+    <% if(model.image != null) { %>
+      <img src="<%=model.image%>">
+    <% } %>
+    <div class="pure-control-group">
+      <input name="editTitle" type="text" class="pure-u-1-3" placeholder="Event Title" value="<%=model.title%>">
     </div>
-    <div class="content">
-        <div class="creation">
-            <h3>Create a New Trip</h3>
-            <div class="buttons-group">
-                <button class="pure-button medGray">Clear</button>
-                <button class="pure-button red">Done</button>
-            </div>
-            <form class="pure-form pure-form-aligned">
-                <div class="pure-control-group">
-                    <input type="text" class="pure-u-1-3" placeholder="Trip Title">
-
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel" for="startTime">Starts at</label>
-                    <input id="startTime" class="pure-u-1-5" type="text">
-                    <label class="secondLabel">on</label>
-                    <input class="pure-u-1-5" type="text">
-                    <label class="">Price</label>
-                    <input class="pure-u-1-12" type="text">
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel" for="endTime">Ends at</label>
-                    <input type="text">
-                    <label class="secondLabel">on</label>
-                    <input type="text">
-                    <label class="">Spots</label>
-                    <input class="pure-u-1-12" type="text">
-                </div>
-                <div class="pure-control-group">
-                <input type="text" class="pure-u-1-2" placeholder="Experience needed">
-                </div>
-                <div class="pure-control-group">
-                <input type="text" class="pure-u-1-2" placeholder="Gear students need to bring">
-                </div>
-                <div class="pure-control-group">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel">Photo</label>
-                    <button class="pure-button medGray">Upload a photo</button>
-                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
-                </div>
-            </form>
-        </div>
-        <div class="creation">
-            <img src="http://dummyimage.com/600x400/000/fff">
-            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
-            <h5>2:00PM, February 7 - 6:00pm, February 8 - 21 spots - $3.50</h5>
-            <div class="buttons-group">
-                <i class="fa fa-edit fa-2x icon-hover"></i>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
-        </div>
-        <div class="creation">
-            <div class="buttons-group">
-                <button class="pure-button medGray">Cancel</button>
-                <button class="pure-button red">Save</button>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <form class="pure-form pure-form-stacked">
-                <input type="text" class="pure-u-1-2" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
-            </form>
-        </div>
+    <div class="pure-control-group">
+        <label class="firstLabel" for="editStartTime">Starts at</label>
+        <input id="editStartDate" class="pure-u-1-5" type="text" value="<%=model.start%>">
+        <label class="">Price</label>
+        <input id="editPrice" class="pure-u-1-12" type="number" value="<%=model.cost%>">
     </div>
+    <div class="pure-control-group">
+        <label class="firstLabel" for="endDate">Ends at</label>
+        <input id="editEndDate" type="text" value="<%=model.end%>">
+        <label class="">Spots</label>
+        <input id="editSpots" class="pure-u-1-12" type="number" value="<%=model.spots%>">
+    </div>
+    <div class="pure-control-group">
+    <input id="editGear" type="text" class="pure-u-1-2" value="<%=model.gear_needed%>">
+    </div>
+    <div class="pure-control-group">
+      <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Details"><%=model.description%></textarea>
+    </div>
+    <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
+    <% if(model.image != null) { %>
+      <p>Images may be removed at the Photos page. If you need to change the photo, delete this event and create a new one.</p>
+    <% } %>
+    <div class="clearfix"></div>
+  </form>
+</div>
+  <script type="text/javascript">
+  $("#editStartDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  $("#editEndDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+  var collection = <%=coll%>;
+  $(".editEvent").on("submit", function(event) {
+    event.preventDefault();
+    console.log("saving changes...");
+    var ID = $(this).attr("value");
+    // console.log(ID);
+    var data = {
+      title: $(".editEvent input[name='editTitle']").val(),
+      start: $("#editStartDate").val(),
+      end: $("#editEndDate").val(),
+      description: $(".editEvent #description").val(),
+      cost: $("#editPrice").val(),
+      spots: $("#editSpots").val(),
+      gear_needed: $("#editGear").val()
+    };
+    console.log(data);
+    collection.get(ID).set(data);
+    collection.get(ID).sync("UPDATE", collection.get(ID), {url:"api/event/"+ID}).done(function(error) {
+      // checkError(error);
+    // collection.fetch();
+    });
+    collection.get(ID).save(data, {url:"api/event/"+ID});
+  });
+  </script>
 </script>
 
-
-<script type="text/template" id="climbingwallEvents">
+<script type="text/template" id="tripTemplate">
     <div class="header aug-header">
-        <h1>Climbing Wall Events</h1>
+        <h1><%=name%> Trips</h1>
     </div>
     <div class="content">
         <div class="creation">
-            <h3>Create a New Event</h3>
-            <div class="buttons-group">
-                <button class="pure-button medGray">Clear</button>
-                <button class="pure-button red">Done</button>
-            </div>
-            <form class="pure-form pure-form-aligned">
-                <div class="pure-control-group">
-                    <input type="text" class="pure-u-1-3" placeholder="Event Title">
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel" for="startTime">Starts at</label>
-                    <input id="startTime" class="pure-u-1-5" type="text">
-                    <label class="secondLabel">on</label>
-                    <input class="pure-u-1-5" type="text">
-                    <label class="">Price</label>
-                    <input class="pure-u-1-12" type="text">
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel" for="endTime">Ends at</label>
-                    <input type="text">
-                    <label class="secondLabel">on</label>
-                    <input type="text">
-                </div>
-                <div class="pure-control-group">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details"></textarea>
-                </div>
-                <div class="pure-control-group">
-                    <label class="firstLabel">Photo</label>
-                    <button class="pure-button medGray">Upload a photo</button>
-                    <p>C:/self/documents/somewhere/temp/localstorage/win32/pic.png</p>
-                </div>
-            </form>
+          <h3>Create a New Trip</h3>
+          <form class="pure-form pure-form-aligned" id="tripForm">
+              <div class="pure-control-group">
+                  <input type="text" name="title" class="pure-u-1-3" placeholder="Trip Title">
+              </div>
+              <div class="pure-control-group">
+                  <label class="firstLabel" for="startTime">Starts at</label>
+                  <input id="startDate" class="pure-u-1-5" type="text">
+                  <label class="">Price</label>
+                  <input id="price" class="pure-u-1-12" type="number">
+              </div>
+              <div class="pure-control-group">
+                  <label class="firstLabel" for="endDate">Ends at</label>
+                  <input id="endDate" type="text">
+                  <label class="">Spots</label>
+                  <input id="spots" class="pure-u-1-12" type="number">
+              </div>
+              <div class="pure-control-group">
+              <input id="gear" type="text" class="pure-u-1-2" placeholder="Gear students need to bring">
+              </div>
+              <div class="pure-control-group">
+              <textarea name="" id="description" rows="4" class="pure-u-1" placeholder="Details"></textarea>
+              </div>
+              <div class="pure-control-group">
+                  <label>Photo (optional)</label>
+                  <input id="fileUpload" type="file">
+              </div>
+              <div class="buttons-group">
+                  <input type="submit" value="DONE" class="pure-button red">
+              </div>
+              <div class="clearfix"></div>
+          </form>
         </div>
-        <div class="creation">
-            <img src="http://dummyimage.com/600x400/000/fff">
-            <h4>Oh. You need a little dummy text for your mockup? How quaint. (Feb 23-27)</h4>
-            <h5>2:00PM, February 7 - 6:00pm, February 8</h5>
-            <div class="buttons-group">
-                <i class="fa fa-edit fa-2x icon-hover"></i>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <p>Art party cardigan polaroid, roof party locavore craft beer pug authentic. Selfies chambray lumbersexual sartorial seitan, roof party locavore Tumblr literally cold-pressed typewriter tattooed photo booth Godard. Taxidermy tofu deep v, seitan scenester salvia Pitchfork next level mixtape butcher XOXO fashion axe vegan whatever cardigan. Health goth hashtag literally, four loko swag cold-pressed artisan pug bitters roof party Austin banh mi. Fixie Brooklyn pug Tumblr distillery. Asymmetrical kitsch hashtag tofu Kickstarter butcher. Vinyl try-hard Godard cold-pressed Bushwick asymmetrical, swag 90''s meh raw denim post-ironic fingerstache seitan.</p>
-        </div>
-        <div class="creation">
-            <div class="buttons-group">
-                <button class="pure-button medGray">Cancel</button>
-                <button class="pure-button red">Save</button>
-                <i class="fa fa-trash fa-2x icon-hover"></i>
-            </div>
-            <form class="pure-form pure-form-stacked">
-                <input type="text" class="pure-u-1-2" placeholder="Program Title" value="I bet you’re still using Bootstrap too… (March 1-31)">
-                <textarea name="" id="" rows="4" class="pure-u-1" placeholder="Details">Kickstarter seitan Thundercats meh, viral keytar whatever taxidermy squid distillery literally migas try-hard. Shabby chic Austin fixie, whatever Schlitz lo-fi tattooed vegan 3 wolf moon flannel sriracha. Williamsburg Helvetica ennui cold-pressed Pitchfork, Etsy fashion axe gluten-free tousled stumptown mustache Odd Future. Dreamcatcher cronut leggings, plaid gluten-free single-origin coffee kogi Vice Pinterest. Blog single-origin coffee small batch chia synth crucifix. Cliche cornhole asymmetrical slow-carb, Vice listicle ennui Shoreditch Marfa DIY vinyl. American Apparel cronut McSweeneys, hoodie YOLO Vice +1 cray.</textarea>
-            </form>
-        </div>
-    </div>
+      </div>
+        <!-- Announcement Template Below -->
+        <% var count = Math.ceil(collection.length / 5);
+           var isFirst = true;
+           var index = 0; %>
+        <% _(count).times(function() { %>
+          <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+            <% var c = 0; %>
+            <% _.each(collection.slice(index, index+5), function(model) { %>
+                <div class="creation" id="<%=model.id%>">
+                  <% if(model.image != null) { %>
+                    <img src="<%=model.image%>">
+                  <% } %>
+                    <h4><%=model.title%> </h4>
+                    <h5><%=model.start%> - <%=model.end%> </h5>
+                    <% if(model.cost != 0) { %>
+                      <h5>Price: $<%=model.cost%> </h5>
+                    <% } %>
+                    <% if(model.spots != 0) { %>
+                      <h5>Spots: <%=model.spots%> </h5>
+                    <% } %>
+                    <% if((model.experience != null) && (model.experience != "")) { %>
+                      <h5>Experience Needed: <%=model.experience%> </h5>
+                    <% } %>
+                    <% if((model.gear_needed != null) && (model.gear_needed != "")) { %>
+                      <h5>Gear: <%=model.gear_needed%> </h5>
+                    <% } %>
+                    <div class="buttons-group">
+                        <i id="<%=model.id%>" class="fa fa-edit fa-2x icon-hover editEvent"></i>
+                        <i id="<%=model.id%>" class="fa fa-trash fa-2x icon-hover removeEvent"></i>
+                    </div>
+                    <p><%=model.description%> </p>
+                    <div class="clearfix"></div>
+                </div>
+              <% c++; %>
+            <% }); %>
+            <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+            <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
+          </div>
+          <% index += 5;
+          isFirst = false;  %>
+        <% }); %>
+    <script type="text/javascript">
+    $("#startDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+    $("#endDate").datetimepicker({format: "m/d/Y h:iA", formatTime: "h:iA", step:30});
+    var submitEvent = function(imageData) {
+      var collection = <%=coll%>;
+      var data = {
+        title: $("#tripForm input[name='title']").val(),
+        start: $("#startDate").val(),
+        end: $("#endDate").val(),
+        description: $("#tripForm #description").val(),
+        cost: $("#price").val(),
+        spots: $("#spots").val(),
+        gear_needed: $("#gear").val(),
+        category_id: <%=category%>,
+        image: imageData
+      };
+      console.log(data);
+      collection.create(data, {
+        url: "api/event",
+        wait: true,
+        success: function(response) {
+          // eventID = response.id;
+          console.log("refreshing view after submittal...");
+          collection.fetch();
+        }
+      });
+      // console.log("New event id is " + eventID);
+    };
+    var collection = <%=coll%>;
+    $('#tripForm').on("submit", function(event) {
+      event.preventDefault();
+      var theFile = $("#fileUpload")[0].files[0];
+      var size = 0;
+      var noFile = true;
+      var imageData = {};
+      if(typeof theFile != "undefined") {
+        size = theFile.size;
+        noFile = false;
+      }
+      if (size > 5242880) {
+        checkError({error: "Your file size is too big! Try uploading a smaller image."});
+      }
+      else if(!noFile) {
+        // Upload the file and associate it with the event
+        var reader = new FileReader();
+        var fileExt = null;
+        var fileData = null;
+        var size = theFile.size;
+
+        fileExt = theFile.name.split('.').pop();
+        reader.readAsDataURL(theFile);
+        reader.onload = function(file) {
+          fileData = file.target.result;
+
+          var imageData = {
+            file: fileData,
+            extension: fileExt,
+            category_id: <%=category%>,
+          };
+          submitEvent(imageData);
+        }
+      }
+      else { //Otherwise simply create event
+        submitEvent(imageData);
+      }
+    });
+    $(".editEvent").on('click', function() {
+      var id = $(this).attr("id");
+      var parent = $(this).parent().parent(".creation");
+      var template = _.template($("#editTrip").html());
+      console.log("Now editing event", id);
+      $(parent).html(template({model: collection.get(id).attributes, coll: "<%=coll%>"}));
+    });
+    $(".removeEvent").on('click', function() {
+      console.log("Removing event", $(this).attr('id'));
+      var id = $(this).attr('id');
+      collection.get(id).destroy({url:"api/event/"+id});
+    });
+    $(".showMore").on("click", function() {
+      $("#insert").find(".set:hidden").not("script").first().show();
+      $(this).hide();
+    });
+    </script>
 </script>
 
 <script type="text/template" id="cms-menu">
 <div class="pure-menu custom-restricted-width">
     <ul id="menu" class="pure-menu-list">
         <a class="pure-menu-heading" href="#">U Rec CMS</a>
+        <div id="loading"></div>
         <div class="menu-space"></div>
+        <% if(permissions==1) { %>
+        <li class="pure-menu-item"><a href="#admin" class="pure-menu-link">Admin</a></li>
         <li class="pure-menu-item"><a href="#facility" class="pure-menu-link">Facility</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#facility/hours" class="pure-menu-link">Hours</a></li>
@@ -865,24 +1081,39 @@
                 <li><a href="#facility/photos" class="pure-menu-link">Photos</a></li>
                 <li><a href="#facility/feedback" class="pure-menu-link">View feedback</a></li>
             </ul>
+        <% } %>
+        <% if(permissions==2 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#outdoorrec"class="pure-menu-link">Outdoor Rec</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#outdoorrec/trips" class="pure-menu-link">Trips</a></li>
                 <li><a href="#outdoorrec/photos" class="pure-menu-link">Photos</a></li>
             </ul>
+        <% } %>
+        <% if(permissions==3 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#intramurals"class="pure-menu-link">Intramurals</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#intramurals/photos" class="pure-menu-link">Photos</a></li>
             </ul>
+        <% } %>
+        <% if(permissions==4 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#climbingwall"class="pure-menu-link">Climbing Wall</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#climbingwall/hours" class="pure-menu-link">Hours</a></li>
                 <li><a href="#climbingwall/photos" class="pure-menu-link">Photos</a></li>
                 <li><a href="#climbingwall/events" class="pure-menu-link">Events</a></li>
             </ul>
+        <% } %>
+        <% if(permissions==2 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
+        <% } %>
     </ul>
 </div>
+</script>
+
+<script type="text/template" id="admin">
+  <div class="header aug-header">
+      <h1>Admin</h1>
+  </div>
 </script>
 
 <script type="text/template" id="rentalTemplate">
@@ -911,39 +1142,96 @@
                 <th>2-3</th>
                 <th>4-6</th>
                 <th>7-10</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+          <% _.each(collection, function(model) { %>
             <tr>
-                <td class="aug-tr-lead">Backpack</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
-                <td>$1</td>
-                <td>$2</td>
-                <td>$30</td>
-                <td>$40</td>
+                <td class="aug-tr-lead" id="<%=model.id%>"><%=model.name%> </td>
+                <td>$<%=model.student_pricing_1%> </td>
+                <td>$<%=model.student_pricing_2%> </td>
+                <td>$<%=model.student_pricing_3%> </td>
+                <td>$<%=model.student_pricing_4%> </td>
+                <td>$<%=model.faculty_pricing_1%> </td>
+                <td>$<%=model.faculty_pricing_2%> </td>
+                <td>$<%=model.faculty_pricing_3%> </td>
+                <td>$<%=model.faculty_pricing_4%> </td>
+                <td><i id="<%=model.id%>" class="fa fa-times removeRental red"></i></td>
             </tr>
+          <% }) %>
         </tbody>
     </table>
-    <form class="pure-form right">
-        <button class="pure-button button-error"><i class="fa fa-minus" />Remove Gear</button>
-        <button class="pure-button button-success"><i class="fa fa-plus" />Add Gear</button>
-    </form>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <h3>New Rental Item</h3>
+      <form class="pure-form pure-form-aligned newRentalForm">
+        <fieldset>
+          <input type="text" name="title" placeholder="Item Name">
+        </fieldset>
+          <label for="">Student</label>
+        <fieldset>
+          <input name="s1" type="number" placeholder="1 days">
+          <input name="s2" type="number" placeholder="2-3 days">
+          <input name="s3" type="number" placeholder="4-6 days">
+          <input name="s4" type="number" placeholder="7-10 days">
+        </fieldset>
+        <label for="">Faculty</label>
+        <fieldset>
+          <input name="f1" type="number" placeholder="1 days">
+          <input name="f2" type="number" placeholder="2-3 days">
+          <input name="f3" type="number" placeholder="4-6 days">
+          <input name="f4" type="number" placeholder="7-10 days">
+        </fieldset>
+        <fieldset>
+          <button class="right pure-button red"><i class="fa fa-plus" />Add Gear</button>
+        </fieldset>
+      </form>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>
-</div>
-
+<script type="text/javascript">
+$(".newRentalForm").submit(function(event) {
+  event.preventDefault();
+  console.log("saving changes...");
+  // var ID = $(this).attr("value");
+  // console.log(ID);
+  var data = new Rental({
+    name: $(this).children().children("input[name=title]").val(),
+    student_pricing_1: $(this).children().children("input[name=s1]").val(),
+    student_pricing_2: $(this).children().children("input[name=s2]").val(),
+    student_pricing_3: $(this).children().children("input[name=s3]").val(),
+    student_pricing_4: $(this).children().children("input[name=s4]").val(),
+    faculty_pricing_1: $(this).children().children("input[name=s1]").val(),
+    faculty_pricing_2: $(this).children().children("input[name=s2]").val(),
+    faculty_pricing_3: $(this).children().children("input[name=s3]").val(),
+    faculty_pricing_4: $(this).children().children("input[name=s4]").val(),
+  });
+  console.log(data.attributes);
+  app.viewsFactory.rentals().collection.create(data, {
+    url: "api/item_rental",
+    wait: true,
+    success: function(response) {
+      eventID = response.id;
+      console.log("refreshing view after submittal...");
+      app.viewsFactory.rentals().collection.fetch();
+    }
+  });
+});
+$(".removeRental").on('click', function() {
+  var id = $(this).attr('id');
+  console.log("Removing Rental", id);
+  app.viewsFactory.rentals().collection.get(id).destroy({url:"api/item_rental/"+id});
+});
+</script>
 </script>
 
 <script type="text/template" id="home">
 <div class="header aug-header">
     <h1>Welcome the the U-Rec CMS</h1>
-</div>
-<div class="content">
-  <div class="panel">
-    <p>Click on a link on the left to get started</p>
-  </div>
+    <h4><i class="red">Click on a link on the left to get started</i></h4>
 </div>
 </script>
 
@@ -995,12 +1283,19 @@
 
 <script type="text/javascript">
     window.onload = function() {
+      $("#loading").hide();
+      $(document).ajaxStart(function() {
+        $("#loading").show();
+      });
+      $(document).ajaxComplete(function() {
+        $("#loading").hide();
+      });
         app.init();
         var opts = {
-          lines: 13, // The number of lines to draw
-          length: 20, // The length of each line
-          width: 10, // The line thickness
-          radius: 30, // The radius of the inner circle
+          lines: 9, // The number of lines to draw
+          length: 7, // The length of each line
+          width: 4, // The line thickness
+          radius: 7, // The radius of the inner circle
           corners: 1, // Corner roundness (0..1)
           rotate: 0, // The rotation offset
           direction: 1, // 1: clockwise, -1: counterclockwise
@@ -1011,8 +1306,8 @@
           hwaccel: false, // Whether to use hardware acceleration
           className: 'spinner', // The CSS class to assign to the spinner
           zIndex: 2e9, // The z-index (defaults to 2000000000)
-          top: '80%', // Top position relative to parent
-          left: '50%' // Left position relative to parent
+          top: '5%', // Top position relative to parent
+          left: '75%' // Left position relative to parent
         };
         var spinner = new Spinner(opts).spin();
         $("#loading").append(spinner.el);

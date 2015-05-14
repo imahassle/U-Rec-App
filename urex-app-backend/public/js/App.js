@@ -17,9 +17,6 @@ var app = (function() {
 				$(".aug-top-bar").show();
 			}
 
-			// this.rentalInfo = new TempRentals();
-			// this.rentalInfo.fetch();
-			// this.rentalInfo.bind('reset', function() {console.log(this.rentalInfo);});
 			$.ajaxSetup({
 				headers: { 'X-Authorization' : $.cookie('U-Rex-API-Key')},
 				error: function(jqXHR, textStatus, errorThrown) {
@@ -46,13 +43,14 @@ var app = (function() {
 		},
 		menu: function() {
 			console.log("Menu load?");
-			if(!this.menuViews) {
-				this.menuViews = new menuView({
-					el: $("#menu"),
-					permissions: "admin"
-				});
-			}
+			this.menuViews = new menuView({
+				el: $("#menu"),
+				permissions: $.cookie('Permissions'),
+			});
 			return this.menuViews;
+		},
+		home() {
+			return $("#home").html();
 		},
 		removeMenu: function() {
 			console.log("removing menu...");
@@ -77,16 +75,19 @@ var app = (function() {
 		},
 		facilityHours: function() {
 			if(!this.facilityHoursView) {
-				this.facilityHoursView = new api.views.facilityHours({
-					el: this.content
+				this.facilityHoursView = new hoursView({
+					category: 1,
+					name: "U-Rec",
+					collectionName: "app.viewsFactory.facilityHoursView.collection"
 				});
 			}
 			return this.facilityHoursView;
 		},
 		facilityProg: function() {
 			if(!this.facilityProgView) {
-				this.facilityProgView = new api.views.facilityProg({
-					el: this.content
+				this.facilityProgView = new programView({
+					name: "U-Rec",
+					collectionName: "app.viewsFactory.facilityProgView.collection"
 				});
 			}
 			return this.facilityProgView;
@@ -109,7 +110,9 @@ var app = (function() {
 		},
 		facilityFeedback: function() {
 			if(!this.facilityFeedbackView) {
-				this.facilityFeedbackView = new feedbackView();
+				this.facilityFeedbackView = new feedbackView({
+					collectionName: "app.viewsFactory.facilityFeedbackView.collection",
+				});
 			}
 			return this.facilityFeedbackView;
 		},
@@ -129,14 +132,19 @@ var app = (function() {
 			return this.outdoorrecAnnouncementsView;
 		},
 		outdoorrecTrips: function() {
-			this.outdoorrecTripsView = new eventView({
-				url: "api/event/category/2",
+			this.outdoorrecTripsView = new tripView({
+				category: 2,
+				name: "Outdoor Rec",
+				template: _.template($("#tripTemplate").html()),
+				collectionName: "app.viewsFactory.outdoorrecTripsView.collection"
 			});
 			return this.outdoorrecTripsView;
 		},
 		outdoorrecPhotos: function() {
 				this.outdoorrecPhotosView = new imageView({
-					url: "api/image/category/2",
+					category: 2,
+					name: "Outdoor Rec",
+					collectionName: "app.viewsFactory.outdoorrecPhotosView.collection"
 				});
 			return this.outdoorrecPhotosView;
 		},
@@ -157,7 +165,9 @@ var app = (function() {
 		},
 		intramuralsPhotos: function() {
 				this.intramuralsPhotosView = new imageView({
-					url: "api/image/category/3",
+					category: 3,
+					name: "Outdoor Rec",
+					collectionName: "app.viewsFactory.intramuralsPhotosView.collection"
 				});
 			return this.intramuralsPhotosView;
 		},
@@ -185,13 +195,17 @@ var app = (function() {
 		},
 		climbingwallPhotos: function() {
 				this.climbingwallPhotosView = new imageView({
-					url: "api/image/category/4",
+					category: 4,
+					name: "Climbing Wall",
+					collectionName: "app.viewsFactory.climbingwallPhotosView.collection"
 				});
 			return this.climbingwallPhotosView;
 		},
 		climbingwallEvents: function() {
 			this.climbingwallEventsView = new eventView({
-				url: "api/event/category/4",
+				category: 4,
+				name: "Climbing Wall",
+				collectionName: "app.viewsFactory.climbingwallEventsView.collection"
 			});
 			return this.climbingwallEventsView;
 		},
@@ -205,9 +219,7 @@ var app = (function() {
 		},
 		rentals: function() {
 			if(!this.rentalsView) {
-				this.rentalsView = new api.views.rentals({
-					collection: api.rentalInfo
-				});
+				this.rentalsView = new rentalView();
 			}
 			return this.rentalsView;
 		}
@@ -243,7 +255,7 @@ var app = (function() {
 			"login": "login"
 		},
 		home: function() {
-			api.changeContent(ViewsFactory.login().$el);
+			api.changeContent(ViewsFactory.home());
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);
@@ -300,6 +312,9 @@ var app = (function() {
 		login: function() {
 			api.changeContent(ViewsFactory.login().$el);
 		},
+		admin: function() {
+			api.changeContent(ViewsFactory.admin().$el);
+		}
 	});
 	api.router = new Router();
 
