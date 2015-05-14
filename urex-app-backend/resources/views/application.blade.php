@@ -1254,33 +1254,18 @@ $(".removeRental").on('click', function() {
 <script type="text/javascript" src="js/errorReporting.js"></script>
 
 <!-- === Backbone App === -->
-
 <script src="js/App.js"></script>
 
 <!-- App Models  -->
 <script src="js/models/models.js"></script>
-<!-- <script src="js/models/announcement.js"></script>
-<script src="js/models/rentals.js"></script>
-<script src="js/models/image.js"></script> -->
+
 
 <!-- App Collections -->
 <script src="js/collections/collections.js"></script>
-<!-- <script src="js/collections/facility.js"></script>
-<script src="js/collections/image.js"></script>
-<script src="js/collections/rentals.js"></script> -->
+
 
 <!-- App Views -->
 <script src="js/views/views.js"></script>
-<!-- <script src="js/views/menu.js"></script>
-<script src="js/views/login.js"></script>
-<script src="js/views/home.js"></script>
-<script src="js/views/rentals.js"></script>
-<script src="js/views/insertDummy.js"></script>
-<script src="js/views/facilityViews.js"></script>
-<script src="js/views/outdoorrecViews.js"></script>
-<script src="js/views/climbingwallViews.js"></script>
-<script src="js/views/intramuralsViews.js"></script> -->
-
 
 
 <script type="text/javascript">
