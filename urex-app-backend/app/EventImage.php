@@ -38,6 +38,7 @@ class EventImage extends Model {
         {
             throw new ServerException("Event-image association was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
 }

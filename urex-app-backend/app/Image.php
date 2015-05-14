@@ -82,6 +82,8 @@ class Image extends Model {
 
         EventImage::whereImageId($this->id)->delete();
         ImageIncentiveProgram::whereImageId($this->id)->delete();
+        
+        return true;
     }
     
 }

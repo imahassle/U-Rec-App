@@ -91,6 +91,7 @@ class IncentiveProgram extends Model {
         if(!parent::delete()) {
             throw new ServerException("Program was not deleted successfully due to an internal server error.");
         }
+        return true;
     }
 
 }
