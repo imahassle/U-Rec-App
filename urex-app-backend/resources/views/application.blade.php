@@ -47,7 +47,6 @@
 
     <div id="insert">
       <!-- Insert content here -->
-      <div id="loading"></div>
     </div>
     <!-- Ignore below -->
 
@@ -55,7 +54,7 @@
 
 <!-- === Views === -->
 
-<script type="text/template" id="loading"></script>
+<!-- <script type="text/template" id="loading"></script> -->
 
 <script type="text/template" id="error-report-template">
   <p class="error-type">Error:</p>
@@ -220,37 +219,38 @@
 
 <script type="text/template" id="facilityMenu">
   <div class="pure-u-2-5 quick-menu">
-      <a href="#facilites/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
-      <a href="#facility/programs"><div class="quick-item"><i class="fa fa-git fa-3x"></i><h3>Incentive Programs</h3></div></a>
-      <a href="#facility/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
-      <a href="#facility/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-      <a href="#facility/feedback"><div class="quick-item"><i class="fa fa-comment fa-3x"></i><h3>View Feedback</h3></div></a>
-      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+    <a href="#facility/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Facility Hours</h3></div></a>
+    <a href="#facility/programs"><div class="quick-item"><i class="fa fa-thumbs-o-up fa-3x"></i><h3>Incentive Programs</h3></div></a>
+    <a href="#facility/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Events</h3></div></a>
+    <a href="#facility/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+    <a href="#facility/feedback"><div class="quick-item"><i class="fa fa-comments fa-3x"></i><h3>View Feedback</h3></div></a>
+    <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
   </div>
 </script>
 
 <script type="text/template" id="outdoorrecMenu">
   <div class="pure-u-2-5 quick-menu">
-      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Trips</h3></div></a>
-      <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+    <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-bus fa-3x"></i><h3>Trips</h3></div></a>
+    <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+    <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
   </div>
 </script>
 
 <script type="text/template" id="intramuralsMenu">
   <div class="pure-u-2-5 quick-menu">
-      <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-futbol-o fa-3x"></i><h3>IMLeagues</h3></div></a>
-      <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
+    <a href="#outdoorrec/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+    <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-futbol-o fa-3x"></i><h3>IMLeagues</h3></div></a>
+    <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
   </div>
 </script>
 
 <script type="text/template" id="climbingwallMenu">
   <div class="pure-u-2-5 quick-menu">
-      <a href="#climbingwall/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
-      <a href="#outdoorrec/trips"><div class="quick-item"><i class="fa fa-barcode fa-3x"></i><h3>Climb Stuff</h3></div></a>
-      <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
-      <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
+    <a href="#climbingwall/hours"><div class="quick-item"><i class="fa fa-clock-o fa-3x"></i><h3>Hours</h3></div></a>
+    <a href="#climbingwall/photos"><div class="quick-item"><i class="fa fa-picture-o fa-3x"></i><h3>Photos</h3></div></a>
+    <a href="#climbingwall/events"><div class="quick-item"><i class="fa fa-calendar fa-3x"></i><h3>Climb Events</h3></div></a>
+    <a href="#"><div class="quick-item"><i class="fa fa-twitter fa-3x"></i><h3>Twitter</h3></div></a>
+    <a href="#"><div class="quick-item"><i class="fa fa-facebook fa-3x"></i><h3>Facebook</h3></div></a>
   </div>
 </script>
 
@@ -265,7 +265,7 @@
     <% _(count).times(function() { %>
       <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
         <% var c = 0; %>
-        <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
+        <% _.each(esceptionsCollection.slice(index, index+5), function(model) { %>
           <div class="creation">
             <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
             <p><b class="red">From:</b> <%=model.email%></p>
@@ -374,101 +374,103 @@
           <h1><%=name%> Hours</h1>
       </div>
       <div class="content">
+        <% _.each(collection, function(model) { %>
           <div class="creation">
-              <div class="buttons-group">
-                  <button type="submit" class="pure-button pure-button-primary right red">Save Hours</button>
-              </div>
+            <button id="<%=model.id%>" class="hoursDelete pure-button red right">Delete</button>
+            <p><b class="red"><%=model.day_of_week%></b><%=model.open%> - <%=model.close%></p>
+          </div>
+        <% }); %>
+      </div>
+      <div class="content">
+          <div class="creation">
               <h3>Set the standard open hours for the facility:</h3>
-              <form class="pure-form pure-form-aligned">
-                  <div class="pure-control-group">
-                      <label for="startTime">Monday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Tuesday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Wednesday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Thursday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Friday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Saturday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">Sunday</label>
-                      <input id="startTime" class="pure-u-1-5" type="time">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="time">
-                      <button class="pure-button round-button">
-                        <i class="fa fa-plus"></i>
-                      </button>
-                  </div>
-                  <br>
-                  <div class="pure-control-group">
-                    <label>Exception:</label>
-                    <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
-                    <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
-                    <i class="fa fa-times-circle fa-lg"></i>
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="startTime">from this date</label>
-                      <input id="startTime" class="pure-u-1-5" type="date">
-                      <label class="secondLabel">to</label>
-                      <input class="pure-u-1-5" type="date">
-                  </div>
-                  <div class="pure-control-group">
-                    <label for="startTime">at this time</label>
-                    <input id="startTime" class="pure-u-1-5" type="time">
+              <form class="pure-form pure-form-aligned" id="hoursForm">
+                <div class="buttons-group">
+                    <button type="submit" class="pure-button pure-button-primary right red">Create Hours Rule</button>
+                </div>
+                <div class="pure-control-group">
+                    <select id="daySelect">
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                    <input id="startTime" class="pure-u-1-5" type="text">
                     <label class="secondLabel">to</label>
-                    <input class="pure-u-1-5" type="time">
-                  </div>
-                  <br>
-                  <div class="pure-control-group">
-                    <button class="pure-button">Add Exception</button>
-                  </div>
+                    <input id="endTime" class="pure-u-1-5" type="text">
+                </div>
+                <br>
               </form>
           </div>
       </div>
+      <div class="content">
+        <div class="creation">
+          <form>
+            <div class="pure-control-group">
+              <label>Exception:</label>
+              <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
+              <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
+              <i class="fa fa-times-circle fa-lg"></i>
+            </div>
+            <div class="pure-control-group">
+                <label for="startTime">from this date</label>
+                <input id="startTime" class="pure-u-1-5" type="date">
+                <label class="secondLabel">to</label>
+                <input class="pure-u-1-5" type="date">
+            </div>
+            <div class="pure-control-group">
+              <label for="startTime">at this time</label>
+              <input id="startTime" class="pure-u-1-5" type="time">
+              <label class="secondLabel">to</label>
+              <input class="pure-u-1-5" type="time">
+            </div>
+            <br>
+            <div class="pure-control-group">
+              <button class="pure-button">Add Exception</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Exceptions template -->
+      <% var count = Math.ceil(collection.length / 5);
+         var isFirst = true;
+         var index = 0; %>
+      <% _(count).times(function() { %>
+        <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
+          <% var c = 0; %>
+          <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
+            <div class="creation">
+              <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
+              <p><b class="red">From:</b> <%=model.email%></p>
+              <p><b class="red">Submitted:</b> <%=model.date%></p>
+              <p><%= model.message %></p>
+            </div>
+            <% c++; %>
+          <% }); %>
+          <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
+          <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
+        </div>
+        <% index += 5;
+        isFirst = false;  %>
+      <% }); %>
+      <script type="text/javascript">
+        $("#startTime").datetimepicker({datepicker: false, format:"h:i A", formatTime: "h:i A", step:30});
+        $("#endTime").datetimepicker({datepicker: false, format:"h:i A", formatTime: "h:i A", step:30});
+        $("#hoursForm").submit(function(event) {
+          event.preventDefault();
+          var data = {
+            day_of_week: $("#hoursForm #daySelect>option:selected").val(),
+            category: <%=category%>,
+            open: $("#hoursForm #startTime").val(),
+            close: $("#hoursForm #endTime").val(),
+          };
+          console.log(data);
+        });
+      </script>
 </script>
 
 <script type="text/template" id="editProgram">

@@ -78,7 +78,8 @@ var app = (function() {
 				this.facilityHoursView = new hoursView({
 					category: 1,
 					name: "U-Rec",
-					collectionName: "app.viewsFactory.facilityHoursView.collection"
+					collectionName: "app.viewsFactory.facilityHoursView.collection",
+					exceptionsCollectionName: "app.viewsFactory.facilityHoursView.exceptionsCollection",
 				});
 			}
 			return this.facilityHoursView;
