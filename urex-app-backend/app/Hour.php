@@ -23,6 +23,12 @@ class Hour extends Model {
         return date("h:ia", strtotime($value));
     }
 
+    public function getDayOfWeekAttribute($value)
+    {
+        $days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+        return $days[$value];
+    }
+
     private function validateTime($day_of_week, $closed, $open, $close) 
     {
         return $closed || 

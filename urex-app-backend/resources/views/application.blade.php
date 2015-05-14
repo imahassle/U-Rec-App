@@ -265,7 +265,7 @@
     <% _(count).times(function() { %>
       <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
         <% var c = 0; %>
-        <% _.each(esceptionsCollection.slice(index, index+5), function(model) { %>
+        <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
           <div class="creation">
             <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
             <p><b class="red">From:</b> <%=model.email%></p>
@@ -374,12 +374,15 @@
           <h1><%=name%> Hours</h1>
       </div>
       <div class="content">
+      <div class="creation">
+      <h3>Current Standard Hours</h3>
         <% _.each(collection, function(model) { %>
-          <div class="creation">
+          
             <button id="<%=model.id%>" class="hoursDelete pure-button red right">Delete</button>
             <p><b class="red"><%=model.day_of_week%></b><%=model.open%> - <%=model.close%></p>
-          </div>
+          
         <% }); %>
+        </div>
       </div>
       <div class="content">
           <div class="creation">
@@ -390,13 +393,13 @@
                 </div>
                 <div class="pure-control-group">
                     <select id="daySelect">
-                      <option value="Monday">Monday</option>
-                      <option value="Tuesday">Tuesday</option>
-                      <option value="Wednesday">Wednesday</option>
-                      <option value="Thursday">Thursday</option>
-                      <option value="Friday">Friday</option>
-                      <option value="Saturday">Saturday</option>
-                      <option value="Sunday">Sunday</option>
+                      <option value="1">Monday</option>
+                      <option value="2">Tuesday</option>
+                      <option value="3">Wednesday</option>
+                      <option value="4">Thursday</option>
+                      <option value="5">Friday</option>
+                      <option value="6">Saturday</option>
+                      <option value="0">Sunday</option>
                     </select>
                     <input id="startTime" class="pure-u-1-5" type="text">
                     <label class="secondLabel">to</label>
@@ -442,7 +445,7 @@
       <% _(count).times(function() { %>
         <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
           <% var c = 0; %>
-          <% _.each(collection.toJSON().slice(index, index+5), function(model) { %>
+          <% _.each(exceptionsCollection.slice(index, index+5), function(model) { %>
             <div class="creation">
               <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
               <p><b class="red">From:</b> <%=model.email%></p>
@@ -458,17 +461,27 @@
         isFirst = false;  %>
       <% }); %>
       <script type="text/javascript">
-        $("#startTime").datetimepicker({datepicker: false, format:"h:i A", formatTime: "h:i A", step:30});
-        $("#endTime").datetimepicker({datepicker: false, format:"h:i A", formatTime: "h:i A", step:30});
+      var collection = <%=coll%>;
+      console.log(collection);
+        $("#startTime").datetimepicker({datepicker: false, format:"H:i", formatTime: "h:i A", step:30});
+        $("#endTime").datetimepicker({datepicker: false, format:"H:i", formatTime: "h:i A", step:30});
         $("#hoursForm").submit(function(event) {
           event.preventDefault();
           var data = {
             day_of_week: $("#hoursForm #daySelect>option:selected").val(),
             category: <%=category%>,
+            closed: null,
             open: $("#hoursForm #startTime").val(),
             close: $("#hoursForm #endTime").val(),
           };
           console.log(data);
+          collection.create(data, {
+            url: "api/hour",
+            wait: true,
+            success: function() {
+              console.log("Successfully created hours rule");
+            }
+          });
         });
       </script>
 </script>

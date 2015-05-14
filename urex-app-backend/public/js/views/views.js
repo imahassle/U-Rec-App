@@ -213,7 +213,7 @@ var hoursView = Backbone.View.extend({
 	},
 	render: function() {
 		console.log("homepage...");
-		this.$el.html(this.template({collection: this.collection.toJSON(), exceptionCollection: this.exceptionCollection.toJSON(), exColl: this.exceptionCollectionName(), category: this.category, name: this.titleName, coll: this.collectionName}));
+		this.$el.html(this.template({collection: this.collection.toJSON(), exceptionsCollection: this.exceptionsCollection.toJSON(), exColl: this.exceptionsCollectionName, category: this.category, name: this.titleName, coll: this.collectionName}));
 		return this;
 	}
 });
