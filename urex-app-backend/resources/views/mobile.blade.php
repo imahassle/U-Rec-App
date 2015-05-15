@@ -8,7 +8,7 @@
         <title>Home</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="mobile/css/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="m/css/stylesheets/style.css">
   </head>
   <body>
     <div id="error-report"></div>
@@ -340,24 +340,24 @@
   </body>
   <footer>
     <!-- Backbone and dependencies -->
-    <script src="mobile/js/vendor/jquery-2.1.3.min.js"></script>
-    <script src="mobile/js/vendor/underscore.js"></script>
-    <script src="mobile/js/vendor/backbone.js"></script>
-    <script src="mobile/js/vendor/spin.js"></script>
+    <script src="m/js/vendor/jquery-2.1.3.min.js"></script>
+    <script src="m/js/vendor/underscore.js"></script>
+    <script src="m/js/vendor/backbone.js"></script>
+    <script src="m/js/vendor/spin.js"></script>
 
     <!-- Error Checking -->
-    <script src="mobile/js/error.js"></script>
+    <script src="m/js/error.js"></script>
 
     <!-- Backbone App -->
-    <script src="mobile/js/app.js"></script>
+    <script src="m/js/app.js"></script>
 
     <!-- Models -->
-    <script src="mobile/js/models.js"></script>
+    <script src="m/js/models.js"></script>
 
     <!-- Collections -->
-    <script src="mobile/js/collections.js"></script>
+    <script src="m/js/collections.js"></script>
     <!-- Views -->
-    <script src="mobile/js/views/views.js"></script>
+    <script src="m/js/views/views.js"></script>
 
     <script type="text/javascript">
     // $("#loading").hide();
