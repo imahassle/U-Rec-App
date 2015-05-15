@@ -197,8 +197,9 @@ var hoursView = Backbone.View.extend({
 		this.collection.url = "api/hour/category/"+this.category;
 		this.titleName = this.options.name;
 		this.collectionName = this.options.collectionName;
+
 		this.exceptionsCollection = new app.collections.generalHour;
-		this.exceptionsCollection.url = "api/hour_exceptions/category"+this.category;
+		this.exceptionsCollection.url = "api/hours_exception/category/"+this.category;
 		this.exceptionsCollectionName = this.options.exceptionsCollectionName;
 		var that = this;
 		console.log("loading homepage...");
@@ -206,6 +207,14 @@ var hoursView = Backbone.View.extend({
 			that.render();
 			console.log("loaded!");
 			that.collection.listenTo(that.collection, "remove sync reset add change", function() {
+				console.log("changed...");
+				that.render();
+			});
+		});
+		this.exceptionsCollection.fetch().done(function() {
+			that.render();
+			console.log("loaded!");
+			that.exceptionsCollection.listenTo(that.exceptionsCollection, "remove sync reset add change", function() {
 				console.log("changed...");
 				that.render();
 			});

@@ -57,8 +57,8 @@
 <!-- <script type="text/template" id="loading"></script> -->
 
 <script type="text/template" id="error-report-template">
-  <p class="error-type">Error:</p>
-  <p class="error-text"><%= message %></p>
+  <p class="error-type"><%=error.statusText%>:</p>
+  <p class="error-text"><%= error.responseText.split('"')[3] %></p>
   <a id="error-close"><i class="fa fa-times right"></i></a>
   <script type="text/javascript">
   $("#error-close").on("click", function() {
@@ -376,34 +376,42 @@
       <div class="content">
       <div class="creation">
       <h3>Current Standard Hours</h3>
+      <p>These are the usual hours the facility is open. Delete an entry for a day before creating a new one.</p>
         <% _.each(collection, function(model) { %>
-          
-            <button id="<%=model.id%>" class="hoursDelete pure-button red right">Delete</button>
-            <p><b class="red"><%=model.day_of_week%></b><%=model.open%> - <%=model.close%></p>
-          
+
+            <button id="<%=model.id%>" class="hoursDelete red pure-button right">Remove</button>
+
+            <p><b class="red"><%=model.day_of_week%> (<%=model.closed ? "Closed": "Open"%>): </b><%=model.open%> - <%=model.close%></p>
+
         <% }); %>
         </div>
       </div>
       <div class="content">
           <div class="creation">
               <h3>Set the standard open hours for the facility:</h3>
+              <p>Sets open hours by default. Closed hours may be added by checking the box.</p>
               <form class="pure-form pure-form-aligned" id="hoursForm">
                 <div class="buttons-group">
                     <button type="submit" class="pure-button pure-button-primary right red">Create Hours Rule</button>
                 </div>
                 <div class="pure-control-group">
-                    <select id="daySelect">
-                      <option value="1">Monday</option>
-                      <option value="2">Tuesday</option>
-                      <option value="3">Wednesday</option>
-                      <option value="4">Thursday</option>
-                      <option value="5">Friday</option>
-                      <option value="6">Saturday</option>
-                      <option value="0">Sunday</option>
-                    </select>
-                    <input id="startTime" class="pure-u-1-5" type="text">
-                    <label class="secondLabel">to</label>
-                    <input id="endTime" class="pure-u-1-5" type="text">
+                  <select id="daySelect">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                  </select>
+                  <label for="closed">
+                    <input type="checkbox" id="closed">Closed
+                  </label>
+                </div>
+                <div class="pure-control-group">
+                  <input id="startTime" class="pure-u-1-5 timeSelector" type="text">
+                  <label class="secondLabel">to</label>
+                  <input id="endTime" class="pure-u-1-5 timeSelector" type="text">
                 </div>
                 <br>
               </form>
@@ -411,79 +419,111 @@
       </div>
       <div class="content">
         <div class="creation">
-          <form>
+          <h3>Exceptions</h3>
+          <p>Exceptions supercede the standard hours.</p>
+          <form id="exceptionForm" class="pure-form pure-form-aligned">
             <div class="pure-control-group">
-              <label>Exception:</label>
-              <label for="one1"><input id="one1" name="exception" type="radio" value="one">One Day</label>
-              <label for="multi1"><input id="multi1" name="exception" type="radio" value="multi">Multiple Days</label>
-              <i class="fa fa-times-circle fa-lg"></i>
-            </div>
-            <div class="pure-control-group">
-                <label for="startTime">from this date</label>
-                <input id="startTime" class="pure-u-1-5" type="date">
-                <label class="secondLabel">to</label>
-                <input class="pure-u-1-5" type="date">
+                <label for="exceptionDate">Day</label>
+                <input id="exceptionDate" class="pure-u-1-5" type="text">
+                <label for="exceptionClosed">
+                  <input type="checkbox" id="exceptionClosed">Closed
+                </label>
             </div>
             <div class="pure-control-group">
               <label for="startTime">at this time</label>
-              <input id="startTime" class="pure-u-1-5" type="time">
+              <input id="exceptionStart" class="pure-u-1-5 timeSelector" type="text">
               <label class="secondLabel">to</label>
-              <input class="pure-u-1-5" type="time">
+              <input id="exceptionEnd" class="pure-u-1-5 timeSelector" type="text">
             </div>
             <br>
-            <div class="pure-control-group">
-              <button class="pure-button">Add Exception</button>
+            <div class="pure-control-group buttons-group right">
+              <button class="pure-button red">Add Exception</button>
             </div>
           </form>
         </div>
       </div>
 
       <!-- Exceptions template -->
-      <% var count = Math.ceil(collection.length / 5);
+      <% var count = Math.ceil(exceptionsCollection.length / 5);
          var isFirst = true;
          var index = 0; %>
-      <% _(count).times(function() { %>
-        <div class="set content" <% if(!isFirst) { %> style="display: none" <% } %>>
-          <% var c = 0; %>
-          <% _.each(exceptionsCollection.slice(index, index+5), function(model) { %>
-            <div class="creation">
-              <button id="<%=model.id%>" class="feedbackDelete pure-button red right">Delete</button>
-              <p><b class="red">From:</b> <%=model.email%></p>
-              <p><b class="red">Submitted:</b> <%=model.date%></p>
-              <p><%= model.message %></p>
-            </div>
-            <% c++; %>
-          <% }); %>
-          <p>Displaying <%=index+1%>-<%=index+c%> of <%=collection.length%></p>
-          <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
-        </div>
-        <% index += 5;
-        isFirst = false;  %>
-      <% }); %>
+         <!-- <div class="content"><div class="creation"><h3>Exceptions List</h3></div></div> -->
+            <div>
+              <% _(count).times(function() { %>
+              <div class="content set" <% if(!isFirst) { %> style="display: none" <% } %>>
+                <% var c = 0; %>
+                <% _.each(exceptionsCollection.slice(index, index+5), function(model) { %>
+                <div class="creation">
+                  <button id="<%=model.id%>" class="exceptionDelete pure-button red right">Delete</button>
+                  <p><b class="red"><%=model.day%></b> (<%=model.closed ? "Closed": "Open"%>): <%=model.open%>-<%=model.close%> </p>
+                </div>
+                <% c++; %>
+                <% }); %>
+                <p>Displaying <%=index+1%>-<%=index+c%> of <%=exceptionsCollection.length%></p>
+                <% if((index + c) != collection.length) { %> <button class="center pure-button red showMore">Show More</button> <% } %>
+              </div>
+              <% index += 5;
+              isFirst = false;  %>
+              <% }); %>
+          </div>
+
       <script type="text/javascript">
       var collection = <%=coll%>;
+      var exceptionsCollection = <%=exColl%>;
       console.log(collection);
-        $("#startTime").datetimepicker({datepicker: false, format:"H:i", formatTime: "h:i A", step:30});
-        $("#endTime").datetimepicker({datepicker: false, format:"H:i", formatTime: "h:i A", step:30});
-        $("#hoursForm").submit(function(event) {
-          event.preventDefault();
-          var data = {
-            day_of_week: $("#hoursForm #daySelect>option:selected").val(),
-            category: <%=category%>,
-            closed: null,
-            open: $("#hoursForm #startTime").val(),
-            close: $("#hoursForm #endTime").val(),
-          };
-          console.log(data);
-          collection.create(data, {
-            url: "api/hour",
-            wait: true,
-            success: function() {
-              console.log("Successfully created hours rule");
-            }
-          });
+      $(".timeSelector").datetimepicker({datepicker: false, format:"H:i", formatTime: "h:i A", step:30});
+      $("#exceptionDate").datetimepicker({timepicker: false, format: "m/d/Y"});
+      $("#hoursForm").submit(function(event) {
+        event.preventDefault();
+        var data = {
+          day_of_week: $("#hoursForm #daySelect>option:selected").val(),
+          category: <%=category%>,
+          closed: $("#hoursForm #closed").prop("checked"),
+          open: $("#hoursForm #startTime").val(),
+          close: $("#hoursForm #endTime").val(),
+        };
+        console.log(data);
+        collection.create(data, {
+          url: "api/hour",
+          wait: true,
+          success: function() {
+            console.log("Successfully created hours rule");
+          }
         });
-      </script>
+      });
+      $("#exceptionForm").submit(function(event) {
+        event.preventDefault();
+        var data = {
+          category: <%=category%>,
+          day: $("#exceptionForm #exceptionDate").val(),
+          closed: $("#exceptionForm #exceptionClosed").prop("checked"),
+          open: $("#exceptionForm #exceptionStart").val(),
+          close: $("#exceptionForm #exceptionEnd").val(),
+        };
+        console.log(data);
+        exceptionsCollection.create(data, {
+          url: "api/hours_exception",
+          wait: true,
+          success: function() {
+            console.log("Successfully created hours rule");
+          }
+        });
+      });
+      $(".hoursDelete").on('click', function() {
+        console.log("Removing event", $(this).attr('id'));
+        var id = $(this).attr('id');
+        collection.get(id).destroy({url:"api/hour/"+id});
+      });
+      $(".exceptionDelete").on('click', function() {
+        console.log("Removing event", $(this).attr('id'));
+        var id = $(this).attr('id');
+        exceptionsCollection.get(id).destroy({url:"api/hours_exception/"+id});
+      });
+      $(".showMore").on("click", function() {
+        $("#insert").find(".set:hidden").not("script").first().show();
+        $(this).hide();
+      });
+  </script>
 </script>
 
 <script type="text/template" id="editProgram">

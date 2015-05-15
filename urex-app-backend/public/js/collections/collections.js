@@ -8,6 +8,16 @@ var compare = function(a,b) {
   return 0;
 };
 
+var compareDate = function(a, b) {
+  if(a.day_of_week < b.day_of_week) {
+    return 1;
+  }
+  if(a.day_of_week > b.day_of_week) {
+    return -1;
+  }
+  return 0;
+};
+
 app.collections.generalAnnouncement = Backbone.Collection.extend({
   model: Announcement,
   url: "api/announcement",
@@ -35,4 +45,5 @@ app.collections.generalEvent = Backbone.Collection.extend({
 app.collections.generalHour = Backbone.Collection.extend({
   model: Hours,
   url: "api/hours",
+  comparator: compareDate
 });
