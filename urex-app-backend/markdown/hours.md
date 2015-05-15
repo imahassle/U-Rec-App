@@ -2,9 +2,9 @@
 
 X-Authorization?   | HTTP Verb | URI                                        | Description
 :----------------: | --------- | ------------------------------------------ | -----------------------------------------------------------------
-:heavy_minus_sign: | GET       | api/hour                                   | Retrieves all hour information entries.
-:heavy_minus_sign: | GET       | api/hour/category/{***category_id***}      | Retrieves all hour information entries within specified category.
-:heavy_minus_sign: | GET       | api/hour/category/{***category_id***}/week | Retrieves all hour information entries within specified category for a week from specified `day`
+:heavy_minus_sign: | GET       | api/hour                                   | Retrieves all hour information entries, ordered by day of week.
+:heavy_minus_sign: | GET       | api/hour/category/{***category_id***}      | Retrieves all hour information entries within specified category, ordered by day of week.
+:heavy_minus_sign: | GET       | api/hour/category/{***category_id***}/week | Retrieves all hour information entries within specified category for a week from specified `day`, ordered by day of week.
 :heavy_minus_sign: | GET       | api/hour/{***id***}                        | Retrieves specified hour information entry.
 :heavy_check_mark: | POST      | api/hour                                   | Creates new hour information entry.
 :heavy_check_mark: | PUT       | api/hour/{***id***}                        | Updates specified hour information entry.

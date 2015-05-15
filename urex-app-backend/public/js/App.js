@@ -189,7 +189,11 @@ var app = (function() {
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
-				this.climbingwallHoursView = new api.views.climbingwallHours({
+				this.climbingwallHoursView = new hoursView({
+					category: 4,
+					name: "Climbing Wall",
+					collectionName: "app.viewsFactory.climbingwallHoursView.collection",
+					exceptionsCollectionName: "app.viewsFactory.climbingwallHoursView.exceptionsCollection",
 				});
 			}
 			return this.climbingwallHoursView;
@@ -256,7 +260,12 @@ var app = (function() {
 			"login": "login"
 		},
 		home: function() {
-			api.changeContent(ViewsFactory.home());
+			if($.cookie("X-Authorization")) {
+				api.changeContent(ViewsFactory.home());
+			}
+			else {
+				api.changeContent(ViewsFactory.login().$el);
+			}
 		},
 		facilityHome: function() {
 			api.changeContent(ViewsFactory.facilityHome().$el);
