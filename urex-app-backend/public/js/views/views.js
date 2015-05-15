@@ -95,7 +95,7 @@ var tripView = Backbone.View.extend({
 	initialize: function() {
 		// this.$el.html($("#loading").html());
 		this.collection = new app.collections.generalProgram;
-		this.collection.url = "api/event";
+		this.collection.url = "api/event/3";
 		this.collectionName =  this.options.collectionName;
 		var that = this;
 		console.log("eventing events...");
