@@ -40,7 +40,6 @@ Input         | Validation Rules
 
 Input          | Validation Rules
 -------------- | ----------------
-`old_password` | 
 `new_password` |  
 
 Outputs       | Type
