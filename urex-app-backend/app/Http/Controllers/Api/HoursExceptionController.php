@@ -19,7 +19,7 @@ class HoursExceptionController extends ApiGuardController {
 
     public function index()
     {
-        return Response::json(HoursException::all()->toArray());
+        return Response::json(HoursException::orderBy('day')->get()->toArray());
     }
 
     public function index_category($category_id)
@@ -27,7 +27,7 @@ class HoursExceptionController extends ApiGuardController {
         if(!HoursException::whereCategoryId($category_id)->exists()) {
             return Response::json([]);
         }
-        return Response::json(HoursException::whereCategoryId($category_id)->get()->toArray());
+        return Response::json(HoursException::whereCategoryId($category_id)->orderBy('day')->get()->toArray());
     }
 
     public function store()
