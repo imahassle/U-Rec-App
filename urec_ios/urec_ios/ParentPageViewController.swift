@@ -21,13 +21,19 @@ func UIColorFromRGB(colorCode: String, alpha: Float = 1.0) -> UIColor {
     return UIColor(red: r, green: g, blue: b, alpha: CGFloat(alpha))
 }
 
+
+
 class ParentPageViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var webView: UIWebView!
     @IBOutlet var activity: UIActivityIndicatorView!
     @IBOutlet var navigationBar: UINavigationItem!
+    @IBOutlet var settingsButton : UINavigationItem!
+    var rgb_mainColor : [CGFloat]! /*= [CGFloat(Float(185)/255), CGFloat(Float(0)/255), CGFloat(Float(30)/255), CGFloat(Float(1.0))] */
     var isRoot = false
     var jQuery : Bool = true
+    var theHost : String = "http://localhost:8888/urec/Mobile-New/"
+    //var theHost : String = "104.236.181.119/Mobile-New/"
     
     var firstTime = true
     var url : String = ""
@@ -57,15 +63,17 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func set_rgb_mainColor(red: Float, green: Float, blue: Float, alpha: Float) {
+        rgb_mainColor = [CGFloat(red/255), CGFloat(green/255), CGFloat(blue/255), CGFloat(alpha)]
+    }
+    
     func setStyle() {
+        set_rgb_mainColor(185, green: 0, blue: 30, alpha: 1.0)
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Lato-Semibold", size: 20)!]
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!], forState: UIControlState.Normal)
-        var r = CGFloat(Float(185)/255)
-        var g = CGFloat(Float(0)/255)
-        var b = CGFloat(Float(30)/255)
-        self.tabBarController?.tabBar.selectedImageTintColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        self.tabBarController?.tabBar.selectedImageTintColor = UIColor(red: rgb_mainColor[0], green: rgb_mainColor[1], blue: rgb_mainColor[2], alpha: rgb_mainColor[3]) // changes tab bar selection tint
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {

@@ -71,10 +71,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Q3l-Ix-mVP">
                         <barButtonItem key="backBarButtonItem" title="Back" id="u4t-i8-MLH"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="jbj-BL-ZgA">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="jbj-BL-ZgA" userLabel="About">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="byj-oH-mJv" kind="show" id="9dU-0H-0Ji"/>
+                                <segue destination="OAp-Lg-Ucj" kind="show" id="U1U-2Q-2Ik"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -139,10 +139,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="ghr-2v-anx">
                         <barButtonItem key="backBarButtonItem" title="Back" id="HdE-nM-OwY"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="dXc-TG-p2c">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="dXc-TG-p2c" userLabel="About">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="byj-oH-mJv" kind="show" identifier="settings" id="xKx-gq-wNq"/>
+                                <segue destination="OAp-Lg-Ucj" kind="show" id="XNN-Og-pze"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -232,10 +232,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Erq-SC-vmX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="f5N-gf-rea"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="YEs-EG-PdY">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="YEs-EG-PdY" userLabel="About">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="byj-oH-mJv" kind="show" id="FGI-5h-syX"/>
+                                <segue destination="OAp-Lg-Ucj" kind="show" id="Jq4-dR-EZ1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -300,10 +300,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="zfU-we-snw">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oC9-qt-U4Q"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="nCV-zj-CSz">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="nCV-zj-CSz" userLabel="About">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="byj-oH-mJv" kind="show" identifier="settings" id="ABT-Kv-yMH"/>
+                                <segue destination="OAp-Lg-Ucj" kind="show" id="VZo-r2-5HO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -368,10 +368,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="zvC-9S-edw">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aOU-7G-P70"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Sra-9c-JVO">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="Sra-9c-JVO" userLabel="About">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="byj-oH-mJv" kind="show" identifier="settings" id="epB-Tu-iRB"/>
+                                <segue destination="OAp-Lg-Ucj" kind="show" id="Vw7-MC-NsH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -395,45 +395,45 @@
                         <viewControllerLayoutGuide type="bottom" id="OFb-2G-Trj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MxI-ay-Kkm">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
-                                <rect key="frame" x="478" y="20" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTW-et-OQY" userLabel="U-Rec Switch">
+                                <rect key="frame" x="478" y="20" width="51" height="34"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="LHh-KU-Hxn"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYn-Vh-Uvm" userLabel="Outdoor Rec Switch">
                                 <rect key="frame" x="478" y="81" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="GcG-Fw-W5u"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0H-xq-ix3" userLabel="Rentals Switch">
                                 <rect key="frame" x="478" y="146" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="20X-vS-KRB"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-LU-dDo" userLabel="Climbing Wall Switch">
                                 <rect key="frame" x="478" y="207" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="TIh-Lw-9eG"/>
                                 </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhN-se-sTh" userLabel="Intramurals Switch">
                                 <rect key="frame" x="478" y="269" width="51" height="31"/>
                                 <color key="onTintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="switchValueChanged:" destination="byj-oH-mJv" eventType="valueChanged" id="ocJ-ra-XZJ"/>
                                 </connections>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="U-Rec notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="U-Rec notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Qg-JLa" userLabel="U-Rec Text">
                                 <rect key="frame" x="23" y="20" width="159" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -443,7 +443,7 @@
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Outdoor Rec notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Outdoor Rec notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVp-DN-jJf" userLabel="Outdoor Rec Text">
                                 <rect key="frame" x="23" y="83" width="195" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -453,14 +453,14 @@
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rentals notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Rentals notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-tD-5nZ" userLabel="Rentals Text">
                                 <rect key="frame" x="23" y="146" width="159" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Climbing Wall notifcations" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Climbing Wall notifcations" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzJ-va-N4b" userLabel="Climbing Wall Text">
                                 <rect key="frame" x="23" y="207" width="188" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -470,7 +470,7 @@
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Intramurals notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Intramurals notifications" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0X-Yy-DUb" userLabel="Intramurals Text">
                                 <rect key="frame" x="23" y="269" width="173" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -489,25 +489,25 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about new trips, photos, and announcements." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qog-pW-3RJ">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Get notified about new trips, photos, and announcements." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qog-pW-3RJ">
                                 <rect key="frame" x="29" y="104" width="399" height="34"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified when new gear is bought. " lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYG-6H-NgO">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Get notified when new gear is bought. " lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYG-6H-NgO">
                                 <rect key="frame" x="29" y="165" width="399" height="34"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about events, photos and more." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iok-CV-71q">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Get notified about events, photos and more." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iok-CV-71q">
                                 <rect key="frame" x="29" y="227" width="399" height="34"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get notified about new seasons and announcements." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWm-fE-t7I">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Get notified about new seasons and announcements." lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWm-fE-t7I">
                                 <rect key="frame" x="29" y="289" width="399" height="34"/>
                                 <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -574,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXD-LB-iuH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3126" y="815"/>
+            <point key="canvasLocation" x="3092" y="812"/>
         </scene>
         <!--U-Rec-->
         <scene sceneID="p4s-L1-OQP">
@@ -676,6 +676,68 @@
             </objects>
             <point key="canvasLocation" x="750" y="2370"/>
         </scene>
+        <!--About-->
+        <scene sceneID="iLY-8B-0eU">
+            <objects>
+                <viewController storyboardIdentifier="About" hidesBottomBarWhenPushed="YES" id="OAp-Lg-Ucj" userLabel="About" customClass="AboutViewController" customModule="urec_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7NK-G9-FQY"/>
+                        <viewControllerLayoutGuide type="bottom" id="IY7-Ap-BU7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K0q-2B-4cs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="About View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-xf-w0e" userLabel="About View">
+                                <rect key="frame" x="147" y="223" width="307" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by ParentViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sf8-mv-aLf" userLabel="Loaded by ParentViewController">
+                                <rect key="frame" x="175" y="273" width="250" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleAspectFit" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-Yz-AIq">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WF5-bk-aIJ">
+                                <rect key="frame" x="282" y="289" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ivy-Yz-AIq" secondAttribute="trailing" constant="-16" id="AYI-aH-yea"/>
+                            <constraint firstItem="ivy-Yz-AIq" firstAttribute="top" secondItem="7NK-G9-FQY" secondAttribute="bottom" id="Ati-Ph-eD8"/>
+                            <constraint firstItem="Sf8-mv-aLf" firstAttribute="centerX" secondItem="FG9-xf-w0e" secondAttribute="centerX" id="FfB-HY-tmR"/>
+                            <constraint firstItem="WF5-bk-aIJ" firstAttribute="centerY" secondItem="ivy-Yz-AIq" secondAttribute="centerY" id="NH4-su-zkg"/>
+                            <constraint firstItem="IY7-Ap-BU7" firstAttribute="top" secondItem="ivy-Yz-AIq" secondAttribute="bottom" id="NT4-QU-MIJ"/>
+                            <constraint firstItem="ivy-Yz-AIq" firstAttribute="leading" secondItem="K0q-2B-4cs" secondAttribute="leadingMargin" constant="-16" id="SX9-Jn-Neg"/>
+                            <constraint firstAttribute="centerX" secondItem="FG9-xf-w0e" secondAttribute="centerX" id="ecW-zs-jN0"/>
+                            <constraint firstItem="Sf8-mv-aLf" firstAttribute="top" secondItem="FG9-xf-w0e" secondAttribute="bottom" constant="8" symbolic="YES" id="fxd-9g-3l0"/>
+                            <constraint firstAttribute="centerY" secondItem="FG9-xf-w0e" secondAttribute="centerY" id="pHT-oc-H7x"/>
+                            <constraint firstItem="WF5-bk-aIJ" firstAttribute="centerX" secondItem="FG9-xf-w0e" secondAttribute="centerX" id="yPl-Kq-h3F"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YWk-zC-mUx">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="j8m-AR-Cd4"/>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="activity" destination="WF5-bk-aIJ" id="a7i-mi-ezZ"/>
+                        <outlet property="navigationBar" destination="YWk-zC-mUx" id="0xo-ii-CKI"/>
+                        <outlet property="webView" destination="ivy-Yz-AIq" id="MZD-B5-oSA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yt-YL-2il" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3034" y="1662"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ClimbingWall@3x.png" width="144" height="96"/>
@@ -685,7 +747,7 @@
         <image name="U-Rec@3x.png" width="144" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9dU-0H-0Ji"/>
+        <segue reference="U1U-2Q-2Ik"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.71764705880000002" green="0.027450980390000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
