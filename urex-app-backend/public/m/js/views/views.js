@@ -96,14 +96,16 @@ var homeView = Backbone.View.extend({
 	initialize: function() {
 		this.$el.html($("#loading").html());
 		this.collection = new app.collections.generalHome;
-		this.collection.url = this.options.url;
+		var now = moment();
+		console.log(now);
+		this.collection.url = this.options.url + "/week?day=" + now.format("YYYY-MM-DD");
 		this.subTemplate = this.options.sub;
 		this.titleName = this.options.name;
 		var that = this;
 		console.log("loading homepage...");
 		this.collection.fetch().done(function() {
 			// that.render();
-			console.log("loaded!");
+			console.log(that.collection);
 		});
 		this.collection.on("change sync", this.render, this);
 		setInterval(function() {updateRender(that);}, 1000*60*30);

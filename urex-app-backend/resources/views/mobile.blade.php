@@ -159,20 +159,19 @@
 
     	<div data-role="popup" id="hours-popup" data-overlay-theme="a" class="hours-popup panel">
           <h4 class="hours-title">This Week's Hours</h4>
-      		<p class="info">Friday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
-      		<p class="info">Saturday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
-      		<p class="info">Sunday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
-      		<p class="info">Monday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
-      		<p class="info">Tuesday:</p> <p>CLOSED</p>
-      		<br>
-      		<p class="info">Wednesday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
-      		<p class="info">Thursday:</p> <p>7:00am - 10:00pm</p>
-      		<br>
+          <% _.each(collection, function(model) { %>
+            <p class="info"><%=model.day%>:</p>
+              <% if(model.closed) { %>
+                <p>CLOSED</p>
+                <br>
+              <% }
+              else {%>
+                <% _.each(model.times, function(time) { %>
+                  <p><%=time%> </p>
+                  <br>
+                <% }); %>
+              <% } %>
+          <% }); %>
     	</div>
 
       <%= menu %>
@@ -344,6 +343,7 @@
     <script src="m/js/vendor/underscore.js"></script>
     <script src="m/js/vendor/backbone.js"></script>
     <script src="m/js/vendor/spin.js"></script>
+    <script src="m/js/vendor/moment.js"></script>
 
     <!-- Error Checking -->
     <script src="m/js/error.js"></script>
