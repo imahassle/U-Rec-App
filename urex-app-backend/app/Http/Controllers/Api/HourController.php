@@ -20,7 +20,7 @@ class HourController extends ApiGuardController {
 
     public function index()
     {
-        return Response::json(Hour::all()->toArray());
+        return Response::json(Hour::orderBy('day_of_week')->get()->toArray());
     }
 
     public function index_category($category_id)
@@ -28,7 +28,7 @@ class HourController extends ApiGuardController {
         if(!Hour::whereCategoryId($category_id)->exists()) {
             return Response::json([]);
         }
-        return Response::json(Hour::whereCategoryId($category_id)->get()->toArray());
+        return Response::json(Hour::whereCategoryId($category_id)->orderBy('day_of_week')->get()->toArray());
     }
 
     public function index_category_week($category_id)
