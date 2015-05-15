@@ -142,7 +142,7 @@ var app = (function() {
 		climbingwallHome: function() {
 			if(!this.climbingwallHomeView) {
 				this.climbingwallHomeView = new homeView({
-					url: "../api/hour/category/3",
+					url: "../api/hour/category/4",
 					sub: $("#climbingwallMenu"),
 					name: "The Climbing Wall",
 					toggle: false

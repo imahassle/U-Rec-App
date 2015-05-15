@@ -47,7 +47,7 @@
     <script type="text/template" id="imageTemplate">
       <% _.each(collection, function(model) { %>
         <div class="image-container">
-          <a data-featherlight="#image-<%= model.id %>">
+          <a href="<%= model.file_location %>">
             <img id="image-<%= model.id %>" src="<%= model.file_location %>" title="<%= model.caption %>">
           </a>
           <p><%= model.caption %></p>
@@ -61,13 +61,15 @@
       		<div class="event">
       				<h3><%=model.title%></h3>
       				<div class="content">
+                <%console.log(model)%>
                 <!-- These will have conditionals, so if they don't have a value they won't show up -->
-                <p class="start">Start Date: <%=model.start%></p>
-                <p class="end">End Date: <%=model.end%></p>
-                <p class="cost">Cost: $<%=model.cost%></p>
-                <p class="spots">Spots: <%=model.spots%></p>
-                <p class="gear">Gear needed: <%=model.gear_needed%></p>
-      				  <p class="message"><%=model.description%></p>
+                <% !model.image ? "" : %> <img class="eventImage" src=<%=model.image%>> <%;%>
+                <% !model.start ? "" : %> <p class="start">Start Date: <%=model.start%> </p> <%;%>
+                <% !model.end ? "" : %> <p class="end">End Date: <%=model.end%> </p> <%;%>
+                <% model.cost == 0 ? "" : %> <p class="cost">Cost: $<%=model.cost%> </p> <%;%>
+                <% !model.spots ? "" : %> <p class="spots">Spots: <%=model.spots%> </p> <%;%>
+                <% !model.gear ? "" : %> <p class="gear">Gear needed: <%=model.gear_needed%> </p> <%;%>
+      				  <p class="message"><%=model.description%> </p>
       				</div>
       		</div>
       	</div>
@@ -149,9 +151,35 @@
 
     <script type="text/template" id="homeTemplate">
       <div class="panel hours">
-    		<p><%=name%> is currently: <p class="info">Open</p></p>
+        <%
+          var sign = "CLOSED";
+          if(collection[0].closed) {
+            <!-- sign = "CLOSED"; -->
+          }
+          else {
+            var now = moment();
+            _.each(collection[0].times, function(time) {
+              var a = time.split(" - ");
+              var open = moment(a[0], "hh:mma");
+              var close = moment(a[1], "hh:mma");
+              console.log(open, close);
+              if(now.isBetween(open, close, "minute")) {
+                sign = "OPEN";
+                console.log("ITS OPEN");
+                <!-- break; -->
+              }
+            });
+          }
+
+        %>
+    		<p><%=name%> is currently: <p class="info"><%=sign%></p></p>
     		<br>
-    		<p>Today's Hours:<p class="info">8am - 10am</p></p>
+    		<%collection[0].closed ? "n/a" :%> <p>Today's Hours:</p> <% _.each(collection[0].times, function(time) { %>
+          <br>
+          <p class="info"><%=time%> </p>
+
+        <% });%>
+        <p></p>
     		<br>
     		<br>
     		<button id="week-popup">This Week's Hours</button>
@@ -166,7 +194,12 @@
                 <br>
               <% }
               else {%>
+                <% var more = false; %>
                 <% _.each(model.times, function(time) { %>
+                  <% if(more) { %>
+                    <p class="info" style="visibility:hidden"><%=model.day%>:</p>
+                  <% }
+                  more = true;%>
                   <p><%=time%> </p>
                   <br>
                 <% }); %>
@@ -260,9 +293,9 @@
         <form id="feedbackForm">
           <input id="feedbackEmail" type="text" placeholder="My Email">
           <br>
-          <textarea id="feedbackMessage" name="" id="" rows="5">Message</textarea>
+          <textarea id="feedbackMessage" name="" id="" rows="5" placeholder="Message"></textarea>
           <br>
-          <button>Submit Feedback</button>
+          <button class="red">Submit Feedback</button>
         </form>
       </div>
       <div class="panel feedbackSuccess">
