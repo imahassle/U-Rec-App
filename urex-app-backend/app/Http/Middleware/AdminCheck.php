@@ -27,7 +27,7 @@ class AdminCheck implements Middleware {
             if(is_null($request->header('X-Authorization'))) {
                 throw new AuthException("No valid API key found.");
             }
-            $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
+            $user = User::find(ApiKey::whereKey($request->header('X-Authorization'))->first()->user_id);
             if($user->category_id != Category::whereName('Administration')->first()->id) {
                 throw new AdminException("You aren't supposed to access this functionality...");
             }
