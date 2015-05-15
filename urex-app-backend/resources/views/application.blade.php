@@ -1126,7 +1126,7 @@
         <a class="pure-menu-heading" href="#">U Rec CMS</a>
         <div id="loading"></div>
         <div class="menu-space"></div>
-        <% if(permissions==1) { %>
+        <% if(permissions==2 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#admin" class="pure-menu-link">Admin</a></li>
         <li class="pure-menu-item"><a href="#facility" class="pure-menu-link">Facility</a></li>
             <ul class="pure-menu-list">
@@ -1137,20 +1137,20 @@
                 <li><a href="#facility/feedback" class="pure-menu-link">View feedback</a></li>
             </ul>
         <% } %>
-        <% if(permissions==2 || permissions==1) { %>
+        <% if(permissions==3 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#outdoorrec"class="pure-menu-link">Outdoor Rec</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#outdoorrec/trips" class="pure-menu-link">Trips</a></li>
                 <li><a href="#outdoorrec/photos" class="pure-menu-link">Photos</a></li>
             </ul>
         <% } %>
-        <% if(permissions==3 || permissions==1) { %>
+        <% if(permissions==4 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#intramurals"class="pure-menu-link">Intramurals</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#intramurals/photos" class="pure-menu-link">Photos</a></li>
             </ul>
         <% } %>
-        <% if(permissions==4 || permissions==1) { %>
+        <% if(permissions==5 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#climbingwall"class="pure-menu-link">Climbing Wall</a></li>
             <ul class="pure-menu-list">
                 <li><a href="#climbingwall/hours" class="pure-menu-link">Hours</a></li>
@@ -1158,11 +1158,68 @@
                 <li><a href="#climbingwall/events" class="pure-menu-link">Events</a></li>
             </ul>
         <% } %>
-        <% if(permissions==2 || permissions==1) { %>
+        <% if(permissions==3 || permissions==1) { %>
         <li class="pure-menu-item"><a href="#rentals" class="pure-menu-link">Rentals</a></li>
         <% } %>
     </ul>
 </div>
+</script>
+
+<script type="text/template" id="editUser">
+  <% var obj = model.attributes;
+  console.log(model); %>
+  <form action="javascript:" class="editUser pure-form pure-form-aligned" value="<%= model.id %>" class="pure-form pure-form-stacked">
+    <input type="submit" class="pure-button pure-button-primary right red" value="SAVE">
+    <div class="pure-control-group">
+      <label for="">Username:</label>
+      <input id="username" type="text" value="<%=obj.username%>">
+    </div>
+    <div class="pure-control-group">
+      <label for="">First Name:</label>
+      <input id="firstName" type="text" value="<%=obj.first_name%>">
+    </div>
+    <div class="pure-control-group">
+      <label for="">Last Name:</label>
+      <input id="lastName" type="text" value="<%=obj.last_name%>">
+    </div>
+    <div class="pure-control-group">
+      <label for="">Email:</label>
+      <input id="email" type="text" value="<%=obj.email%>">
+    </div>
+  </form>
+  <form class="resetPassword pure-form pure-form-aligned" value="<%=model.id%>">
+    <div class="pure-control-group">
+      <label for="">Reset Password</label>
+      <input type="password" id="newPass">
+      <input type="submit" class="pure-button pure-button-primary red" value="SET">
+    </div>
+  </form>
+  <script type="text/javascript">
+  var collection = <%=collection%>;
+  $(".editUser").on("submit", function() {
+    console.log("saving changes...");
+    var ID = $(this).attr("value");
+    // console.log(ID);
+    var data = {
+      username: $(".editUser #username").val(),
+      first_name: $(".editUser #firstName").val(),
+      last_name: $(".editUser #lastName").val(),
+      email: $(".editUser #email").val(),
+    };
+    console.log(data);
+    collection.get(ID).save(data, {url:"api/user/"+ID});
+  });
+  $(".resetPassword").on("submit", function() {
+    console.log("updating user's password...");
+    var ID = $(this).attr("value");
+    // console.log(ID);
+    var data = {
+      new_password: $(".resetPassword #newPass").val(),
+    };
+    console.log(data);
+    collection.get(ID).save(data, {url:"api/user/"+ID+"/password"});
+  });
+  </script>
 </script>
 
 <script type="text/template" id="admin">
@@ -1185,17 +1242,32 @@
       <h4>Create and Manage Users</h4>
       <% _.each(collection, function(model) { %>
         <div id="<%=model.id%>">
-          <p>Username: <%=model.username%> </p>
-          <button>See Info</button>
+          <fieldset>
+            <p><b class="red">Username:</b> <%=model.username%> </p>
+            <button class="pure-button red showInfo">See Info</button>
           <div class="show">
             <p>Name: <%=model.first_name%> <%=model.last_name%> </p>
             <p>Email: <%=model.email%> </p>
             <p>Category: <%=sortId(model.category_id)%> </p>
+            <button id="<%=model.id%>" class="editUser pure-button red">Edit User</button>
           </div>
+        </fieldset>
         </div>
       <% }) %>
     </div>
   </div>
+  <script>
+    $(".show").hide();
+    $(".showInfo").on('click', function() {
+      $(this).parent().children(".show").show();
+      $(this).hide();
+    });
+    $(".editUser").on('click', function() {
+      var id = $(this).attr('id');
+      var template = _.template($("#editUser").html());
+      $(this).parent().parent().html(template({id: id, model: <%=coll%>.get(id), collection: "<%=coll%>"}));
+    });
+  </script>
 </script>
 
 <script type="text/template" id="rentalTemplate">

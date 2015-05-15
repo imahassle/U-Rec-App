@@ -18,6 +18,10 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
   // height: 900px;
 }
 
+fieldset {
+  margin-bottom: 20px;
+}
+
 .custom-restricted-width {
 	width: 100px;
 	li {

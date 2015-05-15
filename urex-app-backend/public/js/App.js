@@ -66,7 +66,7 @@ var app = (function() {
 		},
 		facilityHome: function() {
 			this.facilityHomeView = new homeView({
-				category: 1,
+				category: 2,
 				sub: $("#facilityMenu"),
 				name: "U-Rec",
 				collectionName: "app.viewsFactory.facilityHomeView.collection"
@@ -75,14 +75,14 @@ var app = (function() {
 		},
 		facilityAnnouncements: function() {
 			this.facilityAnnouncementsView = new announcementView({
-				url: "api/announcement/category/1",
+				url: "api/announcement/category/2",
 			});
 			return this.facilityAnnouncementsView;
 		},
 		facilityHours: function() {
 			if(!this.facilityHoursView) {
 				this.facilityHoursView = new hoursView({
-					category: 1,
+					category: 2,
 					name: "U-Rec",
 					collectionName: "app.viewsFactory.facilityHoursView.collection",
 					exceptionsCollectionName: "app.viewsFactory.facilityHoursView.exceptionsCollection",
@@ -101,7 +101,7 @@ var app = (function() {
 		},
 		facilityEvents: function() {
 				this.facilityEventsView = new eventView({
-					category: 1,
+					category: 2,
 					name: "U-Rec",
 					collectionName: "app.viewsFactory.facilityEventsView.collection"
 				});
@@ -109,7 +109,7 @@ var app = (function() {
 		},
 		facilityPhotos: function() {
 			this.facilityPhotosView = new imageView({
-				category: 1,
+				category: 2,
 				name: "U-Rec",
 				collectionName: "app.viewsFactory.facilityPhotosView.collection"
 			});
@@ -125,7 +125,7 @@ var app = (function() {
 		},
 		outdoorrecHome: function() {
 			this.outdoorrecHomeView = new homeView({
-				category: 2,
+				category: 3,
 				sub: $("#outdoorrecMenu"),
 				name: "Outdoor Rec",
 				collectionName: "app.viewsFactory.outdoorrecHomeView.collection"
@@ -134,13 +134,13 @@ var app = (function() {
 		},
 		outdoorrecAnnouncements: function() {
 			this.outdoorrecAnnouncementsView = new announcementView({
-				url: "api/announcement/category/2",
+				url: "api/announcement/category/3",
 			});
 			return this.outdoorrecAnnouncementsView;
 		},
 		outdoorrecTrips: function() {
 			this.outdoorrecTripsView = new tripView({
-				category: 2,
+				category: 3,
 				name: "Outdoor Rec",
 				template: _.template($("#tripTemplate").html()),
 				collectionName: "app.viewsFactory.outdoorrecTripsView.collection"
@@ -149,7 +149,7 @@ var app = (function() {
 		},
 		outdoorrecPhotos: function() {
 				this.outdoorrecPhotosView = new imageView({
-					category: 2,
+					category: 3,
 					name: "Outdoor Rec",
 					collectionName: "app.viewsFactory.outdoorrecPhotosView.collection"
 				});
@@ -157,7 +157,7 @@ var app = (function() {
 		},
 		intramuralsHome: function() {
 			this.intramuralsHomeView = new homeView({
-				category: 3,
+				category: 4,
 				sub: $("#intramuralsMenu"),
 				name: "Intramurals",
 				collectionName: "app.viewsFactory.intramuralsHomeView.collection"
@@ -166,13 +166,13 @@ var app = (function() {
 		},
 		intramuralsAnnouncements: function() {
 			this.intramuralsAnnouncementsView = new announcementView({
-				url: "api/announcement/category/3",
+				url: "api/announcement/category/4",
 			});
 			return this.intramuralsAnnouncementsView;
 		},
 		intramuralsPhotos: function() {
 				this.intramuralsPhotosView = new imageView({
-					category: 3,
+					category: 4,
 					name: "Outdoor Rec",
 					collectionName: "app.viewsFactory.intramuralsPhotosView.collection"
 				});
@@ -180,7 +180,7 @@ var app = (function() {
 		},
 		climbingwallHome: function() {
 				this.climbingwallHomeView = new homeView({
-					category: 4,
+					category: 5,
 					sub: $("#climbingwallMenu"),
 					name: "Climbing Wall",
 					collectionName: "app.viewsFactory.climbingwallHomeView.collection"
@@ -189,14 +189,14 @@ var app = (function() {
 		},
 		climbingwallAnnouncements: function() {
 				this.climbingwallAnnouncementsView = new announcementView({
-					url: "api/announcement/category/4",
+					url: "api/announcement/category/5",
 				});
 			return this.climbingwallAnnouncementsView;
 		},
 		climbingwallHours: function() {
 			if(!this.climbingwallHoursView) {
 				this.climbingwallHoursView = new hoursView({
-					category: 4,
+					category: 5,
 					name: "Climbing Wall",
 					collectionName: "app.viewsFactory.climbingwallHoursView.collection",
 					exceptionsCollectionName: "app.viewsFactory.climbingwallHoursView.exceptionsCollection",
@@ -206,7 +206,7 @@ var app = (function() {
 		},
 		climbingwallPhotos: function() {
 				this.climbingwallPhotosView = new imageView({
-					category: 4,
+					category: 5,
 					name: "Climbing Wall",
 					collectionName: "app.viewsFactory.climbingwallPhotosView.collection"
 				});
@@ -214,7 +214,7 @@ var app = (function() {
 		},
 		climbingwallEvents: function() {
 			this.climbingwallEventsView = new eventView({
-				category: 4,
+				category: 5,
 				name: "Climbing Wall",
 				collectionName: "app.viewsFactory.climbingwallEventsView.collection"
 			});

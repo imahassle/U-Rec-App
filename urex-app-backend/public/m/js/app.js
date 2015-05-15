@@ -1,4 +1,4 @@
-//App.js
+//Mobile App.js
 var app = (function() {
 
 	var api = {
@@ -31,7 +31,7 @@ var app = (function() {
 		facilityHome: function() {
 			if(!this.facilityHomeView) {
 				this.facilityHomeView = new homeView({
-					url: "../api/hour/category/1",
+					url: "../api/hour/category/2",
 					sub: $("#facilityMenu"),
 					name: "U-Rec",
 					toggle: false,
@@ -42,7 +42,7 @@ var app = (function() {
 		facilityAnnouncements: function() {
 			if(!this.facilityAnnouncementsView) {
 				this.facilityAnnouncementsView = new announcementView({
-					url: "../api/announcement/category/1",
+					url: "../api/announcement/category/2",
 				});
 			}
 			return this.facilityAnnouncementsView;
@@ -58,7 +58,7 @@ var app = (function() {
 		facilityEvents: function() {
 			if(!this.facilityEventsView) {
 				this.facilityEventsView = new eventView({
-					url: "../api/event/category/1",
+					url: "../api/event/category/2",
 				});
 			}
 			return this.facilityEventsView;
@@ -66,7 +66,7 @@ var app = (function() {
 		facilityPhotos: function() {
 			if(!this.facilityPhotosView) {
 				this.facilityPhotosView = new imageView({
-					url: "../api/image/category/1",
+					url: "../api/image/category/2",
 				});
 			}
 			return this.facilityPhotosView;
@@ -80,7 +80,7 @@ var app = (function() {
 		outdoorrecHome: function() {
 			if(!this.outdoorrecHomeView) {
 				this.outdoorrecHomeView = new homeView({
-					url: "../api/hour/category/2",
+					url: "../api/hour/category/3",
 					sub: $("#outdoorrecMenu"),
 					name: "Outdoor Rec",
 					toggle: true,
@@ -91,7 +91,7 @@ var app = (function() {
 		outdoorrecAnnouncements: function() {
 			if(!this.outdoorrecAnnouncementsView) {
 			this.outdoorrecAnnouncementsView = new announcementView({
-				url: "../api/announcement/category/2",
+				url: "../api/announcement/category/3",
 			});
 		}
 			return this.outdoorrecAnnouncementsView;
@@ -99,7 +99,7 @@ var app = (function() {
 		outdoorrecTrips: function() {
 			if(!this.outdoorrecTripsView) {
 			this.outdoorrecTripsView = new eventView({
-				url: "../api/event/category/2",
+				url: "../api/event/category/3",
 			});
 		}
 			return this.outdoorrecTripsView;
@@ -107,7 +107,7 @@ var app = (function() {
 		outdoorrecPhotos: function() {
 			if(!this.outdoorrecPhotosView) {
 				this.outdoorrecPhotosView = new imageView({
-					url: "../api/image/category/2",
+					url: "../api/image/category/3",
 				});
 			}
 			return this.outdoorrecPhotosView;
@@ -115,7 +115,7 @@ var app = (function() {
 		intramuralsHome: function() {
 			if(!this.intramuralsHomeView) {
 			this.intramuralsHomeView = new homeView({
-				url: "../api/hour/category/1",
+				url: "../api/hour/category/2",
 				sub: $("#intramuralsMenu"),
 				name: "Intramurals",
 				toggle: true,
@@ -126,7 +126,7 @@ var app = (function() {
 		intramuralsAnnouncements: function() {
 			if(!this.intramuralsAnnouncementsView) {
 			this.intramuralsAnnouncementsView = new announcementView({
-				url: "../api/announcement/category/3",
+				url: "../api/announcement/category/4",
 			});
 		}
 			return this.intramuralsAnnouncementsView;
@@ -134,7 +134,7 @@ var app = (function() {
 		intramuralsPhotos: function() {
 			if(!this.intramuralsPhotosView) {
 				this.intramuralsPhotosView = new imageView({
-					url: "../api/image/category/3",
+					url: "../api/image/category/4",
 				});
 			}
 			return this.intramuralsPhotosView;
@@ -142,7 +142,7 @@ var app = (function() {
 		climbingwallHome: function() {
 			if(!this.climbingwallHomeView) {
 				this.climbingwallHomeView = new homeView({
-					url: "../api/hour/category/4",
+					url: "../api/hour/category/5",
 					sub: $("#climbingwallMenu"),
 					name: "The Climbing Wall",
 					toggle: false
@@ -153,7 +153,7 @@ var app = (function() {
 		climbingwallAnnouncements: function() {
 			if(!this.climbingwallAnnouncementsView) {
 				this.climbingwallAnnouncementsView = new announcementView({
-					url: "../api/announcement/category/4",
+					url: "../api/announcement/category/5",
 				});
 			}
 			return this.climbingwallAnnouncementsView;
@@ -168,7 +168,7 @@ var app = (function() {
 		climbingwallPhotos: function() {
 			if(!this.climbingwallPhotosView) {
 				this.climbingwallPhotosView = new imageView({
-					url: "../api/image/category/4",
+					url: "../api/image/category/5",
 				});
 			}
 			return this.climbingwallPhotosView;
@@ -176,7 +176,7 @@ var app = (function() {
 		climbingwallEvents: function() {
 			if(!this.climbingwallEventsView) {
 			this.climbingwallEventsView = new eventView({
-				url: "../api/event/category/4",
+				url: "../api/event/category/5",
 			});
 		}
 			return this.climbingwallEventsView;
