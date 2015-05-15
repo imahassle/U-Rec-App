@@ -20,6 +20,7 @@
 		BB6CC82A1AD72C8400837886 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB6CC8291AD72C8400837886 /* Images.xcassets */; };
 		BB6CC82D1AD72C8400837886 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6CC82B1AD72C8400837886 /* LaunchScreen.xib */; };
 		BB6CC8391AD72C8400837886 /* urec_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6CC8381AD72C8400837886 /* urec_iosTests.swift */; };
+		BB9D54131B05958A0025CCDD /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D54121B05958A0025CCDD /* About.swift */; };
 		BBA0CC601ADD8A68008AE71A /* RentalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */; };
 		BBA0CC621ADD8B58008AE71A /* ClimbingWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */; };
 		BBA0CC641ADD8C65008AE71A /* IntramuralsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */; };
@@ -66,6 +67,7 @@
 		BB6CC8321AD72C8400837886 /* urec_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = urec_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6CC8371AD72C8400837886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6CC8381AD72C8400837886 /* urec_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urec_iosTests.swift; sourceTree = "<group>"; };
+		BB9D54121B05958A0025CCDD /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RentalsViewController.swift; sourceTree = "<group>"; };
 		BBA0CC611ADD8B58008AE71A /* ClimbingWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClimbingWallViewController.swift; sourceTree = "<group>"; };
 		BBA0CC631ADD8C65008AE71A /* IntramuralsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntramuralsViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				BBA0CC5F1ADD8A68008AE71A /* RentalsViewController.swift */,
 				BB6CC8241AD72C8300837886 /* OutdoorRecViewController.swift */,
 				BB6CC8261AD72C8300837886 /* Main.storyboard */,
+				BB9D54121B05958A0025CCDD /* About.swift */,
 				BBDD793C1AE6101F003DC9A3 /* SettingsViewController.swift */,
 				BBDD79411AE61410003DC9A3 /* SettingsModel.xcdatamodeld */,
 				BBDD79441AE6153F003DC9A3 /* Notifications.swift */,
@@ -314,6 +317,7 @@
 			files = (
 				BBA0CC621ADD8B58008AE71A /* ClimbingWallViewController.swift in Sources */,
 				BB6CC8251AD72C8300837886 /* OutdoorRecViewController.swift in Sources */,
+				BB9D54131B05958A0025CCDD /* About.swift in Sources */,
 				BBDD793D1AE6101F003DC9A3 /* SettingsViewController.swift in Sources */,
 				BBDD79451AE6153F003DC9A3 /* Notifications.swift in Sources */,
 				BB6CC8211AD72C8300837886 /* AppDelegate.swift in Sources */,

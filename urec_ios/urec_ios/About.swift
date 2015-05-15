@@ -1,5 +1,5 @@
 //
-//  OutdoorRecViewController.swift
+//  About
 //  urec_ios
 //
 //  Created by Hannah Gamiel on 4/9/15.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
-
+class AboutViewController: ParentPageViewController, UIWebViewDelegate  {
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if(firstTime) {
-            println("First time viewing OUTDOOR REC viewcontroller!")
+            println("First time viewing ABOUT viewcontroller!")
             if(url == "") {
-                self.navigationBar.title = "OUTDOOR REC"
-                url = theHost + "#outdoorrec"
-                
+                self.navigationBar.title = "ABOUT"
+                url = theHost + "#about"
                 isRoot = true
             }
             else {
@@ -36,4 +36,6 @@ class OutdoorRecViewController: ParentPageViewController, UIWebViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
+
