@@ -78,10 +78,6 @@ class User extends Model {
 
     public function update_password($attributes)
     {
-        if(!Hash::check($attributes['old_password'], $this->password)) {
-            throw new AuthException("Old password was incorrect.");
-        }
-
         $this->password = Hash::make($attributes['new_password']);
 
         if(!$this->save()) {
