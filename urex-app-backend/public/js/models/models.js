@@ -28,6 +28,18 @@ var Program = Backbone.Model.extend({
   }
 });
 
+var User = Backbone.Model.extend({
+  defaults: {
+    id: null,
+    userrname: "Username",
+    password: "password",
+    first_name: "fName",
+    last_name: "lName",
+    email: null,
+    category_id: null,
+  }
+});
+
 var Event = Backbone.Model.extend({
   defaults: {
     id: null,

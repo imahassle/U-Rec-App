@@ -8,6 +8,7 @@
         <title>Home</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="m/css/forms.css">
     <link rel="stylesheet" type="text/css" href="m/css/stylesheets/style.css">
   </head>
   <body>
@@ -290,12 +291,15 @@
 
     <script type="text/template" id="feedback">
       <div class="panel feedback">
-        <form id="feedbackForm">
+        <form id="feedbackForm" class="pure-form">
           <input id="feedbackEmail" type="text" placeholder="My Email">
           <br>
           <textarea id="feedbackMessage" name="" id="" rows="5" placeholder="Message"></textarea>
           <br>
-          <button class="red">Submit Feedback</button>
+          <div class="splash-menu">
+            <button class="red">Submit Feedback</button>
+
+          </div>
         </form>
       </div>
       <div class="panel feedbackSuccess">
@@ -312,7 +316,7 @@
             date: new Date().toString().split(" G")[0],
           };
           $.ajax({
-            url: "../urex-app-backend/public/api/feedback",
+            url: "../api/feedback",
             data: data,
             method: "POST",
             success: function() {

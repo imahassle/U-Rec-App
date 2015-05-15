@@ -18,6 +18,12 @@ var compareDate = function(a, b) {
   return 0;
 };
 
+app.collections.users = Backbone.Collection.extend({
+  model: User,
+  url: "api/user",
+  comparator: compare,
+});
+
 app.collections.generalAnnouncement = Backbone.Collection.extend({
   model: Announcement,
   url: "api/announcement",

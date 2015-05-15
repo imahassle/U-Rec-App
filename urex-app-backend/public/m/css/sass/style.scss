@@ -47,8 +47,23 @@ body {
 
 .image-container {
 	padding: 5px;
+	background-color: white;
+	margin-bottom: 10px;
 	img {
 		width : 100%;
+	}
+	p {
+		text-align: center;
+		color: $medGray;
+	}
+}
+
+#feedbackForm {
+	input {
+		width: 100%;
+	}
+	textarea {
+		width: 100%;
 	}
 }
 
@@ -115,11 +130,17 @@ body {
 	background: #FFFFFF;
 	margin-bottom: 10px;
 
+	// width: 100%;
+
 	/*font-size: 32px;*/
 	/*font-color: $lightGray;*/
 
 	button {
 		border: 0;
+	}
+
+	h3 {
+		color: $primaryRed;
 	}
 
 	img.left-img {
@@ -135,6 +156,13 @@ body {
 
 	input[type="submit"] {
 		background-color: $primaryRed;
+	}
+
+	.event {
+		img.eventImage {
+			width: 100%;
+			margin: 0 auto;
+		}
 	}
 
 	.splash-menu {
@@ -168,7 +196,7 @@ body {
 			#ClimbingWallEvents {
 				background-image: url("../../images/ClimbingWall2.png");
 			}
-			#ClimbingWallPhotos {	
+			#ClimbingWallPhotos {
 				background-image: url("../../images/ClimbingWall3.png");
 			}
 			#ClimbingWallFacebook {
@@ -187,7 +215,7 @@ body {
 				background-image: url("../../images/Rentals1.png");
 			}
 		button {
-			
+
 			@include no-border;
 			background-color: $primaryRed !important;
 			background-size: auto 100%;

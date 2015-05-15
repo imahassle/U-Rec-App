@@ -67,6 +67,28 @@ var eventView = Backbone.View.extend({
 	}
 });
 
+var adminView = Backbone.View.extend({
+	template: _.template($("#admin").html()),
+	initialize: function() {
+		this.collection = new app.collections.users;
+		this.collection.url = "api/user";
+		this.collectionName =  this.options.collectionName;
+		var that = this;
+		console.log("eventing events...");
+		that.collection.on("sync change remove", that.render, that);
+		this.collection.fetch().done(function() {
+			that.render();
+			console.log("evented!");
+
+		});
+	},
+	render: function() {
+		console.log("events...");
+		this.$el.html(this.template({collection: this.collection.toJSON(), name: this.options.name, coll: this.collectionName, category: this.options.category}));
+		return this;
+	}
+});
+
 var programView = Backbone.View.extend({
 	template: _.template($("#programTemplate").html()),
 	initialize: function() {

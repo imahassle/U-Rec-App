@@ -1166,8 +1166,35 @@
 </script>
 
 <script type="text/template" id="admin">
+  <% function sortId(id) {
+    switch(id) {
+      case 1: return "Administrator"; break;
+      case 2: return "Facility"; break;
+      case 3: return "Outdoor Rec"; break;
+      case 4: return "Intramurals"; break;
+      case 5: return "Climbing Wall"; break;
+      default: return "I Don't Know"; break;
+    }
+  }
+  %>
   <div class="header aug-header">
       <h1>Admin</h1>
+  </div>
+  <div class="content">
+    <div class="creation">
+      <h4>Create and Manage Users</h4>
+      <% _.each(collection, function(model) { %>
+        <div id="<%=model.id%>">
+          <p>Username: <%=model.username%> </p>
+          <button>See Info</button>
+          <div class="show">
+            <p>Name: <%=model.first_name%> <%=model.last_name%> </p>
+            <p>Email: <%=model.email%> </p>
+            <p>Category: <%=sortId(model.category_id)%> </p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
   </div>
 </script>
 

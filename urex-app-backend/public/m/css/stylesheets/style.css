@@ -1,232 +1,252 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic);
-/* line 14, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 html, button, input, select, textarea, .pure-g [class*="pure-u"] {
   /* Set your content font stack here: */
-  font-family: 'Lato', sans-serif; }
+  font-family: 'Lato', sans-serif;
+}
 
-/* line 19, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 input, textarea {
-  font-size: 1.3em; }
+  font-size: 1.3em;
+}
 
-/* line 23, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 button, .ui-btn {
-  font-size: 1em; }
+  font-size: 1em;
+}
 
-/* line 27, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 body {
   padding: 5px;
-  background: #EFEFEF; }
+  background: #efefef;
+}
 
-/* line 32, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .ui-btn {
-  background-color: #B70724;
+  background-color: #b70724;
   color: white;
-  font-size: 35px; }
+  font-size: 35px;
+}
 
-/* line 38, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .ui-header {
-  background-color: #B70724 !important; }
+  background-color: #b70724 !important;
+}
 
-/* line 41, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .ui-title {
   color: white;
   text-transform: uppercase;
   text-shadow: none;
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
-/* line 48, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .image-container {
-  padding: 5px; }
-  /* line 50, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .image-container img {
-    width: 100%; }
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.image-container img {
+  width: 100%;
+}
+.image-container p {
+  text-align: center;
+  color: #949494;
+}
 
-/* line 55, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
+#feedbackForm input {
+  width: 100%;
+}
+#feedbackForm textarea {
+  width: 100%;
+}
+
 .hours {
-  text-align: center; }
-  /* line 57, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours p {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    color: #949494; }
-  /* line 64, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours p.info {
-    color: #B70724;
-    padding-left: 10px; }
-  /* line 74, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours button {
-    text-transform: uppercase;
-    background-color: #B70724 !important;
-    color: white !important;
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
-    margin: 0 auto; }
+  text-align: center;
+}
+.hours p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: #949494;
+}
+.hours p.info {
+  color: #b70724;
+  padding-left: 10px;
+}
+.hours button {
+  text-transform: uppercase;
+  background-color: #b70724 !important;
+  color: white !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 auto;
+}
 
-/* line 84, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .hours-popup {
-  padding: 20px; }
-  /* line 87, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours-popup h4 {
-    text-align: center;
-    color: #B70724;
-    text-transform: uppercase; }
-  /* line 92, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours-popup p {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    color: #949494 !important; }
-  /* line 98, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .hours-popup p.info {
-    color: #B70724 !important;
-    padding-left: 5%;
-    font-weight: bold; }
+  padding: 20px;
+}
+.hours-popup h4 {
+  text-align: center;
+  color: #b70724;
+  text-transform: uppercase;
+}
+.hours-popup p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: #949494 !important;
+}
+.hours-popup p.info {
+  color: #b70724 !important;
+  padding-left: 5%;
+  font-weight: bold;
+}
 
-/* line 107, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .photos-grid .ui-grid-b img {
-  width: 100%; }
+  width: 100%;
+}
 
-/* line 113, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .panel {
   padding: 5%;
   background: #FFFFFF;
   margin-bottom: 10px;
   /*font-size: 32px;*/
-  /*font-color: $lightGray;*/ }
-  /* line 121, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel button {
-    border: 0; }
-  /* line 125, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel img.left-img {
-    width: 20%; }
-  /* line 130, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel label {
-    vertical-align: center;
-    margin-top: 15px;
-    color: #949494; }
-  /* line 136, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel input[type="submit"] {
-    background-color: #B70724; }
-  /* line 141, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #FacilityAnnouncements {
-    background-image: url("../../images/Facility1.png"); }
-  /* line 144, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #FacilityEvents {
-    background-image: url("../../images/Facility2.png"); }
-  /* line 147, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #FacilityPhotos {
-    background-image: url("../../images/Facility3.png"); }
-  /* line 150, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #FacilityFacebook {
-    background-image: url("../../images/Facility4.png"); }
-  /* line 153, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #OutdoorRecAnnouncements {
-    background-image: url("../../images/OutdoorRec1.png"); }
-  /* line 156, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #OutdoorRecTrips {
-    background-image: url("../../images/OutdoorRec2.png"); }
-  /* line 159, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #OutdoorRecPhotos {
-    background-image: url("../../images/OutdoorRec3.png"); }
-  /* line 162, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #OutdoorRecFacebook {
-    background-image: url("../../images/OutdoorRec4.png"); }
-  /* line 165, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #ClimbingWallAnnouncements {
-    background-image: url("../../images/ClimbingWall1.png"); }
-  /* line 168, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #ClimbingWallEvents {
-    background-image: url("../../images/ClimbingWall2.png"); }
-  /* line 171, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #ClimbingWallPhotos {
-    background-image: url("../../images/ClimbingWall3.png"); }
-  /* line 174, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #ClimbingWallFacebook {
-    background-image: url("../../images/ClimbingWall4.png"); }
-  /* line 177, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #IntramuralsAnnouncements {
-    background-image: url("../../images/Intramurals1.png"); }
-  /* line 180, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #IntramuralsPhotos {
-    background-image: url("../../images/Intramurals2.png"); }
-  /* line 183, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #IntramuralsTwitter {
-    background-image: url("../../images/Intramurals3.png"); }
-  /* line 186, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu #Rentals {
-    background-image: url("../../images/Rentals1.png"); }
-  /* line 189, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu button {
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
-    background-color: #B70724 !important;
-    background-size: auto 100%;
-    color: white;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    padding: 1.3em 0;
-    text-shadow: none;
-    width: 100%;
-    border: 0;
-    margin-bottom: 0.4em; }
-  /* line 204, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .splash-menu a {
-    text-decoration: none; }
-  /* line 209, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel table {
-    width: 100%; }
-    /* line 211, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel table tr {
-      width: 100%;
-      margin-bottom: 10px; }
-      /* line 214, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-      .panel table tr td:first-child, .panel table tr th:first-child {
-        width: 50%;
-        text-align: left; }
-      /* line 218, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-      .panel table tr td, .panel table tr th {
-        font-size: 0.9em;
-        width: 12%;
-        text-align: center; }
-    /* line 225, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel table thead td {
-      color: #B70724;
-      font-weight: bold; }
-    /* line 231, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel table tbody td {
-      color: #949494; }
-  /* line 237, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel .rentals-buttons {
-    text-align: center;
-    line-height: 3em; }
-    /* line 241, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel .rentals-buttons .selected {
-      background-color: #B70724; }
+  /*font-color: $lightGray;*/
+}
+.panel button {
+  border: 0;
+}
+.panel h3 {
+  color: #b70724;
+}
+.panel img.left-img {
+  width: 20%;
+}
+.panel label {
+  vertical-align: center;
+  margin-top: 15px;
+  color: #949494;
+}
+.panel input[type="submit"] {
+  background-color: #b70724;
+}
+.panel .event img.eventImage {
+  width: 100%;
+  margin: 0 auto;
+}
+.panel .splash-menu #FacilityAnnouncements {
+  background-image: url("../../images/Facility1.png");
+}
+.panel .splash-menu #FacilityEvents {
+  background-image: url("../../images/Facility2.png");
+}
+.panel .splash-menu #FacilityPhotos {
+  background-image: url("../../images/Facility3.png");
+}
+.panel .splash-menu #FacilityFacebook {
+  background-image: url("../../images/Facility4.png");
+}
+.panel .splash-menu #OutdoorRecAnnouncements {
+  background-image: url("../../images/OutdoorRec1.png");
+}
+.panel .splash-menu #OutdoorRecTrips {
+  background-image: url("../../images/OutdoorRec2.png");
+}
+.panel .splash-menu #OutdoorRecPhotos {
+  background-image: url("../../images/OutdoorRec3.png");
+}
+.panel .splash-menu #OutdoorRecFacebook {
+  background-image: url("../../images/OutdoorRec4.png");
+}
+.panel .splash-menu #ClimbingWallAnnouncements {
+  background-image: url("../../images/ClimbingWall1.png");
+}
+.panel .splash-menu #ClimbingWallEvents {
+  background-image: url("../../images/ClimbingWall2.png");
+}
+.panel .splash-menu #ClimbingWallPhotos {
+  background-image: url("../../images/ClimbingWall3.png");
+}
+.panel .splash-menu #ClimbingWallFacebook {
+  background-image: url("../../images/ClimbingWall4.png");
+}
+.panel .splash-menu #IntramuralsAnnouncements {
+  background-image: url("../../images/Intramurals1.png");
+}
+.panel .splash-menu #IntramuralsPhotos {
+  background-image: url("../../images/Intramurals2.png");
+}
+.panel .splash-menu #IntramuralsTwitter {
+  background-image: url("../../images/Intramurals3.png");
+}
+.panel .splash-menu #Rentals {
+  background-image: url("../../images/Rentals1.png");
+}
+.panel .splash-menu button {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  background-color: #b70724 !important;
+  background-size: auto 100%;
+  color: white;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  padding: 1.3em 0;
+  text-shadow: none;
+  width: 100%;
+  border: 0;
+  margin-bottom: 0.4em;
+}
+.panel .splash-menu a {
+  text-decoration: none;
+}
+.panel table {
+  width: 100%;
+}
+.panel table tr {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.panel table tr td:first-child, .panel table tr th:first-child {
+  width: 50%;
+  text-align: left;
+}
+.panel table tr td, .panel table tr th {
+  font-size: .9em;
+  width: 12%;
+  text-align: center;
+}
+.panel table thead td {
+  color: #b70724;
+  font-weight: bold;
+}
+.panel table tbody td {
+  color: #949494;
+}
+.panel .rentals-buttons {
+  text-align: center;
+  line-height: 3em;
+}
+.panel .rentals-buttons .selected {
+  background-color: #b70724;
+}
 
-/* line 248, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
 .panel.shout {
-  display: inline-block; }
-  /* line 250, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel.shout img {
-    width: 20%;
-    float: left;
-    vertical-align: top; }
-  /* line 256, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-  .panel.shout .shout-content {
-    vertical-align: top; }
-    /* line 258, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel.shout .shout-content fieldset {
-      word-wrap: normal;
-      padding-left: 10px; }
-    /* line 262, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel.shout .shout-content .shout-title {
-      color: #B70724;
-      font-weight: bold; }
-    /* line 266, /Applications/MAMP/htdocs/urec/Mobile-New/css/sass/style.scss */
-    .panel.shout .shout-content p {
-      margin: 0;
-      color: #949494;
-      vertical-align: top; }
+  display: inline-block;
+}
+.panel.shout img {
+  width: 20%;
+  float: left;
+  vertical-align: top;
+}
+.panel.shout .shout-content {
+  vertical-align: top;
+}
+.panel.shout .shout-content fieldset {
+  word-wrap: normal;
+  padding-left: 10px;
+}
+.panel.shout .shout-content .shout-title {
+  color: #b70724;
+  font-weight: bold;
+}
+.panel.shout .shout-content p {
+  margin: 0;
+  color: #949494;
+  vertical-align: top;
+}

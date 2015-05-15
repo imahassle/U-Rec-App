@@ -52,6 +52,12 @@ var app = (function() {
 		home() {
 			return $("#home").html();
 		},
+		admin() {
+			this.administratorView = new adminView({
+				collectionName: "app.viewsFactory.administratorView.collection"
+			});
+			return this.administratorView;
+		},
 		removeMenu: function() {
 			console.log("removing menu...");
 			$("#menu").html("");
@@ -256,6 +262,7 @@ var app = (function() {
 			"climbingwall/events": "climbingwallEvents",
 			"rentals": "rentals",
 			"stats": "stats",
+			"admin": "admin",
 			"": "home",
 			"login": "login"
 		},
