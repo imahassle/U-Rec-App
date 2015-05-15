@@ -29,11 +29,6 @@ class FacilityViewController: ParentPageViewController, UIWebViewDelegate  {
         setInitialWebView()
         
         setStyle()
-        
-        
-
-        //navigationController?.pushViewController(newVC, animated: true)
- 
     }
 
     override func didReceiveMemoryWarning() {

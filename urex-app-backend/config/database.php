@@ -47,10 +47,10 @@ return [
     'connections' => [
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'cs1',
+            'host'      => 'localhost',
             'database'  => 'urex_appdb',
-            'username'  => 'urex_user',
-            'password'  => 'urex_password',
+            'username'  => 'root',
+            'password'  => '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

@@ -32,8 +32,8 @@ class ParentPageViewController: UIViewController, UIWebViewDelegate {
     var rgb_mainColor : [CGFloat]! /*= [CGFloat(Float(185)/255), CGFloat(Float(0)/255), CGFloat(Float(30)/255), CGFloat(Float(1.0))] */
     var isRoot = false
     var jQuery : Bool = true
-    var theHost : String = "http://localhost:8888/urec/Mobile-New/"
-    //var theHost : String = "104.236.181.119/Mobile-New/"
+    //var theHost : String = "http://localhost:8000/mobile/"
+    var theHost : String = "http://104.236.181.119/mobile"
     
     var firstTime = true
     var url : String = ""
