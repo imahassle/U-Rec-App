@@ -8,6 +8,7 @@ use Response;
 use Illuminate\Http\Request;
 use App\Traits\UrexExecutionHandlerTrait;
 use App\Exceptions\AdminException;
+use App\User;
 
 class AdminCheck implements Middleware {
 
@@ -26,7 +27,7 @@ class AdminCheck implements Middleware {
             if(is_null($request->header('X-Authorization'))) {
                 throw new AuthException("No valid API key found.");
             }
-            $user = ApiKey::whereKey($request->header('X-Authorization'))->first()->user;
+            $user = User::find(ApiKey::whereKey($attributes['X-Authorization'])->first()->user_id);
             if($user->category_id != Category::whereName('Administration')->first()->id) {
                 throw new AdminException("You aren't supposed to access this functionality...");
             }
