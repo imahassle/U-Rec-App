@@ -33,9 +33,6 @@ class HourController extends ApiGuardController {
 
     public function index_category_week($category_id)
     {
-        if(!Hour::whereCategoryId($category_id)->exists())  {
-            return Response::json([]);
-        }
         return $this->attemptExecution(function() use ($category_id) {
             return Response::json(Hour::getNextWeek(Request::input('day'), $category_id));
         });
