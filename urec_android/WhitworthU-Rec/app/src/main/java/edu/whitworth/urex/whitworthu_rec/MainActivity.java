@@ -233,7 +233,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.climbingwall_fragment_main, container, false);
             WebView myWebView = (WebView) rootView.findViewById(R.id.webview);
-            myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/ClimbingWall.htm");
+            myWebView.loadUrl("http://10.0.2.2:8888/Mobile-New/#climbingwall");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
@@ -284,7 +284,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.intramurals_fragment_main, container, false);
             WebView myWebView = (WebView) rootView.findViewById(R.id.webview);
-            myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Intramurals.htm");
+            myWebView.loadUrl("http://10.0.2.2:8888/Mobile-New/#intramurals");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
@@ -335,7 +335,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.rentals_fragment_main, container, false);
             WebView myWebView = (WebView) rootView.findViewById(R.id.webview);
-            myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Fitness.htm");
+            myWebView.loadUrl("http://10.0.2.2:8888/Mobile-New/#rentals");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
@@ -386,7 +386,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.urec_fragment_main, container, false);
             WebView myWebView = (WebView) rootView.findViewById(R.id.webview);
-            myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Index.htm");
+            myWebView.loadUrl("http://10.0.2.2:8888/Mobile-New/#facility");
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
@@ -441,22 +441,27 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.outdoorrec_fragment_main, container, false);
             WebView myWebView = (WebView) rootView.findViewById(R.id.webview);
-            myWebView.loadUrl("http://www.whitworth.edu/Administration/RecreationCenter/Index.htm");
+            myWebView.loadUrl("http://10.0.2.2:8888/Mobile-New/#outdoorrec");
+
             WebSettings webSettings = myWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    /*if (Uri.parse(url).getHost().equals("www.whitworth.edu")) {
-                        // This is my web site, so do not override; let my WebView load the page
-                        return false;
-                    }*/
-                    // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
                     Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
                     myIntent.putExtra("url", url); //Optional parameters
                     getActivity().startActivity(myIntent);
                     return true;
                 }
+
+                /*@Override
+                public void onPageFinished (WebView view, String url) {
+                    if (url != "http://10.0.2.2:8888/Mobile-New/#outdoorrec") {
+                        Intent myIntent = new Intent(getActivity(), SecondaryLevelActivity.class);
+                        myIntent.putExtra("url", url); //Optional parameters
+                        getActivity().startActivity(myIntent);
+                    }
+                }*/
             });
 
             return rootView;
