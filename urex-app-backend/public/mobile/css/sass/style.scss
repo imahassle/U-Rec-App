@@ -45,6 +45,13 @@ body {
 		font-weight: lighter;
 }
 
+.image-container {
+	padding: 5px;
+	img {
+		width : 100%;
+	}
+}
+
 .hours {
 	text-align: center;
 	p {
@@ -111,6 +118,10 @@ body {
 	/*font-size: 32px;*/
 	/*font-color: $lightGray;*/
 
+	button {
+		border: 0;
+	}
+
 	img.left-img {
 		width: 20%;
 		// height: 50px;
@@ -127,14 +138,67 @@ body {
 	}
 
 	.splash-menu {
+		#FacilityAnnouncements {
+				background-image: url("../../images/Facility1.png");
+			}
+			#FacilityEvents {
+				background-image: url("../../images/Facility2.png");
+			}
+			#FacilityPhotos {
+				background-image: url("../../images/Facility3.png");
+			}
+			#FacilityFacebook {
+				background-image: url("../../images/Facility4.png");
+			}
+			#OutdoorRecAnnouncements {
+				background-image: url("../../images/OutdoorRec1.png");
+			}
+			#OutdoorRecTrips {
+				background-image: url("../../images/OutdoorRec2.png");
+			}
+			#OutdoorRecPhotos {
+				background-image: url("../../images/OutdoorRec3.png");
+			}
+			#OutdoorRecFacebook {
+				background-image: url("../../images/OutdoorRec4.png");
+			}
+			#ClimbingWallAnnouncements {
+				background-image: url("../../images/ClimbingWall1.png");
+			}
+			#ClimbingWallEvents {
+				background-image: url("../../images/ClimbingWall2.png");
+			}
+			#ClimbingWallPhotos {	
+				background-image: url("../../images/ClimbingWall3.png");
+			}
+			#ClimbingWallFacebook {
+				background-image: url("../../images/ClimbingWall4.png");
+			}
+			#IntramuralsAnnouncements {
+				background-image: url("../../images/Intramurals1.png");
+			}
+			#IntramuralsPhotos {
+				background-image: url("../../images/Intramurals2.png");
+			}
+			#IntramuralsTwitter {
+				background-image: url("../../images/Intramurals3.png");
+			}
+			#Rentals {
+				background-image: url("../../images/Rentals1.png");
+			}
 		button {
+			
 			@include no-border;
 			background-color: $primaryRed !important;
+			background-size: auto 100%;
 			color: white;
 			font-size: 1.2em;
 			text-transform: uppercase;
 			padding: 1.3em 0;
 			text-shadow: none;
+			width: 100%;
+			border: 0;
+			margin-bottom: 0.4em;
 			// font-weight: lighter;
 		}
 		a {
@@ -147,11 +211,12 @@ body {
 		tr {
 			width: 100%;
 			margin-bottom: 10px;
-			td:first-child {
+			td:first-child, th:first-child {
 				width: 50%;
 				text-align: left;
 			}
-			td {
+			td, th {
+				font-size: .9em;
 				width: 12%;
 				text-align: center;
 			}
@@ -166,6 +231,16 @@ body {
 			td {
 				color: $medGray;
 			}
+		}
+	}
+
+	.rentals-buttons {
+		text-align: center;
+		line-height: 3em;
+
+		.selected {
+			background-color: $primaryRed;
+
 		}
 	}
 }
